@@ -1,0 +1,70 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateViqRecording(
+  $Id: String
+  $interviewee: String
+  $interviewFinish: String
+  $interviewStart: String
+  $officerCollarNumber: String
+) {
+  onCreateViqRecording(
+    Id: $Id
+    interviewee: $interviewee
+    interviewFinish: $interviewFinish
+    interviewStart: $interviewStart
+    officerCollarNumber: $officerCollarNumber
+  ) {
+    Id
+    interviewee
+    interviewFinish
+    interviewStart
+    officerCollarNumber
+    recordingUrl
+    unitId
+  }
+}
+subscription OnUpdateViqRecording(
+  $Id: String
+  $interviewee: String
+  $interviewFinish: String
+  $interviewStart: String
+  $officerCollarNumber: String
+) {
+  onUpdateViqRecording(
+    Id: $Id
+    interviewee: $interviewee
+    interviewFinish: $interviewFinish
+    interviewStart: $interviewStart
+    officerCollarNumber: $officerCollarNumber
+  ) {
+    Id
+    interviewee
+    interviewFinish
+    interviewStart
+    officerCollarNumber
+    recordingUrl
+    unitId
+  }
+}
+subscription OnDeleteViqRecording(
+  $Id: String
+  $interviewee: String
+  $interviewFinish: String
+  $interviewStart: String
+  $officerCollarNumber: String
+) {
+  onDeleteViqRecording(
+    Id: $Id
+    interviewee: $interviewee
+    interviewFinish: $interviewFinish
+    interviewStart: $interviewStart
+    officerCollarNumber: $officerCollarNumber
+  ) {
+    Id
+    interviewee
+    interviewFinish
+    interviewStart
+    officerCollarNumber
+    recordingUrl
+    unitId
+  }
+}

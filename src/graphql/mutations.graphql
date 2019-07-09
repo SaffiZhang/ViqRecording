@@ -1,0 +1,34 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateViqRecording($input: CreateViqRecordingInput!) {
+  createViqRecording(input: $input) {
+    Id
+    interviewee
+    interviewFinish
+    interviewStart
+    officerCollarNumber
+    recordingUrl
+    unitId
+  }
+}
+mutation UpdateViqRecording($input: UpdateViqRecordingInput!) {
+  updateViqRecording(input: $input) {
+    Id
+    interviewee
+    interviewFinish
+    interviewStart
+    officerCollarNumber
+    recordingUrl
+    unitId
+  }
+}
+mutation DeleteViqRecording($input: DeleteViqRecordingInput!) {
+  deleteViqRecording(input: $input) {
+    Id
+    interviewee
+    interviewFinish
+    interviewStart
+    officerCollarNumber
+    recordingUrl
+    unitId
+  }
+}
