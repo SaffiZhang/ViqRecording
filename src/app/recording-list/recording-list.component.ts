@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APIService} from'../API.service';
 
 @Component({
   selector: 'app-recording-list',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recording-list.component.scss']
 })
 export class RecordingListComponent implements OnInit {
+  recordingList:any=[];
+  constructor(private api:APIService) { }
 
-  constructor() { }
-
-  ngOnInit() {
+ async ngOnInit() {
+     await this.listRecording();
   }
-
+  async listRecording(){
+      let result= await this.api.ListViqRecordings();
+      this.recordingList=result.items;
+  }
+  
 }

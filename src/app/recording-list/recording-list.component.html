@@ -1,1 +1,4 @@
-<p>recording-list works!</p>
+<div *ngFor="let recording of recordingList"> 
+   <hr>
+   <p>{{recording.interviewStart}}, Police Station ID: {{recording.unitId}}, officer : {{recording.officerCollarNumber}}, interviewee:{{interviewee}}</p>
+</div>
