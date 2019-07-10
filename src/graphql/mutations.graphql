@@ -6,8 +6,25 @@ mutation CreateViqRecording($input: CreateViqRecordingInput!) {
     interviewFinish
     interviewStart
     officerCollarNumber
-    recordingUrl
+    recordings {
+      lastModified
+      url
+    }
     unitId
+    annotations {
+      annotationTime
+      text
+    }
+    attachments {
+      description
+      url
+    }
+    emails {
+      emailAddress
+      receiver
+      receiverType
+      emailTime
+    }
   }
 }
 mutation UpdateViqRecording($input: UpdateViqRecordingInput!) {
@@ -17,8 +34,25 @@ mutation UpdateViqRecording($input: UpdateViqRecordingInput!) {
     interviewFinish
     interviewStart
     officerCollarNumber
-    recordingUrl
+    recordings {
+      lastModified
+      url
+    }
     unitId
+    annotations {
+      annotationTime
+      text
+    }
+    attachments {
+      description
+      url
+    }
+    emails {
+      emailAddress
+      receiver
+      receiverType
+      emailTime
+    }
   }
 }
 mutation DeleteViqRecording($input: DeleteViqRecordingInput!) {
@@ -28,7 +62,24 @@ mutation DeleteViqRecording($input: DeleteViqRecordingInput!) {
     interviewFinish
     interviewStart
     officerCollarNumber
-    recordingUrl
+    recordings {
+      lastModified
+      url
+    }
     unitId
+    annotations {
+      annotationTime
+      text
+    }
+    attachments {
+      description
+      url
+    }
+    emails {
+      emailAddress
+      receiver
+      receiverType
+      emailTime
+    }
   }
 }

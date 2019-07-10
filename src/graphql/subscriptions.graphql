@@ -18,8 +18,25 @@ subscription OnCreateViqRecording(
     interviewFinish
     interviewStart
     officerCollarNumber
-    recordingUrl
+    recordings {
+      lastModified
+      url
+    }
     unitId
+    annotations {
+      annotationTime
+      text
+    }
+    attachments {
+      description
+      url
+    }
+    emails {
+      emailAddress
+      receiver
+      receiverType
+      emailTime
+    }
   }
 }
 subscription OnUpdateViqRecording(
@@ -41,8 +58,25 @@ subscription OnUpdateViqRecording(
     interviewFinish
     interviewStart
     officerCollarNumber
-    recordingUrl
+    recordings {
+      lastModified
+      url
+    }
     unitId
+    annotations {
+      annotationTime
+      text
+    }
+    attachments {
+      description
+      url
+    }
+    emails {
+      emailAddress
+      receiver
+      receiverType
+      emailTime
+    }
   }
 }
 subscription OnDeleteViqRecording(
@@ -64,7 +98,24 @@ subscription OnDeleteViqRecording(
     interviewFinish
     interviewStart
     officerCollarNumber
-    recordingUrl
+    recordings {
+      lastModified
+      url
+    }
     unitId
+    annotations {
+      annotationTime
+      text
+    }
+    attachments {
+      description
+      url
+    }
+    emails {
+      emailAddress
+      receiver
+      receiverType
+      emailTime
+    }
   }
 }

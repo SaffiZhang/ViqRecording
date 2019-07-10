@@ -6,8 +6,25 @@ query GetViqRecording($Id: String!) {
     interviewFinish
     interviewStart
     officerCollarNumber
-    recordingUrl
+    recordings {
+      lastModified
+      url
+    }
     unitId
+    annotations {
+      annotationTime
+      text
+    }
+    attachments {
+      description
+      url
+    }
+    emails {
+      emailAddress
+      receiver
+      receiverType
+      emailTime
+    }
   }
 }
 query ListViqRecordings(
@@ -22,7 +39,6 @@ query ListViqRecordings(
       interviewFinish
       interviewStart
       officerCollarNumber
-      recordingUrl
       unitId
     }
     nextToken

@@ -1,5 +1,5 @@
 projects:
-  Viq Recording Portal App:
+  Viq Recording AppSync App:
     schemaPath: src\graphql\schema.json
     includes:
       - src\graphql\**\*.graphql

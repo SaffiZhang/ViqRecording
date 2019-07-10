@@ -8,8 +8,8 @@ import { APIService} from'../API.service';
 })
 export class RecordingListComponent implements OnInit {
   recordingList:any=[];
+ 
   constructor(private api:APIService) { }
-
  async ngOnInit() {
      await this.listRecording();
   }

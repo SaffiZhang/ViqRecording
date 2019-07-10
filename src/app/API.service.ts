@@ -11,8 +11,33 @@ export type CreateViqRecordingInput = {
   interviewFinish?: string | null;
   interviewStart?: string | null;
   officerCollarNumber?: string | null;
-  recordingUrl?: string | null;
+  recordings?: Array<recordingInput> | null;
   unitId?: string | null;
+  annotations?: Array<annotationInput | null> | null;
+  attachments?: Array<attachmentInput | null> | null;
+  emails?: Array<emailInput | null> | null;
+};
+
+export type recordingInput = {
+  lastModified?: string | null;
+  url?: string | null;
+};
+
+export type annotationInput = {
+  annotationTime?: string | null;
+  text?: string | null;
+};
+
+export type attachmentInput = {
+  description?: string | null;
+  url?: string | null;
+};
+
+export type emailInput = {
+  emailAddress?: string | null;
+  receiver?: string | null;
+  receiverType?: string | null;
+  emailTime?: string | null;
 };
 
 export type UpdateViqRecordingInput = {
@@ -21,8 +46,11 @@ export type UpdateViqRecordingInput = {
   interviewFinish?: string | null;
   interviewStart?: string | null;
   officerCollarNumber?: string | null;
-  recordingUrl?: string | null;
+  recordings?: Array<recordingInput> | null;
   unitId?: string | null;
+  annotations?: Array<annotationInput | null> | null;
+  attachments?: Array<attachmentInput | null> | null;
+  emails?: Array<emailInput | null> | null;
 };
 
 export type DeleteViqRecordingInput = {
@@ -35,7 +63,7 @@ export type TableViqRecordingFilterInput = {
   interviewFinish?: TableStringFilterInput | null;
   interviewStart?: TableStringFilterInput | null;
   officerCollarNumber?: TableStringFilterInput | null;
-  recordingUrl?: TableStringFilterInput | null;
+  recordings?: Array<recordingInput> | null;
   unitId?: TableStringFilterInput | null;
 };
 
@@ -59,8 +87,29 @@ export type CreateViqRecordingMutation = {
   interviewFinish: string | null;
   interviewStart: string | null;
   officerCollarNumber: string | null;
-  recordingUrl: string | null;
+  recordings: Array<{
+    __typename: "recording";
+    lastModified: string | null;
+    url: string | null;
+  }> | null;
   unitId: string | null;
+  annotations: Array<{
+    __typename: "annotation";
+    annotationTime: string | null;
+    text: string | null;
+  } | null> | null;
+  attachments: Array<{
+    __typename: "attachment";
+    description: string | null;
+    url: string | null;
+  } | null> | null;
+  emails: Array<{
+    __typename: "email";
+    emailAddress: string | null;
+    receiver: string | null;
+    receiverType: string | null;
+    emailTime: string | null;
+  } | null> | null;
 };
 
 export type UpdateViqRecordingMutation = {
@@ -70,8 +119,29 @@ export type UpdateViqRecordingMutation = {
   interviewFinish: string | null;
   interviewStart: string | null;
   officerCollarNumber: string | null;
-  recordingUrl: string | null;
+  recordings: Array<{
+    __typename: "recording";
+    lastModified: string | null;
+    url: string | null;
+  }> | null;
   unitId: string | null;
+  annotations: Array<{
+    __typename: "annotation";
+    annotationTime: string | null;
+    text: string | null;
+  } | null> | null;
+  attachments: Array<{
+    __typename: "attachment";
+    description: string | null;
+    url: string | null;
+  } | null> | null;
+  emails: Array<{
+    __typename: "email";
+    emailAddress: string | null;
+    receiver: string | null;
+    receiverType: string | null;
+    emailTime: string | null;
+  } | null> | null;
 };
 
 export type DeleteViqRecordingMutation = {
@@ -81,8 +151,29 @@ export type DeleteViqRecordingMutation = {
   interviewFinish: string | null;
   interviewStart: string | null;
   officerCollarNumber: string | null;
-  recordingUrl: string | null;
+  recordings: Array<{
+    __typename: "recording";
+    lastModified: string | null;
+    url: string | null;
+  }> | null;
   unitId: string | null;
+  annotations: Array<{
+    __typename: "annotation";
+    annotationTime: string | null;
+    text: string | null;
+  } | null> | null;
+  attachments: Array<{
+    __typename: "attachment";
+    description: string | null;
+    url: string | null;
+  } | null> | null;
+  emails: Array<{
+    __typename: "email";
+    emailAddress: string | null;
+    receiver: string | null;
+    receiverType: string | null;
+    emailTime: string | null;
+  } | null> | null;
 };
 
 export type GetViqRecordingQuery = {
@@ -92,8 +183,29 @@ export type GetViqRecordingQuery = {
   interviewFinish: string | null;
   interviewStart: string | null;
   officerCollarNumber: string | null;
-  recordingUrl: string | null;
+  recordings: Array<{
+    __typename: "recording";
+    lastModified: string | null;
+    url: string | null;
+  }> | null;
   unitId: string | null;
+  annotations: Array<{
+    __typename: "annotation";
+    annotationTime: string | null;
+    text: string | null;
+  } | null> | null;
+  attachments: Array<{
+    __typename: "attachment";
+    description: string | null;
+    url: string | null;
+  } | null> | null;
+  emails: Array<{
+    __typename: "email";
+    emailAddress: string | null;
+    receiver: string | null;
+    receiverType: string | null;
+    emailTime: string | null;
+  } | null> | null;
 };
 
 export type ListViqRecordingsQuery = {
@@ -105,7 +217,6 @@ export type ListViqRecordingsQuery = {
     interviewFinish: string | null;
     interviewStart: string | null;
     officerCollarNumber: string | null;
-    recordingUrl: string | null;
     unitId: string | null;
   } | null> | null;
   nextToken: string | null;
@@ -118,8 +229,29 @@ export type OnCreateViqRecordingSubscription = {
   interviewFinish: string | null;
   interviewStart: string | null;
   officerCollarNumber: string | null;
-  recordingUrl: string | null;
+  recordings: Array<{
+    __typename: "recording";
+    lastModified: string | null;
+    url: string | null;
+  }> | null;
   unitId: string | null;
+  annotations: Array<{
+    __typename: "annotation";
+    annotationTime: string | null;
+    text: string | null;
+  } | null> | null;
+  attachments: Array<{
+    __typename: "attachment";
+    description: string | null;
+    url: string | null;
+  } | null> | null;
+  emails: Array<{
+    __typename: "email";
+    emailAddress: string | null;
+    receiver: string | null;
+    receiverType: string | null;
+    emailTime: string | null;
+  } | null> | null;
 };
 
 export type OnUpdateViqRecordingSubscription = {
@@ -129,8 +261,29 @@ export type OnUpdateViqRecordingSubscription = {
   interviewFinish: string | null;
   interviewStart: string | null;
   officerCollarNumber: string | null;
-  recordingUrl: string | null;
+  recordings: Array<{
+    __typename: "recording";
+    lastModified: string | null;
+    url: string | null;
+  }> | null;
   unitId: string | null;
+  annotations: Array<{
+    __typename: "annotation";
+    annotationTime: string | null;
+    text: string | null;
+  } | null> | null;
+  attachments: Array<{
+    __typename: "attachment";
+    description: string | null;
+    url: string | null;
+  } | null> | null;
+  emails: Array<{
+    __typename: "email";
+    emailAddress: string | null;
+    receiver: string | null;
+    receiverType: string | null;
+    emailTime: string | null;
+  } | null> | null;
 };
 
 export type OnDeleteViqRecordingSubscription = {
@@ -140,8 +293,29 @@ export type OnDeleteViqRecordingSubscription = {
   interviewFinish: string | null;
   interviewStart: string | null;
   officerCollarNumber: string | null;
-  recordingUrl: string | null;
+  recordings: Array<{
+    __typename: "recording";
+    lastModified: string | null;
+    url: string | null;
+  }> | null;
   unitId: string | null;
+  annotations: Array<{
+    __typename: "annotation";
+    annotationTime: string | null;
+    text: string | null;
+  } | null> | null;
+  attachments: Array<{
+    __typename: "attachment";
+    description: string | null;
+    url: string | null;
+  } | null> | null;
+  emails: Array<{
+    __typename: "email";
+    emailAddress: string | null;
+    receiver: string | null;
+    receiverType: string | null;
+    emailTime: string | null;
+  } | null> | null;
 };
 
 @Injectable({
@@ -159,8 +333,29 @@ export class APIService {
           interviewFinish
           interviewStart
           officerCollarNumber
-          recordingUrl
+          recordings {
+            __typename
+            lastModified
+            url
+          }
           unitId
+          annotations {
+            __typename
+            annotationTime
+            text
+          }
+          attachments {
+            __typename
+            description
+            url
+          }
+          emails {
+            __typename
+            emailAddress
+            receiver
+            receiverType
+            emailTime
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -182,8 +377,29 @@ export class APIService {
           interviewFinish
           interviewStart
           officerCollarNumber
-          recordingUrl
+          recordings {
+            __typename
+            lastModified
+            url
+          }
           unitId
+          annotations {
+            __typename
+            annotationTime
+            text
+          }
+          attachments {
+            __typename
+            description
+            url
+          }
+          emails {
+            __typename
+            emailAddress
+            receiver
+            receiverType
+            emailTime
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -205,8 +421,29 @@ export class APIService {
           interviewFinish
           interviewStart
           officerCollarNumber
-          recordingUrl
+          recordings {
+            __typename
+            lastModified
+            url
+          }
           unitId
+          annotations {
+            __typename
+            annotationTime
+            text
+          }
+          attachments {
+            __typename
+            description
+            url
+          }
+          emails {
+            __typename
+            emailAddress
+            receiver
+            receiverType
+            emailTime
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -226,8 +463,29 @@ export class APIService {
           interviewFinish
           interviewStart
           officerCollarNumber
-          recordingUrl
+          recordings {
+            __typename
+            lastModified
+            url
+          }
           unitId
+          annotations {
+            __typename
+            annotationTime
+            text
+          }
+          attachments {
+            __typename
+            description
+            url
+          }
+          emails {
+            __typename
+            emailAddress
+            receiver
+            receiverType
+            emailTime
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -253,7 +511,6 @@ export class APIService {
             interviewFinish
             interviewStart
             officerCollarNumber
-            recordingUrl
             unitId
           }
           nextToken
@@ -286,8 +543,29 @@ export class APIService {
           interviewFinish
           interviewStart
           officerCollarNumber
-          recordingUrl
+          recordings {
+            __typename
+            lastModified
+            url
+          }
           unitId
+          annotations {
+            __typename
+            annotationTime
+            text
+          }
+          attachments {
+            __typename
+            description
+            url
+          }
+          emails {
+            __typename
+            emailAddress
+            receiver
+            receiverType
+            emailTime
+          }
         }
       }`
     )
@@ -305,8 +583,29 @@ export class APIService {
           interviewFinish
           interviewStart
           officerCollarNumber
-          recordingUrl
+          recordings {
+            __typename
+            lastModified
+            url
+          }
           unitId
+          annotations {
+            __typename
+            annotationTime
+            text
+          }
+          attachments {
+            __typename
+            description
+            url
+          }
+          emails {
+            __typename
+            emailAddress
+            receiver
+            receiverType
+            emailTime
+          }
         }
       }`
     )
@@ -324,8 +623,29 @@ export class APIService {
           interviewFinish
           interviewStart
           officerCollarNumber
-          recordingUrl
+          recordings {
+            __typename
+            lastModified
+            url
+          }
           unitId
+          annotations {
+            __typename
+            annotationTime
+            text
+          }
+          attachments {
+            __typename
+            description
+            url
+          }
+          emails {
+            __typename
+            emailAddress
+            receiver
+            receiverType
+            emailTime
+          }
         }
       }`
     )
