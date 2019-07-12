@@ -1,45 +1,213 @@
 # this is an auto generated file. This will be overwritten
-query GetViqRecording($Id: String!) {
-  getViqRecording(Id: $Id) {
-    Id
+query GetViqRecording($id: ID!) {
+  getViqRecording(id: $id) {
+    id
     interviewee
     interviewFinish
     interviewStart
     officerCollarNumber
-    recordings {
-      lastModified
-      url
-    }
+    location
     unitId
-    annotations {
-      annotationTime
-      text
-    }
     attachments {
-      description
-      url
+      items {
+        id
+        description
+        url
+      }
+      nextToken
     }
-    emails {
-      emailAddress
-      receiver
-      receiverType
-      emailTime
+    recordingUrls {
+      items {
+        id
+        url
+        lastmodified
+        description
+      }
+      nextToken
+    }
+    logs {
+      items {
+        id
+        dateTime
+        description
+      }
+      nextToken
     }
   }
 }
 query ListViqRecordings(
-  $filter: TableViqRecordingFilterInput
+  $filter: ModelViqRecordingFilterInput
   $limit: Int
   $nextToken: String
 ) {
   listViqRecordings(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
-      Id
+      id
       interviewee
       interviewFinish
       interviewStart
       officerCollarNumber
+      location
       unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+query GetViqRecordingAttachment($id: ID!) {
+  getViqRecordingAttachment(id: $id) {
+    id
+    description
+    url
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+query ListViqRecordingAttachments(
+  $filter: ModelViqRecordingAttachmentFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listViqRecordingAttachments(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      description
+      url
+      viqRecording {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+      }
+    }
+    nextToken
+  }
+}
+query GetViqRecordingUrl($id: ID!) {
+  getViqRecordingUrl(id: $id) {
+    id
+    url
+    lastmodified
+    description
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+query ListViqRecordingUrls(
+  $filter: ModelViqRecordingUrlFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listViqRecordingUrls(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      url
+      lastmodified
+      description
+      viqRecording {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+      }
+    }
+    nextToken
+  }
+}
+query GetViqRecordingLog($id: ID!) {
+  getViqRecordingLog(id: $id) {
+    id
+    dateTime
+    description
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+query ListViqRecordingLogs(
+  $filter: ModelViqRecordingLogFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listViqRecordingLogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      dateTime
+      description
+      viqRecording {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+      }
     }
     nextToken
   }

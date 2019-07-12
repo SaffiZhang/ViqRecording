@@ -1,85 +1,343 @@
 # this is an auto generated file. This will be overwritten
 mutation CreateViqRecording($input: CreateViqRecordingInput!) {
   createViqRecording(input: $input) {
-    Id
+    id
     interviewee
     interviewFinish
     interviewStart
     officerCollarNumber
-    recordings {
-      lastModified
-      url
-    }
+    location
     unitId
-    annotations {
-      annotationTime
-      text
-    }
     attachments {
-      description
-      url
+      items {
+        id
+        description
+        url
+      }
+      nextToken
     }
-    emails {
-      emailAddress
-      receiver
-      receiverType
-      emailTime
+    recordingUrls {
+      items {
+        id
+        url
+        lastmodified
+        description
+      }
+      nextToken
+    }
+    logs {
+      items {
+        id
+        dateTime
+        description
+      }
+      nextToken
     }
   }
 }
 mutation UpdateViqRecording($input: UpdateViqRecordingInput!) {
   updateViqRecording(input: $input) {
-    Id
+    id
     interviewee
     interviewFinish
     interviewStart
     officerCollarNumber
-    recordings {
-      lastModified
-      url
-    }
+    location
     unitId
-    annotations {
-      annotationTime
-      text
-    }
     attachments {
-      description
-      url
+      items {
+        id
+        description
+        url
+      }
+      nextToken
     }
-    emails {
-      emailAddress
-      receiver
-      receiverType
-      emailTime
+    recordingUrls {
+      items {
+        id
+        url
+        lastmodified
+        description
+      }
+      nextToken
+    }
+    logs {
+      items {
+        id
+        dateTime
+        description
+      }
+      nextToken
     }
   }
 }
 mutation DeleteViqRecording($input: DeleteViqRecordingInput!) {
   deleteViqRecording(input: $input) {
-    Id
+    id
     interviewee
     interviewFinish
     interviewStart
     officerCollarNumber
-    recordings {
-      lastModified
-      url
-    }
+    location
     unitId
-    annotations {
-      annotationTime
-      text
-    }
     attachments {
-      description
-      url
+      items {
+        id
+        description
+        url
+      }
+      nextToken
     }
-    emails {
-      emailAddress
-      receiver
-      receiverType
-      emailTime
+    recordingUrls {
+      items {
+        id
+        url
+        lastmodified
+        description
+      }
+      nextToken
+    }
+    logs {
+      items {
+        id
+        dateTime
+        description
+      }
+      nextToken
+    }
+  }
+}
+mutation CreateViqRecordingAttachment(
+  $input: CreateViqRecordingAttachmentInput!
+) {
+  createViqRecordingAttachment(input: $input) {
+    id
+    description
+    url
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+mutation UpdateViqRecordingAttachment(
+  $input: UpdateViqRecordingAttachmentInput!
+) {
+  updateViqRecordingAttachment(input: $input) {
+    id
+    description
+    url
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+mutation DeleteViqRecordingAttachment(
+  $input: DeleteViqRecordingAttachmentInput!
+) {
+  deleteViqRecordingAttachment(input: $input) {
+    id
+    description
+    url
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+mutation CreateViqRecordingUrl($input: CreateViqRecordingUrlInput!) {
+  createViqRecordingUrl(input: $input) {
+    id
+    url
+    lastmodified
+    description
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+mutation UpdateViqRecordingUrl($input: UpdateViqRecordingUrlInput!) {
+  updateViqRecordingUrl(input: $input) {
+    id
+    url
+    lastmodified
+    description
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+mutation DeleteViqRecordingUrl($input: DeleteViqRecordingUrlInput!) {
+  deleteViqRecordingUrl(input: $input) {
+    id
+    url
+    lastmodified
+    description
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+mutation CreateViqRecordingLog($input: CreateViqRecordingLogInput!) {
+  createViqRecordingLog(input: $input) {
+    id
+    dateTime
+    description
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+mutation UpdateViqRecordingLog($input: UpdateViqRecordingLogInput!) {
+  updateViqRecordingLog(input: $input) {
+    id
+    dateTime
+    description
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+mutation DeleteViqRecordingLog($input: DeleteViqRecordingLogInput!) {
+  deleteViqRecordingLog(input: $input) {
+    id
+    dateTime
+    description
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
     }
   }
 }

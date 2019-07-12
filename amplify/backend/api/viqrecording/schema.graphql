@@ -1,0 +1,31 @@
+type ViqRecording @model {
+  id: String!
+  interviewee: String!
+  interviewFinish:String!
+  interviewStart:String!
+  officerCollarNumber:String!
+  location:String!
+  unitId:String!
+  attachments: [ViqRecordingAttachment] @connection(name: "RecordingAttachments")
+  recordingUrls: [ViqRecordingUrl] @connection(name: "RecordingUrls")
+  logs: [ViqRecordingLog] @connection(name: "RecordingLogs")
+}
+type ViqRecordingAttachment @model {
+  id: ID!
+  description: String!
+  url:String!
+  viqRecording: ViqRecording @connection(name:"RecordingAttachments")
+}
+type ViqRecordingUrl @model {
+  id: ID!
+  url: String!
+  lastmodified: String!
+  description: String!
+  viqRecording: ViqRecording @connection(name:"RecordingUrls")
+}
+type ViqRecordingLog @model {
+  id: ID!
+  dateTime: String!
+  description:String!
+  viqRecording: ViqRecording @connection(name: "RecordingLogs")
+}

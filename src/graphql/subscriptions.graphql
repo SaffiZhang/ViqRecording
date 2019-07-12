@@ -1,121 +1,337 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateViqRecording(
-  $Id: String
-  $interviewee: String
-  $interviewFinish: String
-  $interviewStart: String
-  $officerCollarNumber: String
-) {
-  onCreateViqRecording(
-    Id: $Id
-    interviewee: $interviewee
-    interviewFinish: $interviewFinish
-    interviewStart: $interviewStart
-    officerCollarNumber: $officerCollarNumber
-  ) {
-    Id
+subscription OnCreateViqRecording {
+  onCreateViqRecording {
+    id
     interviewee
     interviewFinish
     interviewStart
     officerCollarNumber
-    recordings {
-      lastModified
-      url
-    }
+    location
     unitId
-    annotations {
-      annotationTime
-      text
-    }
     attachments {
-      description
-      url
+      items {
+        id
+        description
+        url
+      }
+      nextToken
     }
-    emails {
-      emailAddress
-      receiver
-      receiverType
-      emailTime
+    recordingUrls {
+      items {
+        id
+        url
+        lastmodified
+        description
+      }
+      nextToken
+    }
+    logs {
+      items {
+        id
+        dateTime
+        description
+      }
+      nextToken
     }
   }
 }
-subscription OnUpdateViqRecording(
-  $Id: String
-  $interviewee: String
-  $interviewFinish: String
-  $interviewStart: String
-  $officerCollarNumber: String
-) {
-  onUpdateViqRecording(
-    Id: $Id
-    interviewee: $interviewee
-    interviewFinish: $interviewFinish
-    interviewStart: $interviewStart
-    officerCollarNumber: $officerCollarNumber
-  ) {
-    Id
+subscription OnUpdateViqRecording {
+  onUpdateViqRecording {
+    id
     interviewee
     interviewFinish
     interviewStart
     officerCollarNumber
-    recordings {
-      lastModified
-      url
-    }
+    location
     unitId
-    annotations {
-      annotationTime
-      text
-    }
     attachments {
-      description
-      url
+      items {
+        id
+        description
+        url
+      }
+      nextToken
     }
-    emails {
-      emailAddress
-      receiver
-      receiverType
-      emailTime
+    recordingUrls {
+      items {
+        id
+        url
+        lastmodified
+        description
+      }
+      nextToken
+    }
+    logs {
+      items {
+        id
+        dateTime
+        description
+      }
+      nextToken
     }
   }
 }
-subscription OnDeleteViqRecording(
-  $Id: String
-  $interviewee: String
-  $interviewFinish: String
-  $interviewStart: String
-  $officerCollarNumber: String
-) {
-  onDeleteViqRecording(
-    Id: $Id
-    interviewee: $interviewee
-    interviewFinish: $interviewFinish
-    interviewStart: $interviewStart
-    officerCollarNumber: $officerCollarNumber
-  ) {
-    Id
+subscription OnDeleteViqRecording {
+  onDeleteViqRecording {
+    id
     interviewee
     interviewFinish
     interviewStart
     officerCollarNumber
-    recordings {
-      lastModified
-      url
-    }
+    location
     unitId
-    annotations {
-      annotationTime
-      text
-    }
     attachments {
-      description
-      url
+      items {
+        id
+        description
+        url
+      }
+      nextToken
     }
-    emails {
-      emailAddress
-      receiver
-      receiverType
-      emailTime
+    recordingUrls {
+      items {
+        id
+        url
+        lastmodified
+        description
+      }
+      nextToken
+    }
+    logs {
+      items {
+        id
+        dateTime
+        description
+      }
+      nextToken
+    }
+  }
+}
+subscription OnCreateViqRecordingAttachment {
+  onCreateViqRecordingAttachment {
+    id
+    description
+    url
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnUpdateViqRecordingAttachment {
+  onUpdateViqRecordingAttachment {
+    id
+    description
+    url
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteViqRecordingAttachment {
+  onDeleteViqRecordingAttachment {
+    id
+    description
+    url
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnCreateViqRecordingUrl {
+  onCreateViqRecordingUrl {
+    id
+    url
+    lastmodified
+    description
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnUpdateViqRecordingUrl {
+  onUpdateViqRecordingUrl {
+    id
+    url
+    lastmodified
+    description
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteViqRecordingUrl {
+  onDeleteViqRecordingUrl {
+    id
+    url
+    lastmodified
+    description
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnCreateViqRecordingLog {
+  onCreateViqRecordingLog {
+    id
+    dateTime
+    description
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnUpdateViqRecordingLog {
+  onUpdateViqRecordingLog {
+    id
+    dateTime
+    description
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteViqRecordingLog {
+  onDeleteViqRecordingLog {
+    id
+    dateTime
+    description
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
     }
   }
 }

@@ -8,6 +8,8 @@ import { APIService} from'../API.service';
 })
 export class RecordingListComponent implements OnInit {
   recordingList:any=[];
+  attachments:any=[];
+  
  
   constructor(private api:APIService) { }
  async ngOnInit() {
@@ -16,6 +18,8 @@ export class RecordingListComponent implements OnInit {
   async listRecording(){
       let result= await this.api.ListViqRecordings();
       this.recordingList=result.items;
+  
+      this.attachments=this.recordingList[0].attachments;
   }
   
 }

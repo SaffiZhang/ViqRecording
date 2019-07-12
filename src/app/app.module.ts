@@ -9,6 +9,8 @@ import { AuthComponent } from './auth/auth.component';
 import { RecordingListComponent } from './recording-list/recording-list.component';
 import { RecordingComponent } from './recording/recording.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
