@@ -1,0 +1,71 @@
+<div class="ui-g">
+  <div class="ui-g-12">
+
+    <p-card>
+      <div class="ui-g ui-fluid" *ngIf="recording">
+        <div class="ui-g-12">
+          Interview Start : {{recording.interviewStart}}
+        </div>
+        <div class="ui-g-12">
+          Interview Stop : {{recording.interviewFinish}}
+        </div>
+        <div class="ui-g-12">
+          Officer :
+          <ng-container *ngIf="!isEditing">
+            {{recording.officerCollarNumber}}
+          </ng-container>
+          <ng-container *ngIf="isEditing">
+            <input type="text" pInputText [(ngModel)]="recording.officerCollarNumber"/>
+          </ng-container>
+        </div>
+        <div class="ui-g-12">
+          Interviewee :
+          <ng-container *ngIf="!isEditing">
+            {{recording.interviewee}}
+          </ng-container>
+          <ng-container *ngIf="isEditing">
+            <input type="text" pInputText [(ngModel)]="recording.interviewee"/>
+          </ng-container>
+        </div>
+        <div class="ui-g-12">
+          DOB of Interviewee : {{recording.dob}}
+          <ng-container *ngIf="!isEditing">
+            {{recording.dob}}
+          </ng-container>
+          <ng-container *ngIf="isEditing">
+            <p-inputMask [(ngModel)]="editingRecording.dob" mask="9999/99/99"></p-inputMask>
+          </ng-container>
+        </div>
+        <div class="ui-g-12">
+          Note :
+          <ng-container *ngIf="!isEditing">
+            {{recording.note}}
+          </ng-container>
+          <ng-container *ngIf="isEditing">
+            <textarea pInputTextarea [(ngModel)]="editingRecording.note" rows="5"></textarea>
+          </ng-container>
+        </div>
+        <div class="ui-g-12">
+          Tag :
+          <ng-container *ngIf="!isEditing">
+            {{recording.tag}}
+          </ng-container>
+          <ng-container *ngIf="isEditing">
+            <textarea pInputTextarea [(ngModel)]="editingRecording.tag" rows="5"></textarea>
+          </ng-container>
+        </div>
+        <div class="ui-g-12">
+          <ng-container *ngIf="!isEditing">
+            <p-button label="Edit" (onClick)="startEdit()" *ngIf="!isEditing"></p-button>
+          </ng-container>
+          <ng-container *ngIf="isEditing">
+            <p-button label="Save" (onClick)="save()"></p-button>&nbsp;&nbsp;
+            <p-button label="Cancel" (onClick)="cancel()"></p-button>
+          </ng-container>
+
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>
+
