@@ -22,6 +22,8 @@ mutation CreateViqRecording($input: CreateViqRecordingInput!) {
         url
         lastmodified
         description
+        camera
+        version
       }
       nextToken
     }
@@ -58,6 +60,8 @@ mutation UpdateViqRecording($input: UpdateViqRecordingInput!) {
         url
         lastmodified
         description
+        camera
+        version
       }
       nextToken
     }
@@ -94,6 +98,8 @@ mutation DeleteViqRecording($input: DeleteViqRecordingInput!) {
         url
         lastmodified
         description
+        camera
+        version
       }
       nextToken
     }
@@ -194,6 +200,8 @@ mutation CreateViqRecordingUrl($input: CreateViqRecordingUrlInput!) {
     url
     lastmodified
     description
+    camera
+    version
     viqRecording {
       id
       interviewee
@@ -220,6 +228,8 @@ mutation UpdateViqRecordingUrl($input: UpdateViqRecordingUrlInput!) {
     url
     lastmodified
     description
+    camera
+    version
     viqRecording {
       id
       interviewee
@@ -246,6 +256,8 @@ mutation DeleteViqRecordingUrl($input: DeleteViqRecordingUrlInput!) {
     url
     lastmodified
     description
+    camera
+    version
     viqRecording {
       id
       interviewee

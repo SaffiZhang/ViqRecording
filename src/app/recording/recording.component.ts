@@ -9,19 +9,21 @@ import { APIService} from'../API.service';
 export class RecordingComponent implements OnInit {
   recording:any;
   attachments:any;
+  recordingUrls:any=[];
   
   constructor(private api:APIService) { }
 
   async ngOnInit() {
      await this.getRecording('11111');
      this.attachments=this.recording.attachments.items;
-     var attachment= {
+     this.recordingUrls=this.recording.recordingUrls.items;
+     /* var attachment= {
       "description": "Car rental agreement 2",
-      "id": "2",
+      "id": "3",
       "url": "https://david-horn-recording.s3.amazonaws.com/wireframe-1.jpg",
       "viqRecordingAttachmentViqRecordingId": this.recording.id
     };
-    await this.addAttachment(attachment);
+    await this.addAttachment(attachment); */
   }
    async getRecording(id){
     this.recording= await this.api.GetViqRecording(id);

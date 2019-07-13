@@ -22,6 +22,8 @@ query GetViqRecording($id: ID!) {
         url
         lastmodified
         description
+        camera
+        version
       }
       nextToken
     }
@@ -120,6 +122,8 @@ query GetViqRecordingUrl($id: ID!) {
     url
     lastmodified
     description
+    camera
+    version
     viqRecording {
       id
       interviewee
@@ -151,6 +155,8 @@ query ListViqRecordingUrls(
       url
       lastmodified
       description
+      camera
+      version
       viqRecording {
         id
         interviewee

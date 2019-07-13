@@ -22,6 +22,8 @@ subscription OnCreateViqRecording {
         url
         lastmodified
         description
+        camera
+        version
       }
       nextToken
     }
@@ -58,6 +60,8 @@ subscription OnUpdateViqRecording {
         url
         lastmodified
         description
+        camera
+        version
       }
       nextToken
     }
@@ -94,6 +98,8 @@ subscription OnDeleteViqRecording {
         url
         lastmodified
         description
+        camera
+        version
       }
       nextToken
     }
@@ -188,6 +194,8 @@ subscription OnCreateViqRecordingUrl {
     url
     lastmodified
     description
+    camera
+    version
     viqRecording {
       id
       interviewee
@@ -214,6 +222,8 @@ subscription OnUpdateViqRecordingUrl {
     url
     lastmodified
     description
+    camera
+    version
     viqRecording {
       id
       interviewee
@@ -240,6 +250,8 @@ subscription OnDeleteViqRecordingUrl {
     url
     lastmodified
     description
+    camera
+    version
     viqRecording {
       id
       interviewee

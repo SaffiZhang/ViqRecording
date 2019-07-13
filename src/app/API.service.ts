@@ -52,6 +52,8 @@ export type CreateViqRecordingUrlInput = {
   url: string;
   lastmodified: string;
   description: string;
+  camera: string;
+  version: number;
   viqRecordingUrlViqRecordingId?: string | null;
 };
 
@@ -60,6 +62,8 @@ export type UpdateViqRecordingUrlInput = {
   url?: string | null;
   lastmodified?: string | null;
   description?: string | null;
+  camera?: string | null;
+  version?: number | null;
   viqRecordingUrlViqRecordingId?: string | null;
 };
 
@@ -138,9 +142,23 @@ export type ModelViqRecordingUrlFilterInput = {
   url?: ModelStringFilterInput | null;
   lastmodified?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
+  camera?: ModelStringFilterInput | null;
+  version?: ModelIntFilterInput | null;
   and?: Array<ModelViqRecordingUrlFilterInput | null> | null;
   or?: Array<ModelViqRecordingUrlFilterInput | null> | null;
   not?: ModelViqRecordingUrlFilterInput | null;
+};
+
+export type ModelIntFilterInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  contains?: number | null;
+  notContains?: number | null;
+  between?: Array<number | null> | null;
 };
 
 export type ModelViqRecordingLogFilterInput = {
@@ -179,6 +197,8 @@ export type CreateViqRecordingMutation = {
       url: string;
       lastmodified: string;
       description: string;
+      camera: string;
+      version: number;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -221,6 +241,8 @@ export type UpdateViqRecordingMutation = {
       url: string;
       lastmodified: string;
       description: string;
+      camera: string;
+      version: number;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -263,6 +285,8 @@ export type DeleteViqRecordingMutation = {
       url: string;
       lastmodified: string;
       description: string;
+      camera: string;
+      version: number;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -371,6 +395,8 @@ export type CreateViqRecordingUrlMutation = {
   url: string;
   lastmodified: string;
   description: string;
+  camera: string;
+  version: number;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -401,6 +427,8 @@ export type UpdateViqRecordingUrlMutation = {
   url: string;
   lastmodified: string;
   description: string;
+  camera: string;
+  version: number;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -431,6 +459,8 @@ export type DeleteViqRecordingUrlMutation = {
   url: string;
   lastmodified: string;
   description: string;
+  camera: string;
+  version: number;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -569,6 +599,8 @@ export type GetViqRecordingQuery = {
       url: string;
       lastmodified: string;
       description: string;
+      camera: string;
+      version: number;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -667,6 +699,8 @@ export type GetViqRecordingUrlQuery = {
   url: string;
   lastmodified: string;
   description: string;
+  camera: string;
+  version: number;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -699,6 +733,8 @@ export type ListViqRecordingUrlsQuery = {
     url: string;
     lastmodified: string;
     description: string;
+    camera: string;
+    version: number;
     viqRecording: {
       __typename: "ViqRecording";
       id: string;
@@ -790,6 +826,8 @@ export type OnCreateViqRecordingSubscription = {
       url: string;
       lastmodified: string;
       description: string;
+      camera: string;
+      version: number;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -832,6 +870,8 @@ export type OnUpdateViqRecordingSubscription = {
       url: string;
       lastmodified: string;
       description: string;
+      camera: string;
+      version: number;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -874,6 +914,8 @@ export type OnDeleteViqRecordingSubscription = {
       url: string;
       lastmodified: string;
       description: string;
+      camera: string;
+      version: number;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -982,6 +1024,8 @@ export type OnCreateViqRecordingUrlSubscription = {
   url: string;
   lastmodified: string;
   description: string;
+  camera: string;
+  version: number;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -1012,6 +1056,8 @@ export type OnUpdateViqRecordingUrlSubscription = {
   url: string;
   lastmodified: string;
   description: string;
+  camera: string;
+  version: number;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -1042,6 +1088,8 @@ export type OnDeleteViqRecordingUrlSubscription = {
   url: string;
   lastmodified: string;
   description: string;
+  camera: string;
+  version: number;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -1188,6 +1236,8 @@ export class APIService {
               url
               lastmodified
               description
+              camera
+              version
             }
             nextToken
           }
@@ -1242,6 +1292,8 @@ export class APIService {
               url
               lastmodified
               description
+              camera
+              version
             }
             nextToken
           }
@@ -1296,6 +1348,8 @@ export class APIService {
               url
               lastmodified
               description
+              camera
+              version
             }
             nextToken
           }
@@ -1458,6 +1512,8 @@ export class APIService {
           url
           lastmodified
           description
+          camera
+          version
           viqRecording {
             __typename
             id
@@ -1500,6 +1556,8 @@ export class APIService {
           url
           lastmodified
           description
+          camera
+          version
           viqRecording {
             __typename
             id
@@ -1542,6 +1600,8 @@ export class APIService {
           url
           lastmodified
           description
+          camera
+          version
           viqRecording {
             __typename
             id
@@ -1709,7 +1769,9 @@ export class APIService {
           location
           unitId
           attachments {
+            __typename
             items {
+              __typename
               id
               description
               url
@@ -1724,6 +1786,8 @@ export class APIService {
               url
               lastmodified
               description
+              camera
+              version
             }
             nextToken
           }
@@ -1890,6 +1954,8 @@ export class APIService {
           url
           lastmodified
           description
+          camera
+          version
           viqRecording {
             __typename
             id
@@ -1936,6 +2002,8 @@ export class APIService {
             url
             lastmodified
             description
+            camera
+            version
             viqRecording {
               __typename
               id
@@ -2078,6 +2146,8 @@ export class APIService {
               url
               lastmodified
               description
+              camera
+              version
             }
             nextToken
           }
@@ -2128,6 +2198,8 @@ export class APIService {
               url
               lastmodified
               description
+              camera
+              version
             }
             nextToken
           }
@@ -2178,6 +2250,8 @@ export class APIService {
               url
               lastmodified
               description
+              camera
+              version
             }
             nextToken
           }
@@ -2318,6 +2392,8 @@ export class APIService {
           url
           lastmodified
           description
+          camera
+          version
           viqRecording {
             __typename
             id
@@ -2356,6 +2432,8 @@ export class APIService {
           url
           lastmodified
           description
+          camera
+          version
           viqRecording {
             __typename
             id
@@ -2394,6 +2472,8 @@ export class APIService {
           url
           lastmodified
           description
+          camera
+          version
           viqRecording {
             __typename
             id

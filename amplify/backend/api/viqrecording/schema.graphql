@@ -21,6 +21,8 @@ type ViqRecordingUrl @model {
   url: String!
   lastmodified: String!
   description: String!
+  camera:String!
+  version:Int!
   viqRecording: ViqRecording @connection(name:"RecordingUrls")
 }
 type ViqRecordingLog @model {
