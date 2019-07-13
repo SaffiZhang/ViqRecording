@@ -1,0 +1,13 @@
+<div class="ui-g">
+  <div class="ui-g-2">
+    {{annotationTime}}
+  </div>
+  <div class="ui-g-7">
+    <input pInputText [(ngModel)]="annotationText">
+  </div>
+  <div class="ui-g-3">
+    <p-button type="button" label="Save" (onClick)="save()" [disabled]="!annotationText"></p-button>&nbsp;&nbsp;
+    <p-button type="button" label="Cancel" (onClick)="cancel()" styleClass="ui-button-secondary"></p-button>
+  </div>
+</div>
+
