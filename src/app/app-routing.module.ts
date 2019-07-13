@@ -1,27 +1,21 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import {AuthComponent} from './auth/auth.component';
-import {RecordingListComponent} from './recording-list/recording-list.component';
-import {RecordingComponent} from './recording/recording.component';
-import {RecordingDetailsComponent} from './recording-details/recording-details.component';
-
+import{RecordingListComponent}from './recording-list/recording-list.component';
+import{RecordingComponent}from './recording/recording.component';
 const routes: Routes = [
   {
-    path: 'auth',
-    component: AuthComponent
+    path:'auth',
+    component:AuthComponent
   },
   {
-    path: 'recording',
-    component: RecordingComponent
+    path:'recording',
+    component:RecordingComponent
   },
   {
-    path: 'recording-details/:id',
-    component: RecordingDetailsComponent
-  },
-  {
-    path: 'recording-list',
-    component: RecordingListComponent
+    path:'recording-list',
+    component:RecordingListComponent
   },
 ];
 
@@ -29,5 +23,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }
