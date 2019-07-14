@@ -3,14 +3,14 @@
     <p-tabView>
       <p-tabPanel header="Interview Record">
         <div class="ui-g" *ngIf="sources">
-          <div class="ui-g-6">
+          <div class="ui-g-6" *ngIf="sources && sources.length>0">
             <app-video-player id="playerOne" [sources]="sources[0]"></app-video-player>
           </div>
-          <div class="ui-g-6">
+          <div class="ui-g-6" *ngIf="sources && sources.length>1">
             <app-video-player id="playerTwo" [sources]="sources[1]"></app-video-player>
           </div>
           <div class="ui-g-12">
-            <app-recording-info [recording]="recording" ></app-recording-info>
+            <app-recording-info [recording]="recording"></app-recording-info>
           </div>
         </div>
       </p-tabPanel>
@@ -40,6 +40,6 @@
 </div>
 
 
-<p-button label="Play" (onClick)="play()"></p-button>
-<p-button label="Pause" (onClick)="pause()"></p-button>
-{{time|json}}
+<!--<p-button label="Play" (onClick)="play()"></p-button>-->
+<!--<p-button label="Pause" (onClick)="pause()"></p-button>-->
+<!--{{time|json}}-->

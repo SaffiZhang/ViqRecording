@@ -40,7 +40,18 @@
     <div class="redation-link"><a href="">Redation</a></div>
   </div>
   <div class="ui-g-6">
-    Version: {{selectedSource.version}}
+    <div class="ui-g">
+      <div class="ui-g-6">
+        Version: {{selectedSource.version}}
+      </div>
+      <div class="ui-g-6">
+        <ng-container *ngIf="sources.length>1">
+
+          <p-dropdown [options]="sources" [(ngModel)]="selectedSource" optionLabel="displayLabel"></p-dropdown>
+
+        </ng-container>
+      </div>
+    </div>
   </div>
   <div class="ui-g-12">
     Description: {{selectedSource.description}}

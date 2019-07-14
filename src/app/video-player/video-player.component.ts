@@ -14,9 +14,16 @@ export class VideoPlayerComponent implements OnInit {
   @Input('sources')
   public set setSources(value: any[]) {
     this.sources = value;
+    this.sources.sort((x, y) => {
+      return y.version - x.version;
+    });
+    console.log(this.sources);
     if (value && value.length > 0) {
       this.selectedSource = value[0];
     }
+    this.sources.forEach(x => {
+      x.displayLabel = `Ver. (${x.version})  ${x.date}`;
+    });
   }
 
   public sources: any[];

@@ -13,34 +13,14 @@ export class RecordingDetailsComponent implements OnInit {
 
   public sources: any[];
 
-  public availableSources: any[];
   public time: any;
 
   public state: any;
 
   private playerApi: VgAPI;
 
-  public isAddingAnnotation = false;
-
   public isAddingAttachment = false;
 
-  private selectedSource1: any;
-
-  public set selectedSource(value: any) {
-    this.selectedSource1 = value;
-    console.log(value);
-    const r = {
-      src: value.src,
-      type: 'audio/mp4',
-      date: value.date,
-      id: value.id
-    };
-    this.sources = [r];
-  }
-
-  public get selectedSource() {
-    return this.selectedSource1;
-  }
 
   constructor(private api: APIService, private route: ActivatedRoute) {
   }
@@ -54,28 +34,31 @@ export class RecordingDetailsComponent implements OnInit {
   private async refresh(id) {
     this.recording = await this.getRecording(id);
     console.log(this.recording);
+    const sobj = {};
     const sr = [];
     if (this.recording.recordingUrls && this.recording.recordingUrls.items) {
       this.recording.recordingUrls.items.forEach(r => {
-        sr.push({
-          src: r.url,
-          type: 'audio/mp4',
-          date: r.lastmodified,
-          id: r.id,
-          description: r.description,
-          camera: r.camera,
-          version: r.version
-        });
+        if (!sobj[r.camera]) {
+          sobj[r.camera] = [];
+        }
+        sobj[r.camera].push(
+          {
+            src: r.url,
+            type: 'audio/mp4',
+            date: r.lastmodified,
+            id: r.id,
+            description: r.description,
+            camera: r.camera,
+            version: r.version
+          }
+        );
       });
+      Object.keys(sobj).forEach(k => {
+        sr.push(sobj[k]);
+      });
+
     }
-    if (sr.length > 0) {
-      this.availableSources = [...sr];
-      this.sources = [
-        [sr[0]],
-        [sr[1]]
-      ];
-      // this.sources[0].src = 'https://david-horn-ap.s3.us-east-2.amazonaws.com/SR607E21-20190628_181526-audio_P1-1.mp3';
-    }
+    this.sources = [...sr];
   }
 
   async updateRecording(recording) {
@@ -91,57 +74,6 @@ export class RecordingDetailsComponent implements OnInit {
     return await this.api.GetViqRecording(id);
   }
 
-  public onPlayerReady(api: VgAPI) {
-    this.playerApi = api;
-    this.time = this.playerApi.time;
-    this.state = this.playerApi.state;
-  }
-
-  public pause() {
-    this.playerApi.pause();
-    this.time = this.playerApi.time;
-    this.state = this.playerApi.state;
-  }
-
-  public play() {
-
-    this.playerApi.play();
-
-  }
-
-  public get recordingDateTimeTitle() {
-    if (this.recording && this.sources && this.sources.length > 0) {
-      const lm = this.sources[0].date;
-      return lm;
-    }
-    return '';
-  }
-
-
-  public addAnnotation() {
-    this.playerApi.pause();
-    this.time = this.playerApi.time;
-    this.isAddingAnnotation = true;
-  }
-
-  public addAnnotationSaved($event) {
-    const newlog = {
-      id: '',
-      dateTime: $event.annotationTime,
-      description: $event.text,
-      viqRecordingLogViqRecordingId: this.recording.id
-    };
-    this.api.CreateViqRecordingLog(newlog).then((r) => {
-      // this.refresh(this.recording.id);
-      delete r.viqRecording;
-      this.recording.logs.items = [...this.recording.logs.items, r];
-    });
-    this.isAddingAnnotation = false;
-  }
-
-  public addAnnotationCanceled($event) {
-    this.isAddingAnnotation = false;
-  }
 
   public addAttachment() {
     this.isAddingAttachment = true;
