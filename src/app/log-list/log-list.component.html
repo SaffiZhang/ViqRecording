@@ -2,7 +2,14 @@
   <div class="ui-g-12">
     <p-table [value]="logs">
       <ng-template pTemplate="header">
-
+        <tr>
+          <th pSortableColumn="dateTime">Date
+            <p-sortIcon field="dateTime" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          </th>
+          <th pSortableColumn="description">Description
+            <p-sortIcon field="desription" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          </th>
+        </tr>
       </ng-template>
       <ng-template pTemplate="body" let-item>
         <tr>

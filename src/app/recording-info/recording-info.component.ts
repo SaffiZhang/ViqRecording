@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {APIService} from '../API.service';
+import {DatetimeHelperService} from '../services/datetime-helper.service';
 
 @Component({
   selector: 'app-recording-info',
@@ -20,7 +21,7 @@ export class RecordingInfoComponent implements OnInit {
 
   private isEditing = false;
 
-  constructor(private api: APIService) {
+  constructor(private api: APIService, private dateTimeHepler: DatetimeHelperService) {
   }
 
   ngOnInit() {
@@ -46,16 +47,16 @@ export class RecordingInfoComponent implements OnInit {
     this.recording.location = this.editingRecording.location;
 
     const input = {
-        id: this.recording.id,
-        interviewee: this.editingRecording.interviewee,
-        interviewFinish: this.recording.interviewFinish,
-        interviewStart: this.recording.interviewStart,
-        officerCollarNumber: this.editingRecording.officer,
-        location: this.recording.location,
-        unitId: this.recording.unitId,
-      };
+      id: this.recording.id,
+      interviewee: this.editingRecording.interviewee,
+      interviewFinish: this.recording.interviewFinish,
+      interviewStart: this.recording.interviewStart,
+      officerCollarNumber: this.editingRecording.officer,
+      location: this.recording.location,
+      unitId: this.recording.unitId,
+    };
     this.api.UpdateViqRecording(input);
-    const dt = (new Date()).toUTCString();
+    const dt = this.dateTimeHepler.format(new Date());
     this.api.CreateViqRecordingLog({
       id: '',
       dateTime: dt,
