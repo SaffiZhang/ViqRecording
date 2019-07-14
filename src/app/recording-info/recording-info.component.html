@@ -28,7 +28,7 @@
           </ng-container>
         </div>
         <div class="ui-g-12">
-          DOB of Interviewee : {{recording.dob}}
+          DOB of Interviewee :
           <ng-container *ngIf="!isEditing">
             {{recording.dob}}
           </ng-container>
@@ -46,12 +46,12 @@
           </ng-container>
         </div>
         <div class="ui-g-12">
-          Tag :
+          Location :
           <ng-container *ngIf="!isEditing">
-            {{recording.tag}}
+            {{recording.location}}
           </ng-container>
           <ng-container *ngIf="isEditing">
-            <textarea pInputTextarea [(ngModel)]="editingRecording.tag" rows="5"></textarea>
+            <textarea pInputTextarea [(ngModel)]="editingRecording.location" rows="5"></textarea>
           </ng-container>
         </div>
         <div class="ui-g-12">

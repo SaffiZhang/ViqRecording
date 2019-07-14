@@ -14,23 +14,6 @@
           </div>
         </div>
       </p-tabPanel>
-      <p-tabPanel header="Annotation">
-        <div class="ui-g" *ngIf="recording">
-          <div class="ui-g-12">
-            <app-annotation-list [annotations]="recording.logs.items"></app-annotation-list>
-          </div>
-          <div class="ui-g-12">
-            <p-button label="Add Annotation" (onClick)="addAnnotation()" [disabled]="isAddingAnnotation"></p-button>
-          </div>
-          <div class="ui-g-12" *ngIf="isAddingAnnotation">
-            <app-add-annotation [recording-id]="recording.id"
-                                [recording-start]="recording.interviewStart"
-                                [offset]="time.current"
-                                (saved)="addAnnotationSaved($event)"
-                                (cancelled)="addAnnotationCanceled($event)"></app-add-annotation>
-          </div>
-        </div>
-      </p-tabPanel>
       <p-tabPanel header="Attachment">
         <div class="ui-g">
           <div class="ui-g-12">
@@ -45,8 +28,12 @@
           </div>
         </div>
       </p-tabPanel>
-      <p-tabPanel header="Email">
-
+      <p-tabPanel header="Logging">
+        <div class="ui-g" *ngIf="recording">
+          <div class="ui-g-12">
+            <app-log-list [logs]="recording.logs.items"></app-log-list>
+          </div>
+        </div>
       </p-tabPanel>
     </p-tabView>
   </div>

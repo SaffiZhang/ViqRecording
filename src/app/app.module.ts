@@ -33,6 +33,7 @@ import {s3Params} from './services/s3-params';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { RecordingInfoComponent } from './recording-info/recording-info.component';
 import { RecordingDetailsComponent } from './recording-details/recording-details.component';
+import { LogListComponent } from './log-list/log-list.component';
 
 
 
@@ -49,7 +50,8 @@ import { RecordingDetailsComponent } from './recording-details/recording-details
     AddAttachmentComponent,
     VideoPlayerComponent,
     RecordingInfoComponent,
-    RecordingDetailsComponent
+    RecordingDetailsComponent,
+    LogListComponent
   ],
   imports: [
     BrowserModule,
