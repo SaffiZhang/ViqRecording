@@ -7,9 +7,20 @@ import {APIService} from '../API.service';
   styleUrls: ['./recording-list.component.scss']
 })
 export class RecordingListComponent implements OnInit {
-  recordingList: any = [];
-  attachments: any = [];
-
+  public recordingList: any = [];
+  public columns = [{
+    field: 'id', header: 'Id', filterMatchMode: 'startsWith'
+  }, {
+    field: 'interviewStart', header: 'Start Time', filterMatchMode: 'startsWith'
+  }, {
+    field: 'interviewFinish', header: 'Finish Time', filterMatchMode: 'startsWith'
+  }, {
+    field: 'unitId', header: 'Police Station Id', filterMatchMode: 'startsWith'
+  }, {
+    field: 'officerCollarNumber', header: 'Officer', filterMatchMode: 'startsWith'
+  }, {
+    field: 'interviewee', header: 'Interviewee', filterMatchMode: 'startsWith'
+  }];
 
   constructor(private api: APIService) {
   }
@@ -19,10 +30,9 @@ export class RecordingListComponent implements OnInit {
   }
 
   async listRecording() {
-    let result = await this.api.ListViqRecordings();
+    const result = await this.api.ListViqRecordings();
     this.recordingList = result.items;
 
-    this.attachments = this.recordingList[0].attachments;
   }
 
 }
