@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-attachment-list',
@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AttachmentListComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  public attachments: any[];
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

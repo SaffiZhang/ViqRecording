@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {APIService, GetViqRecordingQuery} from '../API.service';
 import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
 import {ActivatedRoute} from '@angular/router';
+import {VideoPlayerComponent} from '../video-player/video-player.component';
 
 @Component({
   selector: 'app-recording-details',
@@ -21,6 +22,10 @@ export class RecordingDetailsComponent implements OnInit {
 
   public isAddingAttachment = false;
 
+  @ViewChild('player1', {static: false})
+  public player1: VideoPlayerComponent;
+  @ViewChild('player2', {static: false})
+  public player2: VideoPlayerComponent;
 
   constructor(private api: APIService, private route: ActivatedRoute) {
   }
@@ -116,4 +121,14 @@ export class RecordingDetailsComponent implements OnInit {
     return annotation;
   }
 
+
+  public play() {
+    this.player1.play();
+    this.player2.play();
+  }
+
+  public pause() {
+    this.player1.pause()
+    this.player2.pause();
+  }
 }

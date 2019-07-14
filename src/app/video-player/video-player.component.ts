@@ -48,4 +48,12 @@ export class VideoPlayerComponent implements OnInit {
     this.time = this.playerApi.time;
     this.state = this.playerApi.state;
   }
+
+  public play() {
+    this.playerApi.play();
+  }
+
+  public pause() {
+    this.playerApi.pause();
+  }
 }
