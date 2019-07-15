@@ -56,4 +56,14 @@ export class VideoPlayerComponent implements OnInit {
   public pause() {
     this.playerApi.pause();
   }
+
+  public mute() {
+    this.volume(0);
+  }
+
+  public volume(v: number) {
+    if (v >= 0 && v <= 1) {
+      this.playerApi.volume = v;
+    }
+  }
 }

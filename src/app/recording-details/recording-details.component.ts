@@ -123,12 +123,13 @@ export class RecordingDetailsComponent implements OnInit {
 
 
   public play() {
+    this.player2.mute();
     this.player1.play();
     this.player2.play();
   }
 
   public pause() {
-    this.player1.pause()
+    this.player1.pause();
     this.player2.pause();
   }
 }
