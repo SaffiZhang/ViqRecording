@@ -18,7 +18,7 @@
         <tr>
           <td *ngFor="let col of columns">
             <ng-container *ngIf="col.field==='id'">
-              <a href="/recording-details/{{rowData[col.field]}}">{{rowData[col.field]}}</a>
+              <a [routerLink]="['/recording-details',rowData[col.field]]" >{{rowData[col.field]}}</a>
             </ng-container>
             <ng-container *ngIf="col.field!=='id'">
               {{rowData[col.field]}}
