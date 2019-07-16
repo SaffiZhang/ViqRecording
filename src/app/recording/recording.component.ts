@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService} from'../API.service';
+import  { ModelViqRecordingLogFilterInput}from'../API.service';
 
 @Component({
   selector: 'app-recording',
@@ -10,13 +11,22 @@ export class RecordingComponent implements OnInit {
   recording:any;
   attachments:any;
   recordingUrls:any=[];
+  logs:any=[{
+    "__typename": "ViqRecordingLog",
+    "createdAt": "2019-07-14T15:48:03.680Z",
+    "dateTime": "2019-07-14 11:48:03",
+    "description": "New metadata:{\"officer\":\"1234\",\"interviewee\":\"Donald Trump \",\"dob\":\"1998/01/01\",\"note\":\"adsfasdfasdfasdf\",\"location\":\"QueensLand police station 1\"}",
+    "id": "0624576e-0d8e-4472-82c8-814549fb1b31",
+    "updatedAt": "2019-07-14T15:48:03.680Z",
+    "viqRecordingLogViqRecordingId": "11111"
+  }];
   
   constructor(private api:APIService) { }
 
   async ngOnInit() {
-     await this.getRecording('11111');
-     this.attachments=this.recording.attachments.items;
-     this.recordingUrls=this.recording.recordingUrls.items;
+     await this.listLogging('11111');
+    /*  this.attachments=this.recording.attachments.items;
+     this.recordingUrls=this.recording.recordingUrls.items; */
      /* var attachment= {
       "description": "Car rental agreement 2",
       "id": "3",
@@ -31,5 +41,13 @@ export class RecordingComponent implements OnInit {
   async addAttachment(attachment){
     
     await this.api.CreateViqRecordingAttachment(attachment)
+  }
+  async listLogging(id){
+    //the id is the recording Id
+    var filter: ModelViqRecordingLogFilterInput={viqRecordingLogViqRecordingId:{eq:id}};
+  // the number is how many records will be in the output
+    this.logs= await this.api.ListViqRecordingLogs(filter,11)
+    this.logs= await this.api.ListViqRecordingLogs(filter,200)
+    var abc="";
   }
 }

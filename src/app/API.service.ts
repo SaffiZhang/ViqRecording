@@ -184,6 +184,7 @@ export type ModelIntFilterInput = {
 };
 
 export type ModelViqRecordingLogFilterInput = {
+  viqRecordingLogViqRecordingId?:ModelStringFilterInput|null;
   id?: ModelIDFilterInput | null;
   dateTime?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
