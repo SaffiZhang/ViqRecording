@@ -124,6 +124,16 @@ query GetViqRecordingUrl($id: ID!) {
     description
     camera
     version
+    redactions {
+      items {
+        id
+        redactionVersion
+        startSecond
+        endSecond
+        type
+      }
+      nextToken
+    }
     viqRecording {
       id
       interviewee
@@ -157,6 +167,9 @@ query ListViqRecordingUrls(
       description
       camera
       version
+      redactions {
+        nextToken
+      }
       viqRecording {
         id
         interviewee
@@ -213,6 +226,63 @@ query ListViqRecordingLogs(
         officerCollarNumber
         location
         unitId
+      }
+    }
+    nextToken
+  }
+}
+query GetViqRecordingRedaction($id: ID!) {
+  getViqRecordingRedaction(id: $id) {
+    id
+    redactionVersion
+    startSecond
+    endSecond
+    type
+    viqRecordingUrl {
+      id
+      url
+      lastmodified
+      description
+      camera
+      version
+      redactions {
+        nextToken
+      }
+      viqRecording {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+      }
+    }
+  }
+}
+query ListViqRecordingRedactions(
+  $filter: ModelViqRecordingRedactionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listViqRecordingRedactions(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      redactionVersion
+      startSecond
+      endSecond
+      type
+      viqRecordingUrl {
+        id
+        url
+        lastmodified
+        description
+        camera
+        version
       }
     }
     nextToken

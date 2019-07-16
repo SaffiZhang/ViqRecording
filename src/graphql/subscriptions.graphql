@@ -196,6 +196,16 @@ subscription OnCreateViqRecordingUrl {
     description
     camera
     version
+    redactions {
+      items {
+        id
+        redactionVersion
+        startSecond
+        endSecond
+        type
+      }
+      nextToken
+    }
     viqRecording {
       id
       interviewee
@@ -224,6 +234,16 @@ subscription OnUpdateViqRecordingUrl {
     description
     camera
     version
+    redactions {
+      items {
+        id
+        redactionVersion
+        startSecond
+        endSecond
+        type
+      }
+      nextToken
+    }
     viqRecording {
       id
       interviewee
@@ -252,6 +272,16 @@ subscription OnDeleteViqRecordingUrl {
     description
     camera
     version
+    redactions {
+      items {
+        id
+        redactionVersion
+        startSecond
+        endSecond
+        type
+      }
+      nextToken
+    }
     viqRecording {
       id
       interviewee
@@ -343,6 +373,93 @@ subscription OnDeleteViqRecordingLog {
       }
       logs {
         nextToken
+      }
+    }
+  }
+}
+subscription OnCreateViqRecordingRedaction {
+  onCreateViqRecordingRedaction {
+    id
+    redactionVersion
+    startSecond
+    endSecond
+    type
+    viqRecordingUrl {
+      id
+      url
+      lastmodified
+      description
+      camera
+      version
+      redactions {
+        nextToken
+      }
+      viqRecording {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+      }
+    }
+  }
+}
+subscription OnUpdateViqRecordingRedaction {
+  onUpdateViqRecordingRedaction {
+    id
+    redactionVersion
+    startSecond
+    endSecond
+    type
+    viqRecordingUrl {
+      id
+      url
+      lastmodified
+      description
+      camera
+      version
+      redactions {
+        nextToken
+      }
+      viqRecording {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+      }
+    }
+  }
+}
+subscription OnDeleteViqRecordingRedaction {
+  onDeleteViqRecordingRedaction {
+    id
+    redactionVersion
+    startSecond
+    endSecond
+    type
+    viqRecordingUrl {
+      id
+      url
+      lastmodified
+      description
+      camera
+      version
+      redactions {
+        nextToken
+      }
+      viqRecording {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
       }
     }
   }

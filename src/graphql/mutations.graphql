@@ -202,6 +202,16 @@ mutation CreateViqRecordingUrl($input: CreateViqRecordingUrlInput!) {
     description
     camera
     version
+    redactions {
+      items {
+        id
+        redactionVersion
+        startSecond
+        endSecond
+        type
+      }
+      nextToken
+    }
     viqRecording {
       id
       interviewee
@@ -230,6 +240,16 @@ mutation UpdateViqRecordingUrl($input: UpdateViqRecordingUrlInput!) {
     description
     camera
     version
+    redactions {
+      items {
+        id
+        redactionVersion
+        startSecond
+        endSecond
+        type
+      }
+      nextToken
+    }
     viqRecording {
       id
       interviewee
@@ -258,6 +278,16 @@ mutation DeleteViqRecordingUrl($input: DeleteViqRecordingUrlInput!) {
     description
     camera
     version
+    redactions {
+      items {
+        id
+        redactionVersion
+        startSecond
+        endSecond
+        type
+      }
+      nextToken
+    }
     viqRecording {
       id
       interviewee
@@ -349,6 +379,99 @@ mutation DeleteViqRecordingLog($input: DeleteViqRecordingLogInput!) {
       }
       logs {
         nextToken
+      }
+    }
+  }
+}
+mutation CreateViqRecordingRedaction(
+  $input: CreateViqRecordingRedactionInput!
+) {
+  createViqRecordingRedaction(input: $input) {
+    id
+    redactionVersion
+    startSecond
+    endSecond
+    type
+    viqRecordingUrl {
+      id
+      url
+      lastmodified
+      description
+      camera
+      version
+      redactions {
+        nextToken
+      }
+      viqRecording {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+      }
+    }
+  }
+}
+mutation UpdateViqRecordingRedaction(
+  $input: UpdateViqRecordingRedactionInput!
+) {
+  updateViqRecordingRedaction(input: $input) {
+    id
+    redactionVersion
+    startSecond
+    endSecond
+    type
+    viqRecordingUrl {
+      id
+      url
+      lastmodified
+      description
+      camera
+      version
+      redactions {
+        nextToken
+      }
+      viqRecording {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+      }
+    }
+  }
+}
+mutation DeleteViqRecordingRedaction(
+  $input: DeleteViqRecordingRedactionInput!
+) {
+  deleteViqRecordingRedaction(input: $input) {
+    id
+    redactionVersion
+    startSecond
+    endSecond
+    type
+    viqRecordingUrl {
+      id
+      url
+      lastmodified
+      description
+      camera
+      version
+      redactions {
+        nextToken
+      }
+      viqRecording {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
       }
     }
   }

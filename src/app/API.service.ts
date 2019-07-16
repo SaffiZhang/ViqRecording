@@ -89,6 +89,28 @@ export type DeleteViqRecordingLogInput = {
   id?: string | null;
 };
 
+export type CreateViqRecordingRedactionInput = {
+  id?: string | null;
+  redactionVersion: number;
+  startSecond: number;
+  endSecond: number;
+  type: string;
+  viqRecordingRedactionViqRecordingUrlId?: string | null;
+};
+
+export type UpdateViqRecordingRedactionInput = {
+  id: string;
+  redactionVersion?: number | null;
+  startSecond?: number | null;
+  endSecond?: number | null;
+  type?: string | null;
+  viqRecordingRedactionViqRecordingUrlId?: string | null;
+};
+
+export type DeleteViqRecordingRedactionInput = {
+  id?: string | null;
+};
+
 export type ModelViqRecordingFilterInput = {
   id?: ModelStringFilterInput | null;
   interviewee?: ModelStringFilterInput | null;
@@ -168,6 +190,17 @@ export type ModelViqRecordingLogFilterInput = {
   and?: Array<ModelViqRecordingLogFilterInput | null> | null;
   or?: Array<ModelViqRecordingLogFilterInput | null> | null;
   not?: ModelViqRecordingLogFilterInput | null;
+};
+
+export type ModelViqRecordingRedactionFilterInput = {
+  id?: ModelIDFilterInput | null;
+  redactionVersion?: ModelIntFilterInput | null;
+  startSecond?: ModelIntFilterInput | null;
+  endSecond?: ModelIntFilterInput | null;
+  type?: ModelStringFilterInput | null;
+  and?: Array<ModelViqRecordingRedactionFilterInput | null> | null;
+  or?: Array<ModelViqRecordingRedactionFilterInput | null> | null;
+  not?: ModelViqRecordingRedactionFilterInput | null;
 };
 
 export type CreateViqRecordingMutation = {
@@ -397,6 +430,18 @@ export type CreateViqRecordingUrlMutation = {
   description: string;
   camera: string;
   version: number;
+  redactions: {
+    __typename: "ModelViqRecordingRedactionConnection";
+    items: Array<{
+      __typename: "ViqRecordingRedaction";
+      id: string;
+      redactionVersion: number;
+      startSecond: number;
+      endSecond: number;
+      type: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -429,6 +474,18 @@ export type UpdateViqRecordingUrlMutation = {
   description: string;
   camera: string;
   version: number;
+  redactions: {
+    __typename: "ModelViqRecordingRedactionConnection";
+    items: Array<{
+      __typename: "ViqRecordingRedaction";
+      id: string;
+      redactionVersion: number;
+      startSecond: number;
+      endSecond: number;
+      type: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -461,6 +518,18 @@ export type DeleteViqRecordingUrlMutation = {
   description: string;
   camera: string;
   version: number;
+  redactions: {
+    __typename: "ModelViqRecordingRedactionConnection";
+    items: Array<{
+      __typename: "ViqRecordingRedaction";
+      id: string;
+      redactionVersion: number;
+      startSecond: number;
+      endSecond: number;
+      type: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -568,6 +637,102 @@ export type DeleteViqRecordingLogMutation = {
     logs: {
       __typename: "ModelViqRecordingLogConnection";
       nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type CreateViqRecordingRedactionMutation = {
+  __typename: "ViqRecordingRedaction";
+  id: string;
+  redactionVersion: number;
+  startSecond: number;
+  endSecond: number;
+  type: string;
+  viqRecordingUrl: {
+    __typename: "ViqRecordingUrl";
+    id: string;
+    url: string;
+    lastmodified: string;
+    description: string;
+    camera: string;
+    version: number;
+    redactions: {
+      __typename: "ModelViqRecordingRedactionConnection";
+      nextToken: string | null;
+    } | null;
+    viqRecording: {
+      __typename: "ViqRecording";
+      id: string;
+      interviewee: string;
+      interviewFinish: string;
+      interviewStart: string;
+      officerCollarNumber: string;
+      location: string;
+      unitId: string;
+    } | null;
+  } | null;
+};
+
+export type UpdateViqRecordingRedactionMutation = {
+  __typename: "ViqRecordingRedaction";
+  id: string;
+  redactionVersion: number;
+  startSecond: number;
+  endSecond: number;
+  type: string;
+  viqRecordingUrl: {
+    __typename: "ViqRecordingUrl";
+    id: string;
+    url: string;
+    lastmodified: string;
+    description: string;
+    camera: string;
+    version: number;
+    redactions: {
+      __typename: "ModelViqRecordingRedactionConnection";
+      nextToken: string | null;
+    } | null;
+    viqRecording: {
+      __typename: "ViqRecording";
+      id: string;
+      interviewee: string;
+      interviewFinish: string;
+      interviewStart: string;
+      officerCollarNumber: string;
+      location: string;
+      unitId: string;
+    } | null;
+  } | null;
+};
+
+export type DeleteViqRecordingRedactionMutation = {
+  __typename: "ViqRecordingRedaction";
+  id: string;
+  redactionVersion: number;
+  startSecond: number;
+  endSecond: number;
+  type: string;
+  viqRecordingUrl: {
+    __typename: "ViqRecordingUrl";
+    id: string;
+    url: string;
+    lastmodified: string;
+    description: string;
+    camera: string;
+    version: number;
+    redactions: {
+      __typename: "ModelViqRecordingRedactionConnection";
+      nextToken: string | null;
+    } | null;
+    viqRecording: {
+      __typename: "ViqRecording";
+      id: string;
+      interviewee: string;
+      interviewFinish: string;
+      interviewStart: string;
+      officerCollarNumber: string;
+      location: string;
+      unitId: string;
     } | null;
   } | null;
 };
@@ -701,6 +866,18 @@ export type GetViqRecordingUrlQuery = {
   description: string;
   camera: string;
   version: number;
+  redactions: {
+    __typename: "ModelViqRecordingRedactionConnection";
+    items: Array<{
+      __typename: "ViqRecordingRedaction";
+      id: string;
+      redactionVersion: number;
+      startSecond: number;
+      endSecond: number;
+      type: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -735,6 +912,10 @@ export type ListViqRecordingUrlsQuery = {
     description: string;
     camera: string;
     version: number;
+    redactions: {
+      __typename: "ModelViqRecordingRedactionConnection";
+      nextToken: string | null;
+    } | null;
     viqRecording: {
       __typename: "ViqRecording";
       id: string;
@@ -794,6 +975,60 @@ export type ListViqRecordingLogsQuery = {
       officerCollarNumber: string;
       location: string;
       unitId: string;
+    } | null;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetViqRecordingRedactionQuery = {
+  __typename: "ViqRecordingRedaction";
+  id: string;
+  redactionVersion: number;
+  startSecond: number;
+  endSecond: number;
+  type: string;
+  viqRecordingUrl: {
+    __typename: "ViqRecordingUrl";
+    id: string;
+    url: string;
+    lastmodified: string;
+    description: string;
+    camera: string;
+    version: number;
+    redactions: {
+      __typename: "ModelViqRecordingRedactionConnection";
+      nextToken: string | null;
+    } | null;
+    viqRecording: {
+      __typename: "ViqRecording";
+      id: string;
+      interviewee: string;
+      interviewFinish: string;
+      interviewStart: string;
+      officerCollarNumber: string;
+      location: string;
+      unitId: string;
+    } | null;
+  } | null;
+};
+
+export type ListViqRecordingRedactionsQuery = {
+  __typename: "ModelViqRecordingRedactionConnection";
+  items: Array<{
+    __typename: "ViqRecordingRedaction";
+    id: string;
+    redactionVersion: number;
+    startSecond: number;
+    endSecond: number;
+    type: string;
+    viqRecordingUrl: {
+      __typename: "ViqRecordingUrl";
+      id: string;
+      url: string;
+      lastmodified: string;
+      description: string;
+      camera: string;
+      version: number;
     } | null;
   } | null> | null;
   nextToken: string | null;
@@ -1026,6 +1261,18 @@ export type OnCreateViqRecordingUrlSubscription = {
   description: string;
   camera: string;
   version: number;
+  redactions: {
+    __typename: "ModelViqRecordingRedactionConnection";
+    items: Array<{
+      __typename: "ViqRecordingRedaction";
+      id: string;
+      redactionVersion: number;
+      startSecond: number;
+      endSecond: number;
+      type: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -1058,6 +1305,18 @@ export type OnUpdateViqRecordingUrlSubscription = {
   description: string;
   camera: string;
   version: number;
+  redactions: {
+    __typename: "ModelViqRecordingRedactionConnection";
+    items: Array<{
+      __typename: "ViqRecordingRedaction";
+      id: string;
+      redactionVersion: number;
+      startSecond: number;
+      endSecond: number;
+      type: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -1090,6 +1349,18 @@ export type OnDeleteViqRecordingUrlSubscription = {
   description: string;
   camera: string;
   version: number;
+  redactions: {
+    __typename: "ModelViqRecordingRedactionConnection";
+    items: Array<{
+      __typename: "ViqRecordingRedaction";
+      id: string;
+      redactionVersion: number;
+      startSecond: number;
+      endSecond: number;
+      type: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -1197,6 +1468,102 @@ export type OnDeleteViqRecordingLogSubscription = {
     logs: {
       __typename: "ModelViqRecordingLogConnection";
       nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type OnCreateViqRecordingRedactionSubscription = {
+  __typename: "ViqRecordingRedaction";
+  id: string;
+  redactionVersion: number;
+  startSecond: number;
+  endSecond: number;
+  type: string;
+  viqRecordingUrl: {
+    __typename: "ViqRecordingUrl";
+    id: string;
+    url: string;
+    lastmodified: string;
+    description: string;
+    camera: string;
+    version: number;
+    redactions: {
+      __typename: "ModelViqRecordingRedactionConnection";
+      nextToken: string | null;
+    } | null;
+    viqRecording: {
+      __typename: "ViqRecording";
+      id: string;
+      interviewee: string;
+      interviewFinish: string;
+      interviewStart: string;
+      officerCollarNumber: string;
+      location: string;
+      unitId: string;
+    } | null;
+  } | null;
+};
+
+export type OnUpdateViqRecordingRedactionSubscription = {
+  __typename: "ViqRecordingRedaction";
+  id: string;
+  redactionVersion: number;
+  startSecond: number;
+  endSecond: number;
+  type: string;
+  viqRecordingUrl: {
+    __typename: "ViqRecordingUrl";
+    id: string;
+    url: string;
+    lastmodified: string;
+    description: string;
+    camera: string;
+    version: number;
+    redactions: {
+      __typename: "ModelViqRecordingRedactionConnection";
+      nextToken: string | null;
+    } | null;
+    viqRecording: {
+      __typename: "ViqRecording";
+      id: string;
+      interviewee: string;
+      interviewFinish: string;
+      interviewStart: string;
+      officerCollarNumber: string;
+      location: string;
+      unitId: string;
+    } | null;
+  } | null;
+};
+
+export type OnDeleteViqRecordingRedactionSubscription = {
+  __typename: "ViqRecordingRedaction";
+  id: string;
+  redactionVersion: number;
+  startSecond: number;
+  endSecond: number;
+  type: string;
+  viqRecordingUrl: {
+    __typename: "ViqRecordingUrl";
+    id: string;
+    url: string;
+    lastmodified: string;
+    description: string;
+    camera: string;
+    version: number;
+    redactions: {
+      __typename: "ModelViqRecordingRedactionConnection";
+      nextToken: string | null;
+    } | null;
+    viqRecording: {
+      __typename: "ViqRecording";
+      id: string;
+      interviewee: string;
+      interviewFinish: string;
+      interviewStart: string;
+      officerCollarNumber: string;
+      location: string;
+      unitId: string;
     } | null;
   } | null;
 };
@@ -1514,6 +1881,18 @@ export class APIService {
           description
           camera
           version
+          redactions {
+            __typename
+            items {
+              __typename
+              id
+              redactionVersion
+              startSecond
+              endSecond
+              type
+            }
+            nextToken
+          }
           viqRecording {
             __typename
             id
@@ -1558,6 +1937,18 @@ export class APIService {
           description
           camera
           version
+          redactions {
+            __typename
+            items {
+              __typename
+              id
+              redactionVersion
+              startSecond
+              endSecond
+              type
+            }
+            nextToken
+          }
           viqRecording {
             __typename
             id
@@ -1602,6 +1993,18 @@ export class APIService {
           description
           camera
           version
+          redactions {
+            __typename
+            items {
+              __typename
+              id
+              redactionVersion
+              startSecond
+              endSecond
+              type
+            }
+            nextToken
+          }
           viqRecording {
             __typename
             id
@@ -1756,6 +2159,144 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteViqRecordingLogMutation>response.data.deleteViqRecordingLog;
+  }
+  async CreateViqRecordingRedaction(
+    input: CreateViqRecordingRedactionInput
+  ): Promise<CreateViqRecordingRedactionMutation> {
+    const statement = `mutation CreateViqRecordingRedaction($input: CreateViqRecordingRedactionInput!) {
+        createViqRecordingRedaction(input: $input) {
+          __typename
+          id
+          redactionVersion
+          startSecond
+          endSecond
+          type
+          viqRecordingUrl {
+            __typename
+            id
+            url
+            lastmodified
+            description
+            camera
+            version
+            redactions {
+              __typename
+              nextToken
+            }
+            viqRecording {
+              __typename
+              id
+              interviewee
+              interviewFinish
+              interviewStart
+              officerCollarNumber
+              location
+              unitId
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateViqRecordingRedactionMutation>(
+      response.data.createViqRecordingRedaction
+    );
+  }
+  async UpdateViqRecordingRedaction(
+    input: UpdateViqRecordingRedactionInput
+  ): Promise<UpdateViqRecordingRedactionMutation> {
+    const statement = `mutation UpdateViqRecordingRedaction($input: UpdateViqRecordingRedactionInput!) {
+        updateViqRecordingRedaction(input: $input) {
+          __typename
+          id
+          redactionVersion
+          startSecond
+          endSecond
+          type
+          viqRecordingUrl {
+            __typename
+            id
+            url
+            lastmodified
+            description
+            camera
+            version
+            redactions {
+              __typename
+              nextToken
+            }
+            viqRecording {
+              __typename
+              id
+              interviewee
+              interviewFinish
+              interviewStart
+              officerCollarNumber
+              location
+              unitId
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateViqRecordingRedactionMutation>(
+      response.data.updateViqRecordingRedaction
+    );
+  }
+  async DeleteViqRecordingRedaction(
+    input: DeleteViqRecordingRedactionInput
+  ): Promise<DeleteViqRecordingRedactionMutation> {
+    const statement = `mutation DeleteViqRecordingRedaction($input: DeleteViqRecordingRedactionInput!) {
+        deleteViqRecordingRedaction(input: $input) {
+          __typename
+          id
+          redactionVersion
+          startSecond
+          endSecond
+          type
+          viqRecordingUrl {
+            __typename
+            id
+            url
+            lastmodified
+            description
+            camera
+            version
+            redactions {
+              __typename
+              nextToken
+            }
+            viqRecording {
+              __typename
+              id
+              interviewee
+              interviewFinish
+              interviewStart
+              officerCollarNumber
+              location
+              unitId
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteViqRecordingRedactionMutation>(
+      response.data.deleteViqRecordingRedaction
+    );
   }
   async GetViqRecording(id: string): Promise<GetViqRecordingQuery> {
     const statement = `query GetViqRecording($id: ID!) {
@@ -1956,6 +2497,18 @@ export class APIService {
           description
           camera
           version
+          redactions {
+            __typename
+            items {
+              __typename
+              id
+              redactionVersion
+              startSecond
+              endSecond
+              type
+            }
+            nextToken
+          }
           viqRecording {
             __typename
             id
@@ -2004,6 +2557,10 @@ export class APIService {
             description
             camera
             version
+            redactions {
+              __typename
+              nextToken
+            }
             viqRecording {
               __typename
               id
@@ -2113,6 +2670,97 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListViqRecordingLogsQuery>response.data.listViqRecordingLogs;
+  }
+  async GetViqRecordingRedaction(
+    id: string
+  ): Promise<GetViqRecordingRedactionQuery> {
+    const statement = `query GetViqRecordingRedaction($id: ID!) {
+        getViqRecordingRedaction(id: $id) {
+          __typename
+          id
+          redactionVersion
+          startSecond
+          endSecond
+          type
+          viqRecordingUrl {
+            __typename
+            id
+            url
+            lastmodified
+            description
+            camera
+            version
+            redactions {
+              __typename
+              nextToken
+            }
+            viqRecording {
+              __typename
+              id
+              interviewee
+              interviewFinish
+              interviewStart
+              officerCollarNumber
+              location
+              unitId
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetViqRecordingRedactionQuery>(
+      response.data.getViqRecordingRedaction
+    );
+  }
+  async ListViqRecordingRedactions(
+    filter?: ModelViqRecordingRedactionFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListViqRecordingRedactionsQuery> {
+    const statement = `query ListViqRecordingRedactions($filter: ModelViqRecordingRedactionFilterInput, $limit: Int, $nextToken: String) {
+        listViqRecordingRedactions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            redactionVersion
+            startSecond
+            endSecond
+            type
+            viqRecordingUrl {
+              __typename
+              id
+              url
+              lastmodified
+              description
+              camera
+              version
+            }
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListViqRecordingRedactionsQuery>(
+      response.data.listViqRecordingRedactions
+    );
   }
   OnCreateViqRecordingListener: Observable<
     OnCreateViqRecordingSubscription
@@ -2394,6 +3042,18 @@ export class APIService {
           description
           camera
           version
+          redactions {
+            __typename
+            items {
+              __typename
+              id
+              redactionVersion
+              startSecond
+              endSecond
+              type
+            }
+            nextToken
+          }
           viqRecording {
             __typename
             id
@@ -2434,6 +3094,18 @@ export class APIService {
           description
           camera
           version
+          redactions {
+            __typename
+            items {
+              __typename
+              id
+              redactionVersion
+              startSecond
+              endSecond
+              type
+            }
+            nextToken
+          }
           viqRecording {
             __typename
             id
@@ -2474,6 +3146,18 @@ export class APIService {
           description
           camera
           version
+          redactions {
+            __typename
+            items {
+              __typename
+              id
+              redactionVersion
+              startSecond
+              endSecond
+              type
+            }
+            nextToken
+          }
           viqRecording {
             __typename
             id
@@ -2611,4 +3295,124 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteViqRecordingLogSubscription>;
+
+  OnCreateViqRecordingRedactionListener: Observable<
+    OnCreateViqRecordingRedactionSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateViqRecordingRedaction {
+        onCreateViqRecordingRedaction {
+          __typename
+          id
+          redactionVersion
+          startSecond
+          endSecond
+          type
+          viqRecordingUrl {
+            __typename
+            id
+            url
+            lastmodified
+            description
+            camera
+            version
+            redactions {
+              __typename
+              nextToken
+            }
+            viqRecording {
+              __typename
+              id
+              interviewee
+              interviewFinish
+              interviewStart
+              officerCollarNumber
+              location
+              unitId
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnCreateViqRecordingRedactionSubscription>;
+
+  OnUpdateViqRecordingRedactionListener: Observable<
+    OnUpdateViqRecordingRedactionSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateViqRecordingRedaction {
+        onUpdateViqRecordingRedaction {
+          __typename
+          id
+          redactionVersion
+          startSecond
+          endSecond
+          type
+          viqRecordingUrl {
+            __typename
+            id
+            url
+            lastmodified
+            description
+            camera
+            version
+            redactions {
+              __typename
+              nextToken
+            }
+            viqRecording {
+              __typename
+              id
+              interviewee
+              interviewFinish
+              interviewStart
+              officerCollarNumber
+              location
+              unitId
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnUpdateViqRecordingRedactionSubscription>;
+
+  OnDeleteViqRecordingRedactionListener: Observable<
+    OnDeleteViqRecordingRedactionSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteViqRecordingRedaction {
+        onDeleteViqRecordingRedaction {
+          __typename
+          id
+          redactionVersion
+          startSecond
+          endSecond
+          type
+          viqRecordingUrl {
+            __typename
+            id
+            url
+            lastmodified
+            description
+            camera
+            version
+            redactions {
+              __typename
+              nextToken
+            }
+            viqRecording {
+              __typename
+              id
+              interviewee
+              interviewFinish
+              interviewStart
+              officerCollarNumber
+              location
+              unitId
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnDeleteViqRecordingRedactionSubscription>;
 }
