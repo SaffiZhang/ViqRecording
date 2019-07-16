@@ -34,6 +34,7 @@ import { VideoPlayerComponent } from './video-player/video-player.component';
 import { RecordingInfoComponent } from './recording-info/recording-info.component';
 import { RecordingDetailsComponent } from './recording-details/recording-details.component';
 import { LogListComponent } from './log-list/log-list.component';
+import { AppTopMenubarComponent } from './app-top-menubar/app-top-menubar.component';
 
 
 
@@ -51,7 +52,8 @@ import { LogListComponent } from './log-list/log-list.component';
     VideoPlayerComponent,
     RecordingInfoComponent,
     RecordingDetailsComponent,
-    LogListComponent
+    LogListComponent,
+    AppTopMenubarComponent
   ],
   imports: [
     BrowserModule,
