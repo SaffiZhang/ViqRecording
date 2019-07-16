@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {APIService, GetViqRecordingQuery} from '../API.service';
+import {APIService, GetViqRecordingQuery, ModelViqRecordingLogFilterInput} from '../API.service';
 import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
 import {ActivatedRoute} from '@angular/router';
 import {VideoPlayerComponent} from '../video-player/video-player.component';
@@ -11,6 +11,8 @@ import {VideoPlayerComponent} from '../video-player/video-player.component';
 })
 export class RecordingDetailsComponent implements OnInit {
   private recording: GetViqRecordingQuery;
+
+  private logs: any[];
 
   public sources: any[];
 
@@ -46,10 +48,11 @@ export class RecordingDetailsComponent implements OnInit {
         if (!sobj[r.camera]) {
           sobj[r.camera] = [];
         }
+        const type = r.url.indexOf('.mp4') ? 'video/mp4' : 'audio/mp3';
         sobj[r.camera].push(
           {
             src: r.url,
-            type: 'audio/mp4',
+            type: type,
             date: r.lastmodified,
             id: r.id,
             description: r.description,
@@ -64,6 +67,13 @@ export class RecordingDetailsComponent implements OnInit {
 
     }
     this.sources = [...sr];
+    await this.loadLogs(id);
+  }
+
+  private async loadLogs(id) {
+    const filter: ModelViqRecordingLogFilterInput = {viqRecordingLogViqRecordingId: {eq: id}};
+    const xx = await this.api.ListViqRecordingLogs(filter, 200);
+    this.logs = xx.items;
   }
 
   async updateRecording(recording) {
@@ -123,13 +133,22 @@ export class RecordingDetailsComponent implements OnInit {
 
 
   public play() {
-    this.player2.mute();
-    this.player1.play();
-    this.player2.play();
+    if (this.player2) {
+      this.player2.mute();
+      this.player2.play();
+    }
+    if (this.player1) {
+      this.player1.play();
+    }
+
   }
 
   public pause() {
-    this.player1.pause();
-    this.player2.pause();
+    if (this.player1) {
+      this.player1.pause();
+    }
+    if (this.player2) {
+      this.player2.pause();
+    }
   }
 }

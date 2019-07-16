@@ -33,9 +33,9 @@
         </div>
       </p-tabPanel>
       <p-tabPanel header="Logging">
-        <div class="ui-g" *ngIf="recording">
+        <div class="ui-g" *ngIf="logs">
           <div class="ui-g-12">
-            <app-log-list [logs]="recording.logs.items"></app-log-list>
+            <app-log-list [logs]="logs"></app-log-list>
           </div>
         </div>
       </p-tabPanel>
