@@ -9,6 +9,7 @@ type ViqRecording @model {
   attachments: [ViqRecordingAttachment] @connection(name: "RecordingAttachments")
   recordingUrls: [ViqRecordingUrl] @connection(name: "RecordingUrls")
   logs: [ViqRecordingLog] @connection(name: "RecordingLogs")
+  transcriptions:[ViqRecordingTranscription] @connection(name: "RecordingTranscriptions")
 }
 type ViqRecordingAttachment @model {
   id: ID!
@@ -39,4 +40,9 @@ type ViqRecordingRedaction @model {
   endSecond:Int!
   type:String!
   viqRecordingUrl: ViqRecordingUrl @connection(name: "UrlRedactions")
+}
+type ViqRecordingTranscription @model {
+  id: ID!
+  submitTime:String!
+  viqRecording: ViqRecording @connection(name: "RecordingTranscriptions")
 }

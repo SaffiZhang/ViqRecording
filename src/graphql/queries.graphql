@@ -35,6 +35,13 @@ query GetViqRecording($id: ID!) {
       }
       nextToken
     }
+    transcriptions {
+      items {
+        id
+        submitTime
+      }
+      nextToken
+    }
   }
 }
 query ListViqRecordings(
@@ -58,6 +65,9 @@ query ListViqRecordings(
         nextToken
       }
       logs {
+        nextToken
+      }
+      transcriptions {
         nextToken
       }
     }
@@ -84,6 +94,9 @@ query GetViqRecordingAttachment($id: ID!) {
         nextToken
       }
       logs {
+        nextToken
+      }
+      transcriptions {
         nextToken
       }
     }
@@ -151,6 +164,9 @@ query GetViqRecordingUrl($id: ID!) {
       logs {
         nextToken
       }
+      transcriptions {
+        nextToken
+      }
     }
   }
 }
@@ -203,6 +219,9 @@ query GetViqRecordingLog($id: ID!) {
         nextToken
       }
       logs {
+        nextToken
+      }
+      transcriptions {
         nextToken
       }
     }
@@ -283,6 +302,59 @@ query ListViqRecordingRedactions(
         description
         camera
         version
+      }
+    }
+    nextToken
+  }
+}
+query GetViqRecordingTranscription($id: ID!) {
+  getViqRecordingTranscription(id: $id) {
+    id
+    submitTime
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+    }
+  }
+}
+query ListViqRecordingTranscriptions(
+  $filter: ModelViqRecordingTranscriptionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listViqRecordingTranscriptions(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      submitTime
+      viqRecording {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
       }
     }
     nextToken

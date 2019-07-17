@@ -35,6 +35,13 @@ subscription OnCreateViqRecording {
       }
       nextToken
     }
+    transcriptions {
+      items {
+        id
+        submitTime
+      }
+      nextToken
+    }
   }
 }
 subscription OnUpdateViqRecording {
@@ -70,6 +77,13 @@ subscription OnUpdateViqRecording {
         id
         dateTime
         description
+      }
+      nextToken
+    }
+    transcriptions {
+      items {
+        id
+        submitTime
       }
       nextToken
     }
@@ -111,6 +125,13 @@ subscription OnDeleteViqRecording {
       }
       nextToken
     }
+    transcriptions {
+      items {
+        id
+        submitTime
+      }
+      nextToken
+    }
   }
 }
 subscription OnCreateViqRecordingAttachment {
@@ -133,6 +154,9 @@ subscription OnCreateViqRecordingAttachment {
         nextToken
       }
       logs {
+        nextToken
+      }
+      transcriptions {
         nextToken
       }
     }
@@ -160,6 +184,9 @@ subscription OnUpdateViqRecordingAttachment {
       logs {
         nextToken
       }
+      transcriptions {
+        nextToken
+      }
     }
   }
 }
@@ -183,6 +210,9 @@ subscription OnDeleteViqRecordingAttachment {
         nextToken
       }
       logs {
+        nextToken
+      }
+      transcriptions {
         nextToken
       }
     }
@@ -223,6 +253,9 @@ subscription OnCreateViqRecordingUrl {
       logs {
         nextToken
       }
+      transcriptions {
+        nextToken
+      }
     }
   }
 }
@@ -259,6 +292,9 @@ subscription OnUpdateViqRecordingUrl {
         nextToken
       }
       logs {
+        nextToken
+      }
+      transcriptions {
         nextToken
       }
     }
@@ -299,6 +335,9 @@ subscription OnDeleteViqRecordingUrl {
       logs {
         nextToken
       }
+      transcriptions {
+        nextToken
+      }
     }
   }
 }
@@ -322,6 +361,9 @@ subscription OnCreateViqRecordingLog {
         nextToken
       }
       logs {
+        nextToken
+      }
+      transcriptions {
         nextToken
       }
     }
@@ -349,6 +391,9 @@ subscription OnUpdateViqRecordingLog {
       logs {
         nextToken
       }
+      transcriptions {
+        nextToken
+      }
     }
   }
 }
@@ -372,6 +417,9 @@ subscription OnDeleteViqRecordingLog {
         nextToken
       }
       logs {
+        nextToken
+      }
+      transcriptions {
         nextToken
       }
     }
@@ -460,6 +508,87 @@ subscription OnDeleteViqRecordingRedaction {
         officerCollarNumber
         location
         unitId
+      }
+    }
+  }
+}
+subscription OnCreateViqRecordingTranscription {
+  onCreateViqRecordingTranscription {
+    id
+    submitTime
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnUpdateViqRecordingTranscription {
+  onUpdateViqRecordingTranscription {
+    id
+    submitTime
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteViqRecordingTranscription {
+  onDeleteViqRecordingTranscription {
+    id
+    submitTime
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
       }
     }
   }

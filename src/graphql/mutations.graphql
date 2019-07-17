@@ -35,6 +35,13 @@ mutation CreateViqRecording($input: CreateViqRecordingInput!) {
       }
       nextToken
     }
+    transcriptions {
+      items {
+        id
+        submitTime
+      }
+      nextToken
+    }
   }
 }
 mutation UpdateViqRecording($input: UpdateViqRecordingInput!) {
@@ -70,6 +77,13 @@ mutation UpdateViqRecording($input: UpdateViqRecordingInput!) {
         id
         dateTime
         description
+      }
+      nextToken
+    }
+    transcriptions {
+      items {
+        id
+        submitTime
       }
       nextToken
     }
@@ -111,6 +125,13 @@ mutation DeleteViqRecording($input: DeleteViqRecordingInput!) {
       }
       nextToken
     }
+    transcriptions {
+      items {
+        id
+        submitTime
+      }
+      nextToken
+    }
   }
 }
 mutation CreateViqRecordingAttachment(
@@ -135,6 +156,9 @@ mutation CreateViqRecordingAttachment(
         nextToken
       }
       logs {
+        nextToken
+      }
+      transcriptions {
         nextToken
       }
     }
@@ -164,6 +188,9 @@ mutation UpdateViqRecordingAttachment(
       logs {
         nextToken
       }
+      transcriptions {
+        nextToken
+      }
     }
   }
 }
@@ -189,6 +216,9 @@ mutation DeleteViqRecordingAttachment(
         nextToken
       }
       logs {
+        nextToken
+      }
+      transcriptions {
         nextToken
       }
     }
@@ -229,6 +259,9 @@ mutation CreateViqRecordingUrl($input: CreateViqRecordingUrlInput!) {
       logs {
         nextToken
       }
+      transcriptions {
+        nextToken
+      }
     }
   }
 }
@@ -265,6 +298,9 @@ mutation UpdateViqRecordingUrl($input: UpdateViqRecordingUrlInput!) {
         nextToken
       }
       logs {
+        nextToken
+      }
+      transcriptions {
         nextToken
       }
     }
@@ -305,6 +341,9 @@ mutation DeleteViqRecordingUrl($input: DeleteViqRecordingUrlInput!) {
       logs {
         nextToken
       }
+      transcriptions {
+        nextToken
+      }
     }
   }
 }
@@ -328,6 +367,9 @@ mutation CreateViqRecordingLog($input: CreateViqRecordingLogInput!) {
         nextToken
       }
       logs {
+        nextToken
+      }
+      transcriptions {
         nextToken
       }
     }
@@ -355,6 +397,9 @@ mutation UpdateViqRecordingLog($input: UpdateViqRecordingLogInput!) {
       logs {
         nextToken
       }
+      transcriptions {
+        nextToken
+      }
     }
   }
 }
@@ -378,6 +423,9 @@ mutation DeleteViqRecordingLog($input: DeleteViqRecordingLogInput!) {
         nextToken
       }
       logs {
+        nextToken
+      }
+      transcriptions {
         nextToken
       }
     }
@@ -472,6 +520,93 @@ mutation DeleteViqRecordingRedaction(
         officerCollarNumber
         location
         unitId
+      }
+    }
+  }
+}
+mutation CreateViqRecordingTranscription(
+  $input: CreateViqRecordingTranscriptionInput!
+) {
+  createViqRecordingTranscription(input: $input) {
+    id
+    submitTime
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+    }
+  }
+}
+mutation UpdateViqRecordingTranscription(
+  $input: UpdateViqRecordingTranscriptionInput!
+) {
+  updateViqRecordingTranscription(input: $input) {
+    id
+    submitTime
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+    }
+  }
+}
+mutation DeleteViqRecordingTranscription(
+  $input: DeleteViqRecordingTranscriptionInput!
+) {
+  deleteViqRecordingTranscription(input: $input) {
+    id
+    submitTime
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
       }
     }
   }

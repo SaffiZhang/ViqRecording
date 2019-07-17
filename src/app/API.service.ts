@@ -111,6 +111,22 @@ export type DeleteViqRecordingRedactionInput = {
   id?: string | null;
 };
 
+export type CreateViqRecordingTranscriptionInput = {
+  id?: string | null;
+  submitTime: string;
+  viqRecordingTranscriptionViqRecordingId?: string | null;
+};
+
+export type UpdateViqRecordingTranscriptionInput = {
+  id: string;
+  submitTime?: string | null;
+  viqRecordingTranscriptionViqRecordingId?: string | null;
+};
+
+export type DeleteViqRecordingTranscriptionInput = {
+  id?: string | null;
+};
+
 export type ModelViqRecordingFilterInput = {
   id?: ModelStringFilterInput | null;
   interviewee?: ModelStringFilterInput | null;
@@ -184,7 +200,6 @@ export type ModelIntFilterInput = {
 };
 
 export type ModelViqRecordingLogFilterInput = {
-  viqRecordingLogViqRecordingId?:ModelStringFilterInput|null;
   id?: ModelIDFilterInput | null;
   dateTime?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
@@ -202,6 +217,14 @@ export type ModelViqRecordingRedactionFilterInput = {
   and?: Array<ModelViqRecordingRedactionFilterInput | null> | null;
   or?: Array<ModelViqRecordingRedactionFilterInput | null> | null;
   not?: ModelViqRecordingRedactionFilterInput | null;
+};
+
+export type ModelViqRecordingTranscriptionFilterInput = {
+  id?: ModelIDFilterInput | null;
+  submitTime?: ModelStringFilterInput | null;
+  and?: Array<ModelViqRecordingTranscriptionFilterInput | null> | null;
+  or?: Array<ModelViqRecordingTranscriptionFilterInput | null> | null;
+  not?: ModelViqRecordingTranscriptionFilterInput | null;
 };
 
 export type CreateViqRecordingMutation = {
@@ -243,6 +266,15 @@ export type CreateViqRecordingMutation = {
       id: string;
       dateTime: string;
       description: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  transcriptions: {
+    __typename: "ModelViqRecordingTranscriptionConnection";
+    items: Array<{
+      __typename: "ViqRecordingTranscription";
+      id: string;
+      submitTime: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -290,6 +322,15 @@ export type UpdateViqRecordingMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  transcriptions: {
+    __typename: "ModelViqRecordingTranscriptionConnection";
+    items: Array<{
+      __typename: "ViqRecordingTranscription";
+      id: string;
+      submitTime: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type DeleteViqRecordingMutation = {
@@ -334,6 +375,15 @@ export type DeleteViqRecordingMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  transcriptions: {
+    __typename: "ModelViqRecordingTranscriptionConnection";
+    items: Array<{
+      __typename: "ViqRecordingTranscription";
+      id: string;
+      submitTime: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type CreateViqRecordingAttachmentMutation = {
@@ -360,6 +410,10 @@ export type CreateViqRecordingAttachmentMutation = {
     } | null;
     logs: {
       __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
       nextToken: string | null;
     } | null;
   } | null;
@@ -391,6 +445,10 @@ export type UpdateViqRecordingAttachmentMutation = {
       __typename: "ModelViqRecordingLogConnection";
       nextToken: string | null;
     } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
 };
 
@@ -418,6 +476,10 @@ export type DeleteViqRecordingAttachmentMutation = {
     } | null;
     logs: {
       __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
       nextToken: string | null;
     } | null;
   } | null;
@@ -464,6 +526,10 @@ export type CreateViqRecordingUrlMutation = {
       __typename: "ModelViqRecordingLogConnection";
       nextToken: string | null;
     } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
 };
 
@@ -506,6 +572,10 @@ export type UpdateViqRecordingUrlMutation = {
     } | null;
     logs: {
       __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
       nextToken: string | null;
     } | null;
   } | null;
@@ -552,6 +622,10 @@ export type DeleteViqRecordingUrlMutation = {
       __typename: "ModelViqRecordingLogConnection";
       nextToken: string | null;
     } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
 };
 
@@ -579,6 +653,10 @@ export type CreateViqRecordingLogMutation = {
     } | null;
     logs: {
       __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
       nextToken: string | null;
     } | null;
   } | null;
@@ -610,6 +688,10 @@ export type UpdateViqRecordingLogMutation = {
       __typename: "ModelViqRecordingLogConnection";
       nextToken: string | null;
     } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
 };
 
@@ -637,6 +719,10 @@ export type DeleteViqRecordingLogMutation = {
     } | null;
     logs: {
       __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
       nextToken: string | null;
     } | null;
   } | null;
@@ -738,6 +824,102 @@ export type DeleteViqRecordingRedactionMutation = {
   } | null;
 };
 
+export type CreateViqRecordingTranscriptionMutation = {
+  __typename: "ViqRecordingTranscription";
+  id: string;
+  submitTime: string;
+  viqRecording: {
+    __typename: "ViqRecording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    attachments: {
+      __typename: "ModelViqRecordingAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    recordingUrls: {
+      __typename: "ModelViqRecordingUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type UpdateViqRecordingTranscriptionMutation = {
+  __typename: "ViqRecordingTranscription";
+  id: string;
+  submitTime: string;
+  viqRecording: {
+    __typename: "ViqRecording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    attachments: {
+      __typename: "ModelViqRecordingAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    recordingUrls: {
+      __typename: "ModelViqRecordingUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type DeleteViqRecordingTranscriptionMutation = {
+  __typename: "ViqRecordingTranscription";
+  id: string;
+  submitTime: string;
+  viqRecording: {
+    __typename: "ViqRecording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    attachments: {
+      __typename: "ModelViqRecordingAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    recordingUrls: {
+      __typename: "ModelViqRecordingUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
 export type GetViqRecordingQuery = {
   __typename: "ViqRecording";
   id: string;
@@ -780,6 +962,15 @@ export type GetViqRecordingQuery = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  transcriptions: {
+    __typename: "ModelViqRecordingTranscriptionConnection";
+    items: Array<{
+      __typename: "ViqRecordingTranscription";
+      id: string;
+      submitTime: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type ListViqRecordingsQuery = {
@@ -803,6 +994,10 @@ export type ListViqRecordingsQuery = {
     } | null;
     logs: {
       __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
       nextToken: string | null;
     } | null;
   } | null> | null;
@@ -833,6 +1028,10 @@ export type GetViqRecordingAttachmentQuery = {
     } | null;
     logs: {
       __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
       nextToken: string | null;
     } | null;
   } | null;
@@ -900,6 +1099,10 @@ export type GetViqRecordingUrlQuery = {
       __typename: "ModelViqRecordingLogConnection";
       nextToken: string | null;
     } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
 };
 
@@ -955,6 +1158,10 @@ export type GetViqRecordingLogQuery = {
     } | null;
     logs: {
       __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
       nextToken: string | null;
     } | null;
   } | null;
@@ -1035,6 +1242,58 @@ export type ListViqRecordingRedactionsQuery = {
   nextToken: string | null;
 };
 
+export type GetViqRecordingTranscriptionQuery = {
+  __typename: "ViqRecordingTranscription";
+  id: string;
+  submitTime: string;
+  viqRecording: {
+    __typename: "ViqRecording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    attachments: {
+      __typename: "ModelViqRecordingAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    recordingUrls: {
+      __typename: "ModelViqRecordingUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type ListViqRecordingTranscriptionsQuery = {
+  __typename: "ModelViqRecordingTranscriptionConnection";
+  items: Array<{
+    __typename: "ViqRecordingTranscription";
+    id: string;
+    submitTime: string;
+    viqRecording: {
+      __typename: "ViqRecording";
+      id: string;
+      interviewee: string;
+      interviewFinish: string;
+      interviewStart: string;
+      officerCollarNumber: string;
+      location: string;
+      unitId: string;
+    } | null;
+  } | null> | null;
+  nextToken: string | null;
+};
+
 export type OnCreateViqRecordingSubscription = {
   __typename: "ViqRecording";
   id: string;
@@ -1074,6 +1333,15 @@ export type OnCreateViqRecordingSubscription = {
       id: string;
       dateTime: string;
       description: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  transcriptions: {
+    __typename: "ModelViqRecordingTranscriptionConnection";
+    items: Array<{
+      __typename: "ViqRecordingTranscription";
+      id: string;
+      submitTime: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -1121,6 +1389,15 @@ export type OnUpdateViqRecordingSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  transcriptions: {
+    __typename: "ModelViqRecordingTranscriptionConnection";
+    items: Array<{
+      __typename: "ViqRecordingTranscription";
+      id: string;
+      submitTime: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnDeleteViqRecordingSubscription = {
@@ -1165,6 +1442,15 @@ export type OnDeleteViqRecordingSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  transcriptions: {
+    __typename: "ModelViqRecordingTranscriptionConnection";
+    items: Array<{
+      __typename: "ViqRecordingTranscription";
+      id: string;
+      submitTime: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnCreateViqRecordingAttachmentSubscription = {
@@ -1191,6 +1477,10 @@ export type OnCreateViqRecordingAttachmentSubscription = {
     } | null;
     logs: {
       __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
       nextToken: string | null;
     } | null;
   } | null;
@@ -1222,6 +1512,10 @@ export type OnUpdateViqRecordingAttachmentSubscription = {
       __typename: "ModelViqRecordingLogConnection";
       nextToken: string | null;
     } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
 };
 
@@ -1249,6 +1543,10 @@ export type OnDeleteViqRecordingAttachmentSubscription = {
     } | null;
     logs: {
       __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
       nextToken: string | null;
     } | null;
   } | null;
@@ -1295,6 +1593,10 @@ export type OnCreateViqRecordingUrlSubscription = {
       __typename: "ModelViqRecordingLogConnection";
       nextToken: string | null;
     } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
 };
 
@@ -1337,6 +1639,10 @@ export type OnUpdateViqRecordingUrlSubscription = {
     } | null;
     logs: {
       __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
       nextToken: string | null;
     } | null;
   } | null;
@@ -1383,6 +1689,10 @@ export type OnDeleteViqRecordingUrlSubscription = {
       __typename: "ModelViqRecordingLogConnection";
       nextToken: string | null;
     } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
 };
 
@@ -1410,6 +1720,10 @@ export type OnCreateViqRecordingLogSubscription = {
     } | null;
     logs: {
       __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
       nextToken: string | null;
     } | null;
   } | null;
@@ -1441,6 +1755,10 @@ export type OnUpdateViqRecordingLogSubscription = {
       __typename: "ModelViqRecordingLogConnection";
       nextToken: string | null;
     } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
 };
 
@@ -1468,6 +1786,10 @@ export type OnDeleteViqRecordingLogSubscription = {
     } | null;
     logs: {
       __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
       nextToken: string | null;
     } | null;
   } | null;
@@ -1569,6 +1891,102 @@ export type OnDeleteViqRecordingRedactionSubscription = {
   } | null;
 };
 
+export type OnCreateViqRecordingTranscriptionSubscription = {
+  __typename: "ViqRecordingTranscription";
+  id: string;
+  submitTime: string;
+  viqRecording: {
+    __typename: "ViqRecording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    attachments: {
+      __typename: "ModelViqRecordingAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    recordingUrls: {
+      __typename: "ModelViqRecordingUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type OnUpdateViqRecordingTranscriptionSubscription = {
+  __typename: "ViqRecordingTranscription";
+  id: string;
+  submitTime: string;
+  viqRecording: {
+    __typename: "ViqRecording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    attachments: {
+      __typename: "ModelViqRecordingAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    recordingUrls: {
+      __typename: "ModelViqRecordingUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type OnDeleteViqRecordingTranscriptionSubscription = {
+  __typename: "ViqRecordingTranscription";
+  id: string;
+  submitTime: string;
+  viqRecording: {
+    __typename: "ViqRecording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    attachments: {
+      __typename: "ModelViqRecordingAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    recordingUrls: {
+      __typename: "ModelViqRecordingUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
 @Injectable({
   providedIn: "root"
 })
@@ -1616,6 +2034,15 @@ export class APIService {
               id
               dateTime
               description
+            }
+            nextToken
+          }
+          transcriptions {
+            __typename
+            items {
+              __typename
+              id
+              submitTime
             }
             nextToken
           }
@@ -1675,6 +2102,15 @@ export class APIService {
             }
             nextToken
           }
+          transcriptions {
+            __typename
+            items {
+              __typename
+              id
+              submitTime
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1731,6 +2167,15 @@ export class APIService {
             }
             nextToken
           }
+          transcriptions {
+            __typename
+            items {
+              __typename
+              id
+              submitTime
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1768,6 +2213,10 @@ export class APIService {
               nextToken
             }
             logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
               __typename
               nextToken
             }
@@ -1814,6 +2263,10 @@ export class APIService {
               __typename
               nextToken
             }
+            transcriptions {
+              __typename
+              nextToken
+            }
           }
         }
       }`;
@@ -1854,6 +2307,10 @@ export class APIService {
               nextToken
             }
             logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
               __typename
               nextToken
             }
@@ -1915,6 +2372,10 @@ export class APIService {
               __typename
               nextToken
             }
+            transcriptions {
+              __typename
+              nextToken
+            }
           }
         }
       }`;
@@ -1968,6 +2429,10 @@ export class APIService {
               nextToken
             }
             logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
               __typename
               nextToken
             }
@@ -2027,6 +2492,10 @@ export class APIService {
               __typename
               nextToken
             }
+            transcriptions {
+              __typename
+              nextToken
+            }
           }
         }
       }`;
@@ -2065,6 +2534,10 @@ export class APIService {
               nextToken
             }
             logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
               __typename
               nextToken
             }
@@ -2109,6 +2582,10 @@ export class APIService {
               __typename
               nextToken
             }
+            transcriptions {
+              __typename
+              nextToken
+            }
           }
         }
       }`;
@@ -2147,6 +2624,10 @@ export class APIService {
               nextToken
             }
             logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
               __typename
               nextToken
             }
@@ -2299,6 +2780,144 @@ export class APIService {
       response.data.deleteViqRecordingRedaction
     );
   }
+  async CreateViqRecordingTranscription(
+    input: CreateViqRecordingTranscriptionInput
+  ): Promise<CreateViqRecordingTranscriptionMutation> {
+    const statement = `mutation CreateViqRecordingTranscription($input: CreateViqRecordingTranscriptionInput!) {
+        createViqRecordingTranscription(input: $input) {
+          __typename
+          id
+          submitTime
+          viqRecording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            attachments {
+              __typename
+              nextToken
+            }
+            recordingUrls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateViqRecordingTranscriptionMutation>(
+      response.data.createViqRecordingTranscription
+    );
+  }
+  async UpdateViqRecordingTranscription(
+    input: UpdateViqRecordingTranscriptionInput
+  ): Promise<UpdateViqRecordingTranscriptionMutation> {
+    const statement = `mutation UpdateViqRecordingTranscription($input: UpdateViqRecordingTranscriptionInput!) {
+        updateViqRecordingTranscription(input: $input) {
+          __typename
+          id
+          submitTime
+          viqRecording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            attachments {
+              __typename
+              nextToken
+            }
+            recordingUrls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateViqRecordingTranscriptionMutation>(
+      response.data.updateViqRecordingTranscription
+    );
+  }
+  async DeleteViqRecordingTranscription(
+    input: DeleteViqRecordingTranscriptionInput
+  ): Promise<DeleteViqRecordingTranscriptionMutation> {
+    const statement = `mutation DeleteViqRecordingTranscription($input: DeleteViqRecordingTranscriptionInput!) {
+        deleteViqRecordingTranscription(input: $input) {
+          __typename
+          id
+          submitTime
+          viqRecording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            attachments {
+              __typename
+              nextToken
+            }
+            recordingUrls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteViqRecordingTranscriptionMutation>(
+      response.data.deleteViqRecordingTranscription
+    );
+  }
   async GetViqRecording(id: string): Promise<GetViqRecordingQuery> {
     const statement = `query GetViqRecording($id: ID!) {
         getViqRecording(id: $id) {
@@ -2343,6 +2962,15 @@ export class APIService {
             }
             nextToken
           }
+          transcriptions {
+            __typename
+            items {
+              __typename
+              id
+              submitTime
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -2379,6 +3007,10 @@ export class APIService {
               nextToken
             }
             logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
               __typename
               nextToken
             }
@@ -2428,6 +3060,10 @@ export class APIService {
               nextToken
             }
             logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
               __typename
               nextToken
             }
@@ -2531,6 +3167,10 @@ export class APIService {
               __typename
               nextToken
             }
+            transcriptions {
+              __typename
+              nextToken
+            }
           }
         }
       }`;
@@ -2616,6 +3256,10 @@ export class APIService {
               nextToken
             }
             logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
               __typename
               nextToken
             }
@@ -2763,6 +3407,95 @@ export class APIService {
       response.data.listViqRecordingRedactions
     );
   }
+  async GetViqRecordingTranscription(
+    id: string
+  ): Promise<GetViqRecordingTranscriptionQuery> {
+    const statement = `query GetViqRecordingTranscription($id: ID!) {
+        getViqRecordingTranscription(id: $id) {
+          __typename
+          id
+          submitTime
+          viqRecording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            attachments {
+              __typename
+              nextToken
+            }
+            recordingUrls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetViqRecordingTranscriptionQuery>(
+      response.data.getViqRecordingTranscription
+    );
+  }
+  async ListViqRecordingTranscriptions(
+    filter?: ModelViqRecordingTranscriptionFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListViqRecordingTranscriptionsQuery> {
+    const statement = `query ListViqRecordingTranscriptions($filter: ModelViqRecordingTranscriptionFilterInput, $limit: Int, $nextToken: String) {
+        listViqRecordingTranscriptions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            submitTime
+            viqRecording {
+              __typename
+              id
+              interviewee
+              interviewFinish
+              interviewStart
+              officerCollarNumber
+              location
+              unitId
+            }
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListViqRecordingTranscriptionsQuery>(
+      response.data.listViqRecordingTranscriptions
+    );
+  }
   OnCreateViqRecordingListener: Observable<
     OnCreateViqRecordingSubscription
   > = API.graphql(
@@ -2807,6 +3540,15 @@ export class APIService {
               id
               dateTime
               description
+            }
+            nextToken
+          }
+          transcriptions {
+            __typename
+            items {
+              __typename
+              id
+              submitTime
             }
             nextToken
           }
@@ -2862,6 +3604,15 @@ export class APIService {
             }
             nextToken
           }
+          transcriptions {
+            __typename
+            items {
+              __typename
+              id
+              submitTime
+            }
+            nextToken
+          }
         }
       }`
     )
@@ -2914,6 +3665,15 @@ export class APIService {
             }
             nextToken
           }
+          transcriptions {
+            __typename
+            items {
+              __typename
+              id
+              submitTime
+            }
+            nextToken
+          }
         }
       }`
     )
@@ -2947,6 +3707,10 @@ export class APIService {
               nextToken
             }
             logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
               __typename
               nextToken
             }
@@ -2987,6 +3751,10 @@ export class APIService {
               __typename
               nextToken
             }
+            transcriptions {
+              __typename
+              nextToken
+            }
           }
         }
       }`
@@ -3021,6 +3789,10 @@ export class APIService {
               nextToken
             }
             logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
               __typename
               nextToken
             }
@@ -3076,6 +3848,10 @@ export class APIService {
               __typename
               nextToken
             }
+            transcriptions {
+              __typename
+              nextToken
+            }
           }
         }
       }`
@@ -3125,6 +3901,10 @@ export class APIService {
               nextToken
             }
             logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
               __typename
               nextToken
             }
@@ -3180,6 +3960,10 @@ export class APIService {
               __typename
               nextToken
             }
+            transcriptions {
+              __typename
+              nextToken
+            }
           }
         }
       }`
@@ -3214,6 +3998,10 @@ export class APIService {
               nextToken
             }
             logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
               __typename
               nextToken
             }
@@ -3254,6 +4042,10 @@ export class APIService {
               __typename
               nextToken
             }
+            transcriptions {
+              __typename
+              nextToken
+            }
           }
         }
       }`
@@ -3288,6 +4080,10 @@ export class APIService {
               nextToken
             }
             logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
               __typename
               nextToken
             }
@@ -3416,4 +4212,124 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteViqRecordingRedactionSubscription>;
+
+  OnCreateViqRecordingTranscriptionListener: Observable<
+    OnCreateViqRecordingTranscriptionSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateViqRecordingTranscription {
+        onCreateViqRecordingTranscription {
+          __typename
+          id
+          submitTime
+          viqRecording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            attachments {
+              __typename
+              nextToken
+            }
+            recordingUrls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnCreateViqRecordingTranscriptionSubscription>;
+
+  OnUpdateViqRecordingTranscriptionListener: Observable<
+    OnUpdateViqRecordingTranscriptionSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateViqRecordingTranscription {
+        onUpdateViqRecordingTranscription {
+          __typename
+          id
+          submitTime
+          viqRecording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            attachments {
+              __typename
+              nextToken
+            }
+            recordingUrls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnUpdateViqRecordingTranscriptionSubscription>;
+
+  OnDeleteViqRecordingTranscriptionListener: Observable<
+    OnDeleteViqRecordingTranscriptionSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteViqRecordingTranscription {
+        onDeleteViqRecordingTranscription {
+          __typename
+          id
+          submitTime
+          viqRecording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            attachments {
+              __typename
+              nextToken
+            }
+            recordingUrls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnDeleteViqRecordingTranscriptionSubscription>;
 }
