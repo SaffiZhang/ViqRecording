@@ -55,4 +55,4 @@ dist/
 node_modules/
 aws-exports.js
 awsconfiguration.json
-s3-params.ts
+s3-params.*
