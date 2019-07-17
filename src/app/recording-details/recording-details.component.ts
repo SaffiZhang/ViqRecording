@@ -3,6 +3,7 @@ import {APIService, GetViqRecordingQuery, ModelViqRecordingLogFilterInput} from 
 import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
 import {ActivatedRoute} from '@angular/router';
 import {VideoPlayerComponent} from '../video-player/video-player.component';
+import {DatetimeHelperService} from '../services/datetime-helper.service';
 
 @Component({
   selector: 'app-recording-details',
@@ -29,7 +30,9 @@ export class RecordingDetailsComponent implements OnInit {
   @ViewChild('player2', {static: false})
   public player2: VideoPlayerComponent;
 
-  constructor(private api: APIService, private route: ActivatedRoute) {
+  constructor(private api: APIService,
+              private dateTimeHelper: DatetimeHelperService,
+              private route: ActivatedRoute) {
   }
 
   async ngOnInit() {
@@ -150,5 +153,15 @@ export class RecordingDetailsComponent implements OnInit {
     if (this.player2) {
       this.player2.pause();
     }
+  }
+
+  public submit() {
+    const input = {
+        id: '',
+        submitTime: this.dateTimeHelper.format(new Date()),
+        viqRecordingTranscriptionViqRecordingId: this.recording.id
+      }
+    ;
+    this.api.CreateViqRecordingTranscription(input);
   }
 }
