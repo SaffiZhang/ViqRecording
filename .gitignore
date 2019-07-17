@@ -55,4 +55,5 @@ dist/
 node_modules/
 aws-exports.js
 awsconfiguration.json
-src/app/services/s3-params.ts
+s3-params.ts
+package-lock.json
