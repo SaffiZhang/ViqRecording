@@ -13,6 +13,7 @@ export type CreateViqRecordingInput = {
   officerCollarNumber: string;
   location: string;
   unitId: string;
+  path?: string | null;
 };
 
 export type UpdateViqRecordingInput = {
@@ -23,6 +24,7 @@ export type UpdateViqRecordingInput = {
   officerCollarNumber?: string | null;
   location?: string | null;
   unitId?: string | null;
+  path?: string | null;
 };
 
 export type DeleteViqRecordingInput = {
@@ -135,6 +137,7 @@ export type ModelViqRecordingFilterInput = {
   officerCollarNumber?: ModelStringFilterInput | null;
   location?: ModelStringFilterInput | null;
   unitId?: ModelStringFilterInput | null;
+  path?: ModelStringFilterInput | null;
   and?: Array<ModelViqRecordingFilterInput | null> | null;
   or?: Array<ModelViqRecordingFilterInput | null> | null;
   not?: ModelViqRecordingFilterInput | null;
@@ -201,6 +204,7 @@ export type ModelIntFilterInput = {
 
 export type ModelViqRecordingLogFilterInput = {
   id?: ModelIDFilterInput | null;
+  viqRecordingLogViqRecordingId:ModelStringFilterInput | null;
   dateTime?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
   and?: Array<ModelViqRecordingLogFilterInput | null> | null;
@@ -236,6 +240,7 @@ export type CreateViqRecordingMutation = {
   officerCollarNumber: string;
   location: string;
   unitId: string;
+  path: string | null;
   attachments: {
     __typename: "ModelViqRecordingAttachmentConnection";
     items: Array<{
@@ -289,6 +294,7 @@ export type UpdateViqRecordingMutation = {
   officerCollarNumber: string;
   location: string;
   unitId: string;
+  path: string | null;
   attachments: {
     __typename: "ModelViqRecordingAttachmentConnection";
     items: Array<{
@@ -342,6 +348,7 @@ export type DeleteViqRecordingMutation = {
   officerCollarNumber: string;
   location: string;
   unitId: string;
+  path: string | null;
   attachments: {
     __typename: "ModelViqRecordingAttachmentConnection";
     items: Array<{
@@ -400,6 +407,7 @@ export type CreateViqRecordingAttachmentMutation = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -433,6 +441,7 @@ export type UpdateViqRecordingAttachmentMutation = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -466,6 +475,7 @@ export type DeleteViqRecordingAttachmentMutation = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -514,6 +524,7 @@ export type CreateViqRecordingUrlMutation = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -562,6 +573,7 @@ export type UpdateViqRecordingUrlMutation = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -610,6 +622,7 @@ export type DeleteViqRecordingUrlMutation = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -643,6 +656,7 @@ export type CreateViqRecordingLogMutation = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -676,6 +690,7 @@ export type UpdateViqRecordingLogMutation = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -709,6 +724,7 @@ export type DeleteViqRecordingLogMutation = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -756,6 +772,7 @@ export type CreateViqRecordingRedactionMutation = {
       officerCollarNumber: string;
       location: string;
       unitId: string;
+      path: string | null;
     } | null;
   } | null;
 };
@@ -788,6 +805,7 @@ export type UpdateViqRecordingRedactionMutation = {
       officerCollarNumber: string;
       location: string;
       unitId: string;
+      path: string | null;
     } | null;
   } | null;
 };
@@ -820,6 +838,7 @@ export type DeleteViqRecordingRedactionMutation = {
       officerCollarNumber: string;
       location: string;
       unitId: string;
+      path: string | null;
     } | null;
   } | null;
 };
@@ -837,6 +856,7 @@ export type CreateViqRecordingTranscriptionMutation = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -869,6 +889,7 @@ export type UpdateViqRecordingTranscriptionMutation = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -901,6 +922,7 @@ export type DeleteViqRecordingTranscriptionMutation = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -929,6 +951,7 @@ export type GetViqRecordingQuery = {
   officerCollarNumber: string;
   location: string;
   unitId: string;
+  path: string | null;
   attachments: {
     __typename: "ModelViqRecordingAttachmentConnection";
     items: Array<{
@@ -984,6 +1007,7 @@ export type ListViqRecordingsQuery = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1018,6 +1042,7 @@ export type GetViqRecordingAttachmentQuery = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1053,6 +1078,7 @@ export type ListViqRecordingAttachmentsQuery = {
       officerCollarNumber: string;
       location: string;
       unitId: string;
+      path: string | null;
     } | null;
   } | null> | null;
   nextToken: string | null;
@@ -1087,6 +1113,7 @@ export type GetViqRecordingUrlQuery = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1129,6 +1156,7 @@ export type ListViqRecordingUrlsQuery = {
       officerCollarNumber: string;
       location: string;
       unitId: string;
+      path: string | null;
     } | null;
   } | null> | null;
   nextToken: string | null;
@@ -1148,6 +1176,7 @@ export type GetViqRecordingLogQuery = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1183,6 +1212,7 @@ export type ListViqRecordingLogsQuery = {
       officerCollarNumber: string;
       location: string;
       unitId: string;
+      path: string | null;
     } | null;
   } | null> | null;
   nextToken: string | null;
@@ -1216,6 +1246,7 @@ export type GetViqRecordingRedactionQuery = {
       officerCollarNumber: string;
       location: string;
       unitId: string;
+      path: string | null;
     } | null;
   } | null;
 };
@@ -1255,6 +1286,7 @@ export type GetViqRecordingTranscriptionQuery = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1289,6 +1321,7 @@ export type ListViqRecordingTranscriptionsQuery = {
       officerCollarNumber: string;
       location: string;
       unitId: string;
+      path: string | null;
     } | null;
   } | null> | null;
   nextToken: string | null;
@@ -1303,6 +1336,7 @@ export type OnCreateViqRecordingSubscription = {
   officerCollarNumber: string;
   location: string;
   unitId: string;
+  path: string | null;
   attachments: {
     __typename: "ModelViqRecordingAttachmentConnection";
     items: Array<{
@@ -1356,6 +1390,7 @@ export type OnUpdateViqRecordingSubscription = {
   officerCollarNumber: string;
   location: string;
   unitId: string;
+  path: string | null;
   attachments: {
     __typename: "ModelViqRecordingAttachmentConnection";
     items: Array<{
@@ -1409,6 +1444,7 @@ export type OnDeleteViqRecordingSubscription = {
   officerCollarNumber: string;
   location: string;
   unitId: string;
+  path: string | null;
   attachments: {
     __typename: "ModelViqRecordingAttachmentConnection";
     items: Array<{
@@ -1467,6 +1503,7 @@ export type OnCreateViqRecordingAttachmentSubscription = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1500,6 +1537,7 @@ export type OnUpdateViqRecordingAttachmentSubscription = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1533,6 +1571,7 @@ export type OnDeleteViqRecordingAttachmentSubscription = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1581,6 +1620,7 @@ export type OnCreateViqRecordingUrlSubscription = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1629,6 +1669,7 @@ export type OnUpdateViqRecordingUrlSubscription = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1677,6 +1718,7 @@ export type OnDeleteViqRecordingUrlSubscription = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1710,6 +1752,7 @@ export type OnCreateViqRecordingLogSubscription = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1743,6 +1786,7 @@ export type OnUpdateViqRecordingLogSubscription = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1776,6 +1820,7 @@ export type OnDeleteViqRecordingLogSubscription = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1823,6 +1868,7 @@ export type OnCreateViqRecordingRedactionSubscription = {
       officerCollarNumber: string;
       location: string;
       unitId: string;
+      path: string | null;
     } | null;
   } | null;
 };
@@ -1855,6 +1901,7 @@ export type OnUpdateViqRecordingRedactionSubscription = {
       officerCollarNumber: string;
       location: string;
       unitId: string;
+      path: string | null;
     } | null;
   } | null;
 };
@@ -1887,6 +1934,7 @@ export type OnDeleteViqRecordingRedactionSubscription = {
       officerCollarNumber: string;
       location: string;
       unitId: string;
+      path: string | null;
     } | null;
   } | null;
 };
@@ -1904,6 +1952,7 @@ export type OnCreateViqRecordingTranscriptionSubscription = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1936,6 +1985,7 @@ export type OnUpdateViqRecordingTranscriptionSubscription = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -1968,6 +2018,7 @@ export type OnDeleteViqRecordingTranscriptionSubscription = {
     officerCollarNumber: string;
     location: string;
     unitId: string;
+    path: string | null;
     attachments: {
       __typename: "ModelViqRecordingAttachmentConnection";
       nextToken: string | null;
@@ -2004,6 +2055,7 @@ export class APIService {
           officerCollarNumber
           location
           unitId
+          path
           attachments {
             __typename
             items {
@@ -2069,6 +2121,7 @@ export class APIService {
           officerCollarNumber
           location
           unitId
+          path
           attachments {
             __typename
             items {
@@ -2134,6 +2187,7 @@ export class APIService {
           officerCollarNumber
           location
           unitId
+          path
           attachments {
             __typename
             items {
@@ -2204,6 +2258,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -2251,6 +2306,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -2298,6 +2354,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -2360,6 +2417,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -2420,6 +2478,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -2480,6 +2539,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -2525,6 +2585,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -2570,6 +2631,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -2615,6 +2677,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -2674,6 +2737,7 @@ export class APIService {
               officerCollarNumber
               location
               unitId
+              path
             }
           }
         }
@@ -2720,6 +2784,7 @@ export class APIService {
               officerCollarNumber
               location
               unitId
+              path
             }
           }
         }
@@ -2766,6 +2831,7 @@ export class APIService {
               officerCollarNumber
               location
               unitId
+              path
             }
           }
         }
@@ -2797,6 +2863,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -2843,6 +2910,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -2889,6 +2957,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -2929,6 +2998,7 @@ export class APIService {
           officerCollarNumber
           location
           unitId
+          path
           attachments {
             __typename
             items {
@@ -2998,6 +3068,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -3051,6 +3122,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -3102,6 +3174,7 @@ export class APIService {
               officerCollarNumber
               location
               unitId
+              path
             }
           }
           nextToken
@@ -3155,6 +3228,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -3211,6 +3285,7 @@ export class APIService {
               officerCollarNumber
               location
               unitId
+              path
             }
           }
           nextToken
@@ -3247,6 +3322,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -3296,6 +3372,7 @@ export class APIService {
               officerCollarNumber
               location
               unitId
+              path
             }
           }
           nextToken
@@ -3348,6 +3425,7 @@ export class APIService {
               officerCollarNumber
               location
               unitId
+              path
             }
           }
         }
@@ -3424,6 +3502,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -3474,6 +3553,7 @@ export class APIService {
               officerCollarNumber
               location
               unitId
+              path
             }
           }
           nextToken
@@ -3510,6 +3590,7 @@ export class APIService {
           officerCollarNumber
           location
           unitId
+          path
           attachments {
             __typename
             items {
@@ -3571,6 +3652,7 @@ export class APIService {
           officerCollarNumber
           location
           unitId
+          path
           attachments {
             __typename
             items {
@@ -3632,6 +3714,7 @@ export class APIService {
           officerCollarNumber
           location
           unitId
+          path
           attachments {
             __typename
             items {
@@ -3698,6 +3781,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -3739,6 +3823,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -3780,6 +3865,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -3836,6 +3922,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -3892,6 +3979,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -3948,6 +4036,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -3989,6 +4078,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -4030,6 +4120,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -4071,6 +4162,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -4126,6 +4218,7 @@ export class APIService {
               officerCollarNumber
               location
               unitId
+              path
             }
           }
         }
@@ -4166,6 +4259,7 @@ export class APIService {
               officerCollarNumber
               location
               unitId
+              path
             }
           }
         }
@@ -4206,6 +4300,7 @@ export class APIService {
               officerCollarNumber
               location
               unitId
+              path
             }
           }
         }
@@ -4231,6 +4326,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -4271,6 +4367,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken
@@ -4311,6 +4408,7 @@ export class APIService {
             officerCollarNumber
             location
             unitId
+            path
             attachments {
               __typename
               nextToken

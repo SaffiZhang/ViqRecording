@@ -8,6 +8,7 @@ query GetViqRecording($id: ID!) {
     officerCollarNumber
     location
     unitId
+    path
     attachments {
       items {
         id
@@ -58,6 +59,7 @@ query ListViqRecordings(
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -87,6 +89,7 @@ query GetViqRecordingAttachment($id: ID!) {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -124,6 +127,7 @@ query ListViqRecordingAttachments(
         officerCollarNumber
         location
         unitId
+        path
       }
     }
     nextToken
@@ -155,6 +159,7 @@ query GetViqRecordingUrl($id: ID!) {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -194,6 +199,7 @@ query ListViqRecordingUrls(
         officerCollarNumber
         location
         unitId
+        path
       }
     }
     nextToken
@@ -212,6 +218,7 @@ query GetViqRecordingLog($id: ID!) {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -245,6 +252,7 @@ query ListViqRecordingLogs(
         officerCollarNumber
         location
         unitId
+        path
       }
     }
     nextToken
@@ -275,6 +283,7 @@ query GetViqRecordingRedaction($id: ID!) {
         officerCollarNumber
         location
         unitId
+        path
       }
     }
   }
@@ -319,6 +328,7 @@ query GetViqRecordingTranscription($id: ID!) {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -355,6 +365,7 @@ query ListViqRecordingTranscriptions(
         officerCollarNumber
         location
         unitId
+        path
       }
     }
     nextToken

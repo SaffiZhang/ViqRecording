@@ -6,6 +6,7 @@ type ViqRecording @model {
   officerCollarNumber:String!
   location:String!
   unitId:String!
+  path:String
   attachments: [ViqRecordingAttachment] @connection(name: "RecordingAttachments")
   recordingUrls: [ViqRecordingUrl] @connection(name: "RecordingUrls")
   logs: [ViqRecordingLog] @connection(name: "RecordingLogs")

@@ -8,6 +8,7 @@ mutation CreateViqRecording($input: CreateViqRecordingInput!) {
     officerCollarNumber
     location
     unitId
+    path
     attachments {
       items {
         id
@@ -53,6 +54,7 @@ mutation UpdateViqRecording($input: UpdateViqRecordingInput!) {
     officerCollarNumber
     location
     unitId
+    path
     attachments {
       items {
         id
@@ -98,6 +100,7 @@ mutation DeleteViqRecording($input: DeleteViqRecordingInput!) {
     officerCollarNumber
     location
     unitId
+    path
     attachments {
       items {
         id
@@ -149,6 +152,7 @@ mutation CreateViqRecordingAttachment(
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -179,6 +183,7 @@ mutation UpdateViqRecordingAttachment(
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -209,6 +214,7 @@ mutation DeleteViqRecordingAttachment(
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -250,6 +256,7 @@ mutation CreateViqRecordingUrl($input: CreateViqRecordingUrlInput!) {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -291,6 +298,7 @@ mutation UpdateViqRecordingUrl($input: UpdateViqRecordingUrlInput!) {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -332,6 +340,7 @@ mutation DeleteViqRecordingUrl($input: DeleteViqRecordingUrlInput!) {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -360,6 +369,7 @@ mutation CreateViqRecordingLog($input: CreateViqRecordingLogInput!) {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -388,6 +398,7 @@ mutation UpdateViqRecordingLog($input: UpdateViqRecordingLogInput!) {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -416,6 +427,7 @@ mutation DeleteViqRecordingLog($input: DeleteViqRecordingLogInput!) {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -458,6 +470,7 @@ mutation CreateViqRecordingRedaction(
         officerCollarNumber
         location
         unitId
+        path
       }
     }
   }
@@ -489,6 +502,7 @@ mutation UpdateViqRecordingRedaction(
         officerCollarNumber
         location
         unitId
+        path
       }
     }
   }
@@ -520,6 +534,7 @@ mutation DeleteViqRecordingRedaction(
         officerCollarNumber
         location
         unitId
+        path
       }
     }
   }
@@ -538,6 +553,7 @@ mutation CreateViqRecordingTranscription(
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -567,6 +583,7 @@ mutation UpdateViqRecordingTranscription(
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -596,6 +613,7 @@ mutation DeleteViqRecordingTranscription(
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }

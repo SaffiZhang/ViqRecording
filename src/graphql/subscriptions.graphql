@@ -8,6 +8,7 @@ subscription OnCreateViqRecording {
     officerCollarNumber
     location
     unitId
+    path
     attachments {
       items {
         id
@@ -53,6 +54,7 @@ subscription OnUpdateViqRecording {
     officerCollarNumber
     location
     unitId
+    path
     attachments {
       items {
         id
@@ -98,6 +100,7 @@ subscription OnDeleteViqRecording {
     officerCollarNumber
     location
     unitId
+    path
     attachments {
       items {
         id
@@ -147,6 +150,7 @@ subscription OnCreateViqRecordingAttachment {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -175,6 +179,7 @@ subscription OnUpdateViqRecordingAttachment {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -203,6 +208,7 @@ subscription OnDeleteViqRecordingAttachment {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -244,6 +250,7 @@ subscription OnCreateViqRecordingUrl {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -285,6 +292,7 @@ subscription OnUpdateViqRecordingUrl {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -326,6 +334,7 @@ subscription OnDeleteViqRecordingUrl {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -354,6 +363,7 @@ subscription OnCreateViqRecordingLog {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -382,6 +392,7 @@ subscription OnUpdateViqRecordingLog {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -410,6 +421,7 @@ subscription OnDeleteViqRecordingLog {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -450,6 +462,7 @@ subscription OnCreateViqRecordingRedaction {
         officerCollarNumber
         location
         unitId
+        path
       }
     }
   }
@@ -479,6 +492,7 @@ subscription OnUpdateViqRecordingRedaction {
         officerCollarNumber
         location
         unitId
+        path
       }
     }
   }
@@ -508,6 +522,7 @@ subscription OnDeleteViqRecordingRedaction {
         officerCollarNumber
         location
         unitId
+        path
       }
     }
   }
@@ -524,6 +539,7 @@ subscription OnCreateViqRecordingTranscription {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -551,6 +567,7 @@ subscription OnUpdateViqRecordingTranscription {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
@@ -578,6 +595,7 @@ subscription OnDeleteViqRecordingTranscription {
       officerCollarNumber
       location
       unitId
+      path
       attachments {
         nextToken
       }
