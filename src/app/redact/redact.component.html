@@ -1,0 +1,46 @@
+<div class="ui-g">
+  <div class="ui-g-12">
+    <h5>Redaction</h5>
+  </div>
+  <div class="ui-g-6">
+    <app-video-player #player [recording-id]="recordingId" [sources]="sources" [show-info]="false"></app-video-player>
+  </div>
+  <div class="ui-g-6">
+
+  </div>
+  <div class="ui-g-12">
+    <div class="ui-g">
+      <div class="ui-g-3">
+        Redaction start time:
+      </div>
+      <div class="ui-g-3">
+        {{startTime|json}}
+      </div>
+      <div class="ui-g-3">
+        <p-button (onClick)="getStartTime()" label="Get Time"></p-button>
+      </div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-3">
+        Redaction end time :
+      </div>
+      <div class="ui-g-3">
+        {{endTime|json}}
+      </div>
+      <div class="ui-g-3">
+        <p-button (onClick)="getEndTime()" label="Get Time"></p-button>
+      </div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-3">
+        Redaction Type:
+      </div>
+      <div class="ui-g-3">
+        <p-dropdown></p-dropdown>
+      </div>
+      <div class="ui-g-3">
+
+      </div>
+    </div>
+  </div>
+</div>

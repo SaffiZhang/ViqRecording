@@ -33,10 +33,10 @@
   </div>
 
 </div>
-<div class="ui-g" *ngIf="selectedSource">
+<div class="ui-g" *ngIf="selectedSource && showInfo">
   <div class="ui-g-12">
     Camera: {{selectedSource.camera}}
-    <div class="redation-link"><a href="">Redation</a></div>
+    <div class="redation-link"><a href="#" (click)="redact($event);">Redaction</a></div>
   </div>
   <div class="ui-g-6">
     <div class="ui-g">

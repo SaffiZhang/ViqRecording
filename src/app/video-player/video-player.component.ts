@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-video-player',
@@ -10,6 +11,12 @@ export class VideoPlayerComponent implements OnInit {
 
   @Input()
   public id: string;
+
+  @Input('recording-id')
+  public recordingId: string;
+
+  @Input('show-info')
+  public showInfo = true;
 
   @Input('sources')
   public set setSources(value: any[]) {
@@ -34,7 +41,8 @@ export class VideoPlayerComponent implements OnInit {
 
   public selectedSource: any;
 
-  constructor() {
+
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
@@ -65,5 +73,20 @@ export class VideoPlayerComponent implements OnInit {
     if (v >= 0 && v <= 1) {
       this.playerApi.volume = v;
     }
+  }
+
+  public redact($event) {
+    $event.preventDefault();
+    this.router.navigate(['/redact'], {
+      state: {
+        recordingId: this.recordingId,
+        source: this.selectedSource
+      }
+    });
+    return false;
+  }
+
+  public getTime() {
+    return this.playerApi.time;
   }
 }

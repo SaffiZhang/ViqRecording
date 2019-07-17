@@ -7,8 +7,8 @@ export class S3Params {
 
 
 export const s3Params = {
-  bucket: '',
-  region: '',
-  accessKeyId: '',
-  secreatAccessKey: ''
+  bucket: 'david-horn-recording',
+  region: 'us-east-1',
+  accessKeyId: 'AKIAQXL2FINGUJI5PUFC',
+  secreatAccessKey: 'nbLFkXaQiEVnMOCc6fa1F2yefWr8RyPVXHLYbWie'
 };

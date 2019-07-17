@@ -5,6 +5,7 @@ import {AuthComponent} from './auth/auth.component';
 import {RecordingListComponent} from './recording-list/recording-list.component';
 import {RecordingComponent} from './recording/recording.component';
 import {RecordingDetailsComponent} from './recording-details/recording-details.component';
+import {RedactComponent} from './redact/redact.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
     path: 'recording-list',
     component: RecordingListComponent
   },
+  {
+    path: 'redact',
+    component: RedactComponent
+  }
 ];
 
 @NgModule({

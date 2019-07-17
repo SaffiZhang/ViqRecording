@@ -35,6 +35,8 @@ import { RecordingInfoComponent } from './recording-info/recording-info.componen
 import { RecordingDetailsComponent } from './recording-details/recording-details.component';
 import { LogListComponent } from './log-list/log-list.component';
 import { AppTopMenubarComponent } from './app-top-menubar/app-top-menubar.component';
+import { RedactComponent } from './redact/redact.component';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -53,7 +55,8 @@ import { AppTopMenubarComponent } from './app-top-menubar/app-top-menubar.compon
     RecordingInfoComponent,
     RecordingDetailsComponent,
     LogListComponent,
-    AppTopMenubarComponent
+    AppTopMenubarComponent,
+    RedactComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ import { AppTopMenubarComponent } from './app-top-menubar/app-top-menubar.compon
     AppRoutingModule,
     AmplifyAngularModule,
 
+    RouterModule,
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
