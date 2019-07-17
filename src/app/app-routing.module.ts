@@ -27,6 +27,10 @@ const routes: Routes = [
   {
     path: 'redact',
     component: RedactComponent
+  },
+  {
+    path: '',
+    component:  RecordingListComponent
   }
 ];
 
