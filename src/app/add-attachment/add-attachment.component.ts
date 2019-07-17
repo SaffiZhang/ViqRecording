@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FileUploadService} from '../services/file-upload.service';
 
 @Component({
@@ -12,6 +12,9 @@ export class AddAttachmentComponent implements OnInit {
   public saved: EventEmitter<any> = new EventEmitter<any>();
   @Output()
   public cancelled: EventEmitter<any> = new EventEmitter<any>();
+
+  @Input('target-folder')
+  public targetFolder: string;
 
   public description: string;
 
@@ -29,7 +32,7 @@ export class AddAttachmentComponent implements OnInit {
 
   public save() {
     const file = this.selectedFiles.item(0);
-    this.fileUploadService.uploadFile(file);
+    this.fileUploadService.uploadFile(file, this.targetFolder);
     this.saved.emit({});
   }
 

@@ -27,7 +27,7 @@
             <p-button label="Add Attachment" (onClick)="addAttachment()" [disabled]="isAddingAttachment"></p-button>
           </div>
           <div class="ui-g-12" *ngIf="isAddingAttachment">
-            <app-add-attachment (saved)="addAttachmentSaved($event)"
+            <app-add-attachment (saved)="addAttachmentSaved($event)" [target-folder]="recording.path"
                                 (cancelled)="addAttachmentCancelled($event)"></app-add-attachment>
           </div>
         </div>
