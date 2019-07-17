@@ -46,13 +46,8 @@
           </ng-container>
         </div>
         <div class="ui-g-12">
-          Location :
-          <ng-container *ngIf="!isEditing">
+          Police Station :
             {{recording.location}}
-          </ng-container>
-          <ng-container *ngIf="isEditing">
-            <textarea pInputTextarea [(ngModel)]="editingRecording.location" rows="5"></textarea>
-          </ng-container>
         </div>
         <div class="ui-g-12">
           <ng-container *ngIf="!isEditing">
