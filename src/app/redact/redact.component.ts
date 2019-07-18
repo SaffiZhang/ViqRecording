@@ -72,7 +72,7 @@ export class RedactComponent implements OnInit {
   public addNew() {
     const input = {
       id: '',
-      redactionVersion: 0,
+      redactionVersion: '',
       startSecond: this.startTime,
       endSecond: this.endTime,
       type: this.redactType,

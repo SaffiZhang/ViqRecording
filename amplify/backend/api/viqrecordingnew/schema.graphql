@@ -36,7 +36,7 @@ type ViqRecordingLog @model {
 }
 type ViqRecordingRedaction @model {
   id: ID!
-  redactionVersion:Int!
+  redactionVersion:String!
   startSecond: Int!
   endSecond:Int!
   type:String!

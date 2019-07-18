@@ -93,7 +93,7 @@ export type DeleteViqRecordingLogInput = {
 
 export type CreateViqRecordingRedactionInput = {
   id?: string | null;
-  redactionVersion: string;
+  redactionVersion: number;
   startSecond: number;
   endSecond: number;
   type: string;
@@ -102,7 +102,7 @@ export type CreateViqRecordingRedactionInput = {
 
 export type UpdateViqRecordingRedactionInput = {
   id: string;
-  redactionVersion?: string | null;
+  redactionVersion?: number | null;
   startSecond?: number | null;
   endSecond?: number | null;
   type?: string | null;
@@ -205,8 +205,8 @@ export type ModelIntFilterInput = {
 };
 
 export type ModelViqRecordingLogFilterInput = {
-  viqRecordingLogViqRecordingId:ModelStringFilterInput | null;
   id?: ModelIDFilterInput | null;
+  viqRecordingLogViqRecordingId:ModelStringFilterInput | null;
   dateTime?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
   and?: Array<ModelViqRecordingLogFilterInput | null> | null;
@@ -217,7 +217,7 @@ export type ModelViqRecordingLogFilterInput = {
 export type ModelViqRecordingRedactionFilterInput = {
   viqRecordingRedactionViqRecordingUrlId:ModelStringFilterInput | null;
   id?: ModelIDFilterInput | null;
-  redactionVersion?: ModelStringFilterInput | null;
+  redactionVersion?: ModelIntFilterInput | null;
   startSecond?: ModelIntFilterInput | null;
   endSecond?: ModelIntFilterInput | null;
   type?: ModelStringFilterInput | null;
@@ -512,7 +512,7 @@ export type CreateViqRecordingUrlMutation = {
     items: Array<{
       __typename: "ViqRecordingRedaction";
       id: string;
-      redactionVersion: string;
+      redactionVersion: number;
       startSecond: number;
       endSecond: number;
       type: string;
@@ -561,7 +561,7 @@ export type UpdateViqRecordingUrlMutation = {
     items: Array<{
       __typename: "ViqRecordingRedaction";
       id: string;
-      redactionVersion: string;
+      redactionVersion: number;
       startSecond: number;
       endSecond: number;
       type: string;
@@ -610,7 +610,7 @@ export type DeleteViqRecordingUrlMutation = {
     items: Array<{
       __typename: "ViqRecordingRedaction";
       id: string;
-      redactionVersion: string;
+      redactionVersion: number;
       startSecond: number;
       endSecond: number;
       type: string;
@@ -751,7 +751,7 @@ export type DeleteViqRecordingLogMutation = {
 export type CreateViqRecordingRedactionMutation = {
   __typename: "ViqRecordingRedaction";
   id: string;
-  redactionVersion: string;
+  redactionVersion: number;
   startSecond: number;
   endSecond: number;
   type: string;
@@ -784,7 +784,7 @@ export type CreateViqRecordingRedactionMutation = {
 export type UpdateViqRecordingRedactionMutation = {
   __typename: "ViqRecordingRedaction";
   id: string;
-  redactionVersion: string;
+  redactionVersion: number;
   startSecond: number;
   endSecond: number;
   type: string;
@@ -817,7 +817,7 @@ export type UpdateViqRecordingRedactionMutation = {
 export type DeleteViqRecordingRedactionMutation = {
   __typename: "ViqRecordingRedaction";
   id: string;
-  redactionVersion: string;
+  redactionVersion: number;
   startSecond: number;
   endSecond: number;
   type: string;
@@ -1101,7 +1101,7 @@ export type GetViqRecordingUrlQuery = {
     items: Array<{
       __typename: "ViqRecordingRedaction";
       id: string;
-      redactionVersion: string;
+      redactionVersion: number;
       startSecond: number;
       endSecond: number;
       type: string;
@@ -1225,7 +1225,7 @@ export type ListViqRecordingLogsQuery = {
 export type GetViqRecordingRedactionQuery = {
   __typename: "ViqRecordingRedaction";
   id: string;
-  redactionVersion: string;
+  redactionVersion: number;
   startSecond: number;
   endSecond: number;
   type: string;
@@ -1260,7 +1260,7 @@ export type ListViqRecordingRedactionsQuery = {
   items: Array<{
     __typename: "ViqRecordingRedaction";
     id: string;
-    redactionVersion: string;
+    redactionVersion: number;
     startSecond: number;
     endSecond: number;
     type: string;
@@ -1608,7 +1608,7 @@ export type OnCreateViqRecordingUrlSubscription = {
     items: Array<{
       __typename: "ViqRecordingRedaction";
       id: string;
-      redactionVersion: string;
+      redactionVersion: number;
       startSecond: number;
       endSecond: number;
       type: string;
@@ -1657,7 +1657,7 @@ export type OnUpdateViqRecordingUrlSubscription = {
     items: Array<{
       __typename: "ViqRecordingRedaction";
       id: string;
-      redactionVersion: string;
+      redactionVersion: number;
       startSecond: number;
       endSecond: number;
       type: string;
@@ -1706,7 +1706,7 @@ export type OnDeleteViqRecordingUrlSubscription = {
     items: Array<{
       __typename: "ViqRecordingRedaction";
       id: string;
-      redactionVersion: string;
+      redactionVersion: number;
       startSecond: number;
       endSecond: number;
       type: string;
@@ -1847,7 +1847,7 @@ export type OnDeleteViqRecordingLogSubscription = {
 export type OnCreateViqRecordingRedactionSubscription = {
   __typename: "ViqRecordingRedaction";
   id: string;
-  redactionVersion: string;
+  redactionVersion: number;
   startSecond: number;
   endSecond: number;
   type: string;
@@ -1880,7 +1880,7 @@ export type OnCreateViqRecordingRedactionSubscription = {
 export type OnUpdateViqRecordingRedactionSubscription = {
   __typename: "ViqRecordingRedaction";
   id: string;
-  redactionVersion: string;
+  redactionVersion: number;
   startSecond: number;
   endSecond: number;
   type: string;
@@ -1913,7 +1913,7 @@ export type OnUpdateViqRecordingRedactionSubscription = {
 export type OnDeleteViqRecordingRedactionSubscription = {
   __typename: "ViqRecordingRedaction";
   id: string;
-  redactionVersion: string;
+  redactionVersion: number;
   startSecond: number;
   endSecond: number;
   type: string;
