@@ -158,6 +158,7 @@ export type ModelStringFilterInput = {
 
 export type ModelViqRecordingAttachmentFilterInput = {
   id?: ModelIDFilterInput | null;
+  viqRecordingAttachmentViqRecordingId:ModelStringFilterInput| null;
   description?: ModelStringFilterInput | null;
   url?: ModelStringFilterInput | null;
   and?: Array<ModelViqRecordingAttachmentFilterInput | null> | null;
@@ -180,6 +181,7 @@ export type ModelIDFilterInput = {
 
 export type ModelViqRecordingUrlFilterInput = {
   id?: ModelIDFilterInput | null;
+  viqRecordingUrlViqRecordingId:ModelStringFilterInput | null;
   url?: ModelStringFilterInput | null;
   lastmodified?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
@@ -213,6 +215,7 @@ export type ModelViqRecordingLogFilterInput = {
 };
 
 export type ModelViqRecordingRedactionFilterInput = {
+  viqRecordingRedactionViqRecordingUrlId:ModelStringFilterInput | null;
   id?: ModelIDFilterInput | null;
   redactionVersion?: ModelIntFilterInput | null;
   startSecond?: ModelIntFilterInput | null;
@@ -225,6 +228,7 @@ export type ModelViqRecordingRedactionFilterInput = {
 
 export type ModelViqRecordingTranscriptionFilterInput = {
   id?: ModelIDFilterInput | null;
+  viqRecordingTranscriptionViqRecordingId:ModelStringFilterInput| null;
   submitTime?: ModelStringFilterInput | null;
   and?: Array<ModelViqRecordingTranscriptionFilterInput | null> | null;
   or?: Array<ModelViqRecordingTranscriptionFilterInput | null> | null;

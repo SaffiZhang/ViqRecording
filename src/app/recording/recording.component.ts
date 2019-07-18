@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService} from'../API.service';
 import  { ModelViqRecordingLogFilterInput}from'../API.service';
+import  { ModelViqRecordingAttachmentFilterInput}from'../API.service';
+import  { ModelViqRecordingUrlFilterInput}from'../API.service';
+import  { ModelViqRecordingTranscriptionFilterInput}from'../API.service';
+import  { ModelViqRecordingRedactionFilterInput}from'../API.service';
 
 @Component({
   selector: 'app-recording',
@@ -24,7 +28,7 @@ export class RecordingComponent implements OnInit {
   constructor(private api:APIService) { }
 
   async ngOnInit() {
-     await this.listLogging('11111');
+     await this.listLogging('SR607E21-2019-07-11-SR607E21-20190711_141249');
     /*  this.attachments=this.recording.attachments.items;
      this.recordingUrls=this.recording.recordingUrls.items; */
      /* var attachment= {
@@ -47,7 +51,21 @@ export class RecordingComponent implements OnInit {
     var filter: ModelViqRecordingLogFilterInput={viqRecordingLogViqRecordingId:{eq:id}};
   // the number is how many records will be in the output
     this.logs= await this.api.ListViqRecordingLogs(filter,11)
-    this.logs= await this.api.ListViqRecordingLogs(filter,200)
+    
+    var filter1: ModelViqRecordingAttachmentFilterInput={viqRecordingAttachmentViqRecordingId:{eq:id}};
+    var attachments= await this.api.ListViqRecordingAttachments(filter1,200);
+    
+    var filter2: ModelViqRecordingUrlFilterInput={viqRecordingUrlViqRecordingId:{eq:id}};
+    var Urls=await this.api.ListViqRecordingUrls(filter2);
+
+    var urlId='SR607E21-SR607E21-20190717_183459';
+    var filter3: ModelViqRecordingRedactionFilterInput={viqRecordingRedactionViqRecordingUrlId:{eq:urlId}};
+    var redactions=await this.api.ListViqRecordingRedactions(filter3);
+
+    var filter4: ModelViqRecordingTranscriptionFilterInput={viqRecordingTranscriptionViqRecordingId:{eq:id}};
+    var transcriptions=await this.api.ListViqRecordingTranscriptions(filter4);
     var abc="";
   }
+  
+ 
 }
