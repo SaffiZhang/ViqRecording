@@ -24,7 +24,7 @@ type ViqRecordingUrl @model {
   lastmodified: String!
   description: String!
   camera:String!
-  version:Int!
+  version:String!
   redactions:[ViqRecordingRedaction] @connection(name: "UrlRedactions")
   viqRecording: ViqRecording @connection(name:"RecordingUrls")
 }

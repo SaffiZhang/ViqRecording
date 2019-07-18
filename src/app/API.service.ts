@@ -55,7 +55,7 @@ export type CreateViqRecordingUrlInput = {
   lastmodified: string;
   description: string;
   camera: string;
-  version: number;
+  version: string;
   viqRecordingUrlViqRecordingId?: string | null;
 };
 
@@ -65,7 +65,7 @@ export type UpdateViqRecordingUrlInput = {
   lastmodified?: string | null;
   description?: string | null;
   camera?: string | null;
-  version?: number | null;
+  version?: string | null;
   viqRecordingUrlViqRecordingId?: string | null;
 };
 
@@ -157,8 +157,8 @@ export type ModelStringFilterInput = {
 };
 
 export type ModelViqRecordingAttachmentFilterInput = {
-  id?: ModelIDFilterInput | null;
   viqRecordingAttachmentViqRecordingId:ModelStringFilterInput| null;
+  id?: ModelIDFilterInput | null;
   description?: ModelStringFilterInput | null;
   url?: ModelStringFilterInput | null;
   and?: Array<ModelViqRecordingAttachmentFilterInput | null> | null;
@@ -180,28 +180,16 @@ export type ModelIDFilterInput = {
 };
 
 export type ModelViqRecordingUrlFilterInput = {
-  id?: ModelIDFilterInput | null;
   viqRecordingUrlViqRecordingId:ModelStringFilterInput | null;
+  id?: ModelIDFilterInput | null;
   url?: ModelStringFilterInput | null;
   lastmodified?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
   camera?: ModelStringFilterInput | null;
-  version?: ModelIntFilterInput | null;
+  version?: ModelStringFilterInput | null;
   and?: Array<ModelViqRecordingUrlFilterInput | null> | null;
   or?: Array<ModelViqRecordingUrlFilterInput | null> | null;
   not?: ModelViqRecordingUrlFilterInput | null;
-};
-
-export type ModelIntFilterInput = {
-  ne?: number | null;
-  eq?: number | null;
-  le?: number | null;
-  lt?: number | null;
-  ge?: number | null;
-  gt?: number | null;
-  contains?: number | null;
-  notContains?: number | null;
-  between?: Array<number | null> | null;
 };
 
 export type ModelViqRecordingLogFilterInput = {
@@ -215,8 +203,8 @@ export type ModelViqRecordingLogFilterInput = {
 };
 
 export type ModelViqRecordingRedactionFilterInput = {
-  viqRecordingRedactionViqRecordingUrlId:ModelStringFilterInput | null;
   id?: ModelIDFilterInput | null;
+  viqRecordingRedactionViqRecordingUrlId:ModelStringFilterInput | null;
   redactionVersion?: ModelStringFilterInput | null;
   startSecond?: ModelIntFilterInput | null;
   endSecond?: ModelIntFilterInput | null;
@@ -224,6 +212,18 @@ export type ModelViqRecordingRedactionFilterInput = {
   and?: Array<ModelViqRecordingRedactionFilterInput | null> | null;
   or?: Array<ModelViqRecordingRedactionFilterInput | null> | null;
   not?: ModelViqRecordingRedactionFilterInput | null;
+};
+
+export type ModelIntFilterInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  contains?: number | null;
+  notContains?: number | null;
+  between?: Array<number | null> | null;
 };
 
 export type ModelViqRecordingTranscriptionFilterInput = {
@@ -264,7 +264,7 @@ export type CreateViqRecordingMutation = {
       lastmodified: string;
       description: string;
       camera: string;
-      version: number;
+      version: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -318,7 +318,7 @@ export type UpdateViqRecordingMutation = {
       lastmodified: string;
       description: string;
       camera: string;
-      version: number;
+      version: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -372,7 +372,7 @@ export type DeleteViqRecordingMutation = {
       lastmodified: string;
       description: string;
       camera: string;
-      version: number;
+      version: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -506,7 +506,7 @@ export type CreateViqRecordingUrlMutation = {
   lastmodified: string;
   description: string;
   camera: string;
-  version: number;
+  version: string;
   redactions: {
     __typename: "ModelViqRecordingRedactionConnection";
     items: Array<{
@@ -555,7 +555,7 @@ export type UpdateViqRecordingUrlMutation = {
   lastmodified: string;
   description: string;
   camera: string;
-  version: number;
+  version: string;
   redactions: {
     __typename: "ModelViqRecordingRedactionConnection";
     items: Array<{
@@ -604,7 +604,7 @@ export type DeleteViqRecordingUrlMutation = {
   lastmodified: string;
   description: string;
   camera: string;
-  version: number;
+  version: string;
   redactions: {
     __typename: "ModelViqRecordingRedactionConnection";
     items: Array<{
@@ -762,7 +762,7 @@ export type CreateViqRecordingRedactionMutation = {
     lastmodified: string;
     description: string;
     camera: string;
-    version: number;
+    version: string;
     redactions: {
       __typename: "ModelViqRecordingRedactionConnection";
       nextToken: string | null;
@@ -795,7 +795,7 @@ export type UpdateViqRecordingRedactionMutation = {
     lastmodified: string;
     description: string;
     camera: string;
-    version: number;
+    version: string;
     redactions: {
       __typename: "ModelViqRecordingRedactionConnection";
       nextToken: string | null;
@@ -828,7 +828,7 @@ export type DeleteViqRecordingRedactionMutation = {
     lastmodified: string;
     description: string;
     camera: string;
-    version: number;
+    version: string;
     redactions: {
       __typename: "ModelViqRecordingRedactionConnection";
       nextToken: string | null;
@@ -975,7 +975,7 @@ export type GetViqRecordingQuery = {
       lastmodified: string;
       description: string;
       camera: string;
-      version: number;
+      version: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -1095,7 +1095,7 @@ export type GetViqRecordingUrlQuery = {
   lastmodified: string;
   description: string;
   camera: string;
-  version: number;
+  version: string;
   redactions: {
     __typename: "ModelViqRecordingRedactionConnection";
     items: Array<{
@@ -1146,7 +1146,7 @@ export type ListViqRecordingUrlsQuery = {
     lastmodified: string;
     description: string;
     camera: string;
-    version: number;
+    version: string;
     redactions: {
       __typename: "ModelViqRecordingRedactionConnection";
       nextToken: string | null;
@@ -1236,7 +1236,7 @@ export type GetViqRecordingRedactionQuery = {
     lastmodified: string;
     description: string;
     camera: string;
-    version: number;
+    version: string;
     redactions: {
       __typename: "ModelViqRecordingRedactionConnection";
       nextToken: string | null;
@@ -1271,7 +1271,7 @@ export type ListViqRecordingRedactionsQuery = {
       lastmodified: string;
       description: string;
       camera: string;
-      version: number;
+      version: string;
     } | null;
   } | null> | null;
   nextToken: string | null;
@@ -1360,7 +1360,7 @@ export type OnCreateViqRecordingSubscription = {
       lastmodified: string;
       description: string;
       camera: string;
-      version: number;
+      version: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -1414,7 +1414,7 @@ export type OnUpdateViqRecordingSubscription = {
       lastmodified: string;
       description: string;
       camera: string;
-      version: number;
+      version: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -1468,7 +1468,7 @@ export type OnDeleteViqRecordingSubscription = {
       lastmodified: string;
       description: string;
       camera: string;
-      version: number;
+      version: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -1602,7 +1602,7 @@ export type OnCreateViqRecordingUrlSubscription = {
   lastmodified: string;
   description: string;
   camera: string;
-  version: number;
+  version: string;
   redactions: {
     __typename: "ModelViqRecordingRedactionConnection";
     items: Array<{
@@ -1651,7 +1651,7 @@ export type OnUpdateViqRecordingUrlSubscription = {
   lastmodified: string;
   description: string;
   camera: string;
-  version: number;
+  version: string;
   redactions: {
     __typename: "ModelViqRecordingRedactionConnection";
     items: Array<{
@@ -1700,7 +1700,7 @@ export type OnDeleteViqRecordingUrlSubscription = {
   lastmodified: string;
   description: string;
   camera: string;
-  version: number;
+  version: string;
   redactions: {
     __typename: "ModelViqRecordingRedactionConnection";
     items: Array<{
@@ -1858,7 +1858,7 @@ export type OnCreateViqRecordingRedactionSubscription = {
     lastmodified: string;
     description: string;
     camera: string;
-    version: number;
+    version: string;
     redactions: {
       __typename: "ModelViqRecordingRedactionConnection";
       nextToken: string | null;
@@ -1891,7 +1891,7 @@ export type OnUpdateViqRecordingRedactionSubscription = {
     lastmodified: string;
     description: string;
     camera: string;
-    version: number;
+    version: string;
     redactions: {
       __typename: "ModelViqRecordingRedactionConnection";
       nextToken: string | null;
@@ -1924,7 +1924,7 @@ export type OnDeleteViqRecordingRedactionSubscription = {
     lastmodified: string;
     description: string;
     camera: string;
-    version: number;
+    version: string;
     redactions: {
       __typename: "ModelViqRecordingRedactionConnection";
       nextToken: string | null;
