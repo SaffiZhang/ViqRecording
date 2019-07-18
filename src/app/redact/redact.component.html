@@ -36,10 +36,15 @@
         Redaction Type:
       </div>
       <div class="ui-g-3">
-        <p-dropdown></p-dropdown>
+        <p-dropdown [options]="redactTypeOptions" [(ngModel)]="redactType"></p-dropdown>
       </div>
       <div class="ui-g-3">
 
+      </div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-6">
+        <p-button label="Add New Redaction" (onClick)="addNew()" [disabled]="!canAddNew()"></p-button>
       </div>
     </div>
   </div>
