@@ -72,14 +72,15 @@ export class RedactComponent implements OnInit {
   public addNew() {
     const input = {
       id: '',
-      redactionVersion: '',
+      redactionVersion: (new Date()).getTime().toString(),
       startSecond: this.startTime,
       endSecond: this.endTime,
       type: this.redactType,
       viqRecordingRedactionViqRecordingUrlId: this.recordingId
     };
+    const self = this;
     this.api.CreateViqRecordingRedaction(input).then(result => {
-      this.api.GetViqRecordingRedaction(this.recordingId).then(r => {
+      self.api.GetViqRecordingRedaction(this.recordingId).then(r => {
         console.log(r);
 
       });
