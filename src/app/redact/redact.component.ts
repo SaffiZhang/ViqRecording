@@ -43,9 +43,10 @@ export class RedactComponent implements OnInit {
     if (!this.data) {
       this.router.navigate(['recording-list']);
     }
+    console.log(this.data);
     this.recordingId = this.data.recordingId;
     this.sources = [this.data.source];
-    this.api.GetViqRecordingRedaction(this.recordingId).then(r => {
+    this.api.GetViqRecordingRedaction(this.data.source.id).then(r => {
       console.log(r);
     });
   }
@@ -76,11 +77,11 @@ export class RedactComponent implements OnInit {
       startSecond: this.startTime,
       endSecond: this.endTime,
       type: this.redactType,
-      viqRecordingRedactionViqRecordingUrlId: this.recordingId
+      viqRecordingRedactionViqRecordingUrlId: this.data.source.id
     };
     const self = this;
     this.api.CreateViqRecordingRedaction(input).then(result => {
-      self.api.GetViqRecordingRedaction(this.recordingId).then(r => {
+      self.api.GetViqRecordingRedaction(this.data.source.id).then(r => {
         console.log(r);
 
       });
