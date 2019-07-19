@@ -28,7 +28,7 @@ export class RecordingComponent implements OnInit {
   constructor(private api:APIService) { }
 
   async ngOnInit() {
-     await this.listLogging('SR607E21-2019-07-11-SR607E21-20190711_141249');
+     await this.listLogging('SR607E21-2019-07-11-SR607E21-20190711_115549');
     /*  this.attachments=this.recording.attachments.items;
      this.recordingUrls=this.recording.recordingUrls.items; */
      /* var attachment= {
@@ -58,7 +58,7 @@ export class RecordingComponent implements OnInit {
     var filter2: ModelViqRecordingUrlFilterInput={viqRecordingUrlViqRecordingId:{eq:id}};
     var Urls=await this.api.ListViqRecordingUrls(filter2);
 
-    var urlId='SR607E21-SR607E21-20190717_183459';
+    var urlId='b23e94d0-a97e-11e9-9a0c-bb5a0e31da05';
     var filter3: ModelViqRecordingRedactionFilterInput={viqRecordingRedactionViqRecordingUrlId:{eq:urlId}};
     var redactions=await this.api.ListViqRecordingRedactions(filter3);
 
