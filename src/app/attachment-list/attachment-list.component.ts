@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {APIService} from '../API.service';
+import {APIService, ModelViqRecordingAttachmentFilterInput} from '../API.service';
 
 @Component({
   selector: 'app-attachment-list',
@@ -21,12 +21,9 @@ export class AttachmentListComponent implements OnInit {
   }
 
   public refresh() {
-    console.log('refresh triggered');
-    console.log(this.recordingId);
-    console.log(this.attachments);
-    this.api.GetViqRecordingAttachment(this.recordingId).then(r => {
-      // this.attachments = <any[]>r;
-      console.log(r);
+    const filter1: ModelViqRecordingAttachmentFilterInput = {viqRecordingAttachmentViqRecordingId: {eq: this.recordingId}};
+    const attachments = this.api.ListViqRecordingAttachments(filter1, 200).then(r => {
+      this.attachments = r.items;
     });
   }
 }

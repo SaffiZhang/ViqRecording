@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {VideoPlayerComponent} from '../video-player/video-player.component';
-import {APIService} from '../API.service';
+import {APIService, ModelViqRecordingRedactionFilterInput} from '../API.service';
+import {DatetimeHelperService} from '../services/datetime-helper.service';
 
 @Component({
   selector: 'app-redact',
@@ -13,6 +14,7 @@ export class RedactComponent implements OnInit {
   public recordingId: string;
   public sources: any[];
 
+  public redactions: any[];
   public data: any;
 
 
@@ -33,6 +35,7 @@ export class RedactComponent implements OnInit {
   public redactType = 'video';
 
   constructor(private router: Router,
+              private dateHelper: DatetimeHelperService,
               private api: APIService) {
     this.data = this.router.getCurrentNavigation().extras.state;
     console.log('data', this.data);
@@ -46,9 +49,7 @@ export class RedactComponent implements OnInit {
     console.log(this.data);
     this.recordingId = this.data.recordingId;
     this.sources = [this.data.source];
-    this.api.GetViqRecordingRedaction(this.data.source.id).then(r => {
-      console.log(r);
-    });
+    this.refresh();
   }
 
 
@@ -81,10 +82,21 @@ export class RedactComponent implements OnInit {
     };
     const self = this;
     this.api.CreateViqRecordingRedaction(input).then(result => {
-      self.api.GetViqRecordingRedaction(this.data.source.id).then(r => {
-        console.log(r);
+      this.refresh();
 
-      });
     });
+  }
+
+  private refresh() {
+    const urlId = this.data.source.id;
+    const filter3: ModelViqRecordingRedactionFilterInput = {viqRecordingRedactionViqRecordingUrlId: {eq: urlId}};
+    this.api.ListViqRecordingRedactions(filter3).then(redactions => {
+      this.redactions = redactions.items;
+      console.log('redactions', this.redactions);
+    });
+  }
+
+  public getVersion(d) {
+    return this.dateHelper.format(new Date(+d));
   }
 }
