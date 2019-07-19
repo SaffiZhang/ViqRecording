@@ -4,6 +4,7 @@ import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
 import {ActivatedRoute} from '@angular/router';
 import {VideoPlayerComponent} from '../video-player/video-player.component';
 import {DatetimeHelperService} from '../services/datetime-helper.service';
+import {AttachmentListComponent} from '../attachment-list/attachment-list.component';
 
 @Component({
   selector: 'app-recording-details',
@@ -29,6 +30,10 @@ export class RecordingDetailsComponent implements OnInit {
   public player1: VideoPlayerComponent;
   @ViewChild('player2', {static: false})
   public player2: VideoPlayerComponent;
+
+  @ViewChild('attachmentList', {static: false})
+  public attachmentList: AttachmentListComponent;
+
 
   constructor(private api: APIService,
               private dateTimeHelper: DatetimeHelperService,
@@ -60,7 +65,7 @@ export class RecordingDetailsComponent implements OnInit {
             id: r.id,
             description: r.description,
             camera: r.camera,
-            version: r.version
+            version: this.dateTimeHelper.format(new Date(r.version))
           }
         );
       });
@@ -98,15 +103,7 @@ export class RecordingDetailsComponent implements OnInit {
   }
 
   public addAttachmentSaved($event) {
-    // const newAttachment = {
-    //   id: null,
-    //   description: '',
-    //   url: '',
-    //   viqRecordingAttachmentViqRecordingId: this.recording.id
-    // };
-    // this.api.CreateViqRecordingAttachment(newAttachment).then(r => {
-    //
-    // });
+    this.attachmentList.refresh();
     this.isAddingAttachment = false;
   }
 
@@ -163,5 +160,13 @@ export class RecordingDetailsComponent implements OnInit {
       }
     ;
     this.api.CreateViqRecordingTranscription(input);
+  }
+
+  public get uploadPath() {
+    if (this.recording.path.endsWith('/')) {
+      return `${this.recording.path}attachment-${this.recording.id}/`;
+    } else {
+      return `${this.recording.path}/attachment-${this.recording.id}/`;
+    }
   }
 }

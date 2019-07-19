@@ -13,7 +13,7 @@ export class FileUploadService {
 
   }
 
-  public uploadFile(file, folder = '') {
+  public uploadFile(file, folder = '', cb) {
     const contentType = file.type;
     const bucket = new S3(
       {
@@ -35,6 +35,7 @@ export class FileUploadService {
         return false;
       }
       console.log('Successfully uploaded file.', data);
+      cb(data);
       return true;
     });
   }

@@ -4,10 +4,12 @@
       <p-tabPanel header="Interview Record">
         <div class="ui-g" *ngIf="sources">
           <div class="ui-g-6" *ngIf="sources && sources.length>0">
-            <app-video-player #player1 id="playerOne" [sources]="sources[0]" [recording-id]="recording.id" ></app-video-player>
+            <app-video-player #player1 id="playerOne" [sources]="sources[0]"
+                              [recording-id]="recording.id"></app-video-player>
           </div>
           <div class="ui-g-6" *ngIf="sources && sources.length>1">
-            <app-video-player #player2 id="playerTwo" [sources]="sources[1]" [recording-id]="recording.id"></app-video-player>
+            <app-video-player #player2 id="playerTwo" [sources]="sources[1]"
+                              [recording-id]="recording.id"></app-video-player>
           </div>
           <div class="ui-g-12">
             <p-button label="Play All" (onClick)="play()"></p-button> &nbsp;&nbsp;
@@ -22,13 +24,15 @@
       <p-tabPanel header="Attachment">
         <div class="ui-g">
           <div class="ui-g-12" *ngIf="recording">
-            <app-attachment-list [attachments]="recording.attachments.items"></app-attachment-list>
+            <app-attachment-list #attachmentList [attachments]="recording.attachments.items"
+                                 [recording-id]="recording.id"></app-attachment-list>
           </div>
           <div class="ui-g-12">
             <p-button label="Add Attachment" (onClick)="addAttachment()" [disabled]="isAddingAttachment"></p-button>
           </div>
           <div class="ui-g-12" *ngIf="isAddingAttachment">
-            <app-add-attachment (saved)="addAttachmentSaved($event)" [target-folder]="recording.path"
+            <app-add-attachment (saved)="addAttachmentSaved($event)" [target-folder]="uploadPath"
+                                [recording-id]="this.recording.id"
                                 (cancelled)="addAttachmentCancelled($event)"></app-add-attachment>
           </div>
         </div>
