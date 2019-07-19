@@ -3,7 +3,7 @@
     <p-table [value]="logs">
       <ng-template pTemplate="header">
         <tr>
-          <th pSortableColumn="dateTime">Date
+          <th class="date-col" pSortableColumn="dateTime">Date
             <p-sortIcon field="dateTime" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
           </th>
           <th pSortableColumn="description">Description
@@ -13,10 +13,13 @@
       </ng-template>
       <ng-template pTemplate="body" let-item>
         <tr>
-          <td>{{item.dateTime}}</td>
+          <td class="date-col">{{item.dateTime}}</td>
           <td>{{item.description}}</td>
         </tr>
       </ng-template>
     </p-table>
+  </div>
+  <div class="ui-g-12">
+    <p-button label="Refresh" (onClick)="refresh()"></p-button>
   </div>
 </div>

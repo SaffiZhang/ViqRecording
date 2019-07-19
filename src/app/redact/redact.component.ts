@@ -84,6 +84,13 @@ export class RedactComponent implements OnInit {
     this.api.CreateViqRecordingRedaction(input).then(result => {
       this.refresh();
 
+      const dt = this.dateHelper.format(new Date());
+      this.api.CreateViqRecordingLog({
+        id: '',
+        dateTime: dt,
+        description: 'Redaction added:' + JSON.stringify(input),
+        viqRecordingLogViqRecordingId: this.recordingId
+      });
     });
   }
 
@@ -98,5 +105,19 @@ export class RedactComponent implements OnInit {
 
   public getVersion(d) {
     return this.dateHelper.format(new Date(+d));
+  }
+
+  public finish() {
+    const input = {
+      id: '',
+      redactionVersion: (new Date()).getTime().toString(),
+      startSecond: 0,
+      endSecond: 0,
+      type: 'End',
+      viqRecordingRedactionViqRecordingUrlId: this.data.source.id
+    };
+    this.api.CreateViqRecordingRedaction(input).then(r => {
+      this.refresh();
+    });
   }
 }

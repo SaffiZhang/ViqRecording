@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {APIService, ModelViqRecordingLogFilterInput} from '../API.service';
+import {DatetimeHelperService} from '../services/datetime-helper.service';
 
 @Component({
   selector: 'app-log-list',
@@ -6,13 +8,35 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./log-list.component.scss']
 })
 export class LogListComponent implements OnInit {
-  @Input()
+  @Input('logs')
+  public set setLogs(v: any[]) {
+    v.forEach(p => {
+      p.dateTime = this.dateTimeHelper.format(new Date(p.dateTime));
+    });
+    this.logs = v;
+  }
+
   public logs: any[];
 
 
-  constructor() { }
+  @Input('recording-id')
+  public recordingId;
+
+  constructor(private api: APIService, private dateTimeHelper: DatetimeHelperService) {
+  }
 
   ngOnInit() {
   }
 
+  public refresh() {
+    const filter: ModelViqRecordingLogFilterInput = {viqRecordingLogViqRecordingId: {eq: this.recordingId}};
+    // the number is how many records will be in the output
+    this.api.ListViqRecordingLogs(filter, 100).then(r => {
+      console.log(r);
+      r.items.forEach(p => {
+        p.dateTime = this.dateTimeHelper.format(new Date(p.dateTime));
+      })
+      this.logs = r.items;
+    });
+  }
 }

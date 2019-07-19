@@ -1,6 +1,6 @@
 <div class="ui-g">
   <div class="ui-g-12">
-    <h5>Redaction</h5>
+    <h3>Redaction</h3>
   </div>
   <div class="ui-g-6">
     <app-video-player #player [recording-id]="recordingId" [sources]="sources" [show-info]="false"></app-video-player>
@@ -44,7 +44,8 @@
     </div>
     <div class="ui-g">
       <div class="ui-g-6">
-        <p-button label="Add New Redaction" (onClick)="addNew()" [disabled]="!canAddNew()"></p-button>
+        <p-button label="Add Interval" (onClick)="addNew()" [disabled]="!canAddNew()"></p-button> &nbsp;&nbsp;
+        <p-button label="Submit for Redaction" (onClick)="finish()" [disabled]="!canAddNew()"></p-button>
       </div>
     </div>
   </div>
@@ -56,7 +57,7 @@
           <th>Start Seconds</th>
           <th>End Seconds</th>
           <th>Type</th>
-          <th>Version</th>
+<!--          <th>Version</th>-->
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-item>
@@ -65,7 +66,7 @@
           <td>{{item.startSecond}}</td>
           <td>{{item.endSecond}}</td>
           <td>{{item.type}}</td>
-          <td>{{getVersion(item.redactionVersion)}}</td>
+<!--          <td>{{getVersion(item.redactionVersion)}}</td>-->
         </tr>
       </ng-template>
     </p-table>

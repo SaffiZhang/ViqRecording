@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FileUploadService} from '../services/file-upload.service';
 import {APIService} from '../API.service';
+import {DatetimeHelperService} from '../services/datetime-helper.service';
 
 @Component({
   selector: 'app-add-attachment',
@@ -25,6 +26,7 @@ export class AddAttachmentComponent implements OnInit {
   selectedFiles: FileList;
 
   constructor(private fileUploadService: FileUploadService,
+              private dateTimeHepler: DatetimeHelperService,
               private api: APIService) {
   }
 
@@ -40,18 +42,26 @@ export class AddAttachmentComponent implements OnInit {
       return;
     }
     const file = this.selectedFiles.item(0);
-    this.fileUploadService.uploadFile(file, this.targetFolder, (data) => this.createRecord(data));
+    this.fileUploadService.uploadFile(file, this.targetFolder, (data) => this.createRecord(data, file.name));
 
   }
 
-  private createRecord(data) {
+  private createRecord(data, fileName) {
     const input = {
       id: '',
       description: this.description,
       url: data.Location,
       viqRecordingAttachmentViqRecordingId: this.recordingId
     };
+    const dt = this.dateTimeHepler.format(new Date());
+
     this.api.CreateViqRecordingAttachment(input).then(r => {
+      this.api.CreateViqRecordingLog({
+        id: '',
+        dateTime: dt,
+        description: 'Attachment added:' + JSON.stringify(data),
+        viqRecordingLogViqRecordingId: this.recordingId
+      });
       this.saved.emit({});
     });
 

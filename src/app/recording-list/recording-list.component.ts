@@ -15,7 +15,7 @@ export class RecordingListComponent implements OnInit {
   }, {
     field: 'interviewFinish', header: 'Finish Time', filterMatchMode: 'startsWith'
   }, {
-    field: 'unitId', header: 'Police Station Id', filterMatchMode: 'startsWith'
+    field: 'location', header: 'Police Station', filterMatchMode: 'startsWith'
   }, {
     field: 'officerCollarNumber', header: 'Officer', filterMatchMode: 'startsWith'
   }, {
