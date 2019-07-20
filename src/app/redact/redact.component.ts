@@ -119,5 +119,10 @@ export class RedactComponent implements OnInit {
     this.api.CreateViqRecordingRedaction(input).then(r => {
       this.refresh();
     });
+    this.back();
+  }
+
+  public back() {
+    this.router.navigate(['/recording-details', this.recordingId]);
   }
 }

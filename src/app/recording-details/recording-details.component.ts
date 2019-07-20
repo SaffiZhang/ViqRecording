@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {APIService, GetViqRecordingQuery, ModelViqRecordingLogFilterInput} from '../API.service';
 import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {VideoPlayerComponent} from '../video-player/video-player.component';
 import {DatetimeHelperService} from '../services/datetime-helper.service';
 import {AttachmentListComponent} from '../attachment-list/attachment-list.component';
@@ -36,6 +36,7 @@ export class RecordingDetailsComponent implements OnInit {
 
 
   constructor(private api: APIService,
+              private router: Router,
               private dateTimeHelper: DatetimeHelperService,
               private route: ActivatedRoute) {
   }
@@ -168,5 +169,9 @@ export class RecordingDetailsComponent implements OnInit {
     } else {
       return `${this.recording.path}/attachment-${this.recording.id}/`;
     }
+  }
+
+  public back() {
+    this.router.navigate(['recording-list']);
   }
 }

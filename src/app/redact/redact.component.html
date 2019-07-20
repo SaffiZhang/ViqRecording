@@ -45,7 +45,8 @@
     <div class="ui-g">
       <div class="ui-g-6">
         <p-button label="Add Interval" (onClick)="addNew()" [disabled]="!canAddNew()"></p-button> &nbsp;&nbsp;
-        <p-button label="Submit for Redaction" (onClick)="finish()" [disabled]="!canAddNew()"></p-button>
+        <p-button label="Submit for Redaction" (onClick)="finish()" ></p-button> &nbsp;&nbsp;
+        <p-button label="Back" (onClick)="back()"></p-button>
       </div>
     </div>
   </div>
