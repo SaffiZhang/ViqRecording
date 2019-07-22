@@ -18,7 +18,7 @@ import {
   DropdownModule,
   InputMaskModule,
   InputTextareaModule,
-  InputTextModule,
+  InputTextModule, MessageModule, MessageService, MessagesModule,
   TabViewModule
 } from 'primeng/primeng';
 import {AnnotationListComponent} from './annotation-list/annotation-list.component';
@@ -30,15 +30,14 @@ import {AttachmentListComponent} from './attachment-list/attachment-list.compone
 import {AddAttachmentComponent} from './add-attachment/add-attachment.component';
 import {S3_PARAMS} from './services/tokens';
 import {s3Params} from './services/s3-params';
-import { VideoPlayerComponent } from './video-player/video-player.component';
-import { RecordingInfoComponent } from './recording-info/recording-info.component';
-import { RecordingDetailsComponent } from './recording-details/recording-details.component';
-import { LogListComponent } from './log-list/log-list.component';
-import { AppTopMenubarComponent } from './app-top-menubar/app-top-menubar.component';
-import { RedactComponent } from './redact/redact.component';
+import {VideoPlayerComponent} from './video-player/video-player.component';
+import {RecordingInfoComponent} from './recording-info/recording-info.component';
+import {RecordingDetailsComponent} from './recording-details/recording-details.component';
+import {LogListComponent} from './log-list/log-list.component';
+import {AppTopMenubarComponent} from './app-top-menubar/app-top-menubar.component';
+import {RedactComponent} from './redact/redact.component';
 import {RouterModule} from '@angular/router';
-
-
+import {ToastModule} from 'primeng/toast';
 
 
 @NgModule({
@@ -79,7 +78,10 @@ import {RouterModule} from '@angular/router';
     InputTextModule,
     CardModule,
     InputTextareaModule,
-    InputMaskModule
+    InputMaskModule,
+    ToastModule,
+    MessagesModule,
+    MessageModule
 
   ],
   providers: [
@@ -87,6 +89,10 @@ import {RouterModule} from '@angular/router';
     {
       provide: S3_PARAMS,
       useValue: s3Params
+    },
+    {
+      provide: MessageService,
+      useClass: MessageService
     }
   ],
   bootstrap: [AppComponent]

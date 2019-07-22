@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {VideoPlayerComponent} from '../video-player/video-player.component';
 import {DatetimeHelperService} from '../services/datetime-helper.service';
 import {AttachmentListComponent} from '../attachment-list/attachment-list.component';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-recording-details',
@@ -38,6 +39,7 @@ export class RecordingDetailsComponent implements OnInit {
   constructor(private api: APIService,
               private router: Router,
               private dateTimeHelper: DatetimeHelperService,
+              private messageService: MessageService,
               private route: ActivatedRoute) {
   }
 
@@ -160,7 +162,14 @@ export class RecordingDetailsComponent implements OnInit {
         viqRecordingTranscriptionViqRecordingId: this.recording.id
       }
     ;
-    this.api.CreateViqRecordingTranscription(input);
+    this.api.CreateViqRecordingTranscription(input).then(r => {
+      this.messageService.add({
+        severity: 'success',
+        summary: '',
+        detail: 'Transcription is summitted!',
+        key: 'transcription'
+      });
+    });
   }
 
   public get uploadPath() {
