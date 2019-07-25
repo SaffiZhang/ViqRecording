@@ -33,6 +33,7 @@ subscription OnCreateViqRecording {
         id
         dateTime
         description
+        userName
       }
       nextToken
     }
@@ -79,6 +80,7 @@ subscription OnUpdateViqRecording {
         id
         dateTime
         description
+        userName
       }
       nextToken
     }
@@ -125,6 +127,7 @@ subscription OnDeleteViqRecording {
         id
         dateTime
         description
+        userName
       }
       nextToken
     }
@@ -355,6 +358,7 @@ subscription OnCreateViqRecordingLog {
     id
     dateTime
     description
+    userName
     viqRecording {
       id
       interviewee
@@ -384,6 +388,7 @@ subscription OnUpdateViqRecordingLog {
     id
     dateTime
     description
+    userName
     viqRecording {
       id
       interviewee
@@ -413,6 +418,7 @@ subscription OnDeleteViqRecordingLog {
     id
     dateTime
     description
+    userName
     viqRecording {
       id
       interviewee
@@ -587,6 +593,108 @@ subscription OnDeleteViqRecordingTranscription {
   onDeleteViqRecordingTranscription {
     id
     submitTime
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnCreateViqRecordingShared {
+  onCreateViqRecordingShared {
+    id
+    dateTime
+    receiver
+    receiver_email
+    receiver_type
+    token
+    urls
+    userName
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnUpdateViqRecordingShared {
+  onUpdateViqRecordingShared {
+    id
+    dateTime
+    receiver
+    receiver_email
+    receiver_type
+    token
+    urls
+    userName
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteViqRecordingShared {
+  onDeleteViqRecordingShared {
+    id
+    dateTime
+    receiver
+    receiver_email
+    receiver_type
+    token
+    urls
+    userName
     viqRecording {
       id
       interviewee

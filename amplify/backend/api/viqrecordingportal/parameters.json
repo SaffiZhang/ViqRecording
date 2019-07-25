@@ -1,4 +1,4 @@
 {
-    "AppSyncApiName": "viqrecordingnew",
+    "AppSyncApiName": "viqrecordingportal",
     "DynamoDBBillingMode": "PAY_PER_REQUEST"
 }

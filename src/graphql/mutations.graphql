@@ -33,6 +33,7 @@ mutation CreateViqRecording($input: CreateViqRecordingInput!) {
         id
         dateTime
         description
+        userName
       }
       nextToken
     }
@@ -79,6 +80,7 @@ mutation UpdateViqRecording($input: UpdateViqRecordingInput!) {
         id
         dateTime
         description
+        userName
       }
       nextToken
     }
@@ -125,6 +127,7 @@ mutation DeleteViqRecording($input: DeleteViqRecordingInput!) {
         id
         dateTime
         description
+        userName
       }
       nextToken
     }
@@ -361,6 +364,7 @@ mutation CreateViqRecordingLog($input: CreateViqRecordingLogInput!) {
     id
     dateTime
     description
+    userName
     viqRecording {
       id
       interviewee
@@ -390,6 +394,7 @@ mutation UpdateViqRecordingLog($input: UpdateViqRecordingLogInput!) {
     id
     dateTime
     description
+    userName
     viqRecording {
       id
       interviewee
@@ -419,6 +424,7 @@ mutation DeleteViqRecordingLog($input: DeleteViqRecordingLogInput!) {
     id
     dateTime
     description
+    userName
     viqRecording {
       id
       interviewee
@@ -605,6 +611,108 @@ mutation DeleteViqRecordingTranscription(
   deleteViqRecordingTranscription(input: $input) {
     id
     submitTime
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+    }
+  }
+}
+mutation CreateViqRecordingShared($input: CreateViqRecordingSharedInput!) {
+  createViqRecordingShared(input: $input) {
+    id
+    dateTime
+    receiver
+    receiver_email
+    receiver_type
+    token
+    urls
+    userName
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+    }
+  }
+}
+mutation UpdateViqRecordingShared($input: UpdateViqRecordingSharedInput!) {
+  updateViqRecordingShared(input: $input) {
+    id
+    dateTime
+    receiver
+    receiver_email
+    receiver_type
+    token
+    urls
+    userName
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+    }
+  }
+}
+mutation DeleteViqRecordingShared($input: DeleteViqRecordingSharedInput!) {
+  deleteViqRecordingShared(input: $input) {
+    id
+    dateTime
+    receiver
+    receiver_email
+    receiver_type
+    token
+    urls
+    userName
     viqRecording {
       id
       interviewee

@@ -77,6 +77,7 @@ export type CreateViqRecordingLogInput = {
   id?: string | null;
   dateTime: string;
   description: string;
+  userName?: string | null;
   viqRecordingLogViqRecordingId?: string | null;
 };
 
@@ -84,6 +85,7 @@ export type UpdateViqRecordingLogInput = {
   id: string;
   dateTime?: string | null;
   description?: string | null;
+  userName?: string | null;
   viqRecordingLogViqRecordingId?: string | null;
 };
 
@@ -129,6 +131,34 @@ export type DeleteViqRecordingTranscriptionInput = {
   id?: string | null;
 };
 
+export type CreateViqRecordingSharedInput = {
+  id?: string | null;
+  dateTime: string;
+  receiver: string;
+  receiver_email: string;
+  receiver_type: string;
+  token: string;
+  urls: Array<string | null>;
+  userName?: string | null;
+  viqRecordingSharedViqRecordingId?: string | null;
+};
+
+export type UpdateViqRecordingSharedInput = {
+  id: string;
+  dateTime?: string | null;
+  receiver?: string | null;
+  receiver_email?: string | null;
+  receiver_type?: string | null;
+  token?: string | null;
+  urls?: Array<string | null> | null;
+  userName?: string | null;
+  viqRecordingSharedViqRecordingId?: string | null;
+};
+
+export type DeleteViqRecordingSharedInput = {
+  id?: string | null;
+};
+
 export type ModelViqRecordingFilterInput = {
   id?: ModelStringFilterInput | null;
   interviewee?: ModelStringFilterInput | null;
@@ -157,13 +187,13 @@ export type ModelStringFilterInput = {
 };
 
 export type ModelViqRecordingAttachmentFilterInput = {
-  viqRecordingAttachmentViqRecordingId:ModelStringFilterInput| null;
   id?: ModelIDFilterInput | null;
   description?: ModelStringFilterInput | null;
   url?: ModelStringFilterInput | null;
   and?: Array<ModelViqRecordingAttachmentFilterInput | null> | null;
   or?: Array<ModelViqRecordingAttachmentFilterInput | null> | null;
   not?: ModelViqRecordingAttachmentFilterInput | null;
+  viqRecordingAttachmentViqRecordingId?:ModelStringFilterInput|null;
 };
 
 export type ModelIDFilterInput = {
@@ -180,7 +210,6 @@ export type ModelIDFilterInput = {
 };
 
 export type ModelViqRecordingUrlFilterInput = {
-  viqRecordingUrlViqRecordingId:ModelStringFilterInput | null;
   id?: ModelIDFilterInput | null;
   url?: ModelStringFilterInput | null;
   lastmodified?: ModelStringFilterInput | null;
@@ -190,21 +219,23 @@ export type ModelViqRecordingUrlFilterInput = {
   and?: Array<ModelViqRecordingUrlFilterInput | null> | null;
   or?: Array<ModelViqRecordingUrlFilterInput | null> | null;
   not?: ModelViqRecordingUrlFilterInput | null;
+  viqRecordingUrlViqRecordingId?:ModelStringFilterInput|null;
 };
 
 export type ModelViqRecordingLogFilterInput = {
-  viqRecordingLogViqRecordingId:ModelStringFilterInput | null;
   id?: ModelIDFilterInput | null;
   dateTime?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
+  userName?: ModelStringFilterInput | null;
   and?: Array<ModelViqRecordingLogFilterInput | null> | null;
   or?: Array<ModelViqRecordingLogFilterInput | null> | null;
   not?: ModelViqRecordingLogFilterInput | null;
+  viqRecordingLogViqRecordingId?:ModelStringFilterInput|null
 };
 
 export type ModelViqRecordingRedactionFilterInput = {
   id?: ModelIDFilterInput | null;
-  viqRecordingRedactionViqRecordingUrlId:ModelStringFilterInput | null;
+  viqRecordingRedactionViqRecordingUrlId?: ModelStringFilterInput|null
   redactionVersion?: ModelStringFilterInput | null;
   startSecond?: ModelIntFilterInput | null;
   endSecond?: ModelIntFilterInput | null;
@@ -228,11 +259,26 @@ export type ModelIntFilterInput = {
 
 export type ModelViqRecordingTranscriptionFilterInput = {
   id?: ModelIDFilterInput | null;
-  viqRecordingTranscriptionViqRecordingId:ModelStringFilterInput| null;
   submitTime?: ModelStringFilterInput | null;
   and?: Array<ModelViqRecordingTranscriptionFilterInput | null> | null;
   or?: Array<ModelViqRecordingTranscriptionFilterInput | null> | null;
   not?: ModelViqRecordingTranscriptionFilterInput | null;
+  viqRecordingTranscriptionViqRecordingId?: ModelStringFilterInput |null;
+};
+
+export type ModelViqRecordingSharedFilterInput = {
+  id?: ModelIDFilterInput | null;
+  dateTime?: ModelStringFilterInput | null;
+  receiver?: ModelStringFilterInput | null;
+  receiver_email?: ModelStringFilterInput | null;
+  receiver_type?: ModelStringFilterInput | null;
+  token?: ModelStringFilterInput | null;
+  urls?: ModelStringFilterInput | null;
+  userName?: ModelStringFilterInput | null;
+  and?: Array<ModelViqRecordingSharedFilterInput | null> | null;
+  or?: Array<ModelViqRecordingSharedFilterInput | null> | null;
+  not?: ModelViqRecordingSharedFilterInput | null;
+  viqRecordingSharedViqRecordingId?: ModelStringFilterInput | null
 };
 
 export type CreateViqRecordingMutation = {
@@ -275,6 +321,7 @@ export type CreateViqRecordingMutation = {
       id: string;
       dateTime: string;
       description: string;
+      userName: string | null;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -329,6 +376,7 @@ export type UpdateViqRecordingMutation = {
       id: string;
       dateTime: string;
       description: string;
+      userName: string | null;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -383,6 +431,7 @@ export type DeleteViqRecordingMutation = {
       id: string;
       dateTime: string;
       description: string;
+      userName: string | null;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -651,6 +700,7 @@ export type CreateViqRecordingLogMutation = {
   id: string;
   dateTime: string;
   description: string;
+  userName: string | null;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -685,6 +735,7 @@ export type UpdateViqRecordingLogMutation = {
   id: string;
   dateTime: string;
   description: string;
+  userName: string | null;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -719,6 +770,7 @@ export type DeleteViqRecordingLogMutation = {
   id: string;
   dateTime: string;
   description: string;
+  userName: string | null;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -946,6 +998,123 @@ export type DeleteViqRecordingTranscriptionMutation = {
   } | null;
 };
 
+export type CreateViqRecordingSharedMutation = {
+  __typename: "ViqRecordingShared";
+  id: string;
+  dateTime: string;
+  receiver: string;
+  receiver_email: string;
+  receiver_type: string;
+  token: string;
+  urls: Array<string | null>;
+  userName: string | null;
+  viqRecording: {
+    __typename: "ViqRecording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    path: string | null;
+    attachments: {
+      __typename: "ModelViqRecordingAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    recordingUrls: {
+      __typename: "ModelViqRecordingUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type UpdateViqRecordingSharedMutation = {
+  __typename: "ViqRecordingShared";
+  id: string;
+  dateTime: string;
+  receiver: string;
+  receiver_email: string;
+  receiver_type: string;
+  token: string;
+  urls: Array<string | null>;
+  userName: string | null;
+  viqRecording: {
+    __typename: "ViqRecording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    path: string | null;
+    attachments: {
+      __typename: "ModelViqRecordingAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    recordingUrls: {
+      __typename: "ModelViqRecordingUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type DeleteViqRecordingSharedMutation = {
+  __typename: "ViqRecordingShared";
+  id: string;
+  dateTime: string;
+  receiver: string;
+  receiver_email: string;
+  receiver_type: string;
+  token: string;
+  urls: Array<string | null>;
+  userName: string | null;
+  viqRecording: {
+    __typename: "ViqRecording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    path: string | null;
+    attachments: {
+      __typename: "ModelViqRecordingAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    recordingUrls: {
+      __typename: "ModelViqRecordingUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
 export type GetViqRecordingQuery = {
   __typename: "ViqRecording";
   id: string;
@@ -986,6 +1155,7 @@ export type GetViqRecordingQuery = {
       id: string;
       dateTime: string;
       description: string;
+      userName: string | null;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -1171,6 +1341,7 @@ export type GetViqRecordingLogQuery = {
   id: string;
   dateTime: string;
   description: string;
+  userName: string | null;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -1207,6 +1378,7 @@ export type ListViqRecordingLogsQuery = {
     id: string;
     dateTime: string;
     description: string;
+    userName: string | null;
     viqRecording: {
       __typename: "ViqRecording";
       id: string;
@@ -1331,6 +1503,72 @@ export type ListViqRecordingTranscriptionsQuery = {
   nextToken: string | null;
 };
 
+export type GetViqRecordingSharedQuery = {
+  __typename: "ViqRecordingShared";
+  id: string;
+  dateTime: string;
+  receiver: string;
+  receiver_email: string;
+  receiver_type: string;
+  token: string;
+  urls: Array<string | null>;
+  userName: string | null;
+  viqRecording: {
+    __typename: "ViqRecording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    path: string | null;
+    attachments: {
+      __typename: "ModelViqRecordingAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    recordingUrls: {
+      __typename: "ModelViqRecordingUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type ListViqRecordingSharedsQuery = {
+  __typename: "ModelViqRecordingSharedConnection";
+  items: Array<{
+    __typename: "ViqRecordingShared";
+    id: string;
+    dateTime: string;
+    receiver: string;
+    receiver_email: string;
+    receiver_type: string;
+    token: string;
+    urls: Array<string | null>;
+    userName: string | null;
+    viqRecording: {
+      __typename: "ViqRecording";
+      id: string;
+      interviewee: string;
+      interviewFinish: string;
+      interviewStart: string;
+      officerCollarNumber: string;
+      location: string;
+      unitId: string;
+      path: string | null;
+    } | null;
+  } | null> | null;
+  nextToken: string | null;
+};
+
 export type OnCreateViqRecordingSubscription = {
   __typename: "ViqRecording";
   id: string;
@@ -1371,6 +1609,7 @@ export type OnCreateViqRecordingSubscription = {
       id: string;
       dateTime: string;
       description: string;
+      userName: string | null;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -1425,6 +1664,7 @@ export type OnUpdateViqRecordingSubscription = {
       id: string;
       dateTime: string;
       description: string;
+      userName: string | null;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -1479,6 +1719,7 @@ export type OnDeleteViqRecordingSubscription = {
       id: string;
       dateTime: string;
       description: string;
+      userName: string | null;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -1747,6 +1988,7 @@ export type OnCreateViqRecordingLogSubscription = {
   id: string;
   dateTime: string;
   description: string;
+  userName: string | null;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -1781,6 +2023,7 @@ export type OnUpdateViqRecordingLogSubscription = {
   id: string;
   dateTime: string;
   description: string;
+  userName: string | null;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -1815,6 +2058,7 @@ export type OnDeleteViqRecordingLogSubscription = {
   id: string;
   dateTime: string;
   description: string;
+  userName: string | null;
   viqRecording: {
     __typename: "ViqRecording";
     id: string;
@@ -2042,6 +2286,123 @@ export type OnDeleteViqRecordingTranscriptionSubscription = {
   } | null;
 };
 
+export type OnCreateViqRecordingSharedSubscription = {
+  __typename: "ViqRecordingShared";
+  id: string;
+  dateTime: string;
+  receiver: string;
+  receiver_email: string;
+  receiver_type: string;
+  token: string;
+  urls: Array<string | null>;
+  userName: string | null;
+  viqRecording: {
+    __typename: "ViqRecording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    path: string | null;
+    attachments: {
+      __typename: "ModelViqRecordingAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    recordingUrls: {
+      __typename: "ModelViqRecordingUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type OnUpdateViqRecordingSharedSubscription = {
+  __typename: "ViqRecordingShared";
+  id: string;
+  dateTime: string;
+  receiver: string;
+  receiver_email: string;
+  receiver_type: string;
+  token: string;
+  urls: Array<string | null>;
+  userName: string | null;
+  viqRecording: {
+    __typename: "ViqRecording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    path: string | null;
+    attachments: {
+      __typename: "ModelViqRecordingAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    recordingUrls: {
+      __typename: "ModelViqRecordingUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type OnDeleteViqRecordingSharedSubscription = {
+  __typename: "ViqRecordingShared";
+  id: string;
+  dateTime: string;
+  receiver: string;
+  receiver_email: string;
+  receiver_type: string;
+  token: string;
+  urls: Array<string | null>;
+  userName: string | null;
+  viqRecording: {
+    __typename: "ViqRecording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    path: string | null;
+    attachments: {
+      __typename: "ModelViqRecordingAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    recordingUrls: {
+      __typename: "ModelViqRecordingUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelViqRecordingLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelViqRecordingTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
 @Injectable({
   providedIn: "root"
 })
@@ -2090,6 +2451,7 @@ export class APIService {
               id
               dateTime
               description
+              userName
             }
             nextToken
           }
@@ -2156,6 +2518,7 @@ export class APIService {
               id
               dateTime
               description
+              userName
             }
             nextToken
           }
@@ -2222,6 +2585,7 @@ export class APIService {
               id
               dateTime
               description
+              userName
             }
             nextToken
           }
@@ -2580,6 +2944,7 @@ export class APIService {
           id
           dateTime
           description
+          userName
           viqRecording {
             __typename
             id
@@ -2626,6 +2991,7 @@ export class APIService {
           id
           dateTime
           description
+          userName
           viqRecording {
             __typename
             id
@@ -2672,6 +3038,7 @@ export class APIService {
           id
           dateTime
           description
+          userName
           viqRecording {
             __typename
             id
@@ -2991,6 +3358,165 @@ export class APIService {
       response.data.deleteViqRecordingTranscription
     );
   }
+  async CreateViqRecordingShared(
+    input: CreateViqRecordingSharedInput
+  ): Promise<CreateViqRecordingSharedMutation> {
+    const statement = `mutation CreateViqRecordingShared($input: CreateViqRecordingSharedInput!) {
+        createViqRecordingShared(input: $input) {
+          __typename
+          id
+          dateTime
+          receiver
+          receiver_email
+          receiver_type
+          token
+          urls
+          userName
+          viqRecording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            path
+            attachments {
+              __typename
+              nextToken
+            }
+            recordingUrls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateViqRecordingSharedMutation>(
+      response.data.createViqRecordingShared
+    );
+  }
+  async UpdateViqRecordingShared(
+    input: UpdateViqRecordingSharedInput
+  ): Promise<UpdateViqRecordingSharedMutation> {
+    const statement = `mutation UpdateViqRecordingShared($input: UpdateViqRecordingSharedInput!) {
+        updateViqRecordingShared(input: $input) {
+          __typename
+          id
+          dateTime
+          receiver
+          receiver_email
+          receiver_type
+          token
+          urls
+          userName
+          viqRecording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            path
+            attachments {
+              __typename
+              nextToken
+            }
+            recordingUrls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateViqRecordingSharedMutation>(
+      response.data.updateViqRecordingShared
+    );
+  }
+  async DeleteViqRecordingShared(
+    input: DeleteViqRecordingSharedInput
+  ): Promise<DeleteViqRecordingSharedMutation> {
+    const statement = `mutation DeleteViqRecordingShared($input: DeleteViqRecordingSharedInput!) {
+        deleteViqRecordingShared(input: $input) {
+          __typename
+          id
+          dateTime
+          receiver
+          receiver_email
+          receiver_type
+          token
+          urls
+          userName
+          viqRecording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            path
+            attachments {
+              __typename
+              nextToken
+            }
+            recordingUrls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteViqRecordingSharedMutation>(
+      response.data.deleteViqRecordingShared
+    );
+  }
   async GetViqRecording(id: string): Promise<GetViqRecordingQuery> {
     const statement = `query GetViqRecording($id: ID!) {
         getViqRecording(id: $id) {
@@ -3033,6 +3559,7 @@ export class APIService {
               id
               dateTime
               description
+              userName
             }
             nextToken
           }
@@ -3317,6 +3844,7 @@ export class APIService {
           id
           dateTime
           description
+          userName
           viqRecording {
             __typename
             id
@@ -3367,6 +3895,7 @@ export class APIService {
             id
             dateTime
             description
+            userName
             viqRecording {
               __typename
               id
@@ -3580,6 +4109,103 @@ export class APIService {
       response.data.listViqRecordingTranscriptions
     );
   }
+  async GetViqRecordingShared(id: string): Promise<GetViqRecordingSharedQuery> {
+    const statement = `query GetViqRecordingShared($id: ID!) {
+        getViqRecordingShared(id: $id) {
+          __typename
+          id
+          dateTime
+          receiver
+          receiver_email
+          receiver_type
+          token
+          urls
+          userName
+          viqRecording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            path
+            attachments {
+              __typename
+              nextToken
+            }
+            recordingUrls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetViqRecordingSharedQuery>response.data.getViqRecordingShared;
+  }
+  async ListViqRecordingShareds(
+    filter?: ModelViqRecordingSharedFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListViqRecordingSharedsQuery> {
+    const statement = `query ListViqRecordingShareds($filter: ModelViqRecordingSharedFilterInput, $limit: Int, $nextToken: String) {
+        listViqRecordingShareds(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            dateTime
+            receiver
+            receiver_email
+            receiver_type
+            token
+            urls
+            userName
+            viqRecording {
+              __typename
+              id
+              interviewee
+              interviewFinish
+              interviewStart
+              officerCollarNumber
+              location
+              unitId
+              path
+            }
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListViqRecordingSharedsQuery>response.data.listViqRecordingShareds;
+  }
   OnCreateViqRecordingListener: Observable<
     OnCreateViqRecordingSubscription
   > = API.graphql(
@@ -3625,6 +4251,7 @@ export class APIService {
               id
               dateTime
               description
+              userName
             }
             nextToken
           }
@@ -3687,6 +4314,7 @@ export class APIService {
               id
               dateTime
               description
+              userName
             }
             nextToken
           }
@@ -3749,6 +4377,7 @@ export class APIService {
               id
               dateTime
               description
+              userName
             }
             nextToken
           }
@@ -4073,6 +4702,7 @@ export class APIService {
           id
           dateTime
           description
+          userName
           viqRecording {
             __typename
             id
@@ -4115,6 +4745,7 @@ export class APIService {
           id
           dateTime
           description
+          userName
           viqRecording {
             __typename
             id
@@ -4157,6 +4788,7 @@ export class APIService {
           id
           dateTime
           description
+          userName
           viqRecording {
             __typename
             id
@@ -4434,4 +5066,145 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteViqRecordingTranscriptionSubscription>;
+
+  OnCreateViqRecordingSharedListener: Observable<
+    OnCreateViqRecordingSharedSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateViqRecordingShared {
+        onCreateViqRecordingShared {
+          __typename
+          id
+          dateTime
+          receiver
+          receiver_email
+          receiver_type
+          token
+          urls
+          userName
+          viqRecording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            path
+            attachments {
+              __typename
+              nextToken
+            }
+            recordingUrls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnCreateViqRecordingSharedSubscription>;
+
+  OnUpdateViqRecordingSharedListener: Observable<
+    OnUpdateViqRecordingSharedSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateViqRecordingShared {
+        onUpdateViqRecordingShared {
+          __typename
+          id
+          dateTime
+          receiver
+          receiver_email
+          receiver_type
+          token
+          urls
+          userName
+          viqRecording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            path
+            attachments {
+              __typename
+              nextToken
+            }
+            recordingUrls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnUpdateViqRecordingSharedSubscription>;
+
+  OnDeleteViqRecordingSharedListener: Observable<
+    OnDeleteViqRecordingSharedSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteViqRecordingShared {
+        onDeleteViqRecordingShared {
+          __typename
+          id
+          dateTime
+          receiver
+          receiver_email
+          receiver_type
+          token
+          urls
+          userName
+          viqRecording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            path
+            attachments {
+              __typename
+              nextToken
+            }
+            recordingUrls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnDeleteViqRecordingSharedSubscription>;
 }

@@ -32,6 +32,7 @@ type ViqRecordingLog @model {
   id: ID!
   dateTime: String!
   description:String!
+  userName:String
   viqRecording: ViqRecording @connection(name: "RecordingLogs")
 }
 type ViqRecordingRedaction @model {
@@ -45,5 +46,16 @@ type ViqRecordingRedaction @model {
 type ViqRecordingTranscription @model {
   id: ID!
   submitTime:String!
+  viqRecording: ViqRecording @connection(name: "RecordingTranscriptions")
+}
+type ViqRecordingShared @model {
+  id: ID!
+  dateTime:String!
+  receiver:String!
+  receiver_email:String!
+  receiver_type:String!
+  token:String!
+  urls:[String]!
+  userName:String
   viqRecording: ViqRecording @connection(name: "RecordingTranscriptions")
 }

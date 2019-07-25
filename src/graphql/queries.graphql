@@ -33,6 +33,7 @@ query GetViqRecording($id: ID!) {
         id
         dateTime
         description
+        userName
       }
       nextToken
     }
@@ -210,6 +211,7 @@ query GetViqRecordingLog($id: ID!) {
     id
     dateTime
     description
+    userName
     viqRecording {
       id
       interviewee
@@ -244,6 +246,7 @@ query ListViqRecordingLogs(
       id
       dateTime
       description
+      userName
       viqRecording {
         id
         interviewee
@@ -357,6 +360,73 @@ query ListViqRecordingTranscriptions(
     items {
       id
       submitTime
+      viqRecording {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+        path
+      }
+    }
+    nextToken
+  }
+}
+query GetViqRecordingShared($id: ID!) {
+  getViqRecordingShared(id: $id) {
+    id
+    dateTime
+    receiver
+    receiver_email
+    receiver_type
+    token
+    urls
+    userName
+    viqRecording {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      attachments {
+        nextToken
+      }
+      recordingUrls {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+    }
+  }
+}
+query ListViqRecordingShareds(
+  $filter: ModelViqRecordingSharedFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listViqRecordingShareds(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      dateTime
+      receiver
+      receiver_email
+      receiver_type
+      token
+      urls
+      userName
       viqRecording {
         id
         interviewee
