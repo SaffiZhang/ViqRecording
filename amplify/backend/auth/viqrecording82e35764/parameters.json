@@ -1,12 +1,12 @@
 {
-    "identityPoolName": "viqrecording4ad5fa03_identitypool_4ad5fa03",
+    "identityPoolName": "viqrecording82e35764_identitypool_82e35764",
     "allowUnauthenticatedIdentities": false,
-    "lambdaLogPolicy": "viqrec_4ad5fa03_lambda_log_policy",
-    "openIdLambdaRoleName": "viqrec_4ad5fa03_openid_lambda_role",
-    "openIdRolePolicy": "viqrec_4ad5fa03_openid_pass_role_policy",
-    "openIdLambdaIAMPolicy": "viqrec_4ad5fa03_openid_lambda_iam_policy",
-    "openIdLogPolicy": "viqrec_4ad5fa03_openid_lambda_log_policy",
-    "userPoolName": "viqrecording4ad5fa03_userpool_4ad5fa03",
+    "lambdaLogPolicy": "viqrec_82e35764_lambda_log_policy",
+    "openIdLambdaRoleName": "viqrec_82e35764_openid_lambda_role",
+    "openIdRolePolicy": "viqrec_82e35764_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "viqrec_82e35764_openid_lambda_iam_policy",
+    "openIdLogPolicy": "viqrec_82e35764_openid_lambda_log_policy",
+    "userPoolName": "viqrecording82e35764_userpool_82e35764",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -14,9 +14,9 @@
     "mfaTypes": [
         "SMS Text Message"
     ],
-    "roleName": "viqrec4ad5fa03_sns-role",
-    "roleExternalId": "viqrec4ad5fa03_role_external_id",
-    "policyName": "viqrec4ad5fa03-sns-policy",
+    "roleName": "viqrec82e35764_sns-role",
+    "roleExternalId": "viqrec82e35764_role_external_id",
+    "policyName": "viqrec82e35764-sns-policy",
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
     "emailVerificationSubject": "Your verification code",
@@ -27,7 +27,7 @@
     "requiredAttributes": [
         "email"
     ],
-    "userpoolClientName": "viqrec4ad5fa03_app_client",
+    "userpoolClientName": "viqrec82e35764_app_client",
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
@@ -36,15 +36,15 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "mfaLambdaRole": "viqrec4ad5fa03_totp_lambda_role",
-    "mfaLambdaLogPolicy": "viqrec4ad5fa03_totp_lambda_log_policy",
-    "mfaPassRolePolicy": "viqrec4ad5fa03_totp_pass_role_policy",
-    "mfaLambdaIAMPolicy": "viqrec4ad5fa03_totp_lambda_iam_policy",
-    "userpoolClientLambdaRole": "viqrec4ad5fa03_userpoolclient_lambda_role",
-    "userpoolClientLogPolicy": "viqrec4ad5fa03_userpoolclient_lambda_log_policy",
-    "userpoolClientLambdaPolicy": "viqrec4ad5fa03_userpoolclient_lambda_iam_policy",
+    "mfaLambdaRole": "viqrec82e35764_totp_lambda_role",
+    "mfaLambdaLogPolicy": "viqrec82e35764_totp_lambda_log_policy",
+    "mfaPassRolePolicy": "viqrec82e35764_totp_pass_role_policy",
+    "mfaLambdaIAMPolicy": "viqrec82e35764_totp_lambda_iam_policy",
+    "userpoolClientLambdaRole": "viqrec82e35764_userpoolclient_lambda_role",
+    "userpoolClientLogPolicy": "viqrec82e35764_userpoolclient_lambda_log_policy",
+    "userpoolClientLambdaPolicy": "viqrec82e35764_userpoolclient_lambda_iam_policy",
     "userpoolClientSetAttributes": false,
-    "resourceName": "viqrecording4ad5fa03",
+    "resourceName": "viqrecording82e35764",
     "authSelections": "identityPoolAndUserPool",
     "authRoleName": {
         "Ref": "AuthRoleName"

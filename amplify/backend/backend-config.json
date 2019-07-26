@@ -1,18 +1,12 @@
 {
 	"auth": {
-		"viqrecording4ad5fa03": {
+		"viqrecording82e35764": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation"
 		}
 	},
-	"hosting": {
-		"S3AndCloudFront": {
-			"service": "S3AndCloudFront",
-			"providerPlugin": "awscloudformation"
-		}
-	},
 	"api": {
-		"viqrecordingportal": {
+		"viqrecordingportalnew": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {

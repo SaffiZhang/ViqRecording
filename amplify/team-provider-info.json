@@ -1,18 +1,18 @@
 {
     "dev": {
         "awscloudformation": {
-            "AuthRoleName": "viqrecording-dev-20190708200228-authRole",
-            "UnauthRoleArn": "arn:aws:iam::050185192269:role/viqrecording-dev-20190708200228-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::050185192269:role/viqrecording-dev-20190708200228-authRole",
+            "AuthRoleName": "viqrecording-dev-20190726151244-authRole",
+            "UnauthRoleArn": "arn:aws:iam::050185192269:role/viqrecording-dev-20190726151244-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::050185192269:role/viqrecording-dev-20190726151244-authRole",
             "Region": "us-east-1",
-            "DeploymentBucketName": "viqrecording-dev-20190708200228-deployment",
-            "UnauthRoleName": "viqrecording-dev-20190708200228-unauthRole",
-            "StackName": "viqrecording-dev-20190708200228",
-            "StackId": "arn:aws:cloudformation:us-east-1:050185192269:stack/viqrecording-dev-20190708200228/d70c10c0-a1dc-11e9-bb14-12f81177eb92"
+            "DeploymentBucketName": "viqrecording-dev-20190726151244-deployment",
+            "UnauthRoleName": "viqrecording-dev-20190726151244-unauthRole",
+            "StackName": "viqrecording-dev-20190726151244",
+            "StackId": "arn:aws:cloudformation:us-east-1:050185192269:stack/viqrecording-dev-20190726151244/5b757860-afd9-11e9-8e24-1202dd259b0c"
         },
         "categories": {
             "auth": {
-                "viqrecording4ad5fa03": {}
+                "viqrecording82e35764": {}
             }
         }
     }
