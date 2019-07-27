@@ -5,7 +5,7 @@ import  { ModelViqRecordingAttachmentFilterInput}from'../API.service';
 import  { ModelViqRecordingUrlFilterInput}from'../API.service';
 import  { ModelViqRecordingTranscriptionFilterInput}from'../API.service';
 import  { ModelViqRecordingRedactionFilterInput}from'../API.service';
-
+import  { ModelViqRecordingSharedFilterInput }from'../API.service';
 @Component({
   selector: 'app-recording',
   templateUrl: './recording.component.html',
@@ -64,6 +64,11 @@ export class RecordingComponent implements OnInit {
 
     var filter4: ModelViqRecordingTranscriptionFilterInput={viqRecordingTranscriptionViqRecordingId:{eq:id}};
     var transcriptions=await this.api.ListViqRecordingTranscriptions(filter4);
+
+    id="SR607E21-20190723_150855";
+    var filter5: ModelViqRecordingSharedFilterInput={viqRecordingSharedViqRecordingId:{eq:id}};
+    var shareds=await this.api.ListViqRecordingShareds(filter5);
+
     var abc="";
   }
   
