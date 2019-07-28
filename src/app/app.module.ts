@@ -38,6 +38,8 @@ import {AppTopMenubarComponent} from './app-top-menubar/app-top-menubar.componen
 import {RedactComponent} from './redact/redact.component';
 import {RouterModule} from '@angular/router';
 import {ToastModule} from 'primeng/toast';
+import { EmailListComponent } from './email-list/email-list.component';
+import { RecordingSharedComponent } from './recording-shared/recording-shared.component';
 
 
 @NgModule({
@@ -55,13 +57,16 @@ import {ToastModule} from 'primeng/toast';
     RecordingDetailsComponent,
     LogListComponent,
     AppTopMenubarComponent,
-    RedactComponent
+    RedactComponent,
+    EmailListComponent,
+    RecordingSharedComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AmplifyAngularModule,
+
 
     RouterModule,
     VgCoreModule,

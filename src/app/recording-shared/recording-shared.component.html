@@ -1,0 +1,12 @@
+<div class="ui-g" *ngIf="sources">
+  <div class="ui-g-6" *ngIf="sources && sources.length>0">
+    <app-video-player #player1 id="playerOne" [sources]="sources[0]"
+                      [show-redaction]="false"
+                      [recording-id]="recording.id"></app-video-player>
+  </div>
+  <div class="ui-g-6" *ngIf="sources && sources.length>1">
+    <app-video-player #player2 id="playerTwo" [sources]="sources[1]"
+                      [show-redaction]="false"
+                      [recording-id]="recording.id"></app-video-player>
+  </div>
+</div>

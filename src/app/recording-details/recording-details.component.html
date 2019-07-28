@@ -44,6 +44,16 @@
           </div>
         </div>
       </p-tabPanel>
+      <p-tabPanel header="Email">
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <app-email-list [recording-id]="this.recording?.id"
+                            [user-name]="userName"
+                            [urls]="urls"
+            ></app-email-list>
+          </div>
+        </div>
+      </p-tabPanel>
     </p-tabView>
   </div>
 

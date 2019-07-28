@@ -45,6 +45,7 @@ export class RedactComponent implements OnInit {
 
     if (!this.data) {
       this.router.navigate(['recording-list']);
+      return;
     }
     console.log(this.data);
     this.recordingId = this.data.recordingId;

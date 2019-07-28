@@ -15,6 +15,7 @@ import {MessageService} from 'primeng/api';
 export class RecordingDetailsComponent implements OnInit {
   private recording: GetViqRecordingQuery;
 
+  public userName = 'saffi zhang';
   private logs: any[];
 
   public sources: any[];
@@ -36,6 +37,8 @@ export class RecordingDetailsComponent implements OnInit {
   public attachmentList: AttachmentListComponent;
 
 
+  public urls: any[];
+
   constructor(private api: APIService,
               private router: Router,
               private dateTimeHelper: DatetimeHelperService,
@@ -55,6 +58,8 @@ export class RecordingDetailsComponent implements OnInit {
     const sobj = {};
     const sr = [];
     if (this.recording.recordingUrls && this.recording.recordingUrls.items) {
+      this.urls = this.recording.recordingUrls.items;
+
       this.recording.recordingUrls.items.forEach(r => {
         if (!sobj[r.camera]) {
           sobj[r.camera] = [];

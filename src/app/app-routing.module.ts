@@ -6,6 +6,7 @@ import {RecordingListComponent} from './recording-list/recording-list.component'
 import {RecordingComponent} from './recording/recording.component';
 import {RecordingDetailsComponent} from './recording-details/recording-details.component';
 import {RedactComponent} from './redact/redact.component';
+import {RecordingSharedComponent} from './recording-shared/recording-shared.component';
 
 const routes: Routes = [
   {
@@ -29,8 +30,12 @@ const routes: Routes = [
     component: RedactComponent
   },
   {
+    path: 'recordingshared/:id',
+    component: RecordingSharedComponent
+  },
+  {
     path: '',
-    component:  RecordingListComponent
+    component: RecordingListComponent
   }
 ];
 

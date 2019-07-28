@@ -36,26 +36,24 @@
 <div class="ui-g" *ngIf="selectedSource && showInfo">
   <div class="ui-g-12">
     Camera: {{selectedSource.camera}}
-    <div class="redation-link"><a href="#" (click)="redact($event);">Redaction</a></div>
+    <div class="redation-link" *ngIf="!!showRedaction"><a href="#" (click)="redact($event);">Redaction</a></div>
   </div>
-  <div class="ui-g-12">
-    <div class="ui-g">
-      <div class="ui-g-6">
-        Version: {{selectedSource.version}}
-      </div>
-      <div class="ui-g-6">
-        <ng-container *ngIf="sources.length>1">
 
-          <p-dropdown [options]="sources" [(ngModel)]="selectedSource" optionLabel="displayLabel"></p-dropdown>
-
-        </ng-container>
-      </div>
-    </div>
+  <div class="ui-g-6">
+    Version: {{selectedSource.version}}
   </div>
+  <div class="ui-g-6">
+    <ng-container *ngIf="sources.length>1">
+
+      <p-dropdown [options]="sources" [(ngModel)]="selectedSource" optionLabel="displayLabel"></p-dropdown>
+
+    </ng-container>
+  </div>
+
   <div class="ui-g-12">
     Description: {{selectedSource.description}}
   </div>
-  <div class="ui-g-12">
-    <a href="{{selectedSource.src}}" download="abc" target="_blank">{{selectedSource.src}}</a>
-  </div>
+  <!--  <div class="ui-g-12">-->
+  <!--    <a href="{{selectedSource.src}}" download="abc" target="_blank">{{selectedSource.src}}</a>-->
+  <!--  </div>-->
 </div>
