@@ -7,27 +7,32 @@ import {RecordingComponent} from './recording/recording.component';
 import {RecordingDetailsComponent} from './recording-details/recording-details.component';
 import {RedactComponent} from './redact/redact.component';
 import {RecordingSharedComponent} from './recording-shared/recording-shared.component';
+import {AuthGuard} from './services/auth.guard';
 
 const routes: Routes = [
   {
     path: 'auth',
-    component: AuthComponent
+    component: AuthComponent,
   },
   {
     path: 'recording',
-    component: RecordingComponent
+    component: RecordingComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'recording-details/:id',
-    component: RecordingDetailsComponent
+    component: RecordingDetailsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'recording-list',
-    component: RecordingListComponent
+    component: RecordingListComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'redact',
-    component: RedactComponent
+    component: RedactComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'recordingshared/:id',
@@ -35,7 +40,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: RecordingListComponent
+    component: RecordingListComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
