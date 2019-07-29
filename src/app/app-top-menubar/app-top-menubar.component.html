@@ -4,19 +4,19 @@
     <img src="assets/image/logo.png">
   </a>
 
-  <ul class="topbar-menu">
+  <ul class="topbar-menu" *ngIf="isAuthenticated">
     <li>
-      <a [routerLink]="['/setup']">GET STARTED</a>
+      <a [routerLink]="['/']">GET STARTED</a>
     </li>
     <li class="topbar-menu-themes">
-      <a href="#">Hello, Zhang</a>
-      <ul>
-        <li><a [routerLink]="'/profile'" >Profile</a></li>
-        <li><a [routerLink]="'/privacy'" >Privacy</a></li>
-      </ul>
+      <a href="#">Hello, {{user.username}}</a>
+<!--      <ul>-->
+<!--        <li><a [routerLink]="'/profile'" >Profile</a></li>-->
+<!--        <li><a [routerLink]="'/privacy'" >Privacy</a></li>-->
+<!--      </ul>-->
     </li>
     <li>
-      <a [routerLink]="['/support']">Logout</a>
+      <a href="" (click)="signOut($event)">Logout</a>
     </li>
 
   </ul>
