@@ -5,7 +5,9 @@
 //span {
 //  color: #ffffff;
 //}
-
+//span{
+//  color:white ;
+//}
 
 @charset "UTF-8";
 html {
@@ -1234,6 +1236,38 @@ a {
   }
 }
 
-span{
-  color:white !important;
+li{
+  &.ui-tabview-selected{
+    span.ui-tabview-title{
+      color:white !important;
+    }
+  }
+  span.ui-tabview-title{
+    color:black
+  }
+}
+.ui-button{
+  span.ui-button-text{
+    color:white;
+  }
+  &.ui-state-disabled{
+    span.ui-button-text{
+      color:#333333;
+    }
+  }
+  background-color: #09c5d9;
+  border:1px solid #09c5d9;
+}
+
+p-dropdown{
+  li.ui-state-highlight{
+    span{
+      color:white;
+    }
+  }
+  li{
+    span{
+      color:#333333;
+    }
+  }
 }
