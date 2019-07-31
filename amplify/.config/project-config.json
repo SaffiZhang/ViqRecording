@@ -6,7 +6,7 @@
         "framework": "angular",
         "config": {
             "SourceDir": "src",
-            "DistributionDir": "dist/viq-recording-portal",
+            "DistributionDir": "dist/viq-recording",
             "BuildCommand": "npm.cmd run-script build",
             "StartCommand": "ng serve"
         }
