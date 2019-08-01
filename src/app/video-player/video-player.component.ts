@@ -44,6 +44,9 @@ export class VideoPlayerComponent implements OnInit {
   @Input('show-redaction')
   public showRedaction = true;
 
+  @Input('show-version')
+  public showVersion = true;
+
   constructor(private router: Router) {
   }
 
@@ -52,7 +55,7 @@ export class VideoPlayerComponent implements OnInit {
       this.id = 'player_' + Math.ceil(Math.random());
     }
     console.log(this.showRedaction);
-    debugger;
+  debugger;
   }
 
   public onPlayerReady(api: VgAPI) {

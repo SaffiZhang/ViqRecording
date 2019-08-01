@@ -39,6 +39,7 @@
     <div class="redation-link" *ngIf="!!showRedaction"><a href="#" (click)="redact($event);">Redaction</a></div>
   </div>
 
+  <ng-container *ngIf="!!showVersion">
   <div class="ui-g-6">
     Version: {{selectedSource.version}}
   </div>
@@ -49,6 +50,7 @@
 
     </ng-container>
   </div>
+  </ng-container>
 
   <div class="ui-g-12">
     Description: {{selectedSource.description}}
