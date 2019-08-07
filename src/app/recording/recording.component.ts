@@ -6,6 +6,8 @@ import  { ModelViqRecordingUrlFilterInput}from'../API.service';
 import  { ModelViqRecordingTranscriptionFilterInput}from'../API.service';
 import  { ModelViqRecordingRedactionFilterInput}from'../API.service';
 import  { ModelViqRecordingSharedFilterInput }from'../API.service';
+import  { ModelViqRecordingFilterInput }from'../API.service';
+
 @Component({
   selector: 'app-recording',
   templateUrl: './recording.component.html',
@@ -69,6 +71,18 @@ export class RecordingComponent implements OnInit {
     var filter5: ModelViqRecordingSharedFilterInput={viqRecordingSharedViqRecordingId:{eq:id}};
     var shareds=await this.api.ListViqRecordingShareds(filter5);
 
+    var interviewStart='2019-7-1';
+    var interviewFinish='2019-9-1';
+    var location="Gold Coast police station 12";
+    var officerCollarNumber="1234";
+    var interviewee="Donald Trump";
+    
+    var filter6: ModelViqRecordingFilterInput={interviewStart: {ge:interviewStart}, 
+                            interviewFinish:{le:interviewFinish},
+                            location:{beginsWith:location},
+                            officerCollarNumber:{beginsWith:officerCollarNumber}, 
+                            interviewee:{beginsWith:interviewee}};
+    var recordings=await this.api.ListViqRecordings(filter6,200);
     var abc="";
   }
   

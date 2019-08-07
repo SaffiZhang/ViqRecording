@@ -32,5 +32,22 @@
                 "viqrecording82e35764": {}
             }
         }
+    },
+    "staging": {
+        "awscloudformation": {
+            "AuthRoleName": "viqrecording-staging-20190801094648-authRole",
+            "UnauthRoleArn": "arn:aws:iam::050185192269:role/viqrecording-staging-20190801094648-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::050185192269:role/viqrecording-staging-20190801094648-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "viqrecording-staging-20190801094648-deployment",
+            "UnauthRoleName": "viqrecording-staging-20190801094648-unauthRole",
+            "StackName": "viqrecording-staging-20190801094648",
+            "StackId": "arn:aws:cloudformation:us-east-1:050185192269:stack/viqrecording-staging-20190801094648/d7ef4e10-b462-11e9-8a38-0abba1914a70"
+        },
+        "categories": {
+            "auth": {
+                "viqrecording82e35764": {}
+            }
+        }
     }
 }
