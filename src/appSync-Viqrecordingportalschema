@@ -396,70 +396,7 @@ type Query {
 	listShareds(filter: ModelSharedFilterInput, limit: Int, nextToken: String): ModelSharedConnection
 }
 
-type Subscription {
-	onCreate: Recording
-		@aws_subscribe(mutations: ["createRecording"])
-	onUpdate: Recording
-		@aws_subscribe(mutations: ["updateRecording"])
-	onDelete: Recording
-		@aws_subscribe(mutations: ["deleteRecording"])
-	
-	onCreateAttachment: Attachment
-		@aws_subscribe(mutations: ["createAttachment"])
-	onUpdateAttachment: Attachment
-		@aws_subscribe(mutations: ["updateAttachment"])
-	onDeleteAttachment: Attachment
-		@aws_subscribe(mutations: ["deleteAttachment"])
-	
-	onCreateUrl: Url
-		@aws_subscribe(mutations: ["createUrl"])
-	onUpdateUrl: Url
-		@aws_subscribe(mutations: ["updateUrl"])
-	onDeleteUrl: Url
-		@aws_subscribe(mutations: ["deleteUrl"])
-	
-	onCreateLog: Log
-		@aws_subscribe(mutations: ["createLog"])
-	onUpdateLog: Log
-		@aws_subscribe(mutations: ["updateLog"])
-	onDeleteLog: Log
-		@aws_subscribe(mutations: ["deleteLog"])
-	
-	onCreateRedaction: Redaction
-		@aws_subscribe(mutations: ["createRedaction"])
-	onUpdateRedaction: Redaction
-		@aws_subscribe(mutations: ["updateRedaction"])
-	onDeleteRedaction: Redaction
-		@aws_subscribe(mutations: ["deleteRedaction"])
-	
-	onCreateRedactionInterval: RedactionInterval
-		@aws_subscribe(mutations: ["createRedactionInterval"])
-	onUpdateRedactionInterval: RedactionInterval
-		@aws_subscribe(mutations: ["updateRedactionInterval"])
-	onDeleteRedactionInterval: RedactionInterval
-		@aws_subscribe(mutations: ["deleteRedactionInterval"])
-	
-	onCreateBookmark: Bookmark
-		@aws_subscribe(mutations: ["createBookmark"])
-	onUpdateBookmark: Bookmark
-		@aws_subscribe(mutations: ["updateBookmark"])
-	onDeleteBookmark: Bookmark
-		@aws_subscribe(mutations: ["deleteBookmark"])
 
-	onCreateTranscription: Transcription
-		@aws_subscribe(mutations: ["createTranscription"])
-	onUpdateTranscription: Transcription
-		@aws_subscribe(mutations: ["updateTranscription"])
-	onDeleteTranscription: Transcription
-		@aws_subscribe(mutations: ["deleteTranscription"])
-
-	onCreateShared: Shared
-		@aws_subscribe(mutations: ["createShared"])
-	onUpdateShared: Shared
-		@aws_subscribe(mutations: ["updateShared"])
-	onDeleteShared: Shared
-		@aws_subscribe(mutations: ["deleteShared"])
-}
 
 input UpdateRecordingInput {
 	id: String!
