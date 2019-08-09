@@ -11,11 +11,15 @@ type ViqRecording @model {
   recordingUrls: [ViqRecordingUrl] @connection(name: "RecordingUrls")
   logs: [ViqRecordingLog] @connection(name: "RecordingLogs")
   transcriptions:[ViqRecordingTranscription] @connection(name: "RecordingTranscriptions")
+  bookmarks:[ViqRecordingBookmark] @connection(name: "RecordingBookmarks")
+  shareds:[ViqRecordingShared] @connection(name: "RecordingShareds")
 }
 type ViqRecordingAttachment @model {
   id: ID!
   description: String!
   url:String!
+  updatedDateTime:String
+  updatedBy:String
   viqRecording: ViqRecording @connection(name:"RecordingAttachments")
 }
 type ViqRecordingUrl @model {
@@ -33,29 +37,55 @@ type ViqRecordingLog @model {
   dateTime: String!
   description:String!
   userName:String
+  recordId:String
+  tableName:String
   viqRecording: ViqRecording @connection(name: "RecordingLogs")
 }
 type ViqRecordingRedaction @model {
   id: ID!
   redactionVersion:String!
+  description: String!
+  updatedDateTime:String
+  updatedBy:String
+  status:String!
+  intervals:[ViqRecordingRedactionInterval]  @connection(name: "RedactionIntervals")
+  viqRecordingUrl: ViqRecordingUrl @connection(name: "UrlRedactions")
+}
+type ViqRecordingRedactionInterval @model {
+  id: ID!
+  redactionVersion:String!
   startSecond: Int!
   endSecond:Int!
   type:String!
-  viqRecordingUrl: ViqRecordingUrl @connection(name: "UrlRedactions")
+  ViqRecordingRedaction : ViqRecordingRedaction  @connection(name: "RedactionIntervals")
+}
+type ViqRecordingBookmark @model {
+  id: ID!
+  order:Int!
+  dateTime:String!
+  speaker:String
+  content:String!
+  updatedDateTime:String
+  updatedBy:String
+  viqRecording: ViqRecording @connection(name: "RecordingBookmarks")
 }
 type ViqRecordingTranscription @model {
   id: ID!
   submitTime:String!
+  transcriptionFileUrl:String!
   viqRecording: ViqRecording @connection(name: "RecordingTranscriptions")
 }
 type ViqRecordingShared @model {
   id: ID!
-  dateTime:String!
+  createdDateTime:String!
+  createdBy:String
   receiver:String!
   receiver_email:String!
   receiver_type:String!
+  expiry_date:String!
   token:String!
   urls:[String]!
-  userName:String
-  viqRecording: ViqRecording @connection(name: "RecordingTranscriptions")
+  status:String
+  description:String
+  viqRecording: ViqRecording @connection(name: "RecordingShareds")
 }

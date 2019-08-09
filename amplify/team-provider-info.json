@@ -1,21 +1,4 @@
 {
-    "test": {
-        "awscloudformation": {
-            "AuthRoleName": "viqrecording-test-20190726165616-authRole",
-            "UnauthRoleArn": "arn:aws:iam::050185192269:role/viqrecording-test-20190726165616-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::050185192269:role/viqrecording-test-20190726165616-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "viqrecording-test-20190726165616-deployment",
-            "UnauthRoleName": "viqrecording-test-20190726165616-unauthRole",
-            "StackName": "viqrecording-test-20190726165616",
-            "StackId": "arn:aws:cloudformation:us-east-1:050185192269:stack/viqrecording-test-20190726165616/d29ecf00-afe7-11e9-9fa5-0a545e22b5be"
-        },
-        "categories": {
-            "auth": {
-                "viqrecording82e35764": {}
-            }
-        }
-    },
     "dev": {
         "awscloudformation": {
             "AuthRoleName": "viqrecording-dev-20190726173245-authRole",
