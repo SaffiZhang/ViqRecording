@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {APIService, ModelViqRecordingLogFilterInput} from '../API.service';
+import {APIService, ModelLogFilterInput} from '../API.service';
 import {DatetimeHelperService} from '../services/datetime-helper.service';
 
 @Component({
@@ -29,9 +29,9 @@ export class LogListComponent implements OnInit {
   }
 
   public refresh() {
-    const filter: ModelViqRecordingLogFilterInput = {viqRecordingLogViqRecordingId: {eq: this.recordingId}};
+    const filter: ModelLogFilterInput = {logCaseId: {eq: this.recordingId}};
     // the number is how many records will be in the output
-    this.api.ListViqRecordingLogs(filter, 100).then(r => {
+    this.api.ListLogs(filter, 100).then(r => {
       console.log(r);
       r.items.forEach(p => {
         p.dateTime = this.dateTimeHelper.format(new Date(p.dateTime));

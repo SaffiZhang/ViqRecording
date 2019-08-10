@@ -1,0 +1,5 @@
+{
+    "AppSyncApiName": "viqrecording",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false"
+}

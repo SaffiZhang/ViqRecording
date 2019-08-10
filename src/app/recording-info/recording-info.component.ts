@@ -55,25 +55,34 @@ export class RecordingInfoComponent implements OnInit {
       location: this.recording.location,
       unitId: this.recording.unitId,
     };
-    this.api.UpdateViqRecording(input);
+    this.api.UpdateRecording(input);
     const dt = this.dateTimeHepler.format(new Date());
-    this.api.CreateViqRecordingLog({
+    this.api.CreateLog({
       id: '',
       dateTime: dt,
       description: 'Metadata changed',
-      viqRecordingLogViqRecordingId: this.recording.id,
+      userName: '',
+	    recordId: this.recording.id,
+	    tableName: '',
+      logCaseId: this.recording.id,
     });
-    this.api.CreateViqRecordingLog({
+    this.api.CreateLog({
       id: '',
       dateTime: dt,
       description: 'Old metadata:' + JSON.stringify(this.originalValue),
-      viqRecordingLogViqRecordingId: this.recording.id,
+      userName: '',
+	    recordId: this.recording.id,
+	    tableName: '',
+      logCaseId: this.recording.id,
     });
-    this.api.CreateViqRecordingLog({
+    this.api.CreateLog({
       id: '',
       dateTime: dt,
       description: 'New metadata:' + JSON.stringify(this.editingRecording),
-      viqRecordingLogViqRecordingId: this.recording.id,
+      userName: '',
+	    recordId: this.recording.id,
+	    tableName: '',
+      logCaseId: this.recording.id,
     });
     this.isEditing = false;
   }

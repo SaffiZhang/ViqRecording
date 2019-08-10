@@ -75,7 +75,7 @@ input CreateRedactionIntervalInput {
 	startSecond: Int!
 	endSecond: Int!
 	type: String!
-	redactionIntervalRedactionId: ID!
+	redactionIntervalRedationId: ID!
 }
 
 input CreateSharedInput {
@@ -260,7 +260,6 @@ input ModelRecordingFilterInput {
 	interviewStart: ModelStringFilterInput
 	officerCollarNumber: ModelStringFilterInput
 	location: ModelStringFilterInput
-	path:ModelStringFilterInput
 	unitId: ModelStringFilterInput
 	and: [ModelRecordingFilterInput]
 	or: [ModelRecordingFilterInput]
@@ -275,7 +274,7 @@ type ModelRedactionConnection {
 input ModelRedactionFilterInput {
 	id: ModelIDFilterInput
 	redactionVersion: ModelStringFilterInput
-	redactionUrlId: ModelStringFilterInput
+	urlId: ModelStringFilterInput
 	and: [ModelRedactionFilterInput]
 	or: [ModelRedactionFilterInput]
 	not: ModelRedactionFilterInput
@@ -426,7 +425,6 @@ type Recording {
 	officerCollarNumber: String!
 	location: String!
 	unitId: String!
-	path:String!
 	attachments(
 		filter: ModelAttachmentFilterInput,
 		sortDirection: ModelSortDirection,

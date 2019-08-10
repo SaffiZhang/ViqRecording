@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {APIService, ModelViqRecordingFilterInput, ModelViqRecordingSharedFilterInput} from '../API.service';
+import {APIService, ModelRecordingFilterInput, ModelSharedFilterInput} from '../API.service';
 import {DatetimeHelperService} from '../services/datetime-helper.service';
 
 @Component({
@@ -26,13 +26,13 @@ export class RecordingSharedComponent implements OnInit {
       this.showError = true;
       return;
     }
-    const filter5: ModelViqRecordingSharedFilterInput = {id: {eq: id}};
-    this.api.ListViqRecordingShareds(filter5).then(r => {
+    const filter5: ModelSharedFilterInput = {id: {eq: id}};
+    this.api.ListShareds(filter5).then(r => {
 
       const sharedItem = r.items[0];
-      const recordingId = sharedItem.viqRecording.id;
-      const filter4: ModelViqRecordingFilterInput = {id: {eq: recordingId}};
-      this.api.GetViqRecording(recordingId).then(rec => {
+      const recordingId = sharedItem.case.id;
+      const filter4: ModelRecordingFilterInput = {id: {eq: recordingId}};
+      this.api.GetRecording(recordingId).then(rec => {
         this.recording = rec;
         console.log(this.recording);
         this.prepare();

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService} from'../API.service';
-import  { ModelViqRecordingLogFilterInput}from'../API.service';
-import  { ModelViqRecordingAttachmentFilterInput}from'../API.service';
-import  { ModelViqRecordingUrlFilterInput}from'../API.service';
-import  { ModelViqRecordingTranscriptionFilterInput}from'../API.service';
-import  { ModelViqRecordingRedactionFilterInput}from'../API.service';
-import  { ModelViqRecordingSharedFilterInput }from'../API.service';
-import  { ModelViqRecordingFilterInput }from'../API.service';
+import  { ModelLogFilterInput}from'../API.service';
+import  { ModelAttachmentFilterInput}from'../API.service';
+import  { ModelRecordingFilterInput}from'../API.service';
+import  { ModelTranscriptionFilterInput}from'../API.service';
+import  { ModelRedactionFilterInput}from'../API.service';
+import  { ModelSharedFilterInput }from'../API.service';
+import  { ModelCaseFilterInput }from'../API.service';
 
 @Component({
   selector: 'app-recording',
@@ -14,7 +14,16 @@ import  { ModelViqRecordingFilterInput }from'../API.service';
   styleUrls: ['./recording.component.scss']
 })
 export class RecordingComponent implements OnInit {
-  recording:any;
+  recording:any={
+    "id": "SR607E21-20190723_145393",
+    "interviewee": "Tom Cruise",
+    "interviewFinish": "2019-07-23 14:57:12",
+    "interviewStart": "2019-07-23 14:55:40",
+    "location": "Gold Coast police station 12",
+    "officerCollarNumber": "1234",
+    "path": "SR607E21/2019/07/23/",
+    "unitId": "SR607E21"
+  };
   attachments:any;
   recordingUrls:any=[];
   logs:any=[{
@@ -30,46 +39,47 @@ export class RecordingComponent implements OnInit {
   constructor(private api:APIService) { }
 
   async ngOnInit() {
-     await this.listLogging('SR607E21-2019-07-11-SR607E21-20190711_115549');
-    /*  this.attachments=this.recording.attachments.items;
-     this.recordingUrls=this.recording.recordingUrls.items; */
-     /* var attachment= {
-      "description": "Car rental agreement 2",
-      "id": "3",
-      "url": "https://david-horn-recording.s3.amazonaws.com/wireframe-1.jpg",
-      "viqRecordingAttachmentViqRecordingId": this.recording.id
-    };
-    await this.addAttachment(attachment); */
+    let result =await this.addRecording(this.recording);
+    console.log(result);
   }
    async getRecording(id){
-    this.recording= await this.api.GetViqRecording(id);
+    
+    this.recording= await this.api.GetRecording(id);
+  }
+  async addRecording(recording){
+    try{
+      return  await this.api.CreateRecording(recording);
+    }catch(err){
+      console.log(err);
+    }
+    
   }
   async addAttachment(attachment){
     
-    await this.api.CreateViqRecordingAttachment(attachment)
+    await this.api.CreateAttachment(attachment)
   }
   async listLogging(id){
     //the id is the recording Id
-    var filter: ModelViqRecordingLogFilterInput={viqRecordingLogViqRecordingId:{eq:id}};
+    var filter: ModelLogFilterInput={logCaseId:{eq:id}};
   // the number is how many records will be in the output
-    this.logs= await this.api.ListViqRecordingLogs(filter,11)
+    this.logs= await this.api.ListLogs(filter,11)
     
-    var filter1: ModelViqRecordingAttachmentFilterInput={viqRecordingAttachmentViqRecordingId:{eq:id}};
-    var attachments= await this.api.ListViqRecordingAttachments(filter1,200);
+    var filter1: ModelAttachmentFilterInput={attachmentCaseId:{eq:id}};
+    var attachments= await this.api.ListAttachments(filter1,200);
     
-    var filter2: ModelViqRecordingUrlFilterInput={viqRecordingUrlViqRecordingId:{eq:id}};
-    var Urls=await this.api.ListViqRecordingUrls(filter2);
+    var filter2: ModelRecordingFilterInput={recordingCaseId:{eq:id}};
+    var Urls=await this.api.ListRecordings(filter2);
 
     var urlId='b23e94d0-a97e-11e9-9a0c-bb5a0e31da05';
-    var filter3: ModelViqRecordingRedactionFilterInput={viqRecordingRedactionViqRecordingUrlId:{eq:urlId}};
-    var redactions=await this.api.ListViqRecordingRedactions(filter3);
+    var filter3: ModelRedactionFilterInput={redactionRecordingId:{eq:urlId}};
+    var redactions=await this.api.ListRedactions(filter3);
 
-    var filter4: ModelViqRecordingTranscriptionFilterInput={viqRecordingTranscriptionViqRecordingId:{eq:id}};
-    var transcriptions=await this.api.ListViqRecordingTranscriptions(filter4);
+    var filter4: ModelTranscriptionFilterInput={transcriptionCaseId:{eq:id}};
+    var transcriptions=await this.api.ListTranscriptions(filter4);
 
     id="SR607E21-20190723_150855";
-    var filter5: ModelViqRecordingSharedFilterInput={viqRecordingSharedViqRecordingId:{eq:id}};
-    var shareds=await this.api.ListViqRecordingShareds(filter5);
+    var filter5: ModelSharedFilterInput={sharedCaseId:{eq:id}};
+    var shareds=await this.api.ListShareds(filter5);
 
     var interviewStart='2019-7-1';
     var interviewFinish='2019-9-1';
@@ -77,12 +87,12 @@ export class RecordingComponent implements OnInit {
     var officerCollarNumber="1234";
     var interviewee="Donald Trump";
     
-    var filter6: ModelViqRecordingFilterInput={interviewStart: {ge:interviewStart}, 
+    var filter6: ModelCaseFilterInput={interviewStart: {ge:interviewStart}, 
                             interviewFinish:{le:interviewFinish},
                             location:{beginsWith:location},
                             officerCollarNumber:{beginsWith:officerCollarNumber}, 
                             interviewee:{beginsWith:interviewee}};
-    var recordings=await this.api.ListViqRecordings(filter6,200);
+    var recordings=await this.api.ListRecordings(filter6,200);
     var abc="";
   }
   

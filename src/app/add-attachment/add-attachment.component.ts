@@ -51,16 +51,21 @@ export class AddAttachmentComponent implements OnInit {
       id: '',
       description: this.description,
       url: data.Location,
-      viqRecordingAttachmentViqRecordingId: this.recordingId
+      updatedDateTime:'',
+      updatedBy:'',
+      attachmentRecordingId: this.recordingId
     };
     const dt = this.dateTimeHepler.format(new Date());
 
-    this.api.CreateViqRecordingAttachment(input).then(r => {
-      this.api.CreateViqRecordingLog({
+    this.api.CreateAttachment(input).then(r => {
+      this.api.CreateLog({
         id: '',
         dateTime: dt,
+        userName:'',
+        recordId:'',
+        tableName:'Attachement',
         description: 'Attachment added:' + JSON.stringify(data),
-        viqRecordingLogViqRecordingId: this.recordingId
+        logCaseId: this.recordingId
       });
       this.saved.emit({});
     });

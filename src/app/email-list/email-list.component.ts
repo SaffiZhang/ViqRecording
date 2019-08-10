@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {APIService, ModelViqRecordingSharedFilterInput} from '../API.service';
+import {APIService, ModelSharedFilterInput} from '../API.service';
 import {DatetimeHelperService} from '../services/datetime-helper.service';
 import {MessageService} from 'primeng/api';
 
@@ -53,11 +53,11 @@ export class EmailListComponent implements OnInit {
 
   private refresh() {
     if (this.recordingId) {
-      const filter5: ModelViqRecordingSharedFilterInput = {viqRecordingSharedViqRecordingId: {eq: this.recordingId}};
-      this.apiService.ListViqRecordingShareds(filter5).then(r => {
+      const filter5: ModelSharedFilterInput = {sharedCaseId: {eq: this.recordingId}};
+      this.apiService.ListShareds(filter5).then(r => {
         console.log('recording-share', r);
         r.items.forEach(x => {
-          x.dateTime = this.dateTimeHelper.format(new Date(x.dateTime));
+          x.createdDateTime = this.dateTimeHelper.format(new Date(x.createdDateTime));
         });
         this.recordingShares = r.items;
 
@@ -102,24 +102,31 @@ export class EmailListComponent implements OnInit {
     const dt = this.dateTimeHelper.format(new Date());
     const input = {
       id: '',
-      dateTime: dt,
+      createdDateTime: dt,
+      createdBy:'',
       receiver: this.receiverName,
       receiver_email: this.receiverEmail,
       receiver_type: this.receiverType,
       token: (new Date()).getTime().toString(),
+      expiry_date:'',
       urls: [],
+      description:'',
+      status:'',
       userName: this.userName,
-      viqRecordingSharedViqRecordingId: this.recordingId
+      sharedCaseId: this.recordingId
     };
     this.urls.forEach(x => {
       input.urls.push(x.url);
     });
-    this.apiService.CreateViqRecordingShared(input).then(r => {
-      this.apiService.CreateViqRecordingLog({
+    this.apiService.CreateShared(input).then(r => {
+      this.apiService.CreateLog({
         id: '',
         dateTime: dt,
         description: 'Recording Shares added:' + JSON.stringify(input),
-        viqRecordingLogViqRecordingId: this.recordingId
+        userName: '',
+	      recordId: '',
+      	tableName: '',
+        logCaseId: this.recordingId
       });
       this.messageService.add({
         severity: 'success',

@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {VideoPlayerComponent} from '../video-player/video-player.component';
-import {APIService, ModelViqRecordingRedactionFilterInput} from '../API.service';
+import {APIService, ModelRedactionFilterInput} from '../API.service';
 import {DatetimeHelperService} from '../services/datetime-helper.service';
 
 @Component({
@@ -76,29 +76,34 @@ export class RedactComponent implements OnInit {
     const input = {
       id: '',
       redactionVersion: (new Date()).getTime().toString(),
-      startSecond: this.startTime,
-      endSecond: this.endTime,
-      type: this.redactType,
-      viqRecordingRedactionViqRecordingUrlId: this.data.source.id
+      viqRecordingRedactionViqRecordingUrlId: this.data.source.id,
+      description: '',
+      updatedDateTime: '',
+      updatedBy: '',
+      status: '',
+      redactionUrlId: ''
     };
     const self = this;
-    this.api.CreateViqRecordingRedaction(input).then(result => {
+    this.api.CreateRedaction(input).then(result => {
       this.refresh();
 
       const dt = this.dateHelper.format(new Date());
-      this.api.CreateViqRecordingLog({
+      this.api.CreateLog({
         id: '',
         dateTime: dt,
         description: 'Redaction added:' + JSON.stringify(input),
-        viqRecordingLogViqRecordingId: this.recordingId
+        userName: '',
+	      recordId: '',
+	      tableName: '',
+        logCaseId: this.recordingId
       });
     });
   }
 
   private refresh() {
     const urlId = this.data.source.id;
-    const filter3: ModelViqRecordingRedactionFilterInput = {viqRecordingRedactionViqRecordingUrlId: {eq: urlId}};
-    this.api.ListViqRecordingRedactions(filter3).then(redactions => {
+    const filter3: ModelRedactionFilterInput = {redactionRecordingId: {eq: urlId}};
+    this.api.ListRedactions(filter3).then(redactions => {
       this.redactions = redactions.items;
       console.log('redactions', this.redactions);
     });
@@ -112,12 +117,13 @@ export class RedactComponent implements OnInit {
     const input = {
       id: '',
       redactionVersion: (new Date()).getTime().toString(),
-      startSecond: 0,
-      endSecond: 0,
-      type: 'End',
-      viqRecordingRedactionViqRecordingUrlId: this.data.source.id
+      description: '',
+      updatedDateTime: '',
+      updatedBy: '',
+      status:'',
+      redactionUrlId: ''
     };
-    this.api.CreateViqRecordingRedaction(input).then(r => {
+    this.api.CreateRedaction(input).then(r => {
       this.refresh();
     });
     this.back();

@@ -1,0 +1,104 @@
+type Recording @model {
+	id: String!
+	interviewee: String!
+	interviewFinish: String!
+	interviewStart: String!
+	officerCollarNumber: String!
+	location: String!
+	unitId: String!
+	path: String!
+	attachments: [Attachment] @connection(name: "RecordingAttachments")
+    urls: [Url] @connection(name: "RecordingUrls")
+    logs: [Log] @connection(name: "RecordingLogs")
+	transcriptions: [Transcription] @connection(name: "RecordingTranscriptions")
+	bookmarks: [Bookmark] @connection(name: "RecordingBookmarks")
+	shareds:[Shared] @connection(name: "RecordingShareds")
+}
+
+
+type Url @model {
+	id: ID!
+	url: String!
+	lastmodified: String!
+	description: String!
+	camera: String!
+	version: String!
+	redactions: [Redaction] @connection(name: "UrlRedactions")
+	recording: Recording @connection(name: "RecordingUrls")
+}
+
+type Attachment @model {
+	id: ID!
+	description: String!
+	url: String!
+	updatedDateTime: String!
+	updatedBy: String!
+	recording: Recording @connection(name: "RecordingAttachments")
+}
+
+type Bookmark @model {
+	id: ID!
+	order: Int!
+	dateTime: String!
+	speaker: String
+	content: String!
+	updatedDateTime: String
+	updatedBy: String
+	recording: Recording @connection(name: "RecordingBookmarks")
+}
+
+
+
+type Redaction @model{
+	id: ID!
+	redactionVersion: String!
+	description: String!
+	updatedDateTime: String
+	updatedBy: String
+	status: String!
+	url: Url @connection(name: "UrlRedactions")
+	RedactionIntervals: [RedactionInterval] @connection(name: "RedactionRedactionIntervals")
+}
+
+type RedactionInterval @model {
+	id: ID!
+	redactionVersion: String!
+	startSecond: Int!
+	endSecond: Int!
+	type: String!
+	redacton: Redaction @connection(name: "RedactionRedactionIntervals")
+}
+
+type Shared @model{
+	id: ID!
+	createdDateTime: String!
+	createdBy: String!
+	receiver: String!
+	receiver_email: String!
+	receiver_type: String!
+	expiry_date: String!
+	token: String!
+	urls: [String]!
+	status: String!
+	description: String!
+	recording: Recording @connection(name: "RecordingShareds")
+}
+
+type Transcription @model{
+	id: ID!
+	submitTime: String!
+	transcriptionFileUrl: String!
+	status: String!
+	recording: Recording @connection(name: "RecordingTranscriptions")
+}
+
+
+type Log @model {
+	id: ID!
+	dateTime: String!
+	description: String!
+	userName: String!
+	recordId: String!
+	tableName: String!
+	recording: Recording @connection(name: "RecordingLogs")
+}

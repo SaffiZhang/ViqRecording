@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {APIService, GetViqRecordingQuery, ModelViqRecordingLogFilterInput} from '../API.service';
+import {APIService, GetCaseQuery, ModelLogFilterInput} from '../API.service';
 import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
 import {ActivatedRoute, Router} from '@angular/router';
 import {VideoPlayerComponent} from '../video-player/video-player.component';
@@ -13,7 +13,7 @@ import {MessageService} from 'primeng/api';
   styleUrls: ['./recording-details.component.scss']
 })
 export class RecordingDetailsComponent implements OnInit {
-  private recording: GetViqRecordingQuery;
+  private recording: GetCaseQuery;
 
   public userName = 'saffi zhang';
   private logs: any[];
@@ -53,14 +53,14 @@ export class RecordingDetailsComponent implements OnInit {
   }
 
   private async refresh(id) {
-    this.recording = await this.getRecording(id);
+    this.recording = await this.getCase(id);
     console.log(this.recording);
     const sobj = {};
     const sr = [];
-    if (this.recording.recordingUrls && this.recording.recordingUrls.items) {
-      this.urls = this.recording.recordingUrls.items;
+    if (this.recording.recordings && this.recording.recordings.items) {
+      this.urls = this.recording.recordings.items;
 
-      this.recording.recordingUrls.items.forEach(r => {
+      this.recording.recordings.items.forEach(r => {
         if (!sobj[r.camera]) {
           sobj[r.camera] = [];
         }
@@ -87,22 +87,22 @@ export class RecordingDetailsComponent implements OnInit {
   }
 
   private async loadLogs(id) {
-    const filter: ModelViqRecordingLogFilterInput = {viqRecordingLogViqRecordingId: {eq: id}};
-    const xx = await this.api.ListViqRecordingLogs(filter, 200);
+    const filter: ModelLogFilterInput = {logCaseId: {eq: id}};
+    const xx = await this.api.ListLogs(filter, 200);
     this.logs = xx.items;
   }
 
   async updateRecording(recording) {
     try {
-      let result = await this.api.UpdateViqRecording(recording);
+      let result = await this.api.UpdateRecording(recording);
     } catch (e) {
       console.log(e);
     }
 
   }
 
-  async getRecording(id) {
-    return await this.api.GetViqRecording(id);
+  async getCase(id) {
+    return await this.api.GetCase(id);
   }
 
 
@@ -164,10 +164,12 @@ export class RecordingDetailsComponent implements OnInit {
     const input = {
         id: '',
         submitTime: this.dateTimeHelper.format(new Date()),
-        viqRecordingTranscriptionViqRecordingId: this.recording.id
+        transcriptionFileUrl:'',
+        status:'',
+        transcriptionRecordingId: this.recording.id
       }
     ;
-    this.api.CreateViqRecordingTranscription(input).then(r => {
+    this.api.CreateTranscription(input).then(r => {
       this.messageService.add({
         severity: 'success',
         summary: '',

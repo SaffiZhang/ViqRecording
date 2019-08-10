@@ -5,7 +5,7 @@ import API, { graphqlOperation } from "@aws-amplify/api";
 import { GraphQLResult } from "@aws-amplify/api/lib/types";
 import * as Observable from "zen-observable";
 
-export type CreateCaseInput = {
+export type CreateRecordingInput = {
   id?: string | null;
   interviewee: string;
   interviewFinish: string;
@@ -16,7 +16,7 @@ export type CreateCaseInput = {
   path: string;
 };
 
-export type UpdateCaseInput = {
+export type UpdateRecordingInput = {
   id: string;
   interviewee?: string | null;
   interviewFinish?: string | null;
@@ -27,11 +27,11 @@ export type UpdateCaseInput = {
   path?: string | null;
 };
 
-export type DeleteCaseInput = {
+export type DeleteRecordingInput = {
   id?: string | null;
 };
 
-export type CreateRecordingInput = {
+export type CreateUrlInput = {
   id?: string | null;
   url: string;
   bucket: string;
@@ -40,10 +40,10 @@ export type CreateRecordingInput = {
   description: string;
   camera: string;
   version: string;
-  recordingCaseId?: string | null;
+  urlRecordingId?: string | null;
 };
 
-export type UpdateRecordingInput = {
+export type UpdateUrlInput = {
   id: string;
   url?: string | null;
   bucket?: string | null;
@@ -52,10 +52,10 @@ export type UpdateRecordingInput = {
   description?: string | null;
   camera?: string | null;
   version?: string | null;
-  recordingCaseId?: string | null;
+  urlRecordingId?: string | null;
 };
 
-export type DeleteRecordingInput = {
+export type DeleteUrlInput = {
   id?: string | null;
 };
 
@@ -65,7 +65,7 @@ export type CreateAttachmentInput = {
   url: string;
   updatedDateTime: string;
   updatedBy: string;
-  attachmentCaseId?: string | null;
+  attachmentRecordingId?: string | null;
 };
 
 export type UpdateAttachmentInput = {
@@ -74,7 +74,7 @@ export type UpdateAttachmentInput = {
   url?: string | null;
   updatedDateTime?: string | null;
   updatedBy?: string | null;
-  attachmentCaseId?: string | null;
+  attachmentRecordingId?: string | null;
 };
 
 export type DeleteAttachmentInput = {
@@ -89,7 +89,7 @@ export type CreateBookmarkInput = {
   content: string;
   updatedDateTime?: string | null;
   updatedBy?: string | null;
-  bookmarkCaseId?: string | null;
+  bookmarkRecordingId?: string | null;
 };
 
 export type UpdateBookmarkInput = {
@@ -100,7 +100,7 @@ export type UpdateBookmarkInput = {
   content?: string | null;
   updatedDateTime?: string | null;
   updatedBy?: string | null;
-  bookmarkCaseId?: string | null;
+  bookmarkRecordingId?: string | null;
 };
 
 export type DeleteBookmarkInput = {
@@ -114,7 +114,7 @@ export type CreateRedactionInput = {
   updatedDateTime?: string | null;
   updatedBy?: string | null;
   status: string;
-  redactionRecordingId?: string | null;
+  redactionUrlId?: string | null;
 };
 
 export type UpdateRedactionInput = {
@@ -124,7 +124,7 @@ export type UpdateRedactionInput = {
   updatedDateTime?: string | null;
   updatedBy?: string | null;
   status?: string | null;
-  redactionRecordingId?: string | null;
+  redactionUrlId?: string | null;
 };
 
 export type DeleteRedactionInput = {
@@ -165,7 +165,7 @@ export type CreateSharedInput = {
   urls: Array<string | null>;
   status: string;
   description: string;
-  sharedCaseId?: string | null;
+  sharedRecordingId?: string | null;
 };
 
 export type UpdateSharedInput = {
@@ -180,7 +180,7 @@ export type UpdateSharedInput = {
   urls?: Array<string | null> | null;
   status?: string | null;
   description?: string | null;
-  sharedCaseId?: string | null;
+  sharedRecordingId?: string | null;
 };
 
 export type DeleteSharedInput = {
@@ -192,7 +192,7 @@ export type CreateTranscriptionInput = {
   submitTime: string;
   transcriptionFileUrl: string;
   status: string;
-  transcriptionCaseId?: string | null;
+  transcriptionRecordingId?: string | null;
 };
 
 export type UpdateTranscriptionInput = {
@@ -200,7 +200,7 @@ export type UpdateTranscriptionInput = {
   submitTime?: string | null;
   transcriptionFileUrl?: string | null;
   status?: string | null;
-  transcriptionCaseId?: string | null;
+  transcriptionRecordingId?: string | null;
 };
 
 export type DeleteTranscriptionInput = {
@@ -214,7 +214,7 @@ export type CreateLogInput = {
   userName: string;
   recordId: string;
   tableName: string;
-  logCaseId?: string | null;
+  logRecordingId?: string | null;
 };
 
 export type UpdateLogInput = {
@@ -224,14 +224,14 @@ export type UpdateLogInput = {
   userName?: string | null;
   recordId?: string | null;
   tableName?: string | null;
-  logCaseId?: string | null;
+  logRecordingId?: string | null;
 };
 
 export type DeleteLogInput = {
   id?: string | null;
 };
 
-export type ModelCaseFilterInput = {
+export type ModelRecordingFilterInput = {
   id?: ModelStringFilterInput | null;
   interviewee?: ModelStringFilterInput | null;
   interviewFinish?: ModelStringFilterInput | null;
@@ -240,9 +240,9 @@ export type ModelCaseFilterInput = {
   location?: ModelStringFilterInput | null;
   unitId?: ModelStringFilterInput | null;
   path?: ModelStringFilterInput | null;
-  and?: Array<ModelCaseFilterInput | null> | null;
-  or?: Array<ModelCaseFilterInput | null> | null;
-  not?: ModelCaseFilterInput | null;
+  and?: Array<ModelRecordingFilterInput | null> | null;
+  or?: Array<ModelRecordingFilterInput | null> | null;
+  not?: ModelRecordingFilterInput | null;
 };
 
 export type ModelStringFilterInput = {
@@ -258,7 +258,7 @@ export type ModelStringFilterInput = {
   beginsWith?: string | null;
 };
 
-export type ModelRecordingFilterInput = {
+export type ModelUrlFilterInput = {
   id?: ModelIDFilterInput | null;
   url?: ModelStringFilterInput | null;
   bucket?: ModelStringFilterInput | null;
@@ -267,10 +267,9 @@ export type ModelRecordingFilterInput = {
   description?: ModelStringFilterInput | null;
   camera?: ModelStringFilterInput | null;
   version?: ModelStringFilterInput | null;
-  recordingCaseId?:ModelStringFilterInput | null;
-  and?: Array<ModelRecordingFilterInput | null> | null;
-  or?: Array<ModelRecordingFilterInput | null> | null;
-  not?: ModelRecordingFilterInput | null;
+  and?: Array<ModelUrlFilterInput | null> | null;
+  or?: Array<ModelUrlFilterInput | null> | null;
+  not?: ModelUrlFilterInput | null;
 };
 
 export type ModelIDFilterInput = {
@@ -290,7 +289,6 @@ export type ModelAttachmentFilterInput = {
   id?: ModelIDFilterInput | null;
   description?: ModelStringFilterInput | null;
   url?: ModelStringFilterInput | null;
-  attachmentCaseId:ModelStringFilterInput | null;
   updatedDateTime?: ModelStringFilterInput | null;
   updatedBy?: ModelStringFilterInput | null;
   and?: Array<ModelAttachmentFilterInput | null> | null;
@@ -306,7 +304,6 @@ export type ModelBookmarkFilterInput = {
   content?: ModelStringFilterInput | null;
   updatedDateTime?: ModelStringFilterInput | null;
   updatedBy?: ModelStringFilterInput | null;
-  bookmarkCaseId:ModelStringFilterInput | null;
   and?: Array<ModelBookmarkFilterInput | null> | null;
   or?: Array<ModelBookmarkFilterInput | null> | null;
   not?: ModelBookmarkFilterInput | null;
@@ -331,7 +328,6 @@ export type ModelRedactionFilterInput = {
   updatedDateTime?: ModelStringFilterInput | null;
   updatedBy?: ModelStringFilterInput | null;
   status?: ModelStringFilterInput | null;
-  redactionRecordingId:ModelStringFilterInput | null;
   and?: Array<ModelRedactionFilterInput | null> | null;
   or?: Array<ModelRedactionFilterInput | null> | null;
   not?: ModelRedactionFilterInput | null;
@@ -343,7 +339,6 @@ export type ModelRedactionIntervalFilterInput = {
   startSecond?: ModelIntFilterInput | null;
   endSecond?: ModelIntFilterInput | null;
   type?: ModelStringFilterInput | null;
-  redactionIntervalRedationId?:ModelStringFilterInput | null;
   and?: Array<ModelRedactionIntervalFilterInput | null> | null;
   or?: Array<ModelRedactionIntervalFilterInput | null> | null;
   not?: ModelRedactionIntervalFilterInput | null;
@@ -358,7 +353,6 @@ export type ModelSharedFilterInput = {
   receiver_type?: ModelStringFilterInput | null;
   expiry_date?: ModelStringFilterInput | null;
   token?: ModelStringFilterInput | null;
-  sharedCaseId?:ModelStringFilterInput | null;
   urls?: ModelStringFilterInput | null;
   status?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
@@ -372,7 +366,6 @@ export type ModelTranscriptionFilterInput = {
   submitTime?: ModelStringFilterInput | null;
   transcriptionFileUrl?: ModelStringFilterInput | null;
   status?: ModelStringFilterInput | null;
-  transcriptionCaseId:ModelStringFilterInput | null;
   and?: Array<ModelTranscriptionFilterInput | null> | null;
   or?: Array<ModelTranscriptionFilterInput | null> | null;
   not?: ModelTranscriptionFilterInput | null;
@@ -385,419 +378,298 @@ export type ModelLogFilterInput = {
   userName?: ModelStringFilterInput | null;
   recordId?: ModelStringFilterInput | null;
   tableName?: ModelStringFilterInput | null;
-  logCaseId?:ModelStringFilterInput | null;
   and?: Array<ModelLogFilterInput | null> | null;
   or?: Array<ModelLogFilterInput | null> | null;
   not?: ModelLogFilterInput | null;
 };
 
-export type CreateCaseMutation = {
-  __typename: "Case";
-  id: string;
-  interviewee: string;
-  interviewFinish: string;
-  interviewStart: string;
-  officerCollarNumber: string;
-  location: string;
-  unitId: string;
-  path: string;
-  attachments: {
-    __typename: "ModelAttachmentConnection";
-    items: Array<{
-      __typename: "Attachment";
-      id: string;
-      description: string;
-      url: string;
-      updatedDateTime: string;
-      updatedBy: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  recordings: {
-    __typename: "ModelRecordingConnection";
-    items: Array<{
-      __typename: "Recording";
-      id: string;
-      url: string;
-      bucket: string;
-      key: string;
-      lastmodified: string;
-      description: string;
-      camera: string;
-      version: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  logs: {
-    __typename: "ModelLogConnection";
-    items: Array<{
-      __typename: "Log";
-      id: string;
-      dateTime: string;
-      description: string;
-      userName: string;
-      recordId: string;
-      tableName: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  transcriptions: {
-    __typename: "ModelTranscriptionConnection";
-    items: Array<{
-      __typename: "Transcription";
-      id: string;
-      submitTime: string;
-      transcriptionFileUrl: string;
-      status: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  bookmarks: {
-    __typename: "ModelBookmarkConnection";
-    items: Array<{
-      __typename: "Bookmark";
-      id: string;
-      order: number;
-      dateTime: string;
-      speaker: string | null;
-      content: string;
-      updatedDateTime: string | null;
-      updatedBy: string | null;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  shareds: {
-    __typename: "ModelSharedConnection";
-    items: Array<{
-      __typename: "Shared";
-      id: string;
-      createdDateTime: string;
-      createdBy: string;
-      receiver: string;
-      receiver_email: string;
-      receiver_type: string;
-      expiry_date: string;
-      token: string;
-      urls: Array<string | null>;
-      status: string;
-      description: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-};
-
-export type UpdateCaseMutation = {
-  __typename: "Case";
-  id: string;
-  interviewee: string;
-  interviewFinish: string;
-  interviewStart: string;
-  officerCollarNumber: string;
-  location: string;
-  unitId: string;
-  path: string;
-  attachments: {
-    __typename: "ModelAttachmentConnection";
-    items: Array<{
-      __typename: "Attachment";
-      id: string;
-      description: string;
-      url: string;
-      updatedDateTime: string;
-      updatedBy: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  recordings: {
-    __typename: "ModelRecordingConnection";
-    items: Array<{
-      __typename: "Recording";
-      id: string;
-      url: string;
-      bucket: string;
-      key: string;
-      lastmodified: string;
-      description: string;
-      camera: string;
-      version: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  logs: {
-    __typename: "ModelLogConnection";
-    items: Array<{
-      __typename: "Log";
-      id: string;
-      dateTime: string;
-      description: string;
-      userName: string;
-      recordId: string;
-      tableName: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  transcriptions: {
-    __typename: "ModelTranscriptionConnection";
-    items: Array<{
-      __typename: "Transcription";
-      id: string;
-      submitTime: string;
-      transcriptionFileUrl: string;
-      status: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  bookmarks: {
-    __typename: "ModelBookmarkConnection";
-    items: Array<{
-      __typename: "Bookmark";
-      id: string;
-      order: number;
-      dateTime: string;
-      speaker: string | null;
-      content: string;
-      updatedDateTime: string | null;
-      updatedBy: string | null;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  shareds: {
-    __typename: "ModelSharedConnection";
-    items: Array<{
-      __typename: "Shared";
-      id: string;
-      createdDateTime: string;
-      createdBy: string;
-      receiver: string;
-      receiver_email: string;
-      receiver_type: string;
-      expiry_date: string;
-      token: string;
-      urls: Array<string | null>;
-      status: string;
-      description: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-};
-
-export type DeleteCaseMutation = {
-  __typename: "Case";
-  id: string;
-  interviewee: string;
-  interviewFinish: string;
-  interviewStart: string;
-  officerCollarNumber: string;
-  location: string;
-  unitId: string;
-  path: string;
-  attachments: {
-    __typename: "ModelAttachmentConnection";
-    items: Array<{
-      __typename: "Attachment";
-      id: string;
-      description: string;
-      url: string;
-      updatedDateTime: string;
-      updatedBy: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  recordings: {
-    __typename: "ModelRecordingConnection";
-    items: Array<{
-      __typename: "Recording";
-      id: string;
-      url: string;
-      bucket: string;
-      key: string;
-      lastmodified: string;
-      description: string;
-      camera: string;
-      version: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  logs: {
-    __typename: "ModelLogConnection";
-    items: Array<{
-      __typename: "Log";
-      id: string;
-      dateTime: string;
-      description: string;
-      userName: string;
-      recordId: string;
-      tableName: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  transcriptions: {
-    __typename: "ModelTranscriptionConnection";
-    items: Array<{
-      __typename: "Transcription";
-      id: string;
-      submitTime: string;
-      transcriptionFileUrl: string;
-      status: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  bookmarks: {
-    __typename: "ModelBookmarkConnection";
-    items: Array<{
-      __typename: "Bookmark";
-      id: string;
-      order: number;
-      dateTime: string;
-      speaker: string | null;
-      content: string;
-      updatedDateTime: string | null;
-      updatedBy: string | null;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  shareds: {
-    __typename: "ModelSharedConnection";
-    items: Array<{
-      __typename: "Shared";
-      id: string;
-      createdDateTime: string;
-      createdBy: string;
-      receiver: string;
-      receiver_email: string;
-      receiver_type: string;
-      expiry_date: string;
-      token: string;
-      urls: Array<string | null>;
-      status: string;
-      description: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-};
-
 export type CreateRecordingMutation = {
   __typename: "Recording";
   id: string;
-  url: string;
-  bucket: string;
-  key: string;
-  lastmodified: string;
-  description: string;
-  camera: string;
-  version: string;
-  redactions: {
-    __typename: "ModelRedactionConnection";
+  interviewee: string;
+  interviewFinish: string;
+  interviewStart: string;
+  officerCollarNumber: string;
+  location: string;
+  unitId: string;
+  path: string;
+  attachments: {
+    __typename: "ModelAttachmentConnection";
     items: Array<{
-      __typename: "Redaction";
+      __typename: "Attachment";
       id: string;
-      redactionVersion: string;
       description: string;
-      updatedDateTime: string | null;
-      updatedBy: string | null;
+      url: string;
+      updatedDateTime: string;
+      updatedBy: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  urls: {
+    __typename: "ModelUrlConnection";
+    items: Array<{
+      __typename: "Url";
+      id: string;
+      url: string;
+      bucket: string;
+      key: string;
+      lastmodified: string;
+      description: string;
+      camera: string;
+      version: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  logs: {
+    __typename: "ModelLogConnection";
+    items: Array<{
+      __typename: "Log";
+      id: string;
+      dateTime: string;
+      description: string;
+      userName: string;
+      recordId: string;
+      tableName: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  transcriptions: {
+    __typename: "ModelTranscriptionConnection";
+    items: Array<{
+      __typename: "Transcription";
+      id: string;
+      submitTime: string;
+      transcriptionFileUrl: string;
       status: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
-  case: {
-    __typename: "Case";
-    id: string;
-    interviewee: string;
-    interviewFinish: string;
-    interviewStart: string;
-    officerCollarNumber: string;
-    location: string;
-    unitId: string;
-    path: string;
-    attachments: {
-      __typename: "ModelAttachmentConnection";
-      nextToken: string | null;
-    } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
-      nextToken: string | null;
-    } | null;
-    logs: {
-      __typename: "ModelLogConnection";
-      nextToken: string | null;
-    } | null;
-    transcriptions: {
-      __typename: "ModelTranscriptionConnection";
-      nextToken: string | null;
-    } | null;
-    bookmarks: {
-      __typename: "ModelBookmarkConnection";
-      nextToken: string | null;
-    } | null;
-    shareds: {
-      __typename: "ModelSharedConnection";
-      nextToken: string | null;
-    } | null;
+  bookmarks: {
+    __typename: "ModelBookmarkConnection";
+    items: Array<{
+      __typename: "Bookmark";
+      id: string;
+      order: number;
+      dateTime: string;
+      speaker: string | null;
+      content: string;
+      updatedDateTime: string | null;
+      updatedBy: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  shareds: {
+    __typename: "ModelSharedConnection";
+    items: Array<{
+      __typename: "Shared";
+      id: string;
+      createdDateTime: string;
+      createdBy: string;
+      receiver: string;
+      receiver_email: string;
+      receiver_type: string;
+      expiry_date: string;
+      token: string;
+      urls: Array<string | null>;
+      status: string;
+      description: string;
+    } | null> | null;
+    nextToken: string | null;
   } | null;
 };
 
 export type UpdateRecordingMutation = {
   __typename: "Recording";
   id: string;
-  url: string;
-  bucket: string;
-  key: string;
-  lastmodified: string;
-  description: string;
-  camera: string;
-  version: string;
-  redactions: {
-    __typename: "ModelRedactionConnection";
+  interviewee: string;
+  interviewFinish: string;
+  interviewStart: string;
+  officerCollarNumber: string;
+  location: string;
+  unitId: string;
+  path: string;
+  attachments: {
+    __typename: "ModelAttachmentConnection";
     items: Array<{
-      __typename: "Redaction";
+      __typename: "Attachment";
       id: string;
-      redactionVersion: string;
       description: string;
-      updatedDateTime: string | null;
-      updatedBy: string | null;
+      url: string;
+      updatedDateTime: string;
+      updatedBy: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  urls: {
+    __typename: "ModelUrlConnection";
+    items: Array<{
+      __typename: "Url";
+      id: string;
+      url: string;
+      bucket: string;
+      key: string;
+      lastmodified: string;
+      description: string;
+      camera: string;
+      version: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  logs: {
+    __typename: "ModelLogConnection";
+    items: Array<{
+      __typename: "Log";
+      id: string;
+      dateTime: string;
+      description: string;
+      userName: string;
+      recordId: string;
+      tableName: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  transcriptions: {
+    __typename: "ModelTranscriptionConnection";
+    items: Array<{
+      __typename: "Transcription";
+      id: string;
+      submitTime: string;
+      transcriptionFileUrl: string;
       status: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
-  case: {
-    __typename: "Case";
-    id: string;
-    interviewee: string;
-    interviewFinish: string;
-    interviewStart: string;
-    officerCollarNumber: string;
-    location: string;
-    unitId: string;
-    path: string;
-    attachments: {
-      __typename: "ModelAttachmentConnection";
-      nextToken: string | null;
-    } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
-      nextToken: string | null;
-    } | null;
-    logs: {
-      __typename: "ModelLogConnection";
-      nextToken: string | null;
-    } | null;
-    transcriptions: {
-      __typename: "ModelTranscriptionConnection";
-      nextToken: string | null;
-    } | null;
-    bookmarks: {
-      __typename: "ModelBookmarkConnection";
-      nextToken: string | null;
-    } | null;
-    shareds: {
-      __typename: "ModelSharedConnection";
-      nextToken: string | null;
-    } | null;
+  bookmarks: {
+    __typename: "ModelBookmarkConnection";
+    items: Array<{
+      __typename: "Bookmark";
+      id: string;
+      order: number;
+      dateTime: string;
+      speaker: string | null;
+      content: string;
+      updatedDateTime: string | null;
+      updatedBy: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  shareds: {
+    __typename: "ModelSharedConnection";
+    items: Array<{
+      __typename: "Shared";
+      id: string;
+      createdDateTime: string;
+      createdBy: string;
+      receiver: string;
+      receiver_email: string;
+      receiver_type: string;
+      expiry_date: string;
+      token: string;
+      urls: Array<string | null>;
+      status: string;
+      description: string;
+    } | null> | null;
+    nextToken: string | null;
   } | null;
 };
 
 export type DeleteRecordingMutation = {
   __typename: "Recording";
+  id: string;
+  interviewee: string;
+  interviewFinish: string;
+  interviewStart: string;
+  officerCollarNumber: string;
+  location: string;
+  unitId: string;
+  path: string;
+  attachments: {
+    __typename: "ModelAttachmentConnection";
+    items: Array<{
+      __typename: "Attachment";
+      id: string;
+      description: string;
+      url: string;
+      updatedDateTime: string;
+      updatedBy: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  urls: {
+    __typename: "ModelUrlConnection";
+    items: Array<{
+      __typename: "Url";
+      id: string;
+      url: string;
+      bucket: string;
+      key: string;
+      lastmodified: string;
+      description: string;
+      camera: string;
+      version: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  logs: {
+    __typename: "ModelLogConnection";
+    items: Array<{
+      __typename: "Log";
+      id: string;
+      dateTime: string;
+      description: string;
+      userName: string;
+      recordId: string;
+      tableName: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  transcriptions: {
+    __typename: "ModelTranscriptionConnection";
+    items: Array<{
+      __typename: "Transcription";
+      id: string;
+      submitTime: string;
+      transcriptionFileUrl: string;
+      status: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  bookmarks: {
+    __typename: "ModelBookmarkConnection";
+    items: Array<{
+      __typename: "Bookmark";
+      id: string;
+      order: number;
+      dateTime: string;
+      speaker: string | null;
+      content: string;
+      updatedDateTime: string | null;
+      updatedBy: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  shareds: {
+    __typename: "ModelSharedConnection";
+    items: Array<{
+      __typename: "Shared";
+      id: string;
+      createdDateTime: string;
+      createdBy: string;
+      receiver: string;
+      receiver_email: string;
+      receiver_type: string;
+      expiry_date: string;
+      token: string;
+      urls: Array<string | null>;
+      status: string;
+      description: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+};
+
+export type CreateUrlMutation = {
+  __typename: "Url";
   id: string;
   url: string;
   bucket: string;
@@ -819,8 +691,8 @@ export type DeleteRecordingMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -833,8 +705,128 @@ export type DeleteRecordingMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+    bookmarks: {
+      __typename: "ModelBookmarkConnection";
+      nextToken: string | null;
+    } | null;
+    shareds: {
+      __typename: "ModelSharedConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type UpdateUrlMutation = {
+  __typename: "Url";
+  id: string;
+  url: string;
+  bucket: string;
+  key: string;
+  lastmodified: string;
+  description: string;
+  camera: string;
+  version: string;
+  redactions: {
+    __typename: "ModelRedactionConnection";
+    items: Array<{
+      __typename: "Redaction";
+      id: string;
+      redactionVersion: string;
+      description: string;
+      updatedDateTime: string | null;
+      updatedBy: string | null;
+      status: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  recording: {
+    __typename: "Recording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    path: string;
+    attachments: {
+      __typename: "ModelAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    urls: {
+      __typename: "ModelUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+    bookmarks: {
+      __typename: "ModelBookmarkConnection";
+      nextToken: string | null;
+    } | null;
+    shareds: {
+      __typename: "ModelSharedConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type DeleteUrlMutation = {
+  __typename: "Url";
+  id: string;
+  url: string;
+  bucket: string;
+  key: string;
+  lastmodified: string;
+  description: string;
+  camera: string;
+  version: string;
+  redactions: {
+    __typename: "ModelRedactionConnection";
+    items: Array<{
+      __typename: "Redaction";
+      id: string;
+      redactionVersion: string;
+      description: string;
+      updatedDateTime: string | null;
+      updatedBy: string | null;
+      status: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  recording: {
+    __typename: "Recording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    path: string;
+    attachments: {
+      __typename: "ModelAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -863,8 +855,8 @@ export type CreateAttachmentMutation = {
   url: string;
   updatedDateTime: string;
   updatedBy: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -877,8 +869,8 @@ export type CreateAttachmentMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -907,8 +899,8 @@ export type UpdateAttachmentMutation = {
   url: string;
   updatedDateTime: string;
   updatedBy: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -921,8 +913,8 @@ export type UpdateAttachmentMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -951,8 +943,8 @@ export type DeleteAttachmentMutation = {
   url: string;
   updatedDateTime: string;
   updatedBy: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -965,8 +957,8 @@ export type DeleteAttachmentMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -997,8 +989,8 @@ export type CreateBookmarkMutation = {
   content: string;
   updatedDateTime: string | null;
   updatedBy: string | null;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -1011,8 +1003,8 @@ export type CreateBookmarkMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -1043,8 +1035,8 @@ export type UpdateBookmarkMutation = {
   content: string;
   updatedDateTime: string | null;
   updatedBy: string | null;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -1057,8 +1049,8 @@ export type UpdateBookmarkMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -1089,8 +1081,8 @@ export type DeleteBookmarkMutation = {
   content: string;
   updatedDateTime: string | null;
   updatedBy: string | null;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -1103,8 +1095,8 @@ export type DeleteBookmarkMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -1134,8 +1126,8 @@ export type CreateRedactionMutation = {
   updatedDateTime: string | null;
   updatedBy: string | null;
   status: string;
-  recording: {
-    __typename: "Recording";
+  url: {
+    __typename: "Url";
     id: string;
     url: string;
     bucket: string;
@@ -1148,8 +1140,8 @@ export type CreateRedactionMutation = {
       __typename: "ModelRedactionConnection";
       nextToken: string | null;
     } | null;
-    case: {
-      __typename: "Case";
+    recording: {
+      __typename: "Recording";
       id: string;
       interviewee: string;
       interviewFinish: string;
@@ -1182,8 +1174,8 @@ export type UpdateRedactionMutation = {
   updatedDateTime: string | null;
   updatedBy: string | null;
   status: string;
-  recording: {
-    __typename: "Recording";
+  url: {
+    __typename: "Url";
     id: string;
     url: string;
     bucket: string;
@@ -1196,8 +1188,8 @@ export type UpdateRedactionMutation = {
       __typename: "ModelRedactionConnection";
       nextToken: string | null;
     } | null;
-    case: {
-      __typename: "Case";
+    recording: {
+      __typename: "Recording";
       id: string;
       interviewee: string;
       interviewFinish: string;
@@ -1230,8 +1222,8 @@ export type DeleteRedactionMutation = {
   updatedDateTime: string | null;
   updatedBy: string | null;
   status: string;
-  recording: {
-    __typename: "Recording";
+  url: {
+    __typename: "Url";
     id: string;
     url: string;
     bucket: string;
@@ -1244,8 +1236,8 @@ export type DeleteRedactionMutation = {
       __typename: "ModelRedactionConnection";
       nextToken: string | null;
     } | null;
-    case: {
-      __typename: "Case";
+    recording: {
+      __typename: "Recording";
       id: string;
       interviewee: string;
       interviewFinish: string;
@@ -1285,8 +1277,8 @@ export type CreateRedactionIntervalMutation = {
     updatedDateTime: string | null;
     updatedBy: string | null;
     status: string;
-    recording: {
-      __typename: "Recording";
+    url: {
+      __typename: "Url";
       id: string;
       url: string;
       bucket: string;
@@ -1318,8 +1310,8 @@ export type UpdateRedactionIntervalMutation = {
     updatedDateTime: string | null;
     updatedBy: string | null;
     status: string;
-    recording: {
-      __typename: "Recording";
+    url: {
+      __typename: "Url";
       id: string;
       url: string;
       bucket: string;
@@ -1351,8 +1343,8 @@ export type DeleteRedactionIntervalMutation = {
     updatedDateTime: string | null;
     updatedBy: string | null;
     status: string;
-    recording: {
-      __typename: "Recording";
+    url: {
+      __typename: "Url";
       id: string;
       url: string;
       bucket: string;
@@ -1382,8 +1374,8 @@ export type CreateSharedMutation = {
   urls: Array<string | null>;
   status: string;
   description: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -1396,8 +1388,8 @@ export type CreateSharedMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -1432,8 +1424,8 @@ export type UpdateSharedMutation = {
   urls: Array<string | null>;
   status: string;
   description: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -1446,8 +1438,8 @@ export type UpdateSharedMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -1482,8 +1474,8 @@ export type DeleteSharedMutation = {
   urls: Array<string | null>;
   status: string;
   description: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -1496,8 +1488,8 @@ export type DeleteSharedMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -1525,8 +1517,8 @@ export type CreateTranscriptionMutation = {
   submitTime: string;
   transcriptionFileUrl: string;
   status: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -1539,8 +1531,8 @@ export type CreateTranscriptionMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -1568,8 +1560,8 @@ export type UpdateTranscriptionMutation = {
   submitTime: string;
   transcriptionFileUrl: string;
   status: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -1582,8 +1574,8 @@ export type UpdateTranscriptionMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -1611,8 +1603,8 @@ export type DeleteTranscriptionMutation = {
   submitTime: string;
   transcriptionFileUrl: string;
   status: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -1625,8 +1617,8 @@ export type DeleteTranscriptionMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -1656,8 +1648,8 @@ export type CreateLogMutation = {
   userName: string;
   recordId: string;
   tableName: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -1670,8 +1662,8 @@ export type CreateLogMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -1701,8 +1693,8 @@ export type UpdateLogMutation = {
   userName: string;
   recordId: string;
   tableName: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -1715,8 +1707,8 @@ export type UpdateLogMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -1746,8 +1738,8 @@ export type DeleteLogMutation = {
   userName: string;
   recordId: string;
   tableName: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -1760,8 +1752,8 @@ export type DeleteLogMutation = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -1783,8 +1775,8 @@ export type DeleteLogMutation = {
   } | null;
 };
 
-export type GetCaseQuery = {
-  __typename: "Case";
+export type GetRecordingQuery = {
+  __typename: "Recording";
   id: string;
   interviewee: string;
   interviewFinish: string;
@@ -1805,10 +1797,10 @@ export type GetCaseQuery = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  recordings: {
-    __typename: "ModelRecordingConnection";
+  urls: {
+    __typename: "ModelUrlConnection";
     items: Array<{
-      __typename: "Recording";
+      __typename: "Url";
       id: string;
       url: string;
       bucket: string;
@@ -1878,10 +1870,10 @@ export type GetCaseQuery = {
   } | null;
 };
 
-export type ListCasesQuery = {
-  __typename: "ModelCaseConnection";
+export type ListRecordingsQuery = {
+  __typename: "ModelRecordingConnection";
   items: Array<{
-    __typename: "Case";
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -1894,8 +1886,8 @@ export type ListCasesQuery = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -1918,8 +1910,8 @@ export type ListCasesQuery = {
   nextToken: string | null;
 };
 
-export type GetRecordingQuery = {
-  __typename: "Recording";
+export type GetUrlQuery = {
+  __typename: "Url";
   id: string;
   url: string;
   bucket: string;
@@ -1941,8 +1933,8 @@ export type GetRecordingQuery = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -1955,8 +1947,8 @@ export type GetRecordingQuery = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -1978,10 +1970,10 @@ export type GetRecordingQuery = {
   } | null;
 };
 
-export type ListRecordingsQuery = {
-  __typename: "ModelRecordingConnection";
+export type ListUrlsQuery = {
+  __typename: "ModelUrlConnection";
   items: Array<{
-    __typename: "Recording";
+    __typename: "Url";
     id: string;
     url: string;
     bucket: string;
@@ -1994,8 +1986,8 @@ export type ListRecordingsQuery = {
       __typename: "ModelRedactionConnection";
       nextToken: string | null;
     } | null;
-    case: {
-      __typename: "Case";
+    recording: {
+      __typename: "Recording";
       id: string;
       interviewee: string;
       interviewFinish: string;
@@ -2016,8 +2008,8 @@ export type GetAttachmentQuery = {
   url: string;
   updatedDateTime: string;
   updatedBy: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -2030,8 +2022,8 @@ export type GetAttachmentQuery = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -2062,8 +2054,8 @@ export type ListAttachmentsQuery = {
     url: string;
     updatedDateTime: string;
     updatedBy: string;
-    case: {
-      __typename: "Case";
+    recording: {
+      __typename: "Recording";
       id: string;
       interviewee: string;
       interviewFinish: string;
@@ -2086,8 +2078,8 @@ export type GetBookmarkQuery = {
   content: string;
   updatedDateTime: string | null;
   updatedBy: string | null;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -2100,8 +2092,8 @@ export type GetBookmarkQuery = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -2134,8 +2126,8 @@ export type ListBookmarksQuery = {
     content: string;
     updatedDateTime: string | null;
     updatedBy: string | null;
-    case: {
-      __typename: "Case";
+    recording: {
+      __typename: "Recording";
       id: string;
       interviewee: string;
       interviewFinish: string;
@@ -2157,8 +2149,8 @@ export type GetRedactionQuery = {
   updatedDateTime: string | null;
   updatedBy: string | null;
   status: string;
-  recording: {
-    __typename: "Recording";
+  url: {
+    __typename: "Url";
     id: string;
     url: string;
     bucket: string;
@@ -2171,8 +2163,8 @@ export type GetRedactionQuery = {
       __typename: "ModelRedactionConnection";
       nextToken: string | null;
     } | null;
-    case: {
-      __typename: "Case";
+    recording: {
+      __typename: "Recording";
       id: string;
       interviewee: string;
       interviewFinish: string;
@@ -2207,8 +2199,8 @@ export type ListRedactionsQuery = {
     updatedDateTime: string | null;
     updatedBy: string | null;
     status: string;
-    recording: {
-      __typename: "Recording";
+    url: {
+      __typename: "Url";
       id: string;
       url: string;
       bucket: string;
@@ -2241,8 +2233,8 @@ export type GetRedactionIntervalQuery = {
     updatedDateTime: string | null;
     updatedBy: string | null;
     status: string;
-    recording: {
-      __typename: "Recording";
+    url: {
+      __typename: "Url";
       id: string;
       url: string;
       bucket: string;
@@ -2294,8 +2286,8 @@ export type GetSharedQuery = {
   urls: Array<string | null>;
   status: string;
   description: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -2308,8 +2300,8 @@ export type GetSharedQuery = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -2346,8 +2338,8 @@ export type ListSharedsQuery = {
     urls: Array<string | null>;
     status: string;
     description: string;
-    case: {
-      __typename: "Case";
+    recording: {
+      __typename: "Recording";
       id: string;
       interviewee: string;
       interviewFinish: string;
@@ -2367,8 +2359,8 @@ export type GetTranscriptionQuery = {
   submitTime: string;
   transcriptionFileUrl: string;
   status: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -2381,8 +2373,8 @@ export type GetTranscriptionQuery = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -2412,8 +2404,8 @@ export type ListTranscriptionsQuery = {
     submitTime: string;
     transcriptionFileUrl: string;
     status: string;
-    case: {
-      __typename: "Case";
+    recording: {
+      __typename: "Recording";
       id: string;
       interviewee: string;
       interviewFinish: string;
@@ -2435,8 +2427,8 @@ export type GetLogQuery = {
   userName: string;
   recordId: string;
   tableName: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -2449,8 +2441,8 @@ export type GetLogQuery = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -2482,8 +2474,8 @@ export type ListLogsQuery = {
     userName: string;
     recordId: string;
     tableName: string;
-    case: {
-      __typename: "Case";
+    recording: {
+      __typename: "Recording";
       id: string;
       interviewee: string;
       interviewFinish: string;
@@ -2497,413 +2489,293 @@ export type ListLogsQuery = {
   nextToken: string | null;
 };
 
-export type OnCreateCaseSubscription = {
-  __typename: "Case";
-  id: string;
-  interviewee: string;
-  interviewFinish: string;
-  interviewStart: string;
-  officerCollarNumber: string;
-  location: string;
-  unitId: string;
-  path: string;
-  attachments: {
-    __typename: "ModelAttachmentConnection";
-    items: Array<{
-      __typename: "Attachment";
-      id: string;
-      description: string;
-      url: string;
-      updatedDateTime: string;
-      updatedBy: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  recordings: {
-    __typename: "ModelRecordingConnection";
-    items: Array<{
-      __typename: "Recording";
-      id: string;
-      url: string;
-      bucket: string;
-      key: string;
-      lastmodified: string;
-      description: string;
-      camera: string;
-      version: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  logs: {
-    __typename: "ModelLogConnection";
-    items: Array<{
-      __typename: "Log";
-      id: string;
-      dateTime: string;
-      description: string;
-      userName: string;
-      recordId: string;
-      tableName: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  transcriptions: {
-    __typename: "ModelTranscriptionConnection";
-    items: Array<{
-      __typename: "Transcription";
-      id: string;
-      submitTime: string;
-      transcriptionFileUrl: string;
-      status: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  bookmarks: {
-    __typename: "ModelBookmarkConnection";
-    items: Array<{
-      __typename: "Bookmark";
-      id: string;
-      order: number;
-      dateTime: string;
-      speaker: string | null;
-      content: string;
-      updatedDateTime: string | null;
-      updatedBy: string | null;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  shareds: {
-    __typename: "ModelSharedConnection";
-    items: Array<{
-      __typename: "Shared";
-      id: string;
-      createdDateTime: string;
-      createdBy: string;
-      receiver: string;
-      receiver_email: string;
-      receiver_type: string;
-      expiry_date: string;
-      token: string;
-      urls: Array<string | null>;
-      status: string;
-      description: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-};
-
-export type OnUpdateCaseSubscription = {
-  __typename: "Case";
-  id: string;
-  interviewee: string;
-  interviewFinish: string;
-  interviewStart: string;
-  officerCollarNumber: string;
-  location: string;
-  unitId: string;
-  path: string;
-  attachments: {
-    __typename: "ModelAttachmentConnection";
-    items: Array<{
-      __typename: "Attachment";
-      id: string;
-      description: string;
-      url: string;
-      updatedDateTime: string;
-      updatedBy: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  recordings: {
-    __typename: "ModelRecordingConnection";
-    items: Array<{
-      __typename: "Recording";
-      id: string;
-      url: string;
-      bucket: string;
-      key: string;
-      lastmodified: string;
-      description: string;
-      camera: string;
-      version: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  logs: {
-    __typename: "ModelLogConnection";
-    items: Array<{
-      __typename: "Log";
-      id: string;
-      dateTime: string;
-      description: string;
-      userName: string;
-      recordId: string;
-      tableName: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  transcriptions: {
-    __typename: "ModelTranscriptionConnection";
-    items: Array<{
-      __typename: "Transcription";
-      id: string;
-      submitTime: string;
-      transcriptionFileUrl: string;
-      status: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  bookmarks: {
-    __typename: "ModelBookmarkConnection";
-    items: Array<{
-      __typename: "Bookmark";
-      id: string;
-      order: number;
-      dateTime: string;
-      speaker: string | null;
-      content: string;
-      updatedDateTime: string | null;
-      updatedBy: string | null;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  shareds: {
-    __typename: "ModelSharedConnection";
-    items: Array<{
-      __typename: "Shared";
-      id: string;
-      createdDateTime: string;
-      createdBy: string;
-      receiver: string;
-      receiver_email: string;
-      receiver_type: string;
-      expiry_date: string;
-      token: string;
-      urls: Array<string | null>;
-      status: string;
-      description: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-};
-
-export type OnDeleteCaseSubscription = {
-  __typename: "Case";
-  id: string;
-  interviewee: string;
-  interviewFinish: string;
-  interviewStart: string;
-  officerCollarNumber: string;
-  location: string;
-  unitId: string;
-  path: string;
-  attachments: {
-    __typename: "ModelAttachmentConnection";
-    items: Array<{
-      __typename: "Attachment";
-      id: string;
-      description: string;
-      url: string;
-      updatedDateTime: string;
-      updatedBy: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  recordings: {
-    __typename: "ModelRecordingConnection";
-    items: Array<{
-      __typename: "Recording";
-      id: string;
-      url: string;
-      bucket: string;
-      key: string;
-      lastmodified: string;
-      description: string;
-      camera: string;
-      version: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  logs: {
-    __typename: "ModelLogConnection";
-    items: Array<{
-      __typename: "Log";
-      id: string;
-      dateTime: string;
-      description: string;
-      userName: string;
-      recordId: string;
-      tableName: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  transcriptions: {
-    __typename: "ModelTranscriptionConnection";
-    items: Array<{
-      __typename: "Transcription";
-      id: string;
-      submitTime: string;
-      transcriptionFileUrl: string;
-      status: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  bookmarks: {
-    __typename: "ModelBookmarkConnection";
-    items: Array<{
-      __typename: "Bookmark";
-      id: string;
-      order: number;
-      dateTime: string;
-      speaker: string | null;
-      content: string;
-      updatedDateTime: string | null;
-      updatedBy: string | null;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  shareds: {
-    __typename: "ModelSharedConnection";
-    items: Array<{
-      __typename: "Shared";
-      id: string;
-      createdDateTime: string;
-      createdBy: string;
-      receiver: string;
-      receiver_email: string;
-      receiver_type: string;
-      expiry_date: string;
-      token: string;
-      urls: Array<string | null>;
-      status: string;
-      description: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-};
-
 export type OnCreateRecordingSubscription = {
   __typename: "Recording";
   id: string;
-  url: string;
-  bucket: string;
-  key: string;
-  lastmodified: string;
-  description: string;
-  camera: string;
-  version: string;
-  redactions: {
-    __typename: "ModelRedactionConnection";
+  interviewee: string;
+  interviewFinish: string;
+  interviewStart: string;
+  officerCollarNumber: string;
+  location: string;
+  unitId: string;
+  path: string;
+  attachments: {
+    __typename: "ModelAttachmentConnection";
     items: Array<{
-      __typename: "Redaction";
+      __typename: "Attachment";
       id: string;
-      redactionVersion: string;
       description: string;
-      updatedDateTime: string | null;
-      updatedBy: string | null;
+      url: string;
+      updatedDateTime: string;
+      updatedBy: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  urls: {
+    __typename: "ModelUrlConnection";
+    items: Array<{
+      __typename: "Url";
+      id: string;
+      url: string;
+      bucket: string;
+      key: string;
+      lastmodified: string;
+      description: string;
+      camera: string;
+      version: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  logs: {
+    __typename: "ModelLogConnection";
+    items: Array<{
+      __typename: "Log";
+      id: string;
+      dateTime: string;
+      description: string;
+      userName: string;
+      recordId: string;
+      tableName: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  transcriptions: {
+    __typename: "ModelTranscriptionConnection";
+    items: Array<{
+      __typename: "Transcription";
+      id: string;
+      submitTime: string;
+      transcriptionFileUrl: string;
       status: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
-  case: {
-    __typename: "Case";
-    id: string;
-    interviewee: string;
-    interviewFinish: string;
-    interviewStart: string;
-    officerCollarNumber: string;
-    location: string;
-    unitId: string;
-    path: string;
-    attachments: {
-      __typename: "ModelAttachmentConnection";
-      nextToken: string | null;
-    } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
-      nextToken: string | null;
-    } | null;
-    logs: {
-      __typename: "ModelLogConnection";
-      nextToken: string | null;
-    } | null;
-    transcriptions: {
-      __typename: "ModelTranscriptionConnection";
-      nextToken: string | null;
-    } | null;
-    bookmarks: {
-      __typename: "ModelBookmarkConnection";
-      nextToken: string | null;
-    } | null;
-    shareds: {
-      __typename: "ModelSharedConnection";
-      nextToken: string | null;
-    } | null;
+  bookmarks: {
+    __typename: "ModelBookmarkConnection";
+    items: Array<{
+      __typename: "Bookmark";
+      id: string;
+      order: number;
+      dateTime: string;
+      speaker: string | null;
+      content: string;
+      updatedDateTime: string | null;
+      updatedBy: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  shareds: {
+    __typename: "ModelSharedConnection";
+    items: Array<{
+      __typename: "Shared";
+      id: string;
+      createdDateTime: string;
+      createdBy: string;
+      receiver: string;
+      receiver_email: string;
+      receiver_type: string;
+      expiry_date: string;
+      token: string;
+      urls: Array<string | null>;
+      status: string;
+      description: string;
+    } | null> | null;
+    nextToken: string | null;
   } | null;
 };
 
 export type OnUpdateRecordingSubscription = {
   __typename: "Recording";
   id: string;
-  url: string;
-  bucket: string;
-  key: string;
-  lastmodified: string;
-  description: string;
-  camera: string;
-  version: string;
-  redactions: {
-    __typename: "ModelRedactionConnection";
+  interviewee: string;
+  interviewFinish: string;
+  interviewStart: string;
+  officerCollarNumber: string;
+  location: string;
+  unitId: string;
+  path: string;
+  attachments: {
+    __typename: "ModelAttachmentConnection";
     items: Array<{
-      __typename: "Redaction";
+      __typename: "Attachment";
       id: string;
-      redactionVersion: string;
       description: string;
-      updatedDateTime: string | null;
-      updatedBy: string | null;
+      url: string;
+      updatedDateTime: string;
+      updatedBy: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  urls: {
+    __typename: "ModelUrlConnection";
+    items: Array<{
+      __typename: "Url";
+      id: string;
+      url: string;
+      bucket: string;
+      key: string;
+      lastmodified: string;
+      description: string;
+      camera: string;
+      version: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  logs: {
+    __typename: "ModelLogConnection";
+    items: Array<{
+      __typename: "Log";
+      id: string;
+      dateTime: string;
+      description: string;
+      userName: string;
+      recordId: string;
+      tableName: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  transcriptions: {
+    __typename: "ModelTranscriptionConnection";
+    items: Array<{
+      __typename: "Transcription";
+      id: string;
+      submitTime: string;
+      transcriptionFileUrl: string;
       status: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
-  case: {
-    __typename: "Case";
-    id: string;
-    interviewee: string;
-    interviewFinish: string;
-    interviewStart: string;
-    officerCollarNumber: string;
-    location: string;
-    unitId: string;
-    path: string;
-    attachments: {
-      __typename: "ModelAttachmentConnection";
-      nextToken: string | null;
-    } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
-      nextToken: string | null;
-    } | null;
-    logs: {
-      __typename: "ModelLogConnection";
-      nextToken: string | null;
-    } | null;
-    transcriptions: {
-      __typename: "ModelTranscriptionConnection";
-      nextToken: string | null;
-    } | null;
-    bookmarks: {
-      __typename: "ModelBookmarkConnection";
-      nextToken: string | null;
-    } | null;
-    shareds: {
-      __typename: "ModelSharedConnection";
-      nextToken: string | null;
-    } | null;
+  bookmarks: {
+    __typename: "ModelBookmarkConnection";
+    items: Array<{
+      __typename: "Bookmark";
+      id: string;
+      order: number;
+      dateTime: string;
+      speaker: string | null;
+      content: string;
+      updatedDateTime: string | null;
+      updatedBy: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  shareds: {
+    __typename: "ModelSharedConnection";
+    items: Array<{
+      __typename: "Shared";
+      id: string;
+      createdDateTime: string;
+      createdBy: string;
+      receiver: string;
+      receiver_email: string;
+      receiver_type: string;
+      expiry_date: string;
+      token: string;
+      urls: Array<string | null>;
+      status: string;
+      description: string;
+    } | null> | null;
+    nextToken: string | null;
   } | null;
 };
 
 export type OnDeleteRecordingSubscription = {
   __typename: "Recording";
+  id: string;
+  interviewee: string;
+  interviewFinish: string;
+  interviewStart: string;
+  officerCollarNumber: string;
+  location: string;
+  unitId: string;
+  path: string;
+  attachments: {
+    __typename: "ModelAttachmentConnection";
+    items: Array<{
+      __typename: "Attachment";
+      id: string;
+      description: string;
+      url: string;
+      updatedDateTime: string;
+      updatedBy: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  urls: {
+    __typename: "ModelUrlConnection";
+    items: Array<{
+      __typename: "Url";
+      id: string;
+      url: string;
+      bucket: string;
+      key: string;
+      lastmodified: string;
+      description: string;
+      camera: string;
+      version: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  logs: {
+    __typename: "ModelLogConnection";
+    items: Array<{
+      __typename: "Log";
+      id: string;
+      dateTime: string;
+      description: string;
+      userName: string;
+      recordId: string;
+      tableName: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  transcriptions: {
+    __typename: "ModelTranscriptionConnection";
+    items: Array<{
+      __typename: "Transcription";
+      id: string;
+      submitTime: string;
+      transcriptionFileUrl: string;
+      status: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  bookmarks: {
+    __typename: "ModelBookmarkConnection";
+    items: Array<{
+      __typename: "Bookmark";
+      id: string;
+      order: number;
+      dateTime: string;
+      speaker: string | null;
+      content: string;
+      updatedDateTime: string | null;
+      updatedBy: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  shareds: {
+    __typename: "ModelSharedConnection";
+    items: Array<{
+      __typename: "Shared";
+      id: string;
+      createdDateTime: string;
+      createdBy: string;
+      receiver: string;
+      receiver_email: string;
+      receiver_type: string;
+      expiry_date: string;
+      token: string;
+      urls: Array<string | null>;
+      status: string;
+      description: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+};
+
+export type OnCreateUrlSubscription = {
+  __typename: "Url";
   id: string;
   url: string;
   bucket: string;
@@ -2925,8 +2797,8 @@ export type OnDeleteRecordingSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -2939,8 +2811,128 @@ export type OnDeleteRecordingSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+    bookmarks: {
+      __typename: "ModelBookmarkConnection";
+      nextToken: string | null;
+    } | null;
+    shareds: {
+      __typename: "ModelSharedConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type OnUpdateUrlSubscription = {
+  __typename: "Url";
+  id: string;
+  url: string;
+  bucket: string;
+  key: string;
+  lastmodified: string;
+  description: string;
+  camera: string;
+  version: string;
+  redactions: {
+    __typename: "ModelRedactionConnection";
+    items: Array<{
+      __typename: "Redaction";
+      id: string;
+      redactionVersion: string;
+      description: string;
+      updatedDateTime: string | null;
+      updatedBy: string | null;
+      status: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  recording: {
+    __typename: "Recording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    path: string;
+    attachments: {
+      __typename: "ModelAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    urls: {
+      __typename: "ModelUrlConnection";
+      nextToken: string | null;
+    } | null;
+    logs: {
+      __typename: "ModelLogConnection";
+      nextToken: string | null;
+    } | null;
+    transcriptions: {
+      __typename: "ModelTranscriptionConnection";
+      nextToken: string | null;
+    } | null;
+    bookmarks: {
+      __typename: "ModelBookmarkConnection";
+      nextToken: string | null;
+    } | null;
+    shareds: {
+      __typename: "ModelSharedConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type OnDeleteUrlSubscription = {
+  __typename: "Url";
+  id: string;
+  url: string;
+  bucket: string;
+  key: string;
+  lastmodified: string;
+  description: string;
+  camera: string;
+  version: string;
+  redactions: {
+    __typename: "ModelRedactionConnection";
+    items: Array<{
+      __typename: "Redaction";
+      id: string;
+      redactionVersion: string;
+      description: string;
+      updatedDateTime: string | null;
+      updatedBy: string | null;
+      status: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  recording: {
+    __typename: "Recording";
+    id: string;
+    interviewee: string;
+    interviewFinish: string;
+    interviewStart: string;
+    officerCollarNumber: string;
+    location: string;
+    unitId: string;
+    path: string;
+    attachments: {
+      __typename: "ModelAttachmentConnection";
+      nextToken: string | null;
+    } | null;
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -2969,8 +2961,8 @@ export type OnCreateAttachmentSubscription = {
   url: string;
   updatedDateTime: string;
   updatedBy: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -2983,8 +2975,8 @@ export type OnCreateAttachmentSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -3013,8 +3005,8 @@ export type OnUpdateAttachmentSubscription = {
   url: string;
   updatedDateTime: string;
   updatedBy: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -3027,8 +3019,8 @@ export type OnUpdateAttachmentSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -3057,8 +3049,8 @@ export type OnDeleteAttachmentSubscription = {
   url: string;
   updatedDateTime: string;
   updatedBy: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -3071,8 +3063,8 @@ export type OnDeleteAttachmentSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -3103,8 +3095,8 @@ export type OnCreateBookmarkSubscription = {
   content: string;
   updatedDateTime: string | null;
   updatedBy: string | null;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -3117,8 +3109,8 @@ export type OnCreateBookmarkSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -3149,8 +3141,8 @@ export type OnUpdateBookmarkSubscription = {
   content: string;
   updatedDateTime: string | null;
   updatedBy: string | null;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -3163,8 +3155,8 @@ export type OnUpdateBookmarkSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -3195,8 +3187,8 @@ export type OnDeleteBookmarkSubscription = {
   content: string;
   updatedDateTime: string | null;
   updatedBy: string | null;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -3209,8 +3201,8 @@ export type OnDeleteBookmarkSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -3240,8 +3232,8 @@ export type OnCreateRedactionSubscription = {
   updatedDateTime: string | null;
   updatedBy: string | null;
   status: string;
-  recording: {
-    __typename: "Recording";
+  url: {
+    __typename: "Url";
     id: string;
     url: string;
     bucket: string;
@@ -3254,8 +3246,8 @@ export type OnCreateRedactionSubscription = {
       __typename: "ModelRedactionConnection";
       nextToken: string | null;
     } | null;
-    case: {
-      __typename: "Case";
+    recording: {
+      __typename: "Recording";
       id: string;
       interviewee: string;
       interviewFinish: string;
@@ -3288,8 +3280,8 @@ export type OnUpdateRedactionSubscription = {
   updatedDateTime: string | null;
   updatedBy: string | null;
   status: string;
-  recording: {
-    __typename: "Recording";
+  url: {
+    __typename: "Url";
     id: string;
     url: string;
     bucket: string;
@@ -3302,8 +3294,8 @@ export type OnUpdateRedactionSubscription = {
       __typename: "ModelRedactionConnection";
       nextToken: string | null;
     } | null;
-    case: {
-      __typename: "Case";
+    recording: {
+      __typename: "Recording";
       id: string;
       interviewee: string;
       interviewFinish: string;
@@ -3336,8 +3328,8 @@ export type OnDeleteRedactionSubscription = {
   updatedDateTime: string | null;
   updatedBy: string | null;
   status: string;
-  recording: {
-    __typename: "Recording";
+  url: {
+    __typename: "Url";
     id: string;
     url: string;
     bucket: string;
@@ -3350,8 +3342,8 @@ export type OnDeleteRedactionSubscription = {
       __typename: "ModelRedactionConnection";
       nextToken: string | null;
     } | null;
-    case: {
-      __typename: "Case";
+    recording: {
+      __typename: "Recording";
       id: string;
       interviewee: string;
       interviewFinish: string;
@@ -3391,8 +3383,8 @@ export type OnCreateRedactionIntervalSubscription = {
     updatedDateTime: string | null;
     updatedBy: string | null;
     status: string;
-    recording: {
-      __typename: "Recording";
+    url: {
+      __typename: "Url";
       id: string;
       url: string;
       bucket: string;
@@ -3424,8 +3416,8 @@ export type OnUpdateRedactionIntervalSubscription = {
     updatedDateTime: string | null;
     updatedBy: string | null;
     status: string;
-    recording: {
-      __typename: "Recording";
+    url: {
+      __typename: "Url";
       id: string;
       url: string;
       bucket: string;
@@ -3457,8 +3449,8 @@ export type OnDeleteRedactionIntervalSubscription = {
     updatedDateTime: string | null;
     updatedBy: string | null;
     status: string;
-    recording: {
-      __typename: "Recording";
+    url: {
+      __typename: "Url";
       id: string;
       url: string;
       bucket: string;
@@ -3488,8 +3480,8 @@ export type OnCreateSharedSubscription = {
   urls: Array<string | null>;
   status: string;
   description: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -3502,8 +3494,8 @@ export type OnCreateSharedSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -3538,8 +3530,8 @@ export type OnUpdateSharedSubscription = {
   urls: Array<string | null>;
   status: string;
   description: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -3552,8 +3544,8 @@ export type OnUpdateSharedSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -3588,8 +3580,8 @@ export type OnDeleteSharedSubscription = {
   urls: Array<string | null>;
   status: string;
   description: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -3602,8 +3594,8 @@ export type OnDeleteSharedSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -3631,8 +3623,8 @@ export type OnCreateTranscriptionSubscription = {
   submitTime: string;
   transcriptionFileUrl: string;
   status: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -3645,8 +3637,8 @@ export type OnCreateTranscriptionSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -3674,8 +3666,8 @@ export type OnUpdateTranscriptionSubscription = {
   submitTime: string;
   transcriptionFileUrl: string;
   status: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -3688,8 +3680,8 @@ export type OnUpdateTranscriptionSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -3717,8 +3709,8 @@ export type OnDeleteTranscriptionSubscription = {
   submitTime: string;
   transcriptionFileUrl: string;
   status: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -3731,8 +3723,8 @@ export type OnDeleteTranscriptionSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -3762,8 +3754,8 @@ export type OnCreateLogSubscription = {
   userName: string;
   recordId: string;
   tableName: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -3776,8 +3768,8 @@ export type OnCreateLogSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -3807,8 +3799,8 @@ export type OnUpdateLogSubscription = {
   userName: string;
   recordId: string;
   tableName: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -3821,8 +3813,8 @@ export type OnUpdateLogSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -3852,8 +3844,8 @@ export type OnDeleteLogSubscription = {
   userName: string;
   recordId: string;
   tableName: string;
-  case: {
-    __typename: "Case";
+  recording: {
+    __typename: "Recording";
     id: string;
     interviewee: string;
     interviewFinish: string;
@@ -3866,8 +3858,8 @@ export type OnDeleteLogSubscription = {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
     } | null;
-    recordings: {
-      __typename: "ModelRecordingConnection";
+    urls: {
+      __typename: "ModelUrlConnection";
       nextToken: string | null;
     } | null;
     logs: {
@@ -3893,321 +3885,6 @@ export type OnDeleteLogSubscription = {
   providedIn: "root"
 })
 export class APIService {
-  async CreateCase(input: CreateCaseInput): Promise<CreateCaseMutation> {
-    const statement = `mutation CreateCase($input: CreateCaseInput!) {
-        createCase(input: $input) {
-          __typename
-          id
-          interviewee
-          interviewFinish
-          interviewStart
-          officerCollarNumber
-          location
-          unitId
-          path
-          attachments {
-            __typename
-            items {
-              __typename
-              id
-              description
-              url
-              updatedDateTime
-              updatedBy
-            }
-            nextToken
-          }
-          recordings {
-            __typename
-            items {
-              __typename
-              id
-              url
-              bucket
-              key
-              lastmodified
-              description
-              camera
-              version
-            }
-            nextToken
-          }
-          logs {
-            __typename
-            items {
-              __typename
-              id
-              dateTime
-              description
-              userName
-              recordId
-              tableName
-            }
-            nextToken
-          }
-          transcriptions {
-            __typename
-            items {
-              __typename
-              id
-              submitTime
-              transcriptionFileUrl
-              status
-            }
-            nextToken
-          }
-          bookmarks {
-            __typename
-            items {
-              __typename
-              id
-              order
-              dateTime
-              speaker
-              content
-              updatedDateTime
-              updatedBy
-            }
-            nextToken
-          }
-          shareds {
-            __typename
-            items {
-              __typename
-              id
-              createdDateTime
-              createdBy
-              receiver
-              receiver_email
-              receiver_type
-              expiry_date
-              token
-              urls
-              status
-              description
-            }
-            nextToken
-          }
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <CreateCaseMutation>response.data.createCase;
-  }
-  async UpdateCase(input: UpdateCaseInput): Promise<UpdateCaseMutation> {
-    const statement = `mutation UpdateCase($input: UpdateCaseInput!) {
-        updateCase(input: $input) {
-          __typename
-          id
-          interviewee
-          interviewFinish
-          interviewStart
-          officerCollarNumber
-          location
-          unitId
-          path
-          attachments {
-            __typename
-            items {
-              __typename
-              id
-              description
-              url
-              updatedDateTime
-              updatedBy
-            }
-            nextToken
-          }
-          recordings {
-            __typename
-            items {
-              __typename
-              id
-              url
-              bucket
-              key
-              lastmodified
-              description
-              camera
-              version
-            }
-            nextToken
-          }
-          logs {
-            __typename
-            items {
-              __typename
-              id
-              dateTime
-              description
-              userName
-              recordId
-              tableName
-            }
-            nextToken
-          }
-          transcriptions {
-            __typename
-            items {
-              __typename
-              id
-              submitTime
-              transcriptionFileUrl
-              status
-            }
-            nextToken
-          }
-          bookmarks {
-            __typename
-            items {
-              __typename
-              id
-              order
-              dateTime
-              speaker
-              content
-              updatedDateTime
-              updatedBy
-            }
-            nextToken
-          }
-          shareds {
-            __typename
-            items {
-              __typename
-              id
-              createdDateTime
-              createdBy
-              receiver
-              receiver_email
-              receiver_type
-              expiry_date
-              token
-              urls
-              status
-              description
-            }
-            nextToken
-          }
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <UpdateCaseMutation>response.data.updateCase;
-  }
-  async DeleteCase(input: DeleteCaseInput): Promise<DeleteCaseMutation> {
-    const statement = `mutation DeleteCase($input: DeleteCaseInput!) {
-        deleteCase(input: $input) {
-          __typename
-          id
-          interviewee
-          interviewFinish
-          interviewStart
-          officerCollarNumber
-          location
-          unitId
-          path
-          attachments {
-            __typename
-            items {
-              __typename
-              id
-              description
-              url
-              updatedDateTime
-              updatedBy
-            }
-            nextToken
-          }
-          recordings {
-            __typename
-            items {
-              __typename
-              id
-              url
-              bucket
-              key
-              lastmodified
-              description
-              camera
-              version
-            }
-            nextToken
-          }
-          logs {
-            __typename
-            items {
-              __typename
-              id
-              dateTime
-              description
-              userName
-              recordId
-              tableName
-            }
-            nextToken
-          }
-          transcriptions {
-            __typename
-            items {
-              __typename
-              id
-              submitTime
-              transcriptionFileUrl
-              status
-            }
-            nextToken
-          }
-          bookmarks {
-            __typename
-            items {
-              __typename
-              id
-              order
-              dateTime
-              speaker
-              content
-              updatedDateTime
-              updatedBy
-            }
-            nextToken
-          }
-          shareds {
-            __typename
-            items {
-              __typename
-              id
-              createdDateTime
-              createdBy
-              receiver
-              receiver_email
-              receiver_type
-              expiry_date
-              token
-              urls
-              status
-              description
-            }
-            nextToken
-          }
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <DeleteCaseMutation>response.data.deleteCase;
-  }
   async CreateRecording(
     input: CreateRecordingInput
   ): Promise<CreateRecordingMutation> {
@@ -4215,60 +3892,95 @@ export class APIService {
         createRecording(input: $input) {
           __typename
           id
-          url
-          bucket
-          key
-          lastmodified
-          description
-          camera
-          version
-          redactions {
+          interviewee
+          interviewFinish
+          interviewStart
+          officerCollarNumber
+          location
+          unitId
+          path
+          attachments {
             __typename
             items {
               __typename
               id
-              redactionVersion
               description
+              url
               updatedDateTime
               updatedBy
+            }
+            nextToken
+          }
+          urls {
+            __typename
+            items {
+              __typename
+              id
+              url
+              bucket
+              key
+              lastmodified
+              description
+              camera
+              version
+            }
+            nextToken
+          }
+          logs {
+            __typename
+            items {
+              __typename
+              id
+              dateTime
+              description
+              userName
+              recordId
+              tableName
+            }
+            nextToken
+          }
+          transcriptions {
+            __typename
+            items {
+              __typename
+              id
+              submitTime
+              transcriptionFileUrl
               status
             }
             nextToken
           }
-          case {
+          bookmarks {
             __typename
-            id
-            interviewee
-            interviewFinish
-            interviewStart
-            officerCollarNumber
-            location
-            unitId
-            path
-            attachments {
+            items {
               __typename
-              nextToken
+              id
+              order
+              dateTime
+              speaker
+              content
+              updatedDateTime
+              updatedBy
             }
-            recordings {
+            nextToken
+          }
+          shareds {
+            __typename
+            items {
               __typename
-              nextToken
+              id
+              createdDateTime
+              createdBy
+              receiver
+              receiver_email
+              receiver_type
+              expiry_date
+              token
+              urls
+              status
+              description
             }
-            logs {
-              __typename
-              nextToken
-            }
-            transcriptions {
-              __typename
-              nextToken
-            }
-            bookmarks {
-              __typename
-              nextToken
-            }
-            shareds {
-              __typename
-              nextToken
-            }
+            nextToken
           }
         }
       }`;
@@ -4287,60 +3999,95 @@ export class APIService {
         updateRecording(input: $input) {
           __typename
           id
-          url
-          bucket
-          key
-          lastmodified
-          description
-          camera
-          version
-          redactions {
+          interviewee
+          interviewFinish
+          interviewStart
+          officerCollarNumber
+          location
+          unitId
+          path
+          attachments {
             __typename
             items {
               __typename
               id
-              redactionVersion
               description
+              url
               updatedDateTime
               updatedBy
+            }
+            nextToken
+          }
+          urls {
+            __typename
+            items {
+              __typename
+              id
+              url
+              bucket
+              key
+              lastmodified
+              description
+              camera
+              version
+            }
+            nextToken
+          }
+          logs {
+            __typename
+            items {
+              __typename
+              id
+              dateTime
+              description
+              userName
+              recordId
+              tableName
+            }
+            nextToken
+          }
+          transcriptions {
+            __typename
+            items {
+              __typename
+              id
+              submitTime
+              transcriptionFileUrl
               status
             }
             nextToken
           }
-          case {
+          bookmarks {
             __typename
-            id
-            interviewee
-            interviewFinish
-            interviewStart
-            officerCollarNumber
-            location
-            unitId
-            path
-            attachments {
+            items {
               __typename
-              nextToken
+              id
+              order
+              dateTime
+              speaker
+              content
+              updatedDateTime
+              updatedBy
             }
-            recordings {
+            nextToken
+          }
+          shareds {
+            __typename
+            items {
               __typename
-              nextToken
+              id
+              createdDateTime
+              createdBy
+              receiver
+              receiver_email
+              receiver_type
+              expiry_date
+              token
+              urls
+              status
+              description
             }
-            logs {
-              __typename
-              nextToken
-            }
-            transcriptions {
-              __typename
-              nextToken
-            }
-            bookmarks {
-              __typename
-              nextToken
-            }
-            shareds {
-              __typename
-              nextToken
-            }
+            nextToken
           }
         }
       }`;
@@ -4359,6 +4106,111 @@ export class APIService {
         deleteRecording(input: $input) {
           __typename
           id
+          interviewee
+          interviewFinish
+          interviewStart
+          officerCollarNumber
+          location
+          unitId
+          path
+          attachments {
+            __typename
+            items {
+              __typename
+              id
+              description
+              url
+              updatedDateTime
+              updatedBy
+            }
+            nextToken
+          }
+          urls {
+            __typename
+            items {
+              __typename
+              id
+              url
+              bucket
+              key
+              lastmodified
+              description
+              camera
+              version
+            }
+            nextToken
+          }
+          logs {
+            __typename
+            items {
+              __typename
+              id
+              dateTime
+              description
+              userName
+              recordId
+              tableName
+            }
+            nextToken
+          }
+          transcriptions {
+            __typename
+            items {
+              __typename
+              id
+              submitTime
+              transcriptionFileUrl
+              status
+            }
+            nextToken
+          }
+          bookmarks {
+            __typename
+            items {
+              __typename
+              id
+              order
+              dateTime
+              speaker
+              content
+              updatedDateTime
+              updatedBy
+            }
+            nextToken
+          }
+          shareds {
+            __typename
+            items {
+              __typename
+              id
+              createdDateTime
+              createdBy
+              receiver
+              receiver_email
+              receiver_type
+              expiry_date
+              token
+              urls
+              status
+              description
+            }
+            nextToken
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteRecordingMutation>response.data.deleteRecording;
+  }
+  async CreateUrl(input: CreateUrlInput): Promise<CreateUrlMutation> {
+    const statement = `mutation CreateUrl($input: CreateUrlInput!) {
+        createUrl(input: $input) {
+          __typename
+          id
           url
           bucket
           key
@@ -4379,7 +4231,7 @@ export class APIService {
             }
             nextToken
           }
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -4393,7 +4245,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -4422,20 +4274,34 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <DeleteRecordingMutation>response.data.deleteRecording;
+    return <CreateUrlMutation>response.data.createUrl;
   }
-  async CreateAttachment(
-    input: CreateAttachmentInput
-  ): Promise<CreateAttachmentMutation> {
-    const statement = `mutation CreateAttachment($input: CreateAttachmentInput!) {
-        createAttachment(input: $input) {
+  async UpdateUrl(input: UpdateUrlInput): Promise<UpdateUrlMutation> {
+    const statement = `mutation UpdateUrl($input: UpdateUrlInput!) {
+        updateUrl(input: $input) {
           __typename
           id
-          description
           url
-          updatedDateTime
-          updatedBy
-          case {
+          bucket
+          key
+          lastmodified
+          description
+          camera
+          version
+          redactions {
+            __typename
+            items {
+              __typename
+              id
+              redactionVersion
+              description
+              updatedDateTime
+              updatedBy
+              status
+            }
+            nextToken
+          }
+          recording {
             __typename
             id
             interviewee
@@ -4449,7 +4315,133 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+            bookmarks {
+              __typename
+              nextToken
+            }
+            shareds {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateUrlMutation>response.data.updateUrl;
+  }
+  async DeleteUrl(input: DeleteUrlInput): Promise<DeleteUrlMutation> {
+    const statement = `mutation DeleteUrl($input: DeleteUrlInput!) {
+        deleteUrl(input: $input) {
+          __typename
+          id
+          url
+          bucket
+          key
+          lastmodified
+          description
+          camera
+          version
+          redactions {
+            __typename
+            items {
+              __typename
+              id
+              redactionVersion
+              description
+              updatedDateTime
+              updatedBy
+              status
+            }
+            nextToken
+          }
+          recording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            path
+            attachments {
+              __typename
+              nextToken
+            }
+            urls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+            bookmarks {
+              __typename
+              nextToken
+            }
+            shareds {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteUrlMutation>response.data.deleteUrl;
+  }
+  async CreateAttachment(
+    input: CreateAttachmentInput
+  ): Promise<CreateAttachmentMutation> {
+    const statement = `mutation CreateAttachment($input: CreateAttachmentInput!) {
+        createAttachment(input: $input) {
+          __typename
+          id
+          description
+          url
+          updatedDateTime
+          updatedBy
+          recording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            path
+            attachments {
+              __typename
+              nextToken
+            }
+            urls {
               __typename
               nextToken
             }
@@ -4491,7 +4483,7 @@ export class APIService {
           url
           updatedDateTime
           updatedBy
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -4505,7 +4497,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -4547,7 +4539,7 @@ export class APIService {
           url
           updatedDateTime
           updatedBy
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -4561,7 +4553,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -4605,7 +4597,7 @@ export class APIService {
           content
           updatedDateTime
           updatedBy
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -4619,7 +4611,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -4663,7 +4655,7 @@ export class APIService {
           content
           updatedDateTime
           updatedBy
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -4677,7 +4669,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -4721,7 +4713,7 @@ export class APIService {
           content
           updatedDateTime
           updatedBy
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -4735,7 +4727,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -4778,7 +4770,7 @@ export class APIService {
           updatedDateTime
           updatedBy
           status
-          recording {
+          url {
             __typename
             id
             url
@@ -4792,7 +4784,7 @@ export class APIService {
               __typename
               nextToken
             }
-            case {
+            recording {
               __typename
               id
               interviewee
@@ -4838,7 +4830,7 @@ export class APIService {
           updatedDateTime
           updatedBy
           status
-          recording {
+          url {
             __typename
             id
             url
@@ -4852,7 +4844,7 @@ export class APIService {
               __typename
               nextToken
             }
-            case {
+            recording {
               __typename
               id
               interviewee
@@ -4898,7 +4890,7 @@ export class APIService {
           updatedDateTime
           updatedBy
           status
-          recording {
+          url {
             __typename
             id
             url
@@ -4912,7 +4904,7 @@ export class APIService {
               __typename
               nextToken
             }
-            case {
+            recording {
               __typename
               id
               interviewee
@@ -4965,7 +4957,7 @@ export class APIService {
             updatedDateTime
             updatedBy
             status
-            recording {
+            url {
               __typename
               id
               url
@@ -5012,7 +5004,7 @@ export class APIService {
             updatedDateTime
             updatedBy
             status
-            recording {
+            url {
               __typename
               id
               url
@@ -5059,7 +5051,7 @@ export class APIService {
             updatedDateTime
             updatedBy
             status
-            recording {
+            url {
               __typename
               id
               url
@@ -5102,7 +5094,7 @@ export class APIService {
           urls
           status
           description
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -5116,7 +5108,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -5162,7 +5154,7 @@ export class APIService {
           urls
           status
           description
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -5176,7 +5168,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -5222,7 +5214,7 @@ export class APIService {
           urls
           status
           description
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -5236,7 +5228,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -5277,7 +5269,7 @@ export class APIService {
           submitTime
           transcriptionFileUrl
           status
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -5291,7 +5283,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -5332,7 +5324,7 @@ export class APIService {
           submitTime
           transcriptionFileUrl
           status
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -5346,7 +5338,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -5387,7 +5379,7 @@ export class APIService {
           submitTime
           transcriptionFileUrl
           status
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -5401,7 +5393,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -5442,7 +5434,7 @@ export class APIService {
           userName
           recordId
           tableName
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -5456,7 +5448,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -5497,7 +5489,7 @@ export class APIService {
           userName
           recordId
           tableName
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -5511,7 +5503,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -5552,7 +5544,7 @@ export class APIService {
           userName
           recordId
           tableName
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -5566,7 +5558,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -5597,9 +5589,9 @@ export class APIService {
     )) as any;
     return <DeleteLogMutation>response.data.deleteLog;
   }
-  async GetCase(id: string): Promise<GetCaseQuery> {
-    const statement = `query GetCase($id: ID!) {
-        getCase(id: $id) {
+  async GetRecording(id: string): Promise<GetRecordingQuery> {
+    const statement = `query GetRecording($id: ID!) {
+        getRecording(id: $id) {
           __typename
           id
           interviewee
@@ -5621,7 +5613,7 @@ export class APIService {
             }
             nextToken
           }
-          recordings {
+          urls {
             __typename
             items {
               __typename
@@ -5700,15 +5692,15 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <GetCaseQuery>response.data.getCase;
+    return <GetRecordingQuery>response.data.getRecording;
   }
-  async ListCases(
-    filter?: ModelCaseFilterInput,
+  async ListRecordings(
+    filter?: ModelRecordingFilterInput,
     limit?: number,
     nextToken?: string
-  ): Promise<ListCasesQuery> {
-    const statement = `query ListCases($filter: ModelCaseFilterInput, $limit: Int, $nextToken: String) {
-        listCases(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  ): Promise<ListRecordingsQuery> {
+    const statement = `query ListRecordings($filter: ModelRecordingFilterInput, $limit: Int, $nextToken: String) {
+        listRecordings(filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
             __typename
@@ -5724,7 +5716,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -5761,11 +5753,11 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <ListCasesQuery>response.data.listCases;
+    return <ListRecordingsQuery>response.data.listRecordings;
   }
-  async GetRecording(id: string): Promise<GetRecordingQuery> {
-    const statement = `query GetRecording($id: ID!) {
-        getRecording(id: $id) {
+  async GetUrl(id: string): Promise<GetUrlQuery> {
+    const statement = `query GetUrl($id: ID!) {
+        getUrl(id: $id) {
           __typename
           id
           url
@@ -5788,7 +5780,7 @@ export class APIService {
             }
             nextToken
           }
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -5802,7 +5794,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -5831,15 +5823,15 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <GetRecordingQuery>response.data.getRecording;
+    return <GetUrlQuery>response.data.getUrl;
   }
-  async ListRecordings(
-    filter?: ModelRecordingFilterInput,
+  async ListUrls(
+    filter?: ModelUrlFilterInput,
     limit?: number,
     nextToken?: string
-  ): Promise<ListRecordingsQuery> {
-    const statement = `query ListRecordings($filter: ModelRecordingFilterInput, $limit: Int, $nextToken: String) {
-        listRecordings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  ): Promise<ListUrlsQuery> {
+    const statement = `query ListUrls($filter: ModelUrlFilterInput, $limit: Int, $nextToken: String) {
+        listUrls(filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
             __typename
@@ -5855,7 +5847,7 @@ export class APIService {
               __typename
               nextToken
             }
-            case {
+            recording {
               __typename
               id
               interviewee
@@ -5883,7 +5875,7 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <ListRecordingsQuery>response.data.listRecordings;
+    return <ListUrlsQuery>response.data.listUrls;
   }
   async GetAttachment(id: string): Promise<GetAttachmentQuery> {
     const statement = `query GetAttachment($id: ID!) {
@@ -5894,7 +5886,7 @@ export class APIService {
           url
           updatedDateTime
           updatedBy
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -5908,7 +5900,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -5954,7 +5946,7 @@ export class APIService {
             url
             updatedDateTime
             updatedBy
-            case {
+            recording {
               __typename
               id
               interviewee
@@ -5995,7 +5987,7 @@ export class APIService {
           content
           updatedDateTime
           updatedBy
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -6009,7 +6001,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -6057,7 +6049,7 @@ export class APIService {
             content
             updatedDateTime
             updatedBy
-            case {
+            recording {
               __typename
               id
               interviewee
@@ -6097,7 +6089,7 @@ export class APIService {
           updatedDateTime
           updatedBy
           status
-          recording {
+          url {
             __typename
             id
             url
@@ -6111,7 +6103,7 @@ export class APIService {
               __typename
               nextToken
             }
-            case {
+            recording {
               __typename
               id
               interviewee
@@ -6161,7 +6153,7 @@ export class APIService {
             updatedDateTime
             updatedBy
             status
-            recording {
+            url {
               __typename
               id
               url
@@ -6212,7 +6204,7 @@ export class APIService {
             updatedDateTime
             updatedBy
             status
-            recording {
+            url {
               __typename
               id
               url
@@ -6296,7 +6288,7 @@ export class APIService {
           urls
           status
           description
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -6310,7 +6302,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -6362,7 +6354,7 @@ export class APIService {
             urls
             status
             description
-            case {
+            recording {
               __typename
               id
               interviewee
@@ -6400,7 +6392,7 @@ export class APIService {
           submitTime
           transcriptionFileUrl
           status
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -6414,7 +6406,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -6459,7 +6451,7 @@ export class APIService {
             submitTime
             transcriptionFileUrl
             status
-            case {
+            recording {
               __typename
               id
               interviewee
@@ -6499,7 +6491,7 @@ export class APIService {
           userName
           recordId
           tableName
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -6513,7 +6505,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -6560,7 +6552,7 @@ export class APIService {
             userName
             recordId
             tableName
-            case {
+            recording {
               __typename
               id
               interviewee
@@ -6590,309 +6582,6 @@ export class APIService {
     )) as any;
     return <ListLogsQuery>response.data.listLogs;
   }
-  OnCreateCaseListener: Observable<OnCreateCaseSubscription> = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateCase {
-        onCreateCase {
-          __typename
-          id
-          interviewee
-          interviewFinish
-          interviewStart
-          officerCollarNumber
-          location
-          unitId
-          path
-          attachments {
-            __typename
-            items {
-              __typename
-              id
-              description
-              url
-              updatedDateTime
-              updatedBy
-            }
-            nextToken
-          }
-          recordings {
-            __typename
-            items {
-              __typename
-              id
-              url
-              bucket
-              key
-              lastmodified
-              description
-              camera
-              version
-            }
-            nextToken
-          }
-          logs {
-            __typename
-            items {
-              __typename
-              id
-              dateTime
-              description
-              userName
-              recordId
-              tableName
-            }
-            nextToken
-          }
-          transcriptions {
-            __typename
-            items {
-              __typename
-              id
-              submitTime
-              transcriptionFileUrl
-              status
-            }
-            nextToken
-          }
-          bookmarks {
-            __typename
-            items {
-              __typename
-              id
-              order
-              dateTime
-              speaker
-              content
-              updatedDateTime
-              updatedBy
-            }
-            nextToken
-          }
-          shareds {
-            __typename
-            items {
-              __typename
-              id
-              createdDateTime
-              createdBy
-              receiver
-              receiver_email
-              receiver_type
-              expiry_date
-              token
-              urls
-              status
-              description
-            }
-            nextToken
-          }
-        }
-      }`
-    )
-  ) as Observable<OnCreateCaseSubscription>;
-
-  OnUpdateCaseListener: Observable<OnUpdateCaseSubscription> = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateCase {
-        onUpdateCase {
-          __typename
-          id
-          interviewee
-          interviewFinish
-          interviewStart
-          officerCollarNumber
-          location
-          unitId
-          path
-          attachments {
-            __typename
-            items {
-              __typename
-              id
-              description
-              url
-              updatedDateTime
-              updatedBy
-            }
-            nextToken
-          }
-          recordings {
-            __typename
-            items {
-              __typename
-              id
-              url
-              bucket
-              key
-              lastmodified
-              description
-              camera
-              version
-            }
-            nextToken
-          }
-          logs {
-            __typename
-            items {
-              __typename
-              id
-              dateTime
-              description
-              userName
-              recordId
-              tableName
-            }
-            nextToken
-          }
-          transcriptions {
-            __typename
-            items {
-              __typename
-              id
-              submitTime
-              transcriptionFileUrl
-              status
-            }
-            nextToken
-          }
-          bookmarks {
-            __typename
-            items {
-              __typename
-              id
-              order
-              dateTime
-              speaker
-              content
-              updatedDateTime
-              updatedBy
-            }
-            nextToken
-          }
-          shareds {
-            __typename
-            items {
-              __typename
-              id
-              createdDateTime
-              createdBy
-              receiver
-              receiver_email
-              receiver_type
-              expiry_date
-              token
-              urls
-              status
-              description
-            }
-            nextToken
-          }
-        }
-      }`
-    )
-  ) as Observable<OnUpdateCaseSubscription>;
-
-  OnDeleteCaseListener: Observable<OnDeleteCaseSubscription> = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteCase {
-        onDeleteCase {
-          __typename
-          id
-          interviewee
-          interviewFinish
-          interviewStart
-          officerCollarNumber
-          location
-          unitId
-          path
-          attachments {
-            __typename
-            items {
-              __typename
-              id
-              description
-              url
-              updatedDateTime
-              updatedBy
-            }
-            nextToken
-          }
-          recordings {
-            __typename
-            items {
-              __typename
-              id
-              url
-              bucket
-              key
-              lastmodified
-              description
-              camera
-              version
-            }
-            nextToken
-          }
-          logs {
-            __typename
-            items {
-              __typename
-              id
-              dateTime
-              description
-              userName
-              recordId
-              tableName
-            }
-            nextToken
-          }
-          transcriptions {
-            __typename
-            items {
-              __typename
-              id
-              submitTime
-              transcriptionFileUrl
-              status
-            }
-            nextToken
-          }
-          bookmarks {
-            __typename
-            items {
-              __typename
-              id
-              order
-              dateTime
-              speaker
-              content
-              updatedDateTime
-              updatedBy
-            }
-            nextToken
-          }
-          shareds {
-            __typename
-            items {
-              __typename
-              id
-              createdDateTime
-              createdBy
-              receiver
-              receiver_email
-              receiver_type
-              expiry_date
-              token
-              urls
-              status
-              description
-            }
-            nextToken
-          }
-        }
-      }`
-    )
-  ) as Observable<OnDeleteCaseSubscription>;
-
   OnCreateRecordingListener: Observable<
     OnCreateRecordingSubscription
   > = API.graphql(
@@ -6901,60 +6590,95 @@ export class APIService {
         onCreateRecording {
           __typename
           id
-          url
-          bucket
-          key
-          lastmodified
-          description
-          camera
-          version
-          redactions {
+          interviewee
+          interviewFinish
+          interviewStart
+          officerCollarNumber
+          location
+          unitId
+          path
+          attachments {
             __typename
             items {
               __typename
               id
-              redactionVersion
               description
+              url
               updatedDateTime
               updatedBy
+            }
+            nextToken
+          }
+          urls {
+            __typename
+            items {
+              __typename
+              id
+              url
+              bucket
+              key
+              lastmodified
+              description
+              camera
+              version
+            }
+            nextToken
+          }
+          logs {
+            __typename
+            items {
+              __typename
+              id
+              dateTime
+              description
+              userName
+              recordId
+              tableName
+            }
+            nextToken
+          }
+          transcriptions {
+            __typename
+            items {
+              __typename
+              id
+              submitTime
+              transcriptionFileUrl
               status
             }
             nextToken
           }
-          case {
+          bookmarks {
             __typename
-            id
-            interviewee
-            interviewFinish
-            interviewStart
-            officerCollarNumber
-            location
-            unitId
-            path
-            attachments {
+            items {
               __typename
-              nextToken
+              id
+              order
+              dateTime
+              speaker
+              content
+              updatedDateTime
+              updatedBy
             }
-            recordings {
+            nextToken
+          }
+          shareds {
+            __typename
+            items {
               __typename
-              nextToken
+              id
+              createdDateTime
+              createdBy
+              receiver
+              receiver_email
+              receiver_type
+              expiry_date
+              token
+              urls
+              status
+              description
             }
-            logs {
-              __typename
-              nextToken
-            }
-            transcriptions {
-              __typename
-              nextToken
-            }
-            bookmarks {
-              __typename
-              nextToken
-            }
-            shareds {
-              __typename
-              nextToken
-            }
+            nextToken
           }
         }
       }`
@@ -6969,60 +6693,95 @@ export class APIService {
         onUpdateRecording {
           __typename
           id
-          url
-          bucket
-          key
-          lastmodified
-          description
-          camera
-          version
-          redactions {
+          interviewee
+          interviewFinish
+          interviewStart
+          officerCollarNumber
+          location
+          unitId
+          path
+          attachments {
             __typename
             items {
               __typename
               id
-              redactionVersion
               description
+              url
               updatedDateTime
               updatedBy
+            }
+            nextToken
+          }
+          urls {
+            __typename
+            items {
+              __typename
+              id
+              url
+              bucket
+              key
+              lastmodified
+              description
+              camera
+              version
+            }
+            nextToken
+          }
+          logs {
+            __typename
+            items {
+              __typename
+              id
+              dateTime
+              description
+              userName
+              recordId
+              tableName
+            }
+            nextToken
+          }
+          transcriptions {
+            __typename
+            items {
+              __typename
+              id
+              submitTime
+              transcriptionFileUrl
               status
             }
             nextToken
           }
-          case {
+          bookmarks {
             __typename
-            id
-            interviewee
-            interviewFinish
-            interviewStart
-            officerCollarNumber
-            location
-            unitId
-            path
-            attachments {
+            items {
               __typename
-              nextToken
+              id
+              order
+              dateTime
+              speaker
+              content
+              updatedDateTime
+              updatedBy
             }
-            recordings {
+            nextToken
+          }
+          shareds {
+            __typename
+            items {
               __typename
-              nextToken
+              id
+              createdDateTime
+              createdBy
+              receiver
+              receiver_email
+              receiver_type
+              expiry_date
+              token
+              urls
+              status
+              description
             }
-            logs {
-              __typename
-              nextToken
-            }
-            transcriptions {
-              __typename
-              nextToken
-            }
-            bookmarks {
-              __typename
-              nextToken
-            }
-            shareds {
-              __typename
-              nextToken
-            }
+            nextToken
           }
         }
       }`
@@ -7037,6 +6796,107 @@ export class APIService {
         onDeleteRecording {
           __typename
           id
+          interviewee
+          interviewFinish
+          interviewStart
+          officerCollarNumber
+          location
+          unitId
+          path
+          attachments {
+            __typename
+            items {
+              __typename
+              id
+              description
+              url
+              updatedDateTime
+              updatedBy
+            }
+            nextToken
+          }
+          urls {
+            __typename
+            items {
+              __typename
+              id
+              url
+              bucket
+              key
+              lastmodified
+              description
+              camera
+              version
+            }
+            nextToken
+          }
+          logs {
+            __typename
+            items {
+              __typename
+              id
+              dateTime
+              description
+              userName
+              recordId
+              tableName
+            }
+            nextToken
+          }
+          transcriptions {
+            __typename
+            items {
+              __typename
+              id
+              submitTime
+              transcriptionFileUrl
+              status
+            }
+            nextToken
+          }
+          bookmarks {
+            __typename
+            items {
+              __typename
+              id
+              order
+              dateTime
+              speaker
+              content
+              updatedDateTime
+              updatedBy
+            }
+            nextToken
+          }
+          shareds {
+            __typename
+            items {
+              __typename
+              id
+              createdDateTime
+              createdBy
+              receiver
+              receiver_email
+              receiver_type
+              expiry_date
+              token
+              urls
+              status
+              description
+            }
+            nextToken
+          }
+        }
+      }`
+    )
+  ) as Observable<OnDeleteRecordingSubscription>;
+
+  OnCreateUrlListener: Observable<OnCreateUrlSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateUrl {
+        onCreateUrl {
+          __typename
+          id
           url
           bucket
           key
@@ -7057,7 +6917,7 @@ export class APIService {
             }
             nextToken
           }
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -7071,7 +6931,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -7095,21 +6955,35 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnDeleteRecordingSubscription>;
+  ) as Observable<OnCreateUrlSubscription>;
 
-  OnCreateAttachmentListener: Observable<
-    OnCreateAttachmentSubscription
-  > = API.graphql(
+  OnUpdateUrlListener: Observable<OnUpdateUrlSubscription> = API.graphql(
     graphqlOperation(
-      `subscription OnCreateAttachment {
-        onCreateAttachment {
+      `subscription OnUpdateUrl {
+        onUpdateUrl {
           __typename
           id
-          description
           url
-          updatedDateTime
-          updatedBy
-          case {
+          bucket
+          key
+          lastmodified
+          description
+          camera
+          version
+          redactions {
+            __typename
+            items {
+              __typename
+              id
+              redactionVersion
+              description
+              updatedDateTime
+              updatedBy
+              status
+            }
+            nextToken
+          }
+          recording {
             __typename
             id
             interviewee
@@ -7123,7 +6997,125 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+            bookmarks {
+              __typename
+              nextToken
+            }
+            shareds {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnUpdateUrlSubscription>;
+
+  OnDeleteUrlListener: Observable<OnDeleteUrlSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteUrl {
+        onDeleteUrl {
+          __typename
+          id
+          url
+          bucket
+          key
+          lastmodified
+          description
+          camera
+          version
+          redactions {
+            __typename
+            items {
+              __typename
+              id
+              redactionVersion
+              description
+              updatedDateTime
+              updatedBy
+              status
+            }
+            nextToken
+          }
+          recording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            path
+            attachments {
+              __typename
+              nextToken
+            }
+            urls {
+              __typename
+              nextToken
+            }
+            logs {
+              __typename
+              nextToken
+            }
+            transcriptions {
+              __typename
+              nextToken
+            }
+            bookmarks {
+              __typename
+              nextToken
+            }
+            shareds {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnDeleteUrlSubscription>;
+
+  OnCreateAttachmentListener: Observable<
+    OnCreateAttachmentSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateAttachment {
+        onCreateAttachment {
+          __typename
+          id
+          description
+          url
+          updatedDateTime
+          updatedBy
+          recording {
+            __typename
+            id
+            interviewee
+            interviewFinish
+            interviewStart
+            officerCollarNumber
+            location
+            unitId
+            path
+            attachments {
+              __typename
+              nextToken
+            }
+            urls {
               __typename
               nextToken
             }
@@ -7161,7 +7153,7 @@ export class APIService {
           url
           updatedDateTime
           updatedBy
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -7175,7 +7167,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -7213,7 +7205,7 @@ export class APIService {
           url
           updatedDateTime
           updatedBy
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -7227,7 +7219,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -7267,7 +7259,7 @@ export class APIService {
           content
           updatedDateTime
           updatedBy
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -7281,7 +7273,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -7321,7 +7313,7 @@ export class APIService {
           content
           updatedDateTime
           updatedBy
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -7335,7 +7327,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -7375,7 +7367,7 @@ export class APIService {
           content
           updatedDateTime
           updatedBy
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -7389,7 +7381,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -7428,7 +7420,7 @@ export class APIService {
           updatedDateTime
           updatedBy
           status
-          recording {
+          url {
             __typename
             id
             url
@@ -7442,7 +7434,7 @@ export class APIService {
               __typename
               nextToken
             }
-            case {
+            recording {
               __typename
               id
               interviewee
@@ -7484,7 +7476,7 @@ export class APIService {
           updatedDateTime
           updatedBy
           status
-          recording {
+          url {
             __typename
             id
             url
@@ -7498,7 +7490,7 @@ export class APIService {
               __typename
               nextToken
             }
-            case {
+            recording {
               __typename
               id
               interviewee
@@ -7540,7 +7532,7 @@ export class APIService {
           updatedDateTime
           updatedBy
           status
-          recording {
+          url {
             __typename
             id
             url
@@ -7554,7 +7546,7 @@ export class APIService {
               __typename
               nextToken
             }
-            case {
+            recording {
               __typename
               id
               interviewee
@@ -7603,7 +7595,7 @@ export class APIService {
             updatedDateTime
             updatedBy
             status
-            recording {
+            url {
               __typename
               id
               url
@@ -7644,7 +7636,7 @@ export class APIService {
             updatedDateTime
             updatedBy
             status
-            recording {
+            url {
               __typename
               id
               url
@@ -7685,7 +7677,7 @@ export class APIService {
             updatedDateTime
             updatedBy
             status
-            recording {
+            url {
               __typename
               id
               url
@@ -7722,7 +7714,7 @@ export class APIService {
           urls
           status
           description
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -7736,7 +7728,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -7778,7 +7770,7 @@ export class APIService {
           urls
           status
           description
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -7792,7 +7784,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -7834,7 +7826,7 @@ export class APIService {
           urls
           status
           description
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -7848,7 +7840,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -7885,7 +7877,7 @@ export class APIService {
           submitTime
           transcriptionFileUrl
           status
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -7899,7 +7891,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -7936,7 +7928,7 @@ export class APIService {
           submitTime
           transcriptionFileUrl
           status
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -7950,7 +7942,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -7987,7 +7979,7 @@ export class APIService {
           submitTime
           transcriptionFileUrl
           status
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -8001,7 +7993,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -8038,7 +8030,7 @@ export class APIService {
           userName
           recordId
           tableName
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -8052,7 +8044,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -8089,7 +8081,7 @@ export class APIService {
           userName
           recordId
           tableName
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -8103,7 +8095,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
@@ -8140,7 +8132,7 @@ export class APIService {
           userName
           recordId
           tableName
-          case {
+          recording {
             __typename
             id
             interviewee
@@ -8154,7 +8146,7 @@ export class APIService {
               __typename
               nextToken
             }
-            recordings {
+            urls {
               __typename
               nextToken
             }
