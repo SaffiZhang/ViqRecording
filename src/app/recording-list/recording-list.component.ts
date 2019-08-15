@@ -30,7 +30,7 @@ export class RecordingListComponent implements OnInit {
   }
 
   async listRecording() {
-    const result = await this.api.ListRecordings();
+    const result = await this.api.ListCases();
     this.recordingList = result.items;
 
   }

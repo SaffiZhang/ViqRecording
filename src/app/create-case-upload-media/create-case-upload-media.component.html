@@ -1,0 +1,94 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <h3>Upload Media for Case</h3>
+  </div>
+  <div class="ui-g-6" #inputWrapper>
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h4><b>Case Information</b></h4>
+      </div>
+      <div class="ui-g-4">
+        Interview Start
+      </div>
+      <div class="ui-g-8">
+        {{model.interviewStart}}
+      </div>
+      <div class="ui-g-4">
+        Interview Finish
+      </div>
+      <div class="ui-g-8">
+        {{model.interviewFinish}}
+      </div>
+      <div class="ui-g-4">
+        Interviewee
+      </div>
+      <div class="ui-g-8">
+        {{model.interviewee}}
+      </div>
+      <div class="ui-g-4">
+        Officer Collar Nuber
+      </div>
+      <div class="ui-g-8">
+        {{model.officerCollarNumber}}
+      </div>
+      <div class="ui-g-4">
+        Police Station
+      </div>
+      <div class="ui-g-8">
+        {{model.location}}
+      </div>
+    </div>
+  </div>
+  <div class="ui-g-6">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h4><b>Upload Media Files</b></h4>
+      </div>
+      <div class="ui-g-4">
+        Camera <span class="required-field">*</span>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText required [(ngModel)]="mediaModel.camera">
+      </div>
+      <div class="ui-g-4">
+        Version <span class="required-field">*</span>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText required [(ngModel)]="mediaModel.version">
+      </div>
+      <div class="ui-g-4">
+        Last Modified <span class="required-field">*</span>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText required [(ngModel)]="mediaModel.lastmodified">
+      </div>
+      <div class="ui-g-4">
+        Description <span class="required-field">*</span>
+      </div>
+      <div class="ui-g-8">
+        <textarea pInputTextarea rows="5" required [(ngModel)]="mediaModel.description"></textarea>
+      </div>
+      <div class="ui-g-12">
+        Media Files
+      </div>
+      <div class="ui-g-12">
+        <p-fileUpload name="myfile[]" customUpload="true" #fileUpload
+                      (uploadHandler)="myUploader($event)"
+                      [showUploadButton]="false" [showCancelButton]="false"
+                      multiple="multiple"></p-fileUpload>
+      </div>
+      <div class="ui-g-12 required-field" *ngIf="mandatoryFieldError">
+        Please fill all mandatory fields.
+      </div>
+      <div class="ui-g-12 required-field" *ngIf="selectFilesError">
+        Please select at least one media files.
+      </div>
+      <div class="ui-g-12">
+        <p-button label="Upload" (onClick)="upload()"></p-button>&nbsp;
+        <p-button label="Cancel" class="ui-button-secondary" (onClick)="cancel()"></p-button>
+      </div>
+    </div>
+  </div>
+</div>
+<p-toast position="center" key="upload-media"></p-toast>

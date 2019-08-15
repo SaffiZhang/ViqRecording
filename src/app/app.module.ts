@@ -14,8 +14,9 @@ import {VgOverlayPlayModule} from 'videogular2/compiled/src/overlay-play/overlay
 import {VgBufferingModule} from 'videogular2/compiled/src/buffering/buffering';
 import {ButtonModule} from 'primeng/button';
 import {
+  BlockUIModule,
   CardModule,
-  DropdownModule,
+  DropdownModule, FileUploadModule,
   InputMaskModule,
   InputTextareaModule,
   InputTextModule, MessageModule, MessageService, MessagesModule,
@@ -40,6 +41,9 @@ import {RouterModule} from '@angular/router';
 import {ToastModule} from 'primeng/toast';
 import { EmailListComponent } from './email-list/email-list.component';
 import { RecordingSharedComponent } from './recording-shared/recording-shared.component';
+import { CreateCaseComponent } from './create-case/create-case.component';
+import {HttpClientModule} from '@angular/common/http';
+import { CreateCaseUploadMediaComponent } from './create-case-upload-media/create-case-upload-media.component';
 
 
 @NgModule({
@@ -59,14 +63,16 @@ import { RecordingSharedComponent } from './recording-shared/recording-shared.co
     AppTopMenubarComponent,
     RedactComponent,
     EmailListComponent,
-    RecordingSharedComponent
+    RecordingSharedComponent,
+    CreateCaseComponent,
+    CreateCaseUploadMediaComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AmplifyAngularModule,
-
+    HttpClientModule,
 
     RouterModule,
     VgCoreModule,
@@ -86,7 +92,9 @@ import { RecordingSharedComponent } from './recording-shared/recording-shared.co
     InputMaskModule,
     ToastModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    FileUploadModule,
+    BlockUIModule
 
   ],
   providers: [

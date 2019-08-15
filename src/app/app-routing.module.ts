@@ -8,11 +8,21 @@ import {RecordingDetailsComponent} from './recording-details/recording-details.c
 import {RedactComponent} from './redact/redact.component';
 import {RecordingSharedComponent} from './recording-shared/recording-shared.component';
 import {AuthGuard} from './services/auth.guard';
+import {CreateCaseComponent} from './create-case/create-case.component';
+import {CreateCaseUploadMediaComponent} from './create-case-upload-media/create-case-upload-media.component';
 
 const routes: Routes = [
   {
     path: 'auth',
     component: AuthComponent,
+  },
+  {
+    path: 'create-case',
+    component: CreateCaseComponent
+  },
+  {
+    path: 'upload-media/:id',
+    component: CreateCaseUploadMediaComponent,
   },
   {
     path: 'recording',

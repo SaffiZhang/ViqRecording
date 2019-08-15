@@ -13,7 +13,7 @@ export class FileUploadService {
 
   }
 
-  public uploadFile(file, folder = '', cb) {
+  public uploadFile(file, folder = '', cb, errCb = null) {
     const contentType = file.type;
     const bucket = new S3(
       {
@@ -32,10 +32,15 @@ export class FileUploadService {
     bucket.upload(params, (err, data) => {
       if (err) {
         console.log('There was an error uploading your file: ', err);
+        if (errCb) {
+          errCb(err);
+        }
         return false;
       }
       console.log('Successfully uploaded file.', data);
-      cb(data);
+      if (cb) {
+        cb(data);
+      }
       return true;
     });
   }

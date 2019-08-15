@@ -3,6 +3,7 @@ import Auth from '@aws-amplify/auth';
 import {Router} from '@angular/router';
 import {AmplifyService} from 'aws-amplify-angular';
 import {auth} from 'aws-amplify-angular/dist/src/assets/data-test-attributes';
+import {EventBusService} from '../services/event-bus-service';
 
 @Component({
   selector: 'app-app-top-menubar',
@@ -15,13 +16,16 @@ export class AppTopMenubarComponent implements OnInit {
   public user: any;
 
   constructor(private router: Router,
-              private amplifyService: AmplifyService,) {
+              private amplifyService: AmplifyService,
+              private eventBus: EventBusService) {
   }
 
   ngOnInit() {
     this.amplifyService.authStateChange$.subscribe(authState => {
       this.isAuthenticated = authState.state === 'signedIn';
       this.user = authState.user;
+      this.eventBus.notifyUserChanged(this.user);
+      console.log(this.user);
     });
   }
 
