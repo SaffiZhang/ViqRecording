@@ -14,6 +14,11 @@ export type CreateCaseInput = {
   location: string;
   unitId: string;
   path: string;
+  note?: string | null;
+  birthdayOfInterviewee?: string | null;
+  interviewType?: string | null;
+  interviewAccess?: string | null;
+  theOtherPersonsPresent?: string | null;
 };
 
 export type UpdateCaseInput = {
@@ -25,6 +30,11 @@ export type UpdateCaseInput = {
   location?: string | null;
   unitId?: string | null;
   path?: string | null;
+  note?: string | null;
+  birthdayOfInterviewee?: string | null;
+  interviewType?: string | null;
+  interviewAccess?: string | null;
+  theOtherPersonsPresent?: string | null;
 };
 
 export type DeleteCaseInput = {
@@ -240,6 +250,11 @@ export type ModelCaseFilterInput = {
   location?: ModelStringFilterInput | null;
   unitId?: ModelStringFilterInput | null;
   path?: ModelStringFilterInput | null;
+  note?: ModelStringFilterInput | null;
+  birthdayOfInterviewee?: ModelStringFilterInput | null;
+  interviewType?: ModelStringFilterInput | null;
+  interviewAccess?: ModelStringFilterInput | null;
+  theOtherPersonsPresent?: ModelStringFilterInput | null;
   and?: Array<ModelCaseFilterInput | null> | null;
   or?: Array<ModelCaseFilterInput | null> | null;
   not?: ModelCaseFilterInput | null;
@@ -290,9 +305,9 @@ export type ModelAttachmentFilterInput = {
   id?: ModelIDFilterInput | null;
   description?: ModelStringFilterInput | null;
   url?: ModelStringFilterInput | null;
-  attachmentCaseId:ModelStringFilterInput | null;
   updatedDateTime?: ModelStringFilterInput | null;
   updatedBy?: ModelStringFilterInput | null;
+  attachmentCaseId?:ModelStringFilterInput | null;
   and?: Array<ModelAttachmentFilterInput | null> | null;
   or?: Array<ModelAttachmentFilterInput | null> | null;
   not?: ModelAttachmentFilterInput | null;
@@ -306,7 +321,7 @@ export type ModelBookmarkFilterInput = {
   content?: ModelStringFilterInput | null;
   updatedDateTime?: ModelStringFilterInput | null;
   updatedBy?: ModelStringFilterInput | null;
-  bookmarkCaseId:ModelStringFilterInput | null;
+  bookmarkCaseId?:ModelStringFilterInput | null;
   and?: Array<ModelBookmarkFilterInput | null> | null;
   or?: Array<ModelBookmarkFilterInput | null> | null;
   not?: ModelBookmarkFilterInput | null;
@@ -331,7 +346,7 @@ export type ModelRedactionFilterInput = {
   updatedDateTime?: ModelStringFilterInput | null;
   updatedBy?: ModelStringFilterInput | null;
   status?: ModelStringFilterInput | null;
-  redactionRecordingId:ModelStringFilterInput | null;
+  redactionRecordingId?:ModelStringFilterInput | null;
   and?: Array<ModelRedactionFilterInput | null> | null;
   or?: Array<ModelRedactionFilterInput | null> | null;
   not?: ModelRedactionFilterInput | null;
@@ -343,7 +358,7 @@ export type ModelRedactionIntervalFilterInput = {
   startSecond?: ModelIntFilterInput | null;
   endSecond?: ModelIntFilterInput | null;
   type?: ModelStringFilterInput | null;
-  redactionIntervalRedationId?:ModelStringFilterInput | null;
+  redactionIntervalRedactionId?:ModelStringFilterInput | null;
   and?: Array<ModelRedactionIntervalFilterInput | null> | null;
   or?: Array<ModelRedactionIntervalFilterInput | null> | null;
   not?: ModelRedactionIntervalFilterInput | null;
@@ -358,10 +373,10 @@ export type ModelSharedFilterInput = {
   receiver_type?: ModelStringFilterInput | null;
   expiry_date?: ModelStringFilterInput | null;
   token?: ModelStringFilterInput | null;
-  sharedCaseId?:ModelStringFilterInput | null;
   urls?: ModelStringFilterInput | null;
   status?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
+  sharedCaseId?:ModelStringFilterInput | null;
   and?: Array<ModelSharedFilterInput | null> | null;
   or?: Array<ModelSharedFilterInput | null> | null;
   not?: ModelSharedFilterInput | null;
@@ -372,7 +387,7 @@ export type ModelTranscriptionFilterInput = {
   submitTime?: ModelStringFilterInput | null;
   transcriptionFileUrl?: ModelStringFilterInput | null;
   status?: ModelStringFilterInput | null;
-  transcriptionCaseId:ModelStringFilterInput | null;
+  transcriptionCaseId?:ModelStringFilterInput | null;
   and?: Array<ModelTranscriptionFilterInput | null> | null;
   or?: Array<ModelTranscriptionFilterInput | null> | null;
   not?: ModelTranscriptionFilterInput | null;
@@ -401,6 +416,11 @@ export type CreateCaseMutation = {
   location: string;
   unitId: string;
   path: string;
+  note: string | null;
+  birthdayOfInterviewee: string | null;
+  interviewType: string | null;
+  interviewAccess: string | null;
+  theOtherPersonsPresent: string | null;
   attachments: {
     __typename: "ModelAttachmentConnection";
     items: Array<{
@@ -496,6 +516,11 @@ export type UpdateCaseMutation = {
   location: string;
   unitId: string;
   path: string;
+  note: string | null;
+  birthdayOfInterviewee: string | null;
+  interviewType: string | null;
+  interviewAccess: string | null;
+  theOtherPersonsPresent: string | null;
   attachments: {
     __typename: "ModelAttachmentConnection";
     items: Array<{
@@ -591,6 +616,11 @@ export type DeleteCaseMutation = {
   location: string;
   unitId: string;
   path: string;
+  note: string | null;
+  birthdayOfInterviewee: string | null;
+  interviewType: string | null;
+  interviewAccess: string | null;
+  theOtherPersonsPresent: string | null;
   attachments: {
     __typename: "ModelAttachmentConnection";
     items: Array<{
@@ -709,6 +739,11 @@ export type CreateRecordingMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -769,6 +804,11 @@ export type UpdateRecordingMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -829,6 +869,11 @@ export type DeleteRecordingMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -873,6 +918,11 @@ export type CreateAttachmentMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -917,6 +967,11 @@ export type UpdateAttachmentMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -961,6 +1016,11 @@ export type DeleteAttachmentMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -1007,6 +1067,11 @@ export type CreateBookmarkMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -1053,6 +1118,11 @@ export type UpdateBookmarkMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -1099,6 +1169,11 @@ export type DeleteBookmarkMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -1158,6 +1233,11 @@ export type CreateRedactionMutation = {
       location: string;
       unitId: string;
       path: string;
+      note: string | null;
+      birthdayOfInterviewee: string | null;
+      interviewType: string | null;
+      interviewAccess: string | null;
+      theOtherPersonsPresent: string | null;
     } | null;
   } | null;
   RedactionIntervals: {
@@ -1206,6 +1286,11 @@ export type UpdateRedactionMutation = {
       location: string;
       unitId: string;
       path: string;
+      note: string | null;
+      birthdayOfInterviewee: string | null;
+      interviewType: string | null;
+      interviewAccess: string | null;
+      theOtherPersonsPresent: string | null;
     } | null;
   } | null;
   RedactionIntervals: {
@@ -1254,6 +1339,11 @@ export type DeleteRedactionMutation = {
       location: string;
       unitId: string;
       path: string;
+      note: string | null;
+      birthdayOfInterviewee: string | null;
+      interviewType: string | null;
+      interviewAccess: string | null;
+      theOtherPersonsPresent: string | null;
     } | null;
   } | null;
   RedactionIntervals: {
@@ -1392,6 +1482,11 @@ export type CreateSharedMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -1442,6 +1537,11 @@ export type UpdateSharedMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -1492,6 +1592,11 @@ export type DeleteSharedMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -1535,6 +1640,11 @@ export type CreateTranscriptionMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -1578,6 +1688,11 @@ export type UpdateTranscriptionMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -1621,6 +1736,11 @@ export type DeleteTranscriptionMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -1666,6 +1786,11 @@ export type CreateLogMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -1711,6 +1836,11 @@ export type UpdateLogMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -1756,6 +1886,11 @@ export type DeleteLogMutation = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -1793,6 +1928,11 @@ export type GetCaseQuery = {
   location: string;
   unitId: string;
   path: string;
+  note: string | null;
+  birthdayOfInterviewee: string | null;
+  interviewType: string | null;
+  interviewAccess: string | null;
+  theOtherPersonsPresent: string | null;
   attachments: {
     __typename: "ModelAttachmentConnection";
     items: Array<{
@@ -1890,6 +2030,11 @@ export type ListCasesQuery = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -1951,6 +2096,11 @@ export type GetRecordingQuery = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -2004,6 +2154,11 @@ export type ListRecordingsQuery = {
       location: string;
       unitId: string;
       path: string;
+      note: string | null;
+      birthdayOfInterviewee: string | null;
+      interviewType: string | null;
+      interviewAccess: string | null;
+      theOtherPersonsPresent: string | null;
     } | null;
   } | null> | null;
   nextToken: string | null;
@@ -2026,6 +2181,11 @@ export type GetAttachmentQuery = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -2072,6 +2232,11 @@ export type ListAttachmentsQuery = {
       location: string;
       unitId: string;
       path: string;
+      note: string | null;
+      birthdayOfInterviewee: string | null;
+      interviewType: string | null;
+      interviewAccess: string | null;
+      theOtherPersonsPresent: string | null;
     } | null;
   } | null> | null;
   nextToken: string | null;
@@ -2096,6 +2261,11 @@ export type GetBookmarkQuery = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -2144,6 +2314,11 @@ export type ListBookmarksQuery = {
       location: string;
       unitId: string;
       path: string;
+      note: string | null;
+      birthdayOfInterviewee: string | null;
+      interviewType: string | null;
+      interviewAccess: string | null;
+      theOtherPersonsPresent: string | null;
     } | null;
   } | null> | null;
   nextToken: string | null;
@@ -2181,6 +2356,11 @@ export type GetRedactionQuery = {
       location: string;
       unitId: string;
       path: string;
+      note: string | null;
+      birthdayOfInterviewee: string | null;
+      interviewType: string | null;
+      interviewAccess: string | null;
+      theOtherPersonsPresent: string | null;
     } | null;
   } | null;
   RedactionIntervals: {
@@ -2304,6 +2484,11 @@ export type GetSharedQuery = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -2356,6 +2541,11 @@ export type ListSharedsQuery = {
       location: string;
       unitId: string;
       path: string;
+      note: string | null;
+      birthdayOfInterviewee: string | null;
+      interviewType: string | null;
+      interviewAccess: string | null;
+      theOtherPersonsPresent: string | null;
     } | null;
   } | null> | null;
   nextToken: string | null;
@@ -2377,6 +2567,11 @@ export type GetTranscriptionQuery = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -2422,6 +2617,11 @@ export type ListTranscriptionsQuery = {
       location: string;
       unitId: string;
       path: string;
+      note: string | null;
+      birthdayOfInterviewee: string | null;
+      interviewType: string | null;
+      interviewAccess: string | null;
+      theOtherPersonsPresent: string | null;
     } | null;
   } | null> | null;
   nextToken: string | null;
@@ -2445,6 +2645,11 @@ export type GetLogQuery = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -2492,6 +2697,11 @@ export type ListLogsQuery = {
       location: string;
       unitId: string;
       path: string;
+      note: string | null;
+      birthdayOfInterviewee: string | null;
+      interviewType: string | null;
+      interviewAccess: string | null;
+      theOtherPersonsPresent: string | null;
     } | null;
   } | null> | null;
   nextToken: string | null;
@@ -2507,6 +2717,11 @@ export type OnCreateCaseSubscription = {
   location: string;
   unitId: string;
   path: string;
+  note: string | null;
+  birthdayOfInterviewee: string | null;
+  interviewType: string | null;
+  interviewAccess: string | null;
+  theOtherPersonsPresent: string | null;
   attachments: {
     __typename: "ModelAttachmentConnection";
     items: Array<{
@@ -2602,6 +2817,11 @@ export type OnUpdateCaseSubscription = {
   location: string;
   unitId: string;
   path: string;
+  note: string | null;
+  birthdayOfInterviewee: string | null;
+  interviewType: string | null;
+  interviewAccess: string | null;
+  theOtherPersonsPresent: string | null;
   attachments: {
     __typename: "ModelAttachmentConnection";
     items: Array<{
@@ -2697,6 +2917,11 @@ export type OnDeleteCaseSubscription = {
   location: string;
   unitId: string;
   path: string;
+  note: string | null;
+  birthdayOfInterviewee: string | null;
+  interviewType: string | null;
+  interviewAccess: string | null;
+  theOtherPersonsPresent: string | null;
   attachments: {
     __typename: "ModelAttachmentConnection";
     items: Array<{
@@ -2815,6 +3040,11 @@ export type OnCreateRecordingSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -2875,6 +3105,11 @@ export type OnUpdateRecordingSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -2935,6 +3170,11 @@ export type OnDeleteRecordingSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -2979,6 +3219,11 @@ export type OnCreateAttachmentSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -3023,6 +3268,11 @@ export type OnUpdateAttachmentSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -3067,6 +3317,11 @@ export type OnDeleteAttachmentSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -3113,6 +3368,11 @@ export type OnCreateBookmarkSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -3159,6 +3419,11 @@ export type OnUpdateBookmarkSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -3205,6 +3470,11 @@ export type OnDeleteBookmarkSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -3264,6 +3534,11 @@ export type OnCreateRedactionSubscription = {
       location: string;
       unitId: string;
       path: string;
+      note: string | null;
+      birthdayOfInterviewee: string | null;
+      interviewType: string | null;
+      interviewAccess: string | null;
+      theOtherPersonsPresent: string | null;
     } | null;
   } | null;
   RedactionIntervals: {
@@ -3312,6 +3587,11 @@ export type OnUpdateRedactionSubscription = {
       location: string;
       unitId: string;
       path: string;
+      note: string | null;
+      birthdayOfInterviewee: string | null;
+      interviewType: string | null;
+      interviewAccess: string | null;
+      theOtherPersonsPresent: string | null;
     } | null;
   } | null;
   RedactionIntervals: {
@@ -3360,6 +3640,11 @@ export type OnDeleteRedactionSubscription = {
       location: string;
       unitId: string;
       path: string;
+      note: string | null;
+      birthdayOfInterviewee: string | null;
+      interviewType: string | null;
+      interviewAccess: string | null;
+      theOtherPersonsPresent: string | null;
     } | null;
   } | null;
   RedactionIntervals: {
@@ -3498,6 +3783,11 @@ export type OnCreateSharedSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -3548,6 +3838,11 @@ export type OnUpdateSharedSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -3598,6 +3893,11 @@ export type OnDeleteSharedSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -3641,6 +3941,11 @@ export type OnCreateTranscriptionSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -3684,6 +3989,11 @@ export type OnUpdateTranscriptionSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -3727,6 +4037,11 @@ export type OnDeleteTranscriptionSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -3772,6 +4087,11 @@ export type OnCreateLogSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -3817,6 +4137,11 @@ export type OnUpdateLogSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -3862,6 +4187,11 @@ export type OnDeleteLogSubscription = {
     location: string;
     unitId: string;
     path: string;
+    note: string | null;
+    birthdayOfInterviewee: string | null;
+    interviewType: string | null;
+    interviewAccess: string | null;
+    theOtherPersonsPresent: string | null;
     attachments: {
       __typename: "ModelAttachmentConnection";
       nextToken: string | null;
@@ -3905,6 +4235,11 @@ export class APIService {
           location
           unitId
           path
+          note
+          birthdayOfInterviewee
+          interviewType
+          interviewAccess
+          theOtherPersonsPresent
           attachments {
             __typename
             items {
@@ -4010,6 +4345,11 @@ export class APIService {
           location
           unitId
           path
+          note
+          birthdayOfInterviewee
+          interviewType
+          interviewAccess
+          theOtherPersonsPresent
           attachments {
             __typename
             items {
@@ -4115,6 +4455,11 @@ export class APIService {
           location
           unitId
           path
+          note
+          birthdayOfInterviewee
+          interviewType
+          interviewAccess
+          theOtherPersonsPresent
           attachments {
             __typename
             items {
@@ -4245,6 +4590,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -4317,6 +4667,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -4389,6 +4744,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -4445,6 +4805,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -4501,6 +4866,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -4557,6 +4927,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -4615,6 +4990,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -4673,6 +5053,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -4731,6 +5116,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -4802,6 +5192,11 @@ export class APIService {
               location
               unitId
               path
+              note
+              birthdayOfInterviewee
+              interviewType
+              interviewAccess
+              theOtherPersonsPresent
             }
           }
           RedactionIntervals {
@@ -4862,6 +5257,11 @@ export class APIService {
               location
               unitId
               path
+              note
+              birthdayOfInterviewee
+              interviewType
+              interviewAccess
+              theOtherPersonsPresent
             }
           }
           RedactionIntervals {
@@ -4922,6 +5322,11 @@ export class APIService {
               location
               unitId
               path
+              note
+              birthdayOfInterviewee
+              interviewType
+              interviewAccess
+              theOtherPersonsPresent
             }
           }
           RedactionIntervals {
@@ -5112,6 +5517,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -5172,6 +5582,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -5232,6 +5647,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -5287,6 +5707,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -5342,6 +5767,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -5397,6 +5827,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -5452,6 +5887,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -5507,6 +5947,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -5562,6 +6007,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -5609,6 +6059,11 @@ export class APIService {
           location
           unitId
           path
+          note
+          birthdayOfInterviewee
+          interviewType
+          interviewAccess
+          theOtherPersonsPresent
           attachments {
             __typename
             items {
@@ -5720,6 +6175,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -5798,6 +6258,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -5865,6 +6330,11 @@ export class APIService {
               location
               unitId
               path
+              note
+              birthdayOfInterviewee
+              interviewType
+              interviewAccess
+              theOtherPersonsPresent
             }
           }
           nextToken
@@ -5904,6 +6374,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -5964,6 +6439,11 @@ export class APIService {
               location
               unitId
               path
+              note
+              birthdayOfInterviewee
+              interviewType
+              interviewAccess
+              theOtherPersonsPresent
             }
           }
           nextToken
@@ -6005,6 +6485,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -6067,6 +6552,11 @@ export class APIService {
               location
               unitId
               path
+              note
+              birthdayOfInterviewee
+              interviewType
+              interviewAccess
+              theOtherPersonsPresent
             }
           }
           nextToken
@@ -6121,6 +6611,11 @@ export class APIService {
               location
               unitId
               path
+              note
+              birthdayOfInterviewee
+              interviewType
+              interviewAccess
+              theOtherPersonsPresent
             }
           }
           RedactionIntervals {
@@ -6306,6 +6801,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -6372,6 +6872,11 @@ export class APIService {
               location
               unitId
               path
+              note
+              birthdayOfInterviewee
+              interviewType
+              interviewAccess
+              theOtherPersonsPresent
             }
           }
           nextToken
@@ -6410,6 +6915,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -6469,6 +6979,11 @@ export class APIService {
               location
               unitId
               path
+              note
+              birthdayOfInterviewee
+              interviewType
+              interviewAccess
+              theOtherPersonsPresent
             }
           }
           nextToken
@@ -6509,6 +7024,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -6570,6 +7090,11 @@ export class APIService {
               location
               unitId
               path
+              note
+              birthdayOfInterviewee
+              interviewType
+              interviewAccess
+              theOtherPersonsPresent
             }
           }
           nextToken
@@ -6603,6 +7128,11 @@ export class APIService {
           location
           unitId
           path
+          note
+          birthdayOfInterviewee
+          interviewType
+          interviewAccess
+          theOtherPersonsPresent
           attachments {
             __typename
             items {
@@ -6704,6 +7234,11 @@ export class APIService {
           location
           unitId
           path
+          note
+          birthdayOfInterviewee
+          interviewType
+          interviewAccess
+          theOtherPersonsPresent
           attachments {
             __typename
             items {
@@ -6805,6 +7340,11 @@ export class APIService {
           location
           unitId
           path
+          note
+          birthdayOfInterviewee
+          interviewType
+          interviewAccess
+          theOtherPersonsPresent
           attachments {
             __typename
             items {
@@ -6931,6 +7471,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -6999,6 +7544,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -7067,6 +7617,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -7119,6 +7674,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -7171,6 +7731,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -7223,6 +7788,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -7277,6 +7847,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -7331,6 +7906,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -7385,6 +7965,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -7452,6 +8037,11 @@ export class APIService {
               location
               unitId
               path
+              note
+              birthdayOfInterviewee
+              interviewType
+              interviewAccess
+              theOtherPersonsPresent
             }
           }
           RedactionIntervals {
@@ -7508,6 +8098,11 @@ export class APIService {
               location
               unitId
               path
+              note
+              birthdayOfInterviewee
+              interviewType
+              interviewAccess
+              theOtherPersonsPresent
             }
           }
           RedactionIntervals {
@@ -7564,6 +8159,11 @@ export class APIService {
               location
               unitId
               path
+              note
+              birthdayOfInterviewee
+              interviewType
+              interviewAccess
+              theOtherPersonsPresent
             }
           }
           RedactionIntervals {
@@ -7732,6 +8332,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -7788,6 +8393,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -7844,6 +8454,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -7895,6 +8510,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -7946,6 +8566,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -7997,6 +8622,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -8048,6 +8678,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -8099,6 +8734,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken
@@ -8150,6 +8790,11 @@ export class APIService {
             location
             unitId
             path
+            note
+            birthdayOfInterviewee
+            interviewType
+            interviewAccess
+            theOtherPersonsPresent
             attachments {
               __typename
               nextToken

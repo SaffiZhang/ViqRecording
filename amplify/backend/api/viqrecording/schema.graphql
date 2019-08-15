@@ -7,6 +7,11 @@ type Case @model {
 	location: String!
 	unitId: String!
 	path: String!
+	note:String
+	birthdayOfInterviewee:String
+	interviewType:String
+	interviewAccess:String
+	theOtherPersonsPresent:String
 	attachments: [Attachment] @connection(name: "CaseAttachments")
     recordings: [Recording] @connection(name: "CaseRecordings")
     logs: [Log] @connection(name: "CaseLogs")

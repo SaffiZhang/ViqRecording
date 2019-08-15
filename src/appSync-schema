@@ -4,7 +4,7 @@ type Attachment {
 	url: String!
 	updatedDateTime: String!
 	updatedBy: String!
-	recording: Recording
+	case: Case
 }
 
 type Bookmark {
@@ -15,40 +15,82 @@ type Bookmark {
 	content: String!
 	updatedDateTime: String
 	updatedBy: String
-	recording: Recording
+	case: Case
+}
+
+type Case {
+	id: String!
+	interviewee: String!
+	interviewFinish: String!
+	interviewStart: String!
+	officerCollarNumber: String!
+	location: String!
+	unitId: String!
+	path: String!
+	note: String
+	birthdayOfInterviewee: String
+	interviewType: String
+	interviewAccess: String
+	theOtherPersonsPresent: String
+	attachments(
+		filter: ModelAttachmentFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelAttachmentConnection
+	recordings(
+		filter: ModelRecordingFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelRecordingConnection
+	logs(
+		filter: ModelLogFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelLogConnection
+	transcriptions(
+		filter: ModelTranscriptionFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelTranscriptionConnection
+	bookmarks(
+		filter: ModelBookmarkFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelBookmarkConnection
+	shareds(
+		filter: ModelSharedFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelSharedConnection
 }
 
 input CreateAttachmentInput {
-	id: ID!
+	id: ID
 	description: String!
 	url: String!
 	updatedDateTime: String!
 	updatedBy: String!
-	attachmentRecordingId: ID!
+	attachmentCaseId: ID
 }
 
 input CreateBookmarkInput {
-	id: ID!
+	id: ID
 	order: Int!
 	dateTime: String!
 	speaker: String
 	content: String!
-	updatedDateTime: String!
-	updatedBy: String!
-	bookmarkRecordingId: ID!
+	updatedDateTime: String
+	updatedBy: String
+	bookmarkCaseId: ID
 }
 
-input CreateLogInput {
-	id: ID!
-	dateTime: String!
-	description: String!
-	userName: String!
-	recordId: String!
-	tableName: String!
-	logRecordingId: ID!
-}
-
-input CreateRecordingInput {
+input CreateCaseInput {
 	id: ID
 	interviewee: String!
 	interviewFinish: String!
@@ -56,30 +98,57 @@ input CreateRecordingInput {
 	officerCollarNumber: String!
 	location: String!
 	unitId: String!
-	path:String!
+	path: String!
+	note: String
+	birthdayOfInterviewee: String
+	interviewType: String
+	interviewAccess: String
+	theOtherPersonsPresent: String
+}
+
+input CreateLogInput {
+	id: ID
+	dateTime: String!
+	description: String!
+	userName: String!
+	recordId: String!
+	tableName: String!
+	logCaseId: ID
+}
+
+input CreateRecordingInput {
+	id: ID
+	url: String!
+	bucket: String!
+	key: String!
+	lastmodified: String!
+	description: String!
+	camera: String!
+	version: String!
+	recordingCaseId: ID
 }
 
 input CreateRedactionInput {
-	id: ID!
+	id: ID
 	redactionVersion: String!
 	description: String!
-	updatedDateTime: String!
-	updatedBy: String!
+	updatedDateTime: String
+	updatedBy: String
 	status: String!
-	redactionUrlId: ID!
+	redactionRecordingId: ID
 }
 
 input CreateRedactionIntervalInput {
-	id: ID!
+	id: ID
 	redactionVersion: String!
 	startSecond: Int!
 	endSecond: Int!
 	type: String!
-	redactionIntervalRedationId: ID!
+	redactionIntervalRedactonId: ID
 }
 
 input CreateSharedInput {
-	id: ID!
+	id: ID
 	createdDateTime: String!
 	createdBy: String!
 	receiver: String!
@@ -89,26 +158,16 @@ input CreateSharedInput {
 	token: String!
 	urls: [String]!
 	status: String!
-	description: String
-	sharedRecordingId: ID!
+	description: String!
+	sharedCaseId: ID
 }
 
 input CreateTranscriptionInput {
 	id: ID
 	submitTime: String!
-	transcriptionFileUrl: String
+	transcriptionFileUrl: String!
 	status: String!
-	transcriptionRecordingId: ID!
-}
-
-input CreateUrlInput {
-	id: ID!
-	url: String!
-	lastmodified: String!
-	description: String!
-	camera: String!
-	version: String!
-	urlRecordingId: ID!
+	transcriptionCaseId: ID
 }
 
 input DeleteAttachmentInput {
@@ -116,6 +175,10 @@ input DeleteAttachmentInput {
 }
 
 input DeleteBookmarkInput {
+	id: ID
+}
+
+input DeleteCaseInput {
 	id: ID
 }
 
@@ -143,10 +206,6 @@ input DeleteTranscriptionInput {
 	id: ID
 }
 
-input DeleteUrlInput {
-	id: ID
-}
-
 type Log {
 	id: ID!
 	dateTime: String!
@@ -154,7 +213,7 @@ type Log {
 	userName: String!
 	recordId: String!
 	tableName: String!
-	recording: Recording
+	case: Case
 }
 
 type ModelAttachmentConnection {
@@ -166,7 +225,9 @@ input ModelAttachmentFilterInput {
 	id: ModelIDFilterInput
 	description: ModelStringFilterInput
 	url: ModelStringFilterInput
-	attachmentRecordingId: ModelStringFilterInput
+	attachmentCaseId: ModelStringFilterInput
+	updatedDateTime: ModelStringFilterInput
+	updatedBy: ModelStringFilterInput
 	and: [ModelAttachmentFilterInput]
 	or: [ModelAttachmentFilterInput]
 	not: ModelAttachmentFilterInput
@@ -179,12 +240,13 @@ type ModelBookmarkConnection {
 
 input ModelBookmarkFilterInput {
 	id: ModelIDFilterInput
+	order: ModelIntFilterInput
 	dateTime: ModelStringFilterInput
 	speaker: ModelStringFilterInput
 	content: ModelStringFilterInput
+	bookmarkCaseId:ModelStringFilterInput
 	updatedDateTime: ModelStringFilterInput
 	updatedBy: ModelStringFilterInput
-	bookmarkRecordingId: ModelStringFilterInput
 	and: [ModelBookmarkFilterInput]
 	or: [ModelBookmarkFilterInput]
 	not: ModelBookmarkFilterInput
@@ -193,6 +255,30 @@ input ModelBookmarkFilterInput {
 input ModelBooleanFilterInput {
 	ne: Boolean
 	eq: Boolean
+}
+
+type ModelCaseConnection {
+	items: [Case]
+	nextToken: String
+}
+
+input ModelCaseFilterInput {
+	id: ModelStringFilterInput
+	interviewee: ModelStringFilterInput
+	interviewFinish: ModelStringFilterInput
+	interviewStart: ModelStringFilterInput
+	officerCollarNumber: ModelStringFilterInput
+	location: ModelStringFilterInput
+	unitId: ModelStringFilterInput
+	path: ModelStringFilterInput
+	note: ModelStringFilterInput
+	birthdayOfInterviewee: ModelStringFilterInput
+	interviewType: ModelStringFilterInput
+	interviewAccess: ModelStringFilterInput
+	theOtherPersonsPresent: ModelStringFilterInput
+	and: [ModelCaseFilterInput]
+	or: [ModelCaseFilterInput]
+	not: ModelCaseFilterInput
 }
 
 input ModelFloatFilterInput {
@@ -242,7 +328,9 @@ input ModelLogFilterInput {
 	dateTime: ModelStringFilterInput
 	description: ModelStringFilterInput
 	userName: ModelStringFilterInput
-	logRecordingId: ModelStringFilterInput
+	recordId: ModelStringFilterInput
+	tableName: ModelStringFilterInput
+	logCaseId:ModelStringFilterInput
 	and: [ModelLogFilterInput]
 	or: [ModelLogFilterInput]
 	not: ModelLogFilterInput
@@ -254,13 +342,15 @@ type ModelRecordingConnection {
 }
 
 input ModelRecordingFilterInput {
-	id: ModelStringFilterInput
-	interviewee: ModelStringFilterInput
-	interviewFinish: ModelStringFilterInput
-	interviewStart: ModelStringFilterInput
-	officerCollarNumber: ModelStringFilterInput
-	location: ModelStringFilterInput
-	unitId: ModelStringFilterInput
+	id: ModelIDFilterInput
+	url: ModelStringFilterInput
+	bucket: ModelStringFilterInput
+	key: ModelStringFilterInput
+	lastmodified: ModelStringFilterInput
+	description: ModelStringFilterInput
+	recordingCaseId:ModelStringFilterInput
+	camera: ModelStringFilterInput
+	version: ModelStringFilterInput
 	and: [ModelRecordingFilterInput]
 	or: [ModelRecordingFilterInput]
 	not: ModelRecordingFilterInput
@@ -274,7 +364,11 @@ type ModelRedactionConnection {
 input ModelRedactionFilterInput {
 	id: ModelIDFilterInput
 	redactionVersion: ModelStringFilterInput
-	urlId: ModelStringFilterInput
+	description: ModelStringFilterInput
+	redactionRecordingId:ModelStringFilterInput
+	updatedDateTime: ModelStringFilterInput
+	updatedBy: ModelStringFilterInput
+	status: ModelStringFilterInput
 	and: [ModelRedactionFilterInput]
 	or: [ModelRedactionFilterInput]
 	not: ModelRedactionFilterInput
@@ -287,7 +381,11 @@ type ModelRedactionIntervalConnection {
 
 input ModelRedactionIntervalFilterInput {
 	id: ModelIDFilterInput
-	redactionId: ModelStringFilterInput
+	redactionVersion: ModelStringFilterInput
+	startSecond: ModelIntFilterInput
+	endSecond: ModelIntFilterInput
+	type: ModelStringFilterInput
+	redactionIntervalRedactonId:ModelStringFilterInput
 	and: [ModelRedactionIntervalFilterInput]
 	or: [ModelRedactionIntervalFilterInput]
 	not: ModelRedactionIntervalFilterInput
@@ -300,17 +398,17 @@ type ModelSharedConnection {
 
 input ModelSharedFilterInput {
 	id: ModelIDFilterInput
-	dateTime: ModelStringFilterInput
+	createdDateTime: ModelStringFilterInput
+	createdBy: ModelStringFilterInput
 	receiver: ModelStringFilterInput
 	receiver_email: ModelStringFilterInput
 	receiver_type: ModelStringFilterInput
-	token: ModelStringFilterInput
-	urls: ModelStringFilterInput
 	expiry_date: ModelStringFilterInput
-	createdDateTime: ModelStringFilterInput
-	createdBy: ModelStringFilterInput
+	token: ModelStringFilterInput
+	sharedCaseId:ModelStringFilterInput
+	urls: ModelStringFilterInput
 	status: ModelStringFilterInput
-	sharedRecordingId: ModelStringFilterInput
+	description: ModelStringFilterInput
 	and: [ModelSharedFilterInput]
 	or: [ModelSharedFilterInput]
 	not: ModelSharedFilterInput
@@ -342,125 +440,81 @@ type ModelTranscriptionConnection {
 input ModelTranscriptionFilterInput {
 	id: ModelIDFilterInput
 	submitTime: ModelStringFilterInput
-	transcriptionRecordingId: ModelStringFilterInput
+	transcriptionFileUrl: ModelStringFilterInput
+	status: ModelStringFilterInput
+	transcriptionCaseId:ModelStringFilterInput
 	and: [ModelTranscriptionFilterInput]
 	or: [ModelTranscriptionFilterInput]
 	not: ModelTranscriptionFilterInput
 }
 
-type ModelUrlConnection {
-	items: [Url]
-	nextToken: String
-}
-
-input ModelUrlFilterInput {
-	id: ModelIDFilterInput
-	url: ModelStringFilterInput
-	lastmodified: ModelStringFilterInput
-	description: ModelStringFilterInput
-	camera: ModelStringFilterInput
-	version: ModelStringFilterInput
-	urlRecordingId: ModelStringFilterInput
-	and: [ModelUrlFilterInput]
-	or: [ModelUrlFilterInput]
-	not: ModelUrlFilterInput
-}
-
 type Mutation {
+	createCase(input: CreateCaseInput!): Case
+	updateCase(input: UpdateCaseInput!): Case
+	deleteCase(input: DeleteCaseInput!): Case
 	createRecording(input: CreateRecordingInput!): Recording
 	updateRecording(input: UpdateRecordingInput!): Recording
-	deleteRecordiing(input: DeleteRecordingInput!): Recording
+	deleteRecording(input: DeleteRecordingInput!): Recording
 	createAttachment(input: CreateAttachmentInput!): Attachment
 	updateAttachment(input: UpdateAttachmentInput!): Attachment
 	deleteAttachment(input: DeleteAttachmentInput!): Attachment
-	createUrl(input: CreateUrlInput!): Url
-	updateUrl(input: UpdateUrlInput!): Url
-	deleteUrl(input: DeleteUrlInput!): Url
-	createLog(input: CreateLogInput!): Log
-	updateLog(input: UpdateLogInput!): Log
-	deleteLog(input: DeleteLogInput!): Log
+	createBookmark(input: CreateBookmarkInput!): Bookmark
+	updateBookmark(input: UpdateBookmarkInput!): Bookmark
+	deleteBookmark(input: DeleteBookmarkInput!): Bookmark
 	createRedaction(input: CreateRedactionInput!): Redaction
 	updateRedaction(input: UpdateRedactionInput!): Redaction
 	deleteRedaction(input: DeleteRedactionInput!): Redaction
 	createRedactionInterval(input: CreateRedactionIntervalInput!): RedactionInterval
 	updateRedactionInterval(input: UpdateRedactionIntervalInput!): RedactionInterval
 	deleteRedactionInterval(input: DeleteRedactionIntervalInput!): RedactionInterval
-	createBookmark(input: CreateBookmarkInput!): Bookmark
-	updateBookmark(input: UpdateBookmarkInput!): Bookmark
-	deleteBookmark(input: DeleteBookmarkInput!): Bookmark
-	createTranscription(input: CreateTranscriptionInput!): Transcription
-	updateTranscription(input: UpdateTranscriptionInput!): Transcription
-	deleteTranscription(input: DeleteTranscriptionInput!): Transcription
 	createShared(input: CreateSharedInput!): Shared
 	updateShared(input: UpdateSharedInput!): Shared
 	deleteShared(input: DeleteSharedInput!): Shared
+	createTranscription(input: CreateTranscriptionInput!): Transcription
+	updateTranscription(input: UpdateTranscriptionInput!): Transcription
+	deleteTranscription(input: DeleteTranscriptionInput!): Transcription
+	createLog(input: CreateLogInput!): Log
+	updateLog(input: UpdateLogInput!): Log
+	deleteLog(input: DeleteLogInput!): Log
 }
 
 type Query {
+	getCase(id: ID!): Case
+	listCases(filter: ModelCaseFilterInput, limit: Int, nextToken: String): ModelCaseConnection
 	getRecording(id: ID!): Recording
 	listRecordings(filter: ModelRecordingFilterInput, limit: Int, nextToken: String): ModelRecordingConnection
 	getAttachment(id: ID!): Attachment
 	listAttachments(filter: ModelAttachmentFilterInput, limit: Int, nextToken: String): ModelAttachmentConnection
-	getUrl(id: ID!): Url
-	listUrls(filter: ModelUrlFilterInput, limit: Int, nextToken: String): ModelUrlConnection
-	getLog(id: ID!): Log
-	listLogs(filter: ModelLogFilterInput, limit: Int, nextToken: String): ModelLogConnection
+	getBookmark(id: ID!): Bookmark
+	listBookmarks(filter: ModelBookmarkFilterInput, limit: Int, nextToken: String): ModelBookmarkConnection
 	getRedaction(id: ID!): Redaction
 	listRedactions(filter: ModelRedactionFilterInput, limit: Int, nextToken: String): ModelRedactionConnection
 	getRedactionInterval(id: ID!): RedactionInterval
-	listRedactionsInterval(filter: ModelRedactionIntervalFilterInput, limit: Int, nextToken: String): ModelRedactionIntervalConnection
-	getBookmark(id: ID!): Bookmark
-	listBookmark(filter: ModelBookmarkFilterInput, limit: Int, nextToken: String): ModelBookmarkConnection
-	getTranscription(id: ID!): Transcription
-	listTranscriptions(filter: ModelTranscriptionFilterInput, limit: Int, nextToken: String): ModelTranscriptionConnection
+	listRedactionIntervals(filter: ModelRedactionIntervalFilterInput, limit: Int, nextToken: String): ModelRedactionIntervalConnection
 	getShared(id: ID!): Shared
 	listShareds(filter: ModelSharedFilterInput, limit: Int, nextToken: String): ModelSharedConnection
+	getTranscription(id: ID!): Transcription
+	listTranscriptions(filter: ModelTranscriptionFilterInput, limit: Int, nextToken: String): ModelTranscriptionConnection
+	getLog(id: ID!): Log
+	listLogs(filter: ModelLogFilterInput, limit: Int, nextToken: String): ModelLogConnection
 }
 
 type Recording {
-	id: String!
-	interviewee: String!
-	interviewFinish: String!
-	interviewStart: String!
-	officerCollarNumber: String!
-	location: String!
-	unitId: String!
-	attachments(
-		filter: ModelAttachmentFilterInput,
+	id: ID!
+	url: String!
+	bucket: String!
+	key: String!
+	lastmodified: String!
+	description: String!
+	camera: String!
+	version: String!
+	redactions(
+		filter: ModelRedactionFilterInput,
 		sortDirection: ModelSortDirection,
 		limit: Int,
 		nextToken: String
-	): ModelAttachmentConnection
-	urls(
-		filter: ModelUrlFilterInput,
-		sortDirection: ModelSortDirection,
-		limit: Int,
-		nextToken: String
-	): ModelUrlConnection
-	logs(
-		filter: ModelLogFilterInput,
-		sortDirection: ModelSortDirection,
-		limit: Int,
-		nextToken: String
-	): ModelLogConnection
-	transcriptions(
-		filter: ModelTranscriptionFilterInput,
-		sortDirection: ModelSortDirection,
-		limit: Int,
-		nextToken: String
-	): ModelTranscriptionConnection
-	bookmarks(
-		filter: ModelBookmarkFilterInput,
-		sortDirection: ModelSortDirection,
-		limit: Int,
-		nextToken: String
-	): ModelBookmarkConnection
-	shareds(
-		filter: ModelSharedFilterInput,
-		sortDirection: ModelSortDirection,
-		limit: Int,
-		nextToken: String
-	): ModelSharedConnection
+	): ModelRedactionConnection
+	case: Case
 }
 
 type Redaction {
@@ -470,8 +524,8 @@ type Redaction {
 	updatedDateTime: String
 	updatedBy: String
 	status: String!
-	url: Url
-	intervals(
+	recording: Recording
+	RedactionIntervals(
 		filter: ModelRedactionIntervalFilterInput,
 		sortDirection: ModelSortDirection,
 		limit: Int,
@@ -500,7 +554,64 @@ type Shared {
 	urls: [String]!
 	status: String!
 	description: String!
-	recording: Recording
+	case: Case
+}
+
+type Subscription {
+	onCreateCase: Case
+		@aws_subscribe(mutations: ["createCase"])
+	onUpdateCase: Case
+		@aws_subscribe(mutations: ["updateCase"])
+	onDeleteCase: Case
+		@aws_subscribe(mutations: ["deleteCase"])
+	onCreateRecording: Recording
+		@aws_subscribe(mutations: ["createRecording"])
+	onUpdateRecording: Recording
+		@aws_subscribe(mutations: ["updateRecording"])
+	onDeleteRecording: Recording
+		@aws_subscribe(mutations: ["deleteRecording"])
+	onCreateAttachment: Attachment
+		@aws_subscribe(mutations: ["createAttachment"])
+	onUpdateAttachment: Attachment
+		@aws_subscribe(mutations: ["updateAttachment"])
+	onDeleteAttachment: Attachment
+		@aws_subscribe(mutations: ["deleteAttachment"])
+	onCreateBookmark: Bookmark
+		@aws_subscribe(mutations: ["createBookmark"])
+	onUpdateBookmark: Bookmark
+		@aws_subscribe(mutations: ["updateBookmark"])
+	onDeleteBookmark: Bookmark
+		@aws_subscribe(mutations: ["deleteBookmark"])
+	onCreateRedaction: Redaction
+		@aws_subscribe(mutations: ["createRedaction"])
+	onUpdateRedaction: Redaction
+		@aws_subscribe(mutations: ["updateRedaction"])
+	onDeleteRedaction: Redaction
+		@aws_subscribe(mutations: ["deleteRedaction"])
+	onCreateRedactionInterval: RedactionInterval
+		@aws_subscribe(mutations: ["createRedactionInterval"])
+	onUpdateRedactionInterval: RedactionInterval
+		@aws_subscribe(mutations: ["updateRedactionInterval"])
+	onDeleteRedactionInterval: RedactionInterval
+		@aws_subscribe(mutations: ["deleteRedactionInterval"])
+	onCreateShared: Shared
+		@aws_subscribe(mutations: ["createShared"])
+	onUpdateShared: Shared
+		@aws_subscribe(mutations: ["updateShared"])
+	onDeleteShared: Shared
+		@aws_subscribe(mutations: ["deleteShared"])
+	onCreateTranscription: Transcription
+		@aws_subscribe(mutations: ["createTranscription"])
+	onUpdateTranscription: Transcription
+		@aws_subscribe(mutations: ["updateTranscription"])
+	onDeleteTranscription: Transcription
+		@aws_subscribe(mutations: ["deleteTranscription"])
+	onCreateLog: Log
+		@aws_subscribe(mutations: ["createLog"])
+	onUpdateLog: Log
+		@aws_subscribe(mutations: ["updateLog"])
+	onDeleteLog: Log
+		@aws_subscribe(mutations: ["deleteLog"])
 }
 
 type Transcription {
@@ -508,7 +619,7 @@ type Transcription {
 	submitTime: String!
 	transcriptionFileUrl: String!
 	status: String!
-	recording: Recording
+	case: Case
 }
 
 input UpdateAttachmentInput {
@@ -517,7 +628,7 @@ input UpdateAttachmentInput {
 	url: String
 	updatedDateTime: String
 	updatedBy: String
-	attachmentRecordingId: ID
+	attachmentCaseId: ID
 }
 
 input UpdateBookmarkInput {
@@ -528,7 +639,23 @@ input UpdateBookmarkInput {
 	content: String
 	updatedDateTime: String
 	updatedBy: String
-	bookmarkRecordingId: ID
+	bookmarkCaseId: ID
+}
+
+input UpdateCaseInput {
+	id: String!
+	interviewee: String
+	interviewFinish: String
+	interviewStart: String
+	officerCollarNumber: String
+	location: String
+	unitId: String
+	path: String
+	note: String
+	birthdayOfInterviewee: String
+	interviewType: String
+	interviewAccess: String
+	theOtherPersonsPresent: String
 }
 
 input UpdateLogInput {
@@ -538,18 +665,19 @@ input UpdateLogInput {
 	userName: String
 	recordId: String
 	tableName: String
-	logRecordingId: ID
+	logCaseId: ID
 }
 
 input UpdateRecordingInput {
-	id: String!
-	interviewee: String
-	interviewFinish: String
-	interviewStart: String
-	officerCollarNumber: String
-	location: String
-	unitId: String
-	path:String
+	id: ID!
+	url: String
+	bucket: String
+	key: String
+	lastmodified: String
+	description: String
+	camera: String
+	version: String
+	recordingCaseId: ID
 }
 
 input UpdateRedactionInput {
@@ -559,7 +687,7 @@ input UpdateRedactionInput {
 	updatedDateTime: String
 	updatedBy: String
 	status: String
-	redactionUrlId: ID
+	redactionRecordingId: ID
 }
 
 input UpdateRedactionIntervalInput {
@@ -568,12 +696,13 @@ input UpdateRedactionIntervalInput {
 	startSecond: Int
 	endSecond: Int
 	type: String
-	redactionIntervalRedactionId: ID
+	redactionIntervalRedactonId: ID
 }
 
 input UpdateSharedInput {
 	id: ID!
-	dateTime: String
+	createdDateTime: String
+	createdBy: String
 	receiver: String
 	receiver_email: String
 	receiver_type: String
@@ -581,7 +710,8 @@ input UpdateSharedInput {
 	token: String
 	urls: [String]
 	status: String
-	sharedRecordingId: ID
+	description: String
+	sharedCaseId: ID
 }
 
 input UpdateTranscriptionInput {
@@ -589,31 +719,5 @@ input UpdateTranscriptionInput {
 	submitTime: String
 	transcriptionFileUrl: String
 	status: String
-	transcriptionRecordingId: ID
-}
-
-input UpdateUrlInput {
-	id: ID!
-	url: String
-	lastmodified: String
-	description: String
-	camera: String
-	version: String
-	urlRecordingId: ID
-}
-
-type Url {
-	id: ID!
-	url: String!
-	lastmodified: String!
-	description: String!
-	camera: String!
-	version: String!
-	redactions(
-		filter: ModelRedactionFilterInput,
-		sortDirection: ModelSortDirection,
-		limit: Int,
-		nextToken: String
-	): ModelRedactionConnection
-	recording: Recording
+	transcriptionCaseId: ID
 }

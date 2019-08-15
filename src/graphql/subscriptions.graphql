@@ -9,6 +9,11 @@ subscription OnCreateCase {
     location
     unitId
     path
+    note
+    birthdayOfInterviewee
+    interviewType
+    interviewAccess
+    theOtherPersonsPresent
     attachments {
       items {
         id
@@ -92,6 +97,11 @@ subscription OnUpdateCase {
     location
     unitId
     path
+    note
+    birthdayOfInterviewee
+    interviewType
+    interviewAccess
+    theOtherPersonsPresent
     attachments {
       items {
         id
@@ -175,6 +185,11 @@ subscription OnDeleteCase {
     location
     unitId
     path
+    note
+    birthdayOfInterviewee
+    interviewType
+    interviewAccess
+    theOtherPersonsPresent
     attachments {
       items {
         id
@@ -278,6 +293,11 @@ subscription OnCreateRecording {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -329,6 +349,11 @@ subscription OnUpdateRecording {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -380,6 +405,11 @@ subscription OnDeleteRecording {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -417,6 +447,11 @@ subscription OnCreateAttachment {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -454,6 +489,11 @@ subscription OnUpdateAttachment {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -491,6 +531,11 @@ subscription OnDeleteAttachment {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -530,6 +575,11 @@ subscription OnCreateBookmark {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -569,6 +619,11 @@ subscription OnUpdateBookmark {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -608,6 +663,11 @@ subscription OnDeleteBookmark {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -658,6 +718,11 @@ subscription OnCreateRedaction {
         location
         unitId
         path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
       }
     }
     RedactionIntervals {
@@ -701,6 +766,11 @@ subscription OnUpdateRedaction {
         location
         unitId
         path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
       }
     }
     RedactionIntervals {
@@ -744,6 +814,11 @@ subscription OnDeleteRedaction {
         location
         unitId
         path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
       }
     }
     RedactionIntervals {
@@ -870,6 +945,11 @@ subscription OnCreateShared {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -913,6 +993,11 @@ subscription OnUpdateShared {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -956,6 +1041,11 @@ subscription OnDeleteShared {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -992,6 +1082,11 @@ subscription OnCreateTranscription {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -1028,6 +1123,11 @@ subscription OnUpdateTranscription {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -1064,6 +1164,11 @@ subscription OnDeleteTranscription {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -1102,6 +1207,11 @@ subscription OnCreateLog {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -1140,6 +1250,11 @@ subscription OnUpdateLog {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -1178,6 +1293,11 @@ subscription OnDeleteLog {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }

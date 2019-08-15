@@ -9,6 +9,11 @@ query GetCase($id: ID!) {
     location
     unitId
     path
+    note
+    birthdayOfInterviewee
+    interviewType
+    interviewAccess
+    theOtherPersonsPresent
     attachments {
       items {
         id
@@ -97,6 +102,11 @@ query ListCases(
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -149,6 +159,11 @@ query GetRecording($id: ID!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -197,6 +212,11 @@ query ListRecordings(
         location
         unitId
         path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
       }
     }
     nextToken
@@ -218,6 +238,11 @@ query GetAttachment($id: ID!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -260,6 +285,11 @@ query ListAttachments(
         location
         unitId
         path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
       }
     }
     nextToken
@@ -283,6 +313,11 @@ query GetBookmark($id: ID!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -327,6 +362,11 @@ query ListBookmarks(
         location
         unitId
         path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
       }
     }
     nextToken
@@ -361,6 +401,11 @@ query GetRedaction($id: ID!) {
         location
         unitId
         path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
       }
     }
     RedactionIntervals {
@@ -485,6 +530,11 @@ query GetShared($id: ID!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -533,6 +583,11 @@ query ListShareds(
         location
         unitId
         path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
       }
     }
     nextToken
@@ -553,6 +608,11 @@ query GetTranscription($id: ID!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -594,6 +654,11 @@ query ListTranscriptions(
         location
         unitId
         path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
       }
     }
     nextToken
@@ -616,6 +681,11 @@ query GetLog($id: ID!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -655,6 +725,11 @@ query ListLogs($filter: ModelLogFilterInput, $limit: Int, $nextToken: String) {
         location
         unitId
         path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
       }
     }
     nextToken

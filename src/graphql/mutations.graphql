@@ -9,6 +9,11 @@ mutation CreateCase($input: CreateCaseInput!) {
     location
     unitId
     path
+    note
+    birthdayOfInterviewee
+    interviewType
+    interviewAccess
+    theOtherPersonsPresent
     attachments {
       items {
         id
@@ -92,6 +97,11 @@ mutation UpdateCase($input: UpdateCaseInput!) {
     location
     unitId
     path
+    note
+    birthdayOfInterviewee
+    interviewType
+    interviewAccess
+    theOtherPersonsPresent
     attachments {
       items {
         id
@@ -175,6 +185,11 @@ mutation DeleteCase($input: DeleteCaseInput!) {
     location
     unitId
     path
+    note
+    birthdayOfInterviewee
+    interviewType
+    interviewAccess
+    theOtherPersonsPresent
     attachments {
       items {
         id
@@ -278,6 +293,11 @@ mutation CreateRecording($input: CreateRecordingInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -329,6 +349,11 @@ mutation UpdateRecording($input: UpdateRecordingInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -380,6 +405,11 @@ mutation DeleteRecording($input: DeleteRecordingInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -417,6 +447,11 @@ mutation CreateAttachment($input: CreateAttachmentInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -454,6 +489,11 @@ mutation UpdateAttachment($input: UpdateAttachmentInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -491,6 +531,11 @@ mutation DeleteAttachment($input: DeleteAttachmentInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -530,6 +575,11 @@ mutation CreateBookmark($input: CreateBookmarkInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -569,6 +619,11 @@ mutation UpdateBookmark($input: UpdateBookmarkInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -608,6 +663,11 @@ mutation DeleteBookmark($input: DeleteBookmarkInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -658,6 +718,11 @@ mutation CreateRedaction($input: CreateRedactionInput!) {
         location
         unitId
         path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
       }
     }
     RedactionIntervals {
@@ -701,6 +766,11 @@ mutation UpdateRedaction($input: UpdateRedactionInput!) {
         location
         unitId
         path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
       }
     }
     RedactionIntervals {
@@ -744,6 +814,11 @@ mutation DeleteRedaction($input: DeleteRedactionInput!) {
         location
         unitId
         path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
       }
     }
     RedactionIntervals {
@@ -870,6 +945,11 @@ mutation CreateShared($input: CreateSharedInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -913,6 +993,11 @@ mutation UpdateShared($input: UpdateSharedInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -956,6 +1041,11 @@ mutation DeleteShared($input: DeleteSharedInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -992,6 +1082,11 @@ mutation CreateTranscription($input: CreateTranscriptionInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -1028,6 +1123,11 @@ mutation UpdateTranscription($input: UpdateTranscriptionInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -1064,6 +1164,11 @@ mutation DeleteTranscription($input: DeleteTranscriptionInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -1102,6 +1207,11 @@ mutation CreateLog($input: CreateLogInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -1140,6 +1250,11 @@ mutation UpdateLog($input: UpdateLogInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
@@ -1178,6 +1293,11 @@ mutation DeleteLog($input: DeleteLogInput!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
