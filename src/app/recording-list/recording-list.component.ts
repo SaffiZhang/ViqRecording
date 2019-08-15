@@ -22,17 +22,35 @@ export class RecordingListComponent implements OnInit {
     field: 'interviewee', header: 'Interviewee', filterMatchMode: 'startsWith'
   }];
 
+  public searchModel = {};
+
   constructor(private api: APIService) {
   }
 
-  async ngOnInit() {
-    await this.listRecording();
+  ngOnInit() {
+    this.listRecording();
   }
 
-  async listRecording() {
-    const result = await this.api.ListCases();
-    this.recordingList = result.items;
-
+  private listRecording() {
+    this.api.ListCases(null, 1000).then(r => {
+      this.recordingList = r.items;
+    });
   }
 
+  public doSearch(field) {
+    if (field && this.searchModel[field]) {
+      const payload = {};
+      payload[field] = {contains: this.searchModel[field]};
+      this.api.ListCases(payload, 1000).then(r => {
+        this.recordingList = r.items;
+      });
+    } else {
+      this.listRecording();
+    }
+  }
+
+  public undoSearch(field) {
+    this.searchModel[field] = '';
+    this.listRecording();
+  }
 }

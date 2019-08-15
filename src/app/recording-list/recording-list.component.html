@@ -1,6 +1,6 @@
 <div class="ui-g">
   <div class="ui-g-12">
-    <p-table #dt [columns]="columns" [value]="recordingList">
+    <p-table #dt [columns]="columns" [value]="recordingList" [paginator]="true" [rows]="10">
       <ng-template pTemplate="header" let-columns>
         <tr>
           <ng-container *ngFor="let col of columns">
@@ -18,10 +18,11 @@
 
         </tr>
         <tr>
-          <th *ngFor="let col of columns">
+          <th *ngFor="let col of columns" nowrap>
             <ng-container *ngIf="col.field!=='id'">
-              <input pInputText type="text"
-                     (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <input pInputText type="text" [(ngModel)]="searchModel[col.field]">&nbsp;
+              <i class="pi pi-search search-btn" (click)="doSearch(col.field)"></i>&nbsp;
+              <i class="pi pi-refresh search-btn" (click)="undoSearch(col.field)"></i>
             </ng-container>
 
           </th>
