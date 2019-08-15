@@ -14,14 +14,23 @@ import {Subscribable, Subscription} from 'rxjs';
 export class CreateCaseComponent implements OnInit, OnDestroy {
 
   public model: any = {
-    interviewStart: '2019-01-01 13:10:00',
-    interviewFinish: '2019-01-01 15:20:10',
-    interviewee: 'someone',
-    officerCollarNumber: '1234',
-    location: 'central station',
+    interviewStart: '',
+    interviewFinish: '',
+    interviewee: '',
+    officerCollarNumber: '',
+    location: '',
     unitId: '123',
-    path: 'kklkkl',
+    path: '123',
   };
+  // public model: any = {
+  //   interviewStart: '2019-01-01 13:10:00',
+  //   interviewFinish: '2019-01-01 15:20:10',
+  //   interviewee: 'someone',
+  //   officerCollarNumber: '1234',
+  //   location: 'central station',
+  //   unitId: '123',
+  //   path: 'kklkkl',
+  // };
   public isRunning = false;
   selectedFiles: FileList;
   public mandatoryFieldError = false;
