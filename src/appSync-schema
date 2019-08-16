@@ -418,6 +418,19 @@ enum ModelSortDirection {
 	ASC
 	DESC
 }
+enum ModelCaseSortDirection {
+	interviewee_ASC
+	interviewee_DESC
+	officerCollarNumber_ASC
+	officerCollarNumber_DESC
+	location_ASC
+	location_DESC
+	interviewStart_ASC
+	interviewStart_DESC
+	interviewFinish_ASC
+	interviewFinish_DESC
+}
+
 
 input ModelStringFilterInput {
 	ne: String
@@ -480,7 +493,7 @@ type Mutation {
 
 type Query {
 	getCase(id: ID!): Case
-	listCases(filter: ModelCaseFilterInput, limit: Int, nextToken: String): ModelCaseConnection
+	listCases(filter: ModelCaseFilterInput, limit: Int, nextToken: String,orderBy:ModelCaseSortDirection): ModelCaseConnection
 	getRecording(id: ID!): Recording
 	listRecordings(filter: ModelRecordingFilterInput, limit: Int, nextToken: String): ModelRecordingConnection
 	getAttachment(id: ID!): Attachment
