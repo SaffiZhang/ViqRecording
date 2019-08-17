@@ -14,7 +14,7 @@ import {VgOverlayPlayModule} from 'videogular2/compiled/src/overlay-play/overlay
 import {VgBufferingModule} from 'videogular2/compiled/src/buffering/buffering';
 import {ButtonModule} from 'primeng/button';
 import {
-  BlockUIModule,
+  BlockUIModule, CalendarModule,
   CardModule,
   DropdownModule, FileUploadModule,
   InputMaskModule,
@@ -94,7 +94,8 @@ import { CreateCaseUploadMediaComponent } from './create-case-upload-media/creat
     MessagesModule,
     MessageModule,
     FileUploadModule,
-    BlockUIModule
+    BlockUIModule,
+    CalendarModule
 
   ],
   providers: [

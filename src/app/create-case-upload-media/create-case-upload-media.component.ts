@@ -15,7 +15,9 @@ import {NgForm} from '@angular/forms';
 })
 export class CreateCaseUploadMediaComponent implements OnInit, OnDestroy {
   public model: any = {};
-  public mediaModel: any = {};
+  public mediaModel: any = {
+    camera: 'N/A',
+  };
 
   private currentUser: any;
   private caseId: string;
@@ -28,6 +30,8 @@ export class CreateCaseUploadMediaComponent implements OnInit, OnDestroy {
 
   public mandatoryFieldError = false;
   public selectFilesError = false;
+
+  public isRunning = false;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -69,9 +73,9 @@ export class CreateCaseUploadMediaComponent implements OnInit, OnDestroy {
   private validateInput() {
     this.mandatoryFieldError = false;
     this.selectFilesError = false;
-    if (!this.nn(this.mediaModel.camera)) {
-      this.mandatoryFieldError = true;
-    }
+    // if (!this.nn(this.mediaModel.camera)) {
+    //   this.mandatoryFieldError = true;
+    // }
     if (!this.nn(this.mediaModel.version)) {
       this.mandatoryFieldError = true;
     }
@@ -94,13 +98,21 @@ export class CreateCaseUploadMediaComponent implements OnInit, OnDestroy {
 
   public upload() {
     if (this.validateInput()) {
+      this.messageService.add({
+        key: 'import-case',
+        severity: 'Error',
+        summary: 'Mandatory Field',
+        detail: 'Please fill all mandatory fields.'
+      });
       return;
     }
+    this.isRunning = true;
     this.fileUploadComponent.files.forEach((f, index) => {
       this.fileUploadService.uploadFile(f, this.model.path ? this.model.path : '', (data) => {
         this.createRecord(data, index);
       }, (err) => {
         console.log(err);
+        this.isRunning = false;
       });
     });
   }
@@ -130,9 +142,16 @@ export class CreateCaseUploadMediaComponent implements OnInit, OnDestroy {
 
       });
     }, err => {
-
+      this.isRunning = false;
+      this.messageService.add({
+        key: 'import-case',
+        severity: 'Error',
+        summary: 'Error',
+        detail: 'Error occurred while importing the case. Please try it again later.'
+      });
     });
     if (index === this.fileUploadComponent.files.length - 1) {
+      this.isRunning = false;
       this.reset();
     }
   }

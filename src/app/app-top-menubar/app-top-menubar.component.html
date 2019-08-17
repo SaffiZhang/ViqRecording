@@ -5,11 +5,11 @@
   </a>
 
   <ul class="topbar-menu" *ngIf="isAuthenticated">
+<!--    <li>-->
+<!--      <a [routerLink]="['/']">GET STARTED</a>-->
+<!--    </li>-->
     <li>
-      <a [routerLink]="['/']">GET STARTED</a>
-    </li>
-    <li>
-      <a [routerLink]="['/create-case']">CREATE CASE</a>
+      <a [routerLink]="['/create-case']">Import case</a>
     </li>
     <li class="topbar-menu-themes">
       <a href="#">Hello, {{user.username}}</a>
