@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {FileUpload} from 'primeng/primeng';
+import {FileUpload, MessageService} from 'primeng/primeng';
 import {APIService} from '../API.service';
 import {Router} from '@angular/router';
 import {DatetimeHelperService} from '../services/datetime-helper.service';
@@ -31,6 +31,34 @@ export class CreateCaseComponent implements OnInit, OnDestroy {
   //   unitId: '123',
   //   path: 'kklkkl',
   // };
+
+  public interviewTypeOptions = [{
+    label: '----',
+    value: ''
+  }, {
+    label: 'Suspect',
+    value: 'Suspect'
+  }, {
+    label: 'Witness',
+    value: 'Witness'
+  }, {
+    label: 'Disclosure',
+    value: 'Disclosure'
+  }];
+
+  public interviewAccessOptions = [{
+    label: '----',
+    value: ''
+  }, {
+    label: 'Open',
+    value: 'Open'
+  }, {
+    label: 'Restricted',
+    value: 'Restricted'
+  }, {
+    label: 'Secure',
+    value: 'Secure'
+  }];
   public isRunning = false;
   selectedFiles: FileList;
   public mandatoryFieldError = false;
@@ -45,6 +73,7 @@ export class CreateCaseComponent implements OnInit, OnDestroy {
   constructor(private api: APIService,
               private router: Router,
               private eventBus: EventBusService,
+              private messageService: MessageService,
               private dateTimeHelper: DatetimeHelperService) {
   }
 
@@ -96,8 +125,15 @@ export class CreateCaseComponent implements OnInit, OnDestroy {
 
   public create() {
     if (this.validatInput()) {
+      this.messageService.add({
+        key: 'import-case',
+        severity: 'Error',
+        summary: 'Mandatory Field',
+        detail: 'Please fill all mandatory fields.'
+      });
       return;
     }
+    this.isRunning = true;
     this.api.CreateCase(this.model).then((r: any) => {
       const caseId = r.id;
       const dt = this.dateTimeHelper.format(new Date());
@@ -109,11 +145,20 @@ export class CreateCaseComponent implements OnInit, OnDestroy {
         tableName: 'Case',
         logCaseId: caseId,
       }).then(res => {
-
+        this.isRunning = false;
+      }).catch(er => {
+        this.isRunning = false;
       });
       this.router.navigate(['upload-media', caseId]);
     }, err => {
       console.log(err);
+      this.messageService.add({
+        key: 'import-case',
+        severity: 'Error',
+        summary: 'Error',
+        detail: 'Error occurred while importing the case. Please try it again later.'
+      });
+      this.isRunning = false;
     });
   }
 }

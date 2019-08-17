@@ -45,12 +45,12 @@
       <div class="ui-g-12">
         <h4><b>Upload Media Files</b></h4>
       </div>
-      <div class="ui-g-4">
-        Camera <span class="required-field">*</span>
-      </div>
-      <div class="ui-g-8">
-        <input pInputText required [(ngModel)]="mediaModel.camera">
-      </div>
+<!--      <div class="ui-g-4">-->
+<!--        Camera <span class="required-field">*</span>-->
+<!--      </div>-->
+<!--      <div class="ui-g-8">-->
+<!--        <input pInputText required [(ngModel)]="mediaModel.camera">-->
+<!--      </div>-->
       <div class="ui-g-4">
         Version <span class="required-field">*</span>
       </div>
@@ -92,3 +92,6 @@
   </div>
 </div>
 <p-toast position="center" key="upload-media"></p-toast>
+<p-blockUI [blocked]="isRunning" baseZIndex="10000">
+  <i class="pi pi-spin pi-spinner" style="position:absolute;top:45%;left:50%;color:white;font-size:5em;"></i>
+</p-blockUI>
