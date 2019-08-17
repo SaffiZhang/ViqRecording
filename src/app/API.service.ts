@@ -57,7 +57,6 @@ export type UpdateRecordingInput = {
   url?: string | null;
   bucket?: string | null;
   key?: string | null;
-  lastmodified?: string | null;
   description?: string | null;
   camera?: string | null;
   version?: string | null;
@@ -277,7 +276,6 @@ export type ModelRecordingFilterInput = {
   url?: ModelStringFilterInput | null;
   bucket?: ModelStringFilterInput | null;
   key?: ModelStringFilterInput | null;
-  lastmodified?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
   camera?: ModelStringFilterInput | null;
   version?: ModelStringFilterInput | null;
@@ -4229,7 +4227,6 @@ export class APIService {
               url
               bucket
               key
-              lastmodified
               description
               camera
               version
@@ -4339,7 +4336,7 @@ export class APIService {
               url
               bucket
               key
-              lastmodified
+              
               description
               camera
               version
@@ -4449,7 +4446,7 @@ export class APIService {
               url
               bucket
               key
-              lastmodified
+             
               description
               camera
               version
@@ -4532,7 +4529,7 @@ export class APIService {
           url
           bucket
           key
-          lastmodified
+         
           description
           camera
           version
@@ -4609,7 +4606,7 @@ export class APIService {
           url
           bucket
           key
-          lastmodified
+         
           description
           camera
           version
@@ -4686,7 +4683,7 @@ export class APIService {
           url
           bucket
           key
-          lastmodified
+         
           description
           camera
           version
@@ -5143,7 +5140,7 @@ export class APIService {
             url
             bucket
             key
-            lastmodified
+           
             description
             camera
             version
@@ -5208,7 +5205,7 @@ export class APIService {
             url
             bucket
             key
-            lastmodified
+           
             description
             camera
             version
@@ -5273,7 +5270,7 @@ export class APIService {
             url
             bucket
             key
-            lastmodified
+           
             description
             camera
             version
@@ -5345,7 +5342,7 @@ export class APIService {
               url
               bucket
               key
-              lastmodified
+             
               description
               camera
               version
@@ -5392,7 +5389,7 @@ export class APIService {
               url
               bucket
               key
-              lastmodified
+             
               description
               camera
               version
@@ -5439,7 +5436,7 @@ export class APIService {
               url
               bucket
               key
-              lastmodified
+             
               description
               camera
               version
@@ -6053,7 +6050,7 @@ export class APIService {
               url
               bucket
               key
-              lastmodified
+             
               description
               camera
               version
@@ -6200,7 +6197,7 @@ export class APIService {
           url
           bucket
           key
-          lastmodified
+         
           description
           camera
           version
@@ -6281,7 +6278,7 @@ export class APIService {
             url
             bucket
             key
-            lastmodified
+           
             description
             camera
             version
@@ -6562,7 +6559,7 @@ export class APIService {
             url
             bucket
             key
-            lastmodified
+           
             description
             camera
             version
@@ -6631,7 +6628,7 @@ export class APIService {
               url
               bucket
               key
-              lastmodified
+             
               description
               camera
               version
@@ -6682,7 +6679,7 @@ export class APIService {
               url
               bucket
               key
-              lastmodified
+             
               description
               camera
               version
@@ -7122,7 +7119,7 @@ export class APIService {
               url
               bucket
               key
-              lastmodified
+             
               description
               camera
               version
@@ -7228,7 +7225,7 @@ export class APIService {
               url
               bucket
               key
-              lastmodified
+             
               description
               camera
               version
@@ -7334,7 +7331,7 @@ export class APIService {
               url
               bucket
               key
-              lastmodified
+             
               description
               camera
               version
@@ -7413,7 +7410,7 @@ export class APIService {
           url
           bucket
           key
-          lastmodified
+         
           description
           camera
           version
@@ -7486,7 +7483,7 @@ export class APIService {
           url
           bucket
           key
-          lastmodified
+         
           description
           camera
           version
@@ -7559,7 +7556,7 @@ export class APIService {
           url
           bucket
           key
-          lastmodified
+         
           description
           camera
           version
@@ -7988,7 +7985,7 @@ export class APIService {
             url
             bucket
             key
-            lastmodified
+           
             description
             camera
             version
@@ -8049,7 +8046,7 @@ export class APIService {
             url
             bucket
             key
-            lastmodified
+           
             description
             camera
             version
@@ -8110,7 +8107,7 @@ export class APIService {
             url
             bucket
             key
-            lastmodified
+           
             description
             camera
             version
@@ -8178,7 +8175,7 @@ export class APIService {
               url
               bucket
               key
-              lastmodified
+             
               description
               camera
               version
@@ -8219,7 +8216,7 @@ export class APIService {
               url
               bucket
               key
-              lastmodified
+             
               description
               camera
               version
@@ -8260,7 +8257,7 @@ export class APIService {
               url
               bucket
               key
-              lastmodified
+             
               description
               camera
               version
