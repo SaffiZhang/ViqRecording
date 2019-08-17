@@ -73,13 +73,7 @@ export class CreateCaseUploadMediaComponent implements OnInit, OnDestroy {
   private validateInput() {
     this.mandatoryFieldError = false;
     this.selectFilesError = false;
-    // if (!this.nn(this.mediaModel.camera)) {
-    //   this.mandatoryFieldError = true;
-    // }
     if (!this.nn(this.mediaModel.version)) {
-      this.mandatoryFieldError = true;
-    }
-    if (!this.nn(this.mediaModel.lastmodified)) {
       this.mandatoryFieldError = true;
     }
     if (!this.nn(this.mediaModel.description)) {
@@ -123,13 +117,14 @@ export class CreateCaseUploadMediaComponent implements OnInit, OnDestroy {
       url: data.Location,
       bucket: data.Bucket,
       key: data.Key,
-      lastmodified: this.mediaModel.lastmodified,
+      // lastmodified: this.mediaModel.lastmodified,
       description: this.mediaModel.description,
       camera: this.mediaModel.camera,
       version: this.mediaModel.version,
       recordingCaseId: this.caseId,
     };
     this.api.CreateRecording(payload).then(r => {
+      console.log(r);
       const dt = this.dateTimeHelper.format(new Date());
       this.api.CreateLog({
         dateTime: dt,
