@@ -26,7 +26,6 @@ type Recording @model {
 	url: String!
 	bucket:String!
 	key:String!
-	lastmodified: String!
 	description: String!
 	camera: String!
 	version: String!

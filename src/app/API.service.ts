@@ -46,7 +46,6 @@ export type CreateRecordingInput = {
   url: string;
   bucket: string;
   key: string;
-  lastmodified: string;
   description: string;
   camera: string;
   version: string;
@@ -441,7 +440,6 @@ export type CreateCaseMutation = {
       url: string;
       bucket: string;
       key: string;
-      lastmodified: string;
       description: string;
       camera: string;
       version: string;
@@ -541,7 +539,6 @@ export type UpdateCaseMutation = {
       url: string;
       bucket: string;
       key: string;
-      lastmodified: string;
       description: string;
       camera: string;
       version: string;
@@ -641,7 +638,6 @@ export type DeleteCaseMutation = {
       url: string;
       bucket: string;
       key: string;
-      lastmodified: string;
       description: string;
       camera: string;
       version: string;
@@ -712,7 +708,6 @@ export type CreateRecordingMutation = {
   url: string;
   bucket: string;
   key: string;
-  lastmodified: string;
   description: string;
   camera: string;
   version: string;
@@ -777,7 +772,6 @@ export type UpdateRecordingMutation = {
   url: string;
   bucket: string;
   key: string;
-  lastmodified: string;
   description: string;
   camera: string;
   version: string;
@@ -842,7 +836,6 @@ export type DeleteRecordingMutation = {
   url: string;
   bucket: string;
   key: string;
-  lastmodified: string;
   description: string;
   camera: string;
   version: string;
@@ -1215,7 +1208,6 @@ export type CreateRedactionMutation = {
     url: string;
     bucket: string;
     key: string;
-    lastmodified: string;
     description: string;
     camera: string;
     version: string;
@@ -1268,7 +1260,6 @@ export type UpdateRedactionMutation = {
     url: string;
     bucket: string;
     key: string;
-    lastmodified: string;
     description: string;
     camera: string;
     version: string;
@@ -1321,7 +1312,6 @@ export type DeleteRedactionMutation = {
     url: string;
     bucket: string;
     key: string;
-    lastmodified: string;
     description: string;
     camera: string;
     version: string;
@@ -1381,7 +1371,6 @@ export type CreateRedactionIntervalMutation = {
       url: string;
       bucket: string;
       key: string;
-      lastmodified: string;
       description: string;
       camera: string;
       version: string;
@@ -1414,7 +1403,6 @@ export type UpdateRedactionIntervalMutation = {
       url: string;
       bucket: string;
       key: string;
-      lastmodified: string;
       description: string;
       camera: string;
       version: string;
@@ -1447,7 +1435,6 @@ export type DeleteRedactionIntervalMutation = {
       url: string;
       bucket: string;
       key: string;
-      lastmodified: string;
       description: string;
       camera: string;
       version: string;
@@ -1953,7 +1940,6 @@ export type GetCaseQuery = {
       url: string;
       bucket: string;
       key: string;
-      lastmodified: string;
       description: string;
       camera: string;
       version: string;
@@ -2069,7 +2055,6 @@ export type GetRecordingQuery = {
   url: string;
   bucket: string;
   key: string;
-  lastmodified: string;
   description: string;
   camera: string;
   version: string;
@@ -2136,7 +2121,6 @@ export type ListRecordingsQuery = {
     url: string;
     bucket: string;
     key: string;
-    lastmodified: string;
     description: string;
     camera: string;
     version: string;
@@ -2338,7 +2322,6 @@ export type GetRedactionQuery = {
     url: string;
     bucket: string;
     key: string;
-    lastmodified: string;
     description: string;
     camera: string;
     version: string;
@@ -2393,7 +2376,6 @@ export type ListRedactionsQuery = {
       url: string;
       bucket: string;
       key: string;
-      lastmodified: string;
       description: string;
       camera: string;
       version: string;
@@ -2427,7 +2409,6 @@ export type GetRedactionIntervalQuery = {
       url: string;
       bucket: string;
       key: string;
-      lastmodified: string;
       description: string;
       camera: string;
       version: string;
@@ -2742,7 +2723,6 @@ export type OnCreateCaseSubscription = {
       url: string;
       bucket: string;
       key: string;
-      lastmodified: string;
       description: string;
       camera: string;
       version: string;
@@ -2842,7 +2822,6 @@ export type OnUpdateCaseSubscription = {
       url: string;
       bucket: string;
       key: string;
-      lastmodified: string;
       description: string;
       camera: string;
       version: string;
@@ -2942,7 +2921,6 @@ export type OnDeleteCaseSubscription = {
       url: string;
       bucket: string;
       key: string;
-      lastmodified: string;
       description: string;
       camera: string;
       version: string;
@@ -3013,7 +2991,6 @@ export type OnCreateRecordingSubscription = {
   url: string;
   bucket: string;
   key: string;
-  lastmodified: string;
   description: string;
   camera: string;
   version: string;
@@ -3078,7 +3055,6 @@ export type OnUpdateRecordingSubscription = {
   url: string;
   bucket: string;
   key: string;
-  lastmodified: string;
   description: string;
   camera: string;
   version: string;
@@ -3143,7 +3119,6 @@ export type OnDeleteRecordingSubscription = {
   url: string;
   bucket: string;
   key: string;
-  lastmodified: string;
   description: string;
   camera: string;
   version: string;
@@ -3516,7 +3491,6 @@ export type OnCreateRedactionSubscription = {
     url: string;
     bucket: string;
     key: string;
-    lastmodified: string;
     description: string;
     camera: string;
     version: string;
@@ -3569,7 +3543,6 @@ export type OnUpdateRedactionSubscription = {
     url: string;
     bucket: string;
     key: string;
-    lastmodified: string;
     description: string;
     camera: string;
     version: string;
@@ -3622,7 +3595,6 @@ export type OnDeleteRedactionSubscription = {
     url: string;
     bucket: string;
     key: string;
-    lastmodified: string;
     description: string;
     camera: string;
     version: string;
@@ -3682,7 +3654,6 @@ export type OnCreateRedactionIntervalSubscription = {
       url: string;
       bucket: string;
       key: string;
-      lastmodified: string;
       description: string;
       camera: string;
       version: string;
@@ -3715,7 +3686,6 @@ export type OnUpdateRedactionIntervalSubscription = {
       url: string;
       bucket: string;
       key: string;
-      lastmodified: string;
       description: string;
       camera: string;
       version: string;
@@ -3748,7 +3718,6 @@ export type OnDeleteRedactionIntervalSubscription = {
       url: string;
       bucket: string;
       key: string;
-      lastmodified: string;
       description: string;
       camera: string;
       version: string;
