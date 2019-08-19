@@ -69,7 +69,7 @@ export class RecordingDetailsComponent implements OnInit {
           {
             src: r.url,
             type: type,
-            date: r.lastmodified,
+            // date: r.lastmodified,
             id: r.id,
             description: r.description,
             camera: r.camera,
