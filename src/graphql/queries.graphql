@@ -30,7 +30,6 @@ query GetCase($id: ID!) {
         url
         bucket
         key
-        lastmodified
         description
         camera
         version
@@ -135,7 +134,6 @@ query GetRecording($id: ID!) {
     url
     bucket
     key
-    lastmodified
     description
     camera
     version
@@ -196,7 +194,6 @@ query ListRecordings(
       url
       bucket
       key
-      lastmodified
       description
       camera
       version
@@ -385,7 +382,6 @@ query GetRedaction($id: ID!) {
       url
       bucket
       key
-      lastmodified
       description
       camera
       version
@@ -438,7 +434,6 @@ query ListRedactions(
         url
         bucket
         key
-        lastmodified
         description
         camera
         version
@@ -469,7 +464,6 @@ query GetRedactionInterval($id: ID!) {
         url
         bucket
         key
-        lastmodified
         description
         camera
         version

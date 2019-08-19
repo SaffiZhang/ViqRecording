@@ -30,7 +30,6 @@ mutation CreateCase($input: CreateCaseInput!) {
         url
         bucket
         key
-        lastmodified
         description
         camera
         version
@@ -118,7 +117,6 @@ mutation UpdateCase($input: UpdateCaseInput!) {
         url
         bucket
         key
-        lastmodified
         description
         camera
         version
@@ -206,7 +204,6 @@ mutation DeleteCase($input: DeleteCaseInput!) {
         url
         bucket
         key
-        lastmodified
         description
         camera
         version
@@ -269,7 +266,6 @@ mutation CreateRecording($input: CreateRecordingInput!) {
     url
     bucket
     key
-    lastmodified
     description
     camera
     version
@@ -325,7 +321,6 @@ mutation UpdateRecording($input: UpdateRecordingInput!) {
     url
     bucket
     key
-    lastmodified
     description
     camera
     version
@@ -381,7 +376,6 @@ mutation DeleteRecording($input: DeleteRecordingInput!) {
     url
     bucket
     key
-    lastmodified
     description
     camera
     version
@@ -702,7 +696,6 @@ mutation CreateRedaction($input: CreateRedactionInput!) {
       url
       bucket
       key
-      lastmodified
       description
       camera
       version
@@ -750,7 +743,6 @@ mutation UpdateRedaction($input: UpdateRedactionInput!) {
       url
       bucket
       key
-      lastmodified
       description
       camera
       version
@@ -798,7 +790,6 @@ mutation DeleteRedaction($input: DeleteRedactionInput!) {
       url
       bucket
       key
-      lastmodified
       description
       camera
       version
@@ -852,7 +843,6 @@ mutation CreateRedactionInterval($input: CreateRedactionIntervalInput!) {
         url
         bucket
         key
-        lastmodified
         description
         camera
         version
@@ -882,7 +872,6 @@ mutation UpdateRedactionInterval($input: UpdateRedactionIntervalInput!) {
         url
         bucket
         key
-        lastmodified
         description
         camera
         version
@@ -912,7 +901,6 @@ mutation DeleteRedactionInterval($input: DeleteRedactionIntervalInput!) {
         url
         bucket
         key
-        lastmodified
         description
         camera
         version

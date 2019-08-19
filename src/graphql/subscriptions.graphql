@@ -30,7 +30,6 @@ subscription OnCreateCase {
         url
         bucket
         key
-        lastmodified
         description
         camera
         version
@@ -118,7 +117,6 @@ subscription OnUpdateCase {
         url
         bucket
         key
-        lastmodified
         description
         camera
         version
@@ -206,7 +204,6 @@ subscription OnDeleteCase {
         url
         bucket
         key
-        lastmodified
         description
         camera
         version
@@ -269,7 +266,6 @@ subscription OnCreateRecording {
     url
     bucket
     key
-    lastmodified
     description
     camera
     version
@@ -325,7 +321,6 @@ subscription OnUpdateRecording {
     url
     bucket
     key
-    lastmodified
     description
     camera
     version
@@ -381,7 +376,6 @@ subscription OnDeleteRecording {
     url
     bucket
     key
-    lastmodified
     description
     camera
     version
@@ -702,7 +696,6 @@ subscription OnCreateRedaction {
       url
       bucket
       key
-      lastmodified
       description
       camera
       version
@@ -750,7 +743,6 @@ subscription OnUpdateRedaction {
       url
       bucket
       key
-      lastmodified
       description
       camera
       version
@@ -798,7 +790,6 @@ subscription OnDeleteRedaction {
       url
       bucket
       key
-      lastmodified
       description
       camera
       version
@@ -852,7 +843,6 @@ subscription OnCreateRedactionInterval {
         url
         bucket
         key
-        lastmodified
         description
         camera
         version
@@ -882,7 +872,6 @@ subscription OnUpdateRedactionInterval {
         url
         bucket
         key
-        lastmodified
         description
         camera
         version
@@ -912,7 +901,6 @@ subscription OnDeleteRedactionInterval {
         url
         bucket
         key
-        lastmodified
         description
         camera
         version
