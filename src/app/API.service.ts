@@ -145,7 +145,7 @@ export type CreateRedactionIntervalInput = {
   startSecond: number;
   endSecond: number;
   type: string;
-  redactionIntervalRedactonId?: string | null;
+  redactionIntervalRedactionId?: string | null;
 };
 
 export type UpdateRedactionIntervalInput = {
@@ -154,7 +154,7 @@ export type UpdateRedactionIntervalInput = {
   startSecond?: number | null;
   endSecond?: number | null;
   type?: string | null;
-  redactionIntervalRedactonId?: string | null;
+  redactionIntervalRedactionId?: string | null;
 };
 
 export type DeleteRedactionIntervalInput = {
