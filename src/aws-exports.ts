@@ -9,10 +9,10 @@ const awsmobile = {
     "aws_content_delivery_bucket": "viq-recording-portal-hosting-dev",
     "aws_content_delivery_bucket_region": "us-east-1",
     "aws_content_delivery_url": "http://viq-recording-portal-hosting-dev.s3-website-us-east-1.amazonaws.com",
-    "aws_appsync_graphqlEndpoint": "https://27bc4xiykzcyxfm42577cmqti4.appsync-api.us-east-1.amazonaws.com/graphql",
+    "aws_appsync_graphqlEndpoint": "https://mjwo2ptclzdpfd5voj4ven5zym.appsync-api.us-east-1.amazonaws.com/graphql",
     "aws_appsync_region": "us-east-1",
     "aws_appsync_authenticationType": "API_KEY",
-    "aws_appsync_apiKey": "da2-ytorw2wkprac5bqxkzlaxpeffy"
+    "aws_appsync_apiKey": "da2-cb6z7qmq6vferoxanfirsaqaom"
 };
 
 
