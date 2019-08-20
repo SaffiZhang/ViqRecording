@@ -8,68 +8,96 @@
   <div class="ui-g-6">
 
   </div>
-  <div class="ui-g-12">
+  <div class="ui-g-12" [hidden]="editingInterval">
+    <h3>Redaction History</h3>
+  </div>
+  <div class="ui-g-12" [hidden]="editingInterval">
+    <app-redaction-history [recording-id]="recordingId"
+                           (show-intervals)="editInterval($event)"
+                           (edit-redaction)="editRedaction($event)"></app-redaction-history>
+  </div>
+  <div class="ui-g-12" [hidden]="editingInterval">
+    <p-button label="Add New Redaction" (onClick)="addNewRedaction()" [disabled]="!allowAddNew"></p-button>
+    <p *ngIf="!allowAddNew">A redaction is in progress. Please wit until it finished. </p>
+    <app-redaction-editing #redactionEditor [recording-id]="recordingId"
+                           [show-interval-button]="showGotoIntervalButton"></app-redaction-editing>
+  </div>
+
+
+  <div class="ui-g-6 ui-fluid" [hidden]="!editingInterval">
     <div class="ui-g">
       <div class="ui-g-3">
         Redaction start time:
       </div>
-      <div class="ui-g-3">
+      <div class="ui-g-7">
         {{startTime|json}}
       </div>
-      <div class="ui-g-3">
-        <p-button (onClick)="getStartTime()" label="Get Time"></p-button>
+      <div class="ui-g-2">
+        <p-button (onClick)="getStartTime()" label="Get Time" [disabled]="readonly"></p-button>
       </div>
     </div>
     <div class="ui-g">
       <div class="ui-g-3">
         Redaction end time :
       </div>
-      <div class="ui-g-3">
+      <div class="ui-g-7">
         {{endTime|json}}
       </div>
-      <div class="ui-g-3">
-        <p-button (onClick)="getEndTime()" label="Get Time"></p-button>
+      <div class="ui-g-2">
+        <p-button (onClick)="getEndTime()" label="Get Time" [disabled]="readonly"></p-button>
       </div>
     </div>
     <div class="ui-g">
       <div class="ui-g-3">
         Redaction Type:
       </div>
-      <div class="ui-g-3">
-        <p-dropdown [options]="redactTypeOptions" [(ngModel)]="redactType"></p-dropdown>
-      </div>
-      <div class="ui-g-3">
-
+      <div class="ui-g-9">
+        <p-dropdown [options]="redactTypeOptions" [(ngModel)]="redactType" [disabled]="readonly"></p-dropdown>
       </div>
     </div>
+<!--    <div class="ui-g">-->
+<!--      <div class="ui-g-3">-->
+<!--        Description:-->
+<!--      </div>-->
+<!--      <div class="ui-g-9">-->
+<!--        <textarea pInputTextarea [(ngModel)]="description" rows="5"></textarea>-->
+<!--      </div>-->
+<!--    </div>-->
     <div class="ui-g">
-      <div class="ui-g-6">
-        <p-button label="Add Interval" (onClick)="addNew()" [disabled]="!canAddNew()"></p-button> &nbsp;&nbsp;
-        <p-button label="Submit for Redaction" (onClick)="finish()" ></p-button> &nbsp;&nbsp;
+      <div class="ui-g-12">
+        <p-button label="Add Interval" (onClick)="addNew()" [disabled]="!canAddNew() || readonly"></p-button> &nbsp;&nbsp;
+        <p-button label="Submit for Redaction" (onClick)="finish()" [disabled]="readonly"></p-button> &nbsp;&nbsp;
+        <p-button label="Back to Redaction History" (onClick)="backToHistory()"></p-button>&nbsp;
         <p-button label="Back" (onClick)="back()"></p-button>
       </div>
     </div>
   </div>
-  <div class="ui-g-12">
-    <p-table [value]="redactions">
+
+  <div class="ui-g-6" [hidden]="!editingInterval">
+    <p-table [value]="intervals">
       <ng-template pTemplate="header">
         <tr>
-          <th>Id</th>
+<!--          <th>Id</th>-->
           <th>Start Seconds</th>
           <th>End Seconds</th>
           <th>Type</th>
-<!--          <th>Version</th>-->
+          <th *ngIf="!readonly"></th>
+<!--          <th>Description</th>-->
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-item>
         <tr>
-          <td>{{item.id}}</td>
+<!--          <td>{{item.id}}</td>-->
           <td>{{item.startSecond}}</td>
           <td>{{item.endSecond}}</td>
           <td>{{item.type}}</td>
-<!--          <td>{{getVersion(item.redactionVersion)}}</td>-->
+<!--          <td>{{item.description}}</td>-->
+          <td *ngIf="!readonly">
+            <p-button label="Delete" (onClick)="deleteInterval(item)"></p-button>
+          </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
 </div>
+<p-confirmDialog key="delete-interval" header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

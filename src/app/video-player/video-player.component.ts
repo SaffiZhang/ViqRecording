@@ -54,8 +54,6 @@ export class VideoPlayerComponent implements OnInit {
     if (!this.id) {
       this.id = 'player_' + Math.ceil(Math.random());
     }
-    console.log(this.showRedaction);
-  debugger;
   }
 
   public onPlayerReady(api: VgAPI) {

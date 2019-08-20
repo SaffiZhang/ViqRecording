@@ -15,7 +15,7 @@ import {VgBufferingModule} from 'videogular2/compiled/src/buffering/buffering';
 import {ButtonModule} from 'primeng/button';
 import {
   BlockUIModule, CalendarModule,
-  CardModule,
+  CardModule, ConfirmationService, ConfirmDialogModule, DialogModule,
   DropdownModule, FileUploadModule,
   InputMaskModule,
   InputTextareaModule,
@@ -39,11 +39,13 @@ import {AppTopMenubarComponent} from './app-top-menubar/app-top-menubar.componen
 import {RedactComponent} from './redact/redact.component';
 import {RouterModule} from '@angular/router';
 import {ToastModule} from 'primeng/toast';
-import { EmailListComponent } from './email-list/email-list.component';
-import { RecordingSharedComponent } from './recording-shared/recording-shared.component';
-import { CreateCaseComponent } from './create-case/create-case.component';
+import {EmailListComponent} from './email-list/email-list.component';
+import {RecordingSharedComponent} from './recording-shared/recording-shared.component';
+import {CreateCaseComponent} from './create-case/create-case.component';
 import {HttpClientModule} from '@angular/common/http';
-import { CreateCaseUploadMediaComponent } from './create-case-upload-media/create-case-upload-media.component';
+import {CreateCaseUploadMediaComponent} from './create-case-upload-media/create-case-upload-media.component';
+import {RedactionHistoryComponent} from './redact/redaction-history/redaction-history.component';
+import {RedactionEditingComponent} from './redact/redaction-editing/redaction-editing.component';
 
 
 @NgModule({
@@ -65,7 +67,9 @@ import { CreateCaseUploadMediaComponent } from './create-case-upload-media/creat
     EmailListComponent,
     RecordingSharedComponent,
     CreateCaseComponent,
-    CreateCaseUploadMediaComponent
+    CreateCaseUploadMediaComponent,
+    RedactionHistoryComponent,
+    RedactionEditingComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +99,9 @@ import { CreateCaseUploadMediaComponent } from './create-case-upload-media/creat
     MessageModule,
     FileUploadModule,
     BlockUIModule,
-    CalendarModule
+    CalendarModule,
+    ConfirmDialogModule,
+    DialogModule
 
   ],
   providers: [
@@ -107,6 +113,9 @@ import { CreateCaseUploadMediaComponent } from './create-case-upload-media/creat
     {
       provide: MessageService,
       useClass: MessageService
+    }, {
+      provide: ConfirmationService,
+      useClass: ConfirmationService
     }
   ],
   bootstrap: [AppComponent]
