@@ -1,6 +1,10 @@
 <div class="ui-g">
   <div class="ui-g-12">
-    <p-table #dt [columns]="columns" [value]="recordingList" [paginator]="true" [rows]="10">
+    Rows per page:
+    <p-dropdown [options]="rowsOptions" [(ngModel)]="rows"></p-dropdown>
+  </div>
+  <div class="ui-g-12">
+    <p-table #dt [columns]="columns" [value]="recordingList" [paginator]="true" [rows]="rows">
       <ng-template pTemplate="header" let-columns>
         <tr>
           <ng-container *ngFor="let col of columns">
@@ -32,7 +36,8 @@
         <tr>
           <td *ngFor="let col of columns" [ngClass]="{'icon-col':col.field==='id'}">
             <ng-container *ngIf="col.field==='id'">
-              <a [routerLink]="['/recording-details',rowData[col.field]]"><i style="font-size:2em;" class="pi pi-image"></i></a>
+              <a [routerLink]="['/recording-details',rowData[col.field]]"><i style="font-size:2em;"
+                                                                             class="pi pi-image"></i></a>
             </ng-container>
             <ng-container *ngIf="col.field!=='id'">
               {{rowData[col.field]}}
