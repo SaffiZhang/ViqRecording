@@ -43,35 +43,32 @@ export class RecordingListComponent implements OnInit {
   }, {
     label: '50',
     value: 50
-  }]
+  }];
 
   constructor(private api: APIService) {
   }
 
   ngOnInit() {
-    this.listRecording();
+    this.doSearch('');
   }
 
-  private listRecording() {
-    this.api.ListCases(null, 1000).then(r => {
+  public doSearch(field) {
+    const f = {};
+    let hasFilter = false;
+
+    Object.keys(this.searchModel).forEach(k => {
+      if (this.searchModel[k]) {
+        f[k] = {contains: this.searchModel[k]};
+        hasFilter = true;
+      }
+    });
+    this.api.ListCases(hasFilter ? f : null, 1000).then(r => {
       this.recordingList = r.items;
     });
   }
 
-  public doSearch(field) {
-    if (field && this.searchModel[field]) {
-      const payload = {};
-      payload[field] = {contains: this.searchModel[field]};
-      this.api.ListCases(payload, 1000).then(r => {
-        this.recordingList = r.items;
-      });
-    } else {
-      this.listRecording();
-    }
-  }
-
   public undoSearch(field) {
     this.searchModel[field] = '';
-    this.listRecording();
+    this.doSearch(field);
   }
 }
