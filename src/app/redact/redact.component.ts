@@ -8,6 +8,7 @@ import {Subscription} from 'rxjs';
 import {RedactionStatus} from './redaction-status.enum';
 import {RedactionEditingComponent} from './redaction-editing/redaction-editing.component';
 import {ConfirmationService} from 'primeng/api';
+import {RedactionEventBus} from './redaction-event-bus';
 
 @Component({
   selector: 'app-redact',
@@ -53,6 +54,7 @@ export class RedactComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
               private dateHelper: DatetimeHelperService,
               private eventBus: EventBusService,
+              private historyEventBus: RedactionEventBus,
               private confirmationService: ConfirmationService,
               private api: APIService) {
     this.data = this.router.getCurrentNavigation().extras.state;
@@ -132,13 +134,19 @@ export class RedactComponent implements OnInit, OnDestroy {
   private refresh() {
     const filter = {
       redactionRecordingId: {eq: this.recordingId},
-      and: [{
-        status: {eq: RedactionStatus.InProgress}
-      }]
+      // and: [{
+      //   status: {eq: RedactionStatus.InProgress},
+      //   or: [{
+      //     status: {eq: RedactionStatus.Submitted}
+      //   }]
+      // }]
     };
 
     this.api.ListRedactions(filter).then(redactions => {
-      this.allowAddNew = redactions.items.length === 0;
+    debugger;
+      const items = redactions.items.filter(x => x.status === RedactionStatus.InProgress || x.status === RedactionStatus.Submitted);
+      // this.allowAddNew = redactions.items.length === 0;
+      this.allowAddNew = items.length === 0;
     });
   }
 
@@ -149,14 +157,13 @@ export class RedactComponent implements OnInit, OnDestroy {
 
   public finish() {
     const input = {
-      id: '',
-      redactionVersion: new Date(this.currentRedactionItem.redactionVersion).toISOString(),
-      startSecond: -1,
-      endSecond: -1,
-      type: 'submit',
-      redactionIntervalRedactionId: this.currentRedactionItem.id,
+      id: this.currentRedactionItem.id,
+      status: RedactionStatus.Submitted,
+      updatedDateTime: (new Date()).toISOString(),
+      updatedBy: this.currentUser.username,
     };
-    this.api.CreateRedactionInterval(input).then(r => {
+    this.api.UpdateRedaction(input).then(r => {
+      this.historyEventBus.notifyHistoryChanged();
       this.backToHistory();
     });
   }
@@ -186,7 +193,9 @@ export class RedactComponent implements OnInit, OnDestroy {
   private editInterval(item) {
     this.currentRedactionItem = item;
     this.editingInterval = true;
-    this.readonly = item.status === RedactionStatus.InProgress || item.status === RedactionStatus.Finished;
+    this.readonly = item.status === RedactionStatus.InProgress ||
+      item.status === RedactionStatus.Finished ||
+      item.status === RedactionStatus.Submitted;
     this.refreshIntervalList();
   }
 
@@ -195,10 +204,7 @@ export class RedactComponent implements OnInit, OnDestroy {
       redactionIntervalRedactionId: {eq: this.currentRedactionItem.id}
     };
     this.api.ListRedactionIntervals(filter).then(i => {
-      this.intervals = i.items.filter(x => x.type !== 'submit');
-      if (this.intervals.length !== i.items.length) {
-        this.readonly = true;
-      }
+      this.intervals = i.items;
     });
   }
 

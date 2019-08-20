@@ -18,9 +18,11 @@
   </div>
   <div class="ui-g-12" [hidden]="editingInterval">
     <p-button label="Add New Redaction" (onClick)="addNewRedaction()" [disabled]="!allowAddNew"></p-button>
-    <p *ngIf="!allowAddNew">A redaction is in progress. Please wit until it finished. </p>
+    <p class="no-new-redaction-message" *ngIf="!allowAddNew">A redaction is in progress. Please wit until it finished. </p>
     <app-redaction-editing #redactionEditor [recording-id]="recordingId"
                            [show-interval-button]="showGotoIntervalButton"></app-redaction-editing>
+
+    <p-button label="Back to Recording" (onClick)="back()" style="float:right"></p-button>
   </div>
 
 
@@ -68,7 +70,7 @@
         <p-button label="Add Interval" (onClick)="addNew()" [disabled]="!canAddNew() || readonly"></p-button> &nbsp;&nbsp;
         <p-button label="Submit for Redaction" (onClick)="finish()" [disabled]="readonly"></p-button> &nbsp;&nbsp;
         <p-button label="Back to Redaction History" (onClick)="backToHistory()"></p-button>&nbsp;
-        <p-button label="Back" (onClick)="back()"></p-button>
+        <p-button label="Back to Recording" (onClick)="back()"></p-button>
       </div>
     </div>
   </div>

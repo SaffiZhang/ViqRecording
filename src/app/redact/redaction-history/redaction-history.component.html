@@ -17,11 +17,10 @@
           <td>{{row.description}}</td>
           <td>{{row.status}}</td>
           <td>
-            <ng-container *ngIf="canChange(row.status)">
-              <p-button label="Delete" (onClick)="deleteItem(row)"></p-button>&nbsp;
-              <p-button label="Edit" (onClick)="editItem(row)"></p-button>&nbsp;
-              <p-button label="Intervals" (onClick)="editIntervals(row)"></p-button>
-            </ng-container>
+            <p-button [disabled]="!canChange(row.status)" label="Delete" (onClick)="deleteItem(row)"></p-button>&nbsp;
+            <p-button [disabled]="!canChange(row.status)" label="Edit" (onClick)="editItem(row)"></p-button>&nbsp;
+
+            <p-button label="Intervals" (onClick)="editIntervals(row)"></p-button>
           </td>
         </tr>
       </ng-template>
@@ -29,4 +28,5 @@
   </div>
 </div>
 <p-confirmDialog key="remove-redaction" header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
-<app-redaction-editing #redactionEditor [recording-id]="recordingId" [show-interval-button]="false"></app-redaction-editing>
+<app-redaction-editing #redactionEditor [recording-id]="recordingId"
+                       [show-interval-button]="false"></app-redaction-editing>
