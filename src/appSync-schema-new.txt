@@ -224,7 +224,6 @@ input ModelAttachmentFilterInput {
 	id: ModelIDFilterInput
 	description: ModelStringFilterInput
 	url: ModelStringFilterInput
-	attachmentCaseId: ModelStringFilterInput
 	updatedDateTime: ModelStringFilterInput
 	updatedBy: ModelStringFilterInput
 	and: [ModelAttachmentFilterInput]
@@ -243,7 +242,6 @@ input ModelBookmarkFilterInput {
 	dateTime: ModelStringFilterInput
 	speaker: ModelStringFilterInput
 	content: ModelStringFilterInput
-	bookmarkCaseId: ModelStringFilterInput
 	updatedDateTime: ModelStringFilterInput
 	updatedBy: ModelStringFilterInput
 	and: [ModelBookmarkFilterInput]
@@ -278,19 +276,6 @@ input ModelCaseFilterInput {
 	and: [ModelCaseFilterInput]
 	or: [ModelCaseFilterInput]
 	not: ModelCaseFilterInput
-}
-
-enum ModelCaseSortDirection {
-	interviewee_ASC
-	interviewee_DESC
-	officerCollarNumber_ASC
-	officerCollarNumber_DESC
-	location_ASC
-	location_DESC
-	interviewStart_ASC
-	interviewStart_DESC
-	interviewFinish_ASC
-	interviewFinish_DESC
 }
 
 input ModelFloatFilterInput {
@@ -342,7 +327,6 @@ input ModelLogFilterInput {
 	userName: ModelStringFilterInput
 	recordId: ModelStringFilterInput
 	tableName: ModelStringFilterInput
-	logCaseId: ModelStringFilterInput
 	and: [ModelLogFilterInput]
 	or: [ModelLogFilterInput]
 	not: ModelLogFilterInput
@@ -358,9 +342,7 @@ input ModelRecordingFilterInput {
 	url: ModelStringFilterInput
 	bucket: ModelStringFilterInput
 	key: ModelStringFilterInput
-	lastmodified: ModelStringFilterInput
 	description: ModelStringFilterInput
-	recordingCaseId: ModelStringFilterInput
 	camera: ModelStringFilterInput
 	version: ModelStringFilterInput
 	and: [ModelRecordingFilterInput]
@@ -377,7 +359,6 @@ input ModelRedactionFilterInput {
 	id: ModelIDFilterInput
 	redactionVersion: ModelStringFilterInput
 	description: ModelStringFilterInput
-	redactionRecordingId: ModelStringFilterInput
 	updatedDateTime: ModelStringFilterInput
 	updatedBy: ModelStringFilterInput
 	status: ModelStringFilterInput
@@ -397,7 +378,6 @@ input ModelRedactionIntervalFilterInput {
 	startSecond: ModelIntFilterInput
 	endSecond: ModelIntFilterInput
 	type: ModelStringFilterInput
-	redactionIntervalRedactionId: ModelStringFilterInput
 	and: [ModelRedactionIntervalFilterInput]
 	or: [ModelRedactionIntervalFilterInput]
 	not: ModelRedactionIntervalFilterInput
@@ -417,7 +397,6 @@ input ModelSharedFilterInput {
 	receiver_type: ModelStringFilterInput
 	expiry_date: ModelStringFilterInput
 	token: ModelStringFilterInput
-	sharedCaseId: ModelStringFilterInput
 	urls: ModelStringFilterInput
 	status: ModelStringFilterInput
 	description: ModelStringFilterInput
@@ -454,7 +433,6 @@ input ModelTranscriptionFilterInput {
 	submitTime: ModelStringFilterInput
 	transcriptionFileUrl: ModelStringFilterInput
 	status: ModelStringFilterInput
-	transcriptionCaseId: ModelStringFilterInput
 	and: [ModelTranscriptionFilterInput]
 	or: [ModelTranscriptionFilterInput]
 	not: ModelTranscriptionFilterInput
@@ -492,12 +470,7 @@ type Mutation {
 
 type Query {
 	getCase(id: ID!): Case
-	listCases(
-		filter: ModelCaseFilterInput,
-		limit: Int,
-		nextToken: String,
-		orderBy: ModelCaseSortDirection
-	): ModelCaseConnection
+	listCases(filter: ModelCaseFilterInput, limit: Int, nextToken: String): ModelCaseConnection
 	getRecording(id: ID!): Recording
 	listRecordings(filter: ModelRecordingFilterInput, limit: Int, nextToken: String): ModelRecordingConnection
 	getAttachment(id: ID!): Attachment
@@ -521,7 +494,6 @@ type Recording {
 	url: String!
 	bucket: String!
 	key: String!
-	lastmodified: String!
 	description: String!
 	camera: String!
 	version: String!
@@ -690,7 +662,6 @@ input UpdateRecordingInput {
 	url: String
 	bucket: String
 	key: String
-	lastmodified: String
 	description: String
 	camera: String
 	version: String

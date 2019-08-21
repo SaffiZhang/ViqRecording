@@ -63,7 +63,7 @@ type Redaction @model{
 	updatedBy: String
 	status: String!
 	recording: Recording @connection(name: "RecordingRedactions")
-	RedactionIntervals: [RedactionInterval] @connection(name: "RedactionRedactionIntervals")
+	redactionIntervals:[RedactionInterval] @connection(name: "RedactionRedactionIntervals")
 }
 
 type RedactionInterval @model {
@@ -72,7 +72,8 @@ type RedactionInterval @model {
 	startSecond: Int!
 	endSecond: Int!
 	type: String!
-	redacton: Redaction @connection(name: "RedactionRedactionIntervals")
+	redaction: Redaction  @connection(name: "RedactionRedactionIntervals")
+	
 }
 
 type Shared @model{

@@ -718,7 +718,7 @@ mutation CreateRedaction($input: CreateRedactionInput!) {
         theOtherPersonsPresent
       }
     }
-    RedactionIntervals {
+    redactionIntervals {
       items {
         id
         redactionVersion
@@ -765,7 +765,7 @@ mutation UpdateRedaction($input: UpdateRedactionInput!) {
         theOtherPersonsPresent
       }
     }
-    RedactionIntervals {
+    redactionIntervals {
       items {
         id
         redactionVersion
@@ -812,7 +812,7 @@ mutation DeleteRedaction($input: DeleteRedactionInput!) {
         theOtherPersonsPresent
       }
     }
-    RedactionIntervals {
+    redactionIntervals {
       items {
         id
         redactionVersion
@@ -831,7 +831,7 @@ mutation CreateRedactionInterval($input: CreateRedactionIntervalInput!) {
     startSecond
     endSecond
     type
-    redacton {
+    redaction {
       id
       redactionVersion
       description
@@ -847,7 +847,7 @@ mutation CreateRedactionInterval($input: CreateRedactionIntervalInput!) {
         camera
         version
       }
-      RedactionIntervals {
+      redactionIntervals {
         nextToken
       }
     }
@@ -860,7 +860,7 @@ mutation UpdateRedactionInterval($input: UpdateRedactionIntervalInput!) {
     startSecond
     endSecond
     type
-    redacton {
+    redaction {
       id
       redactionVersion
       description
@@ -876,7 +876,7 @@ mutation UpdateRedactionInterval($input: UpdateRedactionIntervalInput!) {
         camera
         version
       }
-      RedactionIntervals {
+      redactionIntervals {
         nextToken
       }
     }
@@ -889,7 +889,7 @@ mutation DeleteRedactionInterval($input: DeleteRedactionIntervalInput!) {
     startSecond
     endSecond
     type
-    redacton {
+    redaction {
       id
       redactionVersion
       description
@@ -905,7 +905,7 @@ mutation DeleteRedactionInterval($input: DeleteRedactionIntervalInput!) {
         camera
         version
       }
-      RedactionIntervals {
+      redactionIntervals {
         nextToken
       }
     }

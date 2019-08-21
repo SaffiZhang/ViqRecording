@@ -718,7 +718,7 @@ subscription OnCreateRedaction {
         theOtherPersonsPresent
       }
     }
-    RedactionIntervals {
+    redactionIntervals {
       items {
         id
         redactionVersion
@@ -765,7 +765,7 @@ subscription OnUpdateRedaction {
         theOtherPersonsPresent
       }
     }
-    RedactionIntervals {
+    redactionIntervals {
       items {
         id
         redactionVersion
@@ -812,7 +812,7 @@ subscription OnDeleteRedaction {
         theOtherPersonsPresent
       }
     }
-    RedactionIntervals {
+    redactionIntervals {
       items {
         id
         redactionVersion
@@ -831,7 +831,7 @@ subscription OnCreateRedactionInterval {
     startSecond
     endSecond
     type
-    redacton {
+    redaction {
       id
       redactionVersion
       description
@@ -847,7 +847,7 @@ subscription OnCreateRedactionInterval {
         camera
         version
       }
-      RedactionIntervals {
+      redactionIntervals {
         nextToken
       }
     }
@@ -860,7 +860,7 @@ subscription OnUpdateRedactionInterval {
     startSecond
     endSecond
     type
-    redacton {
+    redaction {
       id
       redactionVersion
       description
@@ -876,7 +876,7 @@ subscription OnUpdateRedactionInterval {
         camera
         version
       }
-      RedactionIntervals {
+      redactionIntervals {
         nextToken
       }
     }
@@ -889,7 +889,7 @@ subscription OnDeleteRedactionInterval {
     startSecond
     endSecond
     type
-    redacton {
+    redaction {
       id
       redactionVersion
       description
@@ -905,7 +905,7 @@ subscription OnDeleteRedactionInterval {
         camera
         version
       }
-      RedactionIntervals {
+      redactionIntervals {
         nextToken
       }
     }

@@ -404,7 +404,7 @@ query GetRedaction($id: ID!) {
         theOtherPersonsPresent
       }
     }
-    RedactionIntervals {
+    redactionIntervals {
       items {
         id
         redactionVersion
@@ -438,7 +438,7 @@ query ListRedactions(
         camera
         version
       }
-      RedactionIntervals {
+      redactionIntervals {
         nextToken
       }
     }
@@ -452,7 +452,7 @@ query GetRedactionInterval($id: ID!) {
     startSecond
     endSecond
     type
-    redacton {
+    redaction {
       id
       redactionVersion
       description
@@ -468,7 +468,7 @@ query GetRedactionInterval($id: ID!) {
         camera
         version
       }
-      RedactionIntervals {
+      redactionIntervals {
         nextToken
       }
     }
@@ -490,7 +490,7 @@ query ListRedactionIntervals(
       startSecond
       endSecond
       type
-      redacton {
+      redaction {
         id
         redactionVersion
         description
