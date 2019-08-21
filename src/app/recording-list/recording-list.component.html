@@ -23,9 +23,12 @@
         </tr>
         <tr>
           <th *ngFor="let col of columns" nowrap>
+            <ng-container *ngIf="col.field==='id'">
+              <i class="pi pi-search search-btn" (click)="doSearch(col.field)"></i>&nbsp;
+            </ng-container>
             <ng-container *ngIf="col.field!=='id'">
               <input pInputText type="text" [(ngModel)]="searchModel[col.field]">&nbsp;
-              <i class="pi pi-search search-btn" (click)="doSearch(col.field)"></i>&nbsp;
+
               <i class="pi pi-refresh search-btn" (click)="undoSearch(col.field)"></i>
             </ng-container>
 
