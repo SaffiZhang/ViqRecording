@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {APIService, GetCaseQuery, ModelLogFilterInput} from '../API.service';
 import {VgAPI} from 'videogular2/compiled/src/core/services/vg-api';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -6,13 +6,15 @@ import {VideoPlayerComponent} from '../video-player/video-player.component';
 import {DatetimeHelperService} from '../services/datetime-helper.service';
 import {AttachmentListComponent} from '../attachment-list/attachment-list.component';
 import {MessageService} from 'primeng/api';
+import {Subscription} from 'rxjs';
+import {EventBusService} from '../services/event-bus-service';
 
 @Component({
   selector: 'app-recording-details',
   templateUrl: './recording-details.component.html',
   styleUrls: ['./recording-details.component.scss']
 })
-export class RecordingDetailsComponent implements OnInit {
+export class RecordingDetailsComponent implements OnInit, OnDestroy {
   private recording: GetCaseQuery;
 
   public userName = 'saffi zhang';
@@ -39,10 +41,13 @@ export class RecordingDetailsComponent implements OnInit {
 
   public urls: any[];
 
+  public subs: Subscription[] = [];
+
   constructor(private api: APIService,
               private router: Router,
               private dateTimeHelper: DatetimeHelperService,
               private messageService: MessageService,
+              private eventBus: EventBusService,
               private route: ActivatedRoute) {
   }
 
@@ -50,6 +55,13 @@ export class RecordingDetailsComponent implements OnInit {
     const rid = this.route.snapshot.paramMap.get('id');
     await this.refresh(rid);
 
+    this.subs.push(this.eventBus.currentUser.subscribe(r => {
+      this.userName = r.username;
+    }));
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach(x => x.unsubscribe());
   }
 
   private async refresh(id) {
@@ -164,8 +176,8 @@ export class RecordingDetailsComponent implements OnInit {
     const input = {
         id: '',
         submitTime: this.dateTimeHelper.format(new Date()),
-        transcriptionFileUrl:'',
-        status:'',
+        transcriptionFileUrl: '',
+        status: '',
         transcriptionRecordingId: this.recording.id
       }
     ;

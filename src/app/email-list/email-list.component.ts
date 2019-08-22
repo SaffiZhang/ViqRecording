@@ -2,13 +2,19 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {APIService, ModelSharedFilterInput} from '../API.service';
 import {DatetimeHelperService} from '../services/datetime-helper.service';
 import {MessageService} from 'primeng/api';
+import {VideoPlayerComponent} from '../video-player/video-player.component';
+import {AddPipe, FromUtcPipe} from 'ngx-moment';
+import {NgModel} from '@angular/forms';
 
 @Component({
   selector: 'app-email-list',
   templateUrl: './email-list.component.html',
-  styleUrls: ['./email-list.component.scss']
+  styleUrls: ['./email-list.component.scss'],
+  providers: [FromUtcPipe, AddPipe]
 })
 export class EmailListComponent implements OnInit {
+  @Input()
+  public sources: any[];
 
   @Input('recording-id')
   public set setRecordingId(value) {
@@ -27,7 +33,7 @@ export class EmailListComponent implements OnInit {
     label: 'Legal Representive', value: 'Legal Representive'
   }];
 
-  private recordingId;
+  public recordingId;
 
   public recordingShares: any[];
 
@@ -36,15 +42,35 @@ export class EmailListComponent implements OnInit {
   public receiverEmail;
 
   @ViewChild('receiverNameCtrl', {static: false})
-  public receiverNameControl;
+  public receiverNameControl: NgModel;
   @ViewChild('receiverTypeCtrl', {static: false})
-  public receiverTypeControl;
+  public receiverTypeControl: NgModel;
   @ViewChild('emailCtrl', {static: false})
-  public emailControl;
+  public emailControl: NgModel;
+
+  @ViewChild('player3', {static: false})
+  public player3: VideoPlayerComponent;
+  @ViewChild('player4', {static: false})
+  public player4: VideoPlayerComponent;
+
+
+  public expiryOption = [{
+    label: '7 Days',
+    value: 7
+  }, {
+    label: ' 14 Days',
+    value: 14
+  }, {
+    label: '30 Days',
+    value: 30
+  }];
+
+  public expiryInDays = 7;
 
   constructor(private apiService: APIService,
               private messageService: MessageService,
-              private dateTimeHelper: DatetimeHelperService) {
+              private dateTimeHelper: DatetimeHelperService,
+              private appPipe: AddPipe) {
   }
 
   ngOnInit() {
@@ -96,36 +122,62 @@ export class EmailListComponent implements OnInit {
         key: 'emailValidation'
       });
     }
+    const videoSource = [];
+    if (this.sources && this.sources.length > 0) {
+      let videoCheked = 0;
+
+      if (this.player3) {
+        if (this.player3.isChecked) {
+          videoCheked += 1;
+          videoSource.push(this.player3.selectedSource);
+        }
+      }
+      if (this.player4) {
+        if (this.player4.isChecked) {
+          videoCheked += 1;
+          videoSource.push(this.player4.selectedSource);
+        }
+      }
+      if (videoCheked !== 1) {
+        isValid = false;
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Recording Selection',
+          detail: 'Please select one recording.',
+          key: 'emailValidation'
+        });
+      }
+    }
     if (!isValid) {
       return;
     }
-    const dt = this.dateTimeHelper.format(new Date());
+    const expiryDate = this.appPipe.transform(new Date(), this.expiryInDays, 'days');
+    const dt = new Date().toISOString();
+    let tokenStr = (new Date()).getTime().toString();
+    tokenStr = tokenStr.substring(tokenStr.length - 6);
     const input = {
       id: '',
       createdDateTime: dt,
-      createdBy:'',
+      createdBy: this.userName,
       receiver: this.receiverName,
       receiver_email: this.receiverEmail,
       receiver_type: this.receiverType,
-      token: (new Date()).getTime().toString(),
-      expiry_date:'',
+      token: tokenStr,
+      expiry_date: expiryDate.toISOString(),
       urls: [],
-      description:'',
-      status:'',
-      userName: this.userName,
+      description: 'recording id:' + videoSource[0].id,
+      status: 'pending',
       sharedCaseId: this.recordingId
     };
-    this.urls.forEach(x => {
-      input.urls.push(x.url);
-    });
+    input.urls.push(videoSource[0].src);
     this.apiService.CreateShared(input).then(r => {
       this.apiService.CreateLog({
         id: '',
         dateTime: dt,
         description: 'Recording Shares added:' + JSON.stringify(input),
-        userName: '',
-	      recordId: '',
-      	tableName: '',
+        userName: this.userName,
+        recordId: videoSource[0].id,
+        tableName: 'Recording Shared',
         logCaseId: this.recordingId
       });
       this.messageService.add({
@@ -134,9 +186,10 @@ export class EmailListComponent implements OnInit {
         detail: 'Recording is shared',
         key: 'message'
       });
-      this.receiverName = '';
-      this.receiverEmail = '';
       this.receiverType = this.receiverRoleOptions[0].value;
+      this.expiryInDays = 7;
+      this.receiverNameControl.reset('');
+      this.emailControl.reset('');
       this.refresh();
     }, (err) => {
       this.messageService.add({

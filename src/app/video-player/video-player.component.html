@@ -37,6 +37,7 @@
   <div class="ui-g-12">
     Camera: {{selectedSource.camera}}
     <div class="redation-link" *ngIf="!!showRedaction"><a href="#" (click)="redact($event);">Redaction</a></div>
+    <div class="redation-link" *ngIf="!!showCheckbox"><p-checkbox binary="true" [(ngModel)]="isChecked"></p-checkbox></div>
   </div>
 
   <ng-container *ngIf="!!showVersion">

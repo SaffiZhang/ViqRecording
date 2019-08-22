@@ -47,6 +47,11 @@ export class VideoPlayerComponent implements OnInit {
   @Input('show-version')
   public showVersion = true;
 
+  @Input('show-checkbox')
+  public showCheckbox = false;
+
+  public isChecked = false;
+
   constructor(private router: Router) {
   }
 

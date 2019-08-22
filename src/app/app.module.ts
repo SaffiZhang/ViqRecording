@@ -15,7 +15,7 @@ import {VgBufferingModule} from 'videogular2/compiled/src/buffering/buffering';
 import {ButtonModule} from 'primeng/button';
 import {
   BlockUIModule, CalendarModule,
-  CardModule, ConfirmationService, ConfirmDialogModule, DialogModule,
+  CardModule, CheckboxModule, ConfirmationService, ConfirmDialogModule, DialogModule,
   DropdownModule, FileUploadModule,
   InputMaskModule,
   InputTextareaModule,
@@ -46,6 +46,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {CreateCaseUploadMediaComponent} from './create-case-upload-media/create-case-upload-media.component';
 import {RedactionHistoryComponent} from './redact/redaction-history/redaction-history.component';
 import {RedactionEditingComponent} from './redact/redaction-editing/redaction-editing.component';
+import {MomentModule} from 'ngx-moment';
 
 
 @NgModule({
@@ -101,7 +102,9 @@ import {RedactionEditingComponent} from './redact/redaction-editing/redaction-ed
     BlockUIModule,
     CalendarModule,
     ConfirmDialogModule,
-    DialogModule
+    DialogModule,
+    CheckboxModule,
+    MomentModule
 
   ],
   providers: [
