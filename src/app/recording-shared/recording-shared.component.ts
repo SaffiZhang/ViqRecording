@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {APIService, ModelRecordingFilterInput, ModelSharedFilterInput} from '../API.service';
 import {DatetimeHelperService} from '../services/datetime-helper.service';
+import {EventBusService} from '../services/event-bus-service';
 
 @Component({
   selector: 'app-recording-shared',
@@ -14,51 +15,72 @@ export class RecordingSharedComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private dateTimeHelper: DatetimeHelperService,
-              private api: APIService) {
+              private api: APIService,
+              private eventBus: EventBusService,
+              private router: Router) {
   }
 
   private recording: any;
   private sources: any[];
 
+  private shareRecord: any;
+  private hasRecord = false;
+
+  public pin;
+  public pinVerifyCount = 0;
+  public pinVerified = false;
+
   ngOnInit() {
+    this.eventBus.notifyShowMenuChange(false);
+
     const id = this.route.snapshot.paramMap.get('id');
     if (!id) {
       this.showError = true;
       return;
     }
-    const filter5: ModelSharedFilterInput = {id: {eq: id}};
-    this.api.ListShareds(filter5).then(r => {
-
-      const sharedItem = r.items[0];
-      const recordingId = sharedItem.case.id;
-      const filter4: ModelRecordingFilterInput = {id: {eq: recordingId}};
-      this.api.GetRecording(recordingId).then(rec => {
-        this.recording = rec;
-        console.log(this.recording);
-        this.prepare();
-      });
+    this.api.GetShared(id).then(r => {
+      if (r) {
+        this.shareRecord = r;
+        console.log(r);
+        this.hasRecord = true;
+      } else {
+        this.showError = true;
+      }
+    }).catch(err => {
+      this.showError = true;
     });
+  }
+
+  public verifyPin() {
+    this.pinVerifyCount++;
+    if (this.pin) {
+      if (this.pin === this.shareRecord.token) {
+        this.pinVerified = true;
+        this.pinVerifyCount = 0;
+        this.prepare()
+      }
+    }
   }
 
   private prepare() {
     const sobj = {};
     const sr = [];
-    if (this.recording.recordingUrls && this.recording.recordingUrls.items) {
+    if (this.shareRecord) {
 
-      this.recording.recordingUrls.items.forEach(r => {
-        if (!sobj[r.camera]) {
-          sobj[r.camera] = [];
+      this.shareRecord.urls.forEach(u => {
+        if (!sobj[u]) {
+          sobj[u] = [];
         }
-        const type = r.url.indexOf('.mp4') ? 'video/mp4' : 'audio/mp3';
-        sobj[r.camera].push(
+        const type = u.indexOf('.mp4') ? 'video/mp4' : 'audio/mp3';
+        sobj[u].push(
           {
-            src: r.url,
+            src: u,
             type: type,
-            date: r.lastmodified,
-            id: r.id,
-            description: r.description,
-            camera: r.camera,
-            version: this.dateTimeHelper.format(new Date(r.version))
+            // date: r.lastmodified,
+            // id: r.id,
+            // description: r.description,
+            // camera: r.camera,
+            // version: this.dateTimeHelper.format(new Date(r.version))
           }
         );
       });

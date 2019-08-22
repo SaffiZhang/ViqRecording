@@ -1,22 +1,17 @@
 <div id="layout-topbar">
-
-  <a class="logo" [routerLink]="['/']">
+  <a class="logo" href="#" *ngIf="!showMenu">
+    <img src="assets/image/logo.png">
+  </a>
+  <a class="logo" [routerLink]="['/']" *ngIf="showMenu">
     <img src="assets/image/logo.png">
   </a>
 
-  <ul class="topbar-menu" *ngIf="isAuthenticated">
-<!--    <li>-->
-<!--      <a [routerLink]="['/']">GET STARTED</a>-->
-<!--    </li>-->
+  <ul class="topbar-menu" *ngIf="isAuthenticated && showMenu">
     <li>
       <a [routerLink]="['/create-case']">Import case</a>
     </li>
     <li class="topbar-menu-themes">
       <a href="#">Hello, {{user.username}}</a>
-<!--      <ul>-->
-<!--        <li><a [routerLink]="'/profile'" >Profile</a></li>-->
-<!--        <li><a [routerLink]="'/privacy'" >Privacy</a></li>-->
-<!--      </ul>-->
     </li>
     <li>
       <a href="" (click)="signOut($event)">Logout</a>

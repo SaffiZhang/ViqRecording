@@ -14,6 +14,7 @@ export class AppTopMenubarComponent implements OnInit {
 
   public isAuthenticated = false;
   public user: any;
+  public showMenu = true;
 
   constructor(private router: Router,
               private amplifyService: AmplifyService,
@@ -26,6 +27,9 @@ export class AppTopMenubarComponent implements OnInit {
       this.user = authState.user;
       this.eventBus.notifyUserChanged(this.user);
       console.log(this.user);
+    });
+    this.eventBus.showMenu.subscribe(r => {
+      this.showMenu = r;
     });
   }
 
