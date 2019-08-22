@@ -89,7 +89,8 @@ export class VideoPlayerComponent implements OnInit {
     $event.preventDefault();
     this.router.navigate(['/redact'], {
       state: {
-        recordingId: this.recordingId,
+        caseId: this.recordingId,
+        recordingId: this.selectedSource.id,
         source: this.selectedSource
       }
     });

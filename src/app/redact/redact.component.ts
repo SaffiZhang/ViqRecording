@@ -18,6 +18,7 @@ import {RedactionEventBus} from './redaction-event-bus';
 export class RedactComponent implements OnInit, OnDestroy {
 
   public recordingId: string;
+  public caseId: string;
   public sources: any[];
 
   public redactions: any[];
@@ -69,6 +70,7 @@ export class RedactComponent implements OnInit, OnDestroy {
     }
     console.log(this.data);
     this.recordingId = this.data.recordingId;
+    this.caseId = this.data.caseId;
     this.sources = [this.data.source];
     this.refresh();
 
@@ -169,7 +171,7 @@ export class RedactComponent implements OnInit, OnDestroy {
   }
 
   public back() {
-    this.router.navigate(['/recording-details', this.recordingId]);
+    this.router.navigate(['/recording-details', this.caseId]);
   }
 
   public addNewRedaction() {
