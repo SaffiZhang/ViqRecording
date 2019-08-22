@@ -15,7 +15,7 @@
     Sorry, we cannot find the resource which you are requesting.
   </div>
 </div>
-<div class="ui-g" *ngIf="hasRecord && !pinVerified">
+<div class="ui-g verify-container ui-fluid" *ngIf="hasRecord && !pinVerified">
   <div class="ui-g-4">
 
   </div>
@@ -38,7 +38,7 @@
 
   </div>
   <div class="ui-g-4">
-    <p-button label="Verify" (onClick)="verifyPin()" [disabled]="pinVerifyCount>2"></p-button>
+    <p-button class="verify-button" label="Verify" (onClick)="verifyPin()" [disabled]="pinVerifyCount>2"></p-button>
   </div>
   <div class="ui-g-4">
 
@@ -46,7 +46,7 @@
 </div>
 
 <div class="ui-g" *ngIf="!hasRecord">
-  <div class="ui-g-12">
+  <div class="ui-g-12 loading-message">
     Loading ...
   </div>
 </div>
