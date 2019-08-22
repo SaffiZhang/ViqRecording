@@ -198,7 +198,7 @@ export type DeleteSharedInput = {
 export type CreateTranscriptionInput = {
   id?: string | null;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl?: string;
   status: string;
   transcriptionCaseId?: string | null;
 };

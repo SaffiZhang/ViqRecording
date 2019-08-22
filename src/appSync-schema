@@ -164,7 +164,7 @@ input CreateSharedInput {
 input CreateTranscriptionInput {
 	id: ID
 	submitTime: String!
-	transcriptionFileUrl: String!
+	transcriptionFileUrl: String
 	status: String!
 	transcriptionCaseId: ID
 }
@@ -634,7 +634,7 @@ type Subscription {
 type Transcription {
 	id: ID!
 	submitTime: String!
-	transcriptionFileUrl: String!
+	transcriptionFileUrl: String
 	status: String!
 	case: Case
 }

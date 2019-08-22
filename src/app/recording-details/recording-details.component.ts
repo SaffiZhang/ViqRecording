@@ -176,9 +176,8 @@ export class RecordingDetailsComponent implements OnInit, OnDestroy {
     const input = {
         id: '',
         submitTime: this.dateTimeHelper.format(new Date()),
-        transcriptionFileUrl: '',
-        status: '',
-        transcriptionRecordingId: this.recording.id
+        status: 'Submitted',
+        transcriptionCaseId: this.recording.id
       }
     ;
     this.api.CreateTranscription(input).then(r => {

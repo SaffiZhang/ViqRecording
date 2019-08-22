@@ -198,7 +198,7 @@ export type DeleteSharedInput = {
 export type CreateTranscriptionInput = {
   id?: string | null;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string|null;
   status: string;
   transcriptionCaseId?: string | null;
 };
@@ -463,7 +463,7 @@ export type CreateCaseMutation = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string| null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -562,7 +562,7 @@ export type UpdateCaseMutation = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string| null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -661,7 +661,7 @@ export type DeleteCaseMutation = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -1613,7 +1613,7 @@ export type CreateTranscriptionMutation = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -1661,7 +1661,7 @@ export type UpdateTranscriptionMutation = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -1709,7 +1709,7 @@ export type DeleteTranscriptionMutation = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -1963,7 +1963,7 @@ export type GetCaseQuery = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -2534,7 +2534,7 @@ export type GetTranscriptionQuery = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -2584,7 +2584,7 @@ export type ListTranscriptionsQuery = {
     __typename: "Transcription";
     id: string;
     submitTime: string;
-    transcriptionFileUrl: string;
+    transcriptionFileUrl: string | null;
     status: string;
     case: {
       __typename: "Case";
@@ -2746,7 +2746,7 @@ export type OnCreateCaseSubscription = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -2845,7 +2845,7 @@ export type OnUpdateCaseSubscription = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -2944,7 +2944,7 @@ export type OnDeleteCaseSubscription = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -3896,7 +3896,7 @@ export type OnCreateTranscriptionSubscription = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -3944,7 +3944,7 @@ export type OnUpdateTranscriptionSubscription = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -3992,7 +3992,7 @@ export type OnDeleteTranscriptionSubscription = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";

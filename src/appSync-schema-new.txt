@@ -606,7 +606,7 @@ type Subscription {
 type Transcription {
 	id: ID!
 	submitTime: String!
-	transcriptionFileUrl: String!
+	transcriptionFileUrl: String
 	status: String!
 	case: Case
 }
