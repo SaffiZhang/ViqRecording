@@ -1,14 +1,16 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FileUploadService} from '../services/file-upload.service';
 import {APIService} from '../API.service';
 import {DatetimeHelperService} from '../services/datetime-helper.service';
+import {EventBusService} from '../services/event-bus-service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-add-attachment',
   templateUrl: './add-attachment.component.html',
   styleUrls: ['./add-attachment.component.scss']
 })
-export class AddAttachmentComponent implements OnInit {
+export class AddAttachmentComponent implements OnInit, OnDestroy {
 
   @Output()
   public saved: EventEmitter<any> = new EventEmitter<any>();
@@ -25,12 +27,23 @@ export class AddAttachmentComponent implements OnInit {
 
   selectedFiles: FileList;
 
+  private subs: Subscription[] = [];
+  private currentUser: any;
+
   constructor(private fileUploadService: FileUploadService,
               private dateTimeHepler: DatetimeHelperService,
+              private eventBus: EventBusService,
               private api: APIService) {
   }
 
   ngOnInit() {
+    this.subs.push(this.eventBus.currentUser.subscribe(r => {
+      this.currentUser = r;
+    }));
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach(x => x.unsubscribe());
   }
 
   selectFile(event) {
@@ -47,23 +60,22 @@ export class AddAttachmentComponent implements OnInit {
   }
 
   private createRecord(data, fileName) {
+    const dt = (new Date()).toISOString();
     const input = {
       id: '',
       description: this.description,
       url: data.Location,
-      updatedDateTime:'',
-      updatedBy:'',
-      attachmentRecordingId: this.recordingId
+      updatedDateTime: dt,
+      updatedBy: this.currentUser ? this.currentUser.username : 'unknown',
+      attachmentCaseId: this.recordingId
     };
-    const dt = this.dateTimeHepler.format(new Date());
-
     this.api.CreateAttachment(input).then(r => {
       this.api.CreateLog({
         id: '',
         dateTime: dt,
-        userName:'',
-        recordId:'',
-        tableName:'Attachement',
+        userName: this.currentUser ? this.currentUser.username : 'unknown',
+        recordId: this.recordingId,
+        tableName: 'Attachement',
         description: 'Attachment added:' + JSON.stringify(data),
         logCaseId: this.recordingId
       });
