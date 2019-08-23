@@ -146,7 +146,7 @@ export class RedactComponent implements OnInit, OnDestroy {
 
     this.api.ListRedactions(filter).then(redactions => {
     debugger;
-      const items = redactions.items.filter(x => x.status === RedactionStatus.InProgress || x.status === RedactionStatus.Submitted);
+      const items = redactions.items.filter(x =>  x.status === RedactionStatus.Submitted);
       // this.allowAddNew = redactions.items.length === 0;
       this.allowAddNew = items.length === 0;
     });
@@ -195,8 +195,8 @@ export class RedactComponent implements OnInit, OnDestroy {
   private editInterval(item) {
     this.currentRedactionItem = item;
     this.editingInterval = true;
-    this.readonly = item.status === RedactionStatus.InProgress ||
-      item.status === RedactionStatus.Finished ||
+    this.readonly = 
+      item.status === RedactionStatus.Completed ||
       item.status === RedactionStatus.Submitted;
     this.refreshIntervalList();
   }
