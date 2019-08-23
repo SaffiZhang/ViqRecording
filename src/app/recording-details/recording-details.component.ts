@@ -43,6 +43,8 @@ export class RecordingDetailsComponent implements OnInit, OnDestroy {
 
   public subs: Subscription[] = [];
 
+  public caseId;
+
   constructor(private api: APIService,
               private router: Router,
               private dateTimeHelper: DatetimeHelperService,
@@ -53,6 +55,7 @@ export class RecordingDetailsComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     const rid = this.route.snapshot.paramMap.get('id');
+    this.caseId = rid;
     await this.refresh(rid);
 
     this.subs.push(this.eventBus.currentUser.subscribe(r => {

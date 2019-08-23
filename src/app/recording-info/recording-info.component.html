@@ -30,7 +30,7 @@
         <div class="ui-g-12">
           DOB of Interviewee :
           <ng-container *ngIf="!isEditing">
-            {{recording.dob}}
+            {{recording.birthdayOfInterviewee}}
           </ng-container>
           <ng-container *ngIf="isEditing">
             <p-inputMask [(ngModel)]="editingRecording.dob" mask="9999/99/99"></p-inputMask>
