@@ -47,6 +47,7 @@ import {CreateCaseUploadMediaComponent} from './create-case-upload-media/create-
 import {RedactionHistoryComponent} from './redact/redaction-history/redaction-history.component';
 import {RedactionEditingComponent} from './redact/redaction-editing/redaction-editing.component';
 import {MomentModule} from 'ngx-moment';
+import { CaseInfoComponent } from './case-info/case-info.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import {MomentModule} from 'ngx-moment';
     CreateCaseComponent,
     CreateCaseUploadMediaComponent,
     RedactionHistoryComponent,
-    RedactionEditingComponent
+    RedactionEditingComponent,
+    CaseInfoComponent
   ],
   imports: [
     BrowserModule,

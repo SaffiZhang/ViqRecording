@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {APIService, ModelRecordingFilterInput, ModelSharedFilterInput} from '../API.service';
+import {APIService} from '../API.service';
 import {DatetimeHelperService} from '../services/datetime-helper.service';
 import {EventBusService} from '../services/event-bus-service';
 
@@ -30,6 +30,8 @@ export class RecordingSharedComponent implements OnInit {
   public pinVerifyCount = 0;
   public pinVerified = false;
 
+  public case: any;
+
   ngOnInit() {
     this.eventBus.notifyShowMenuChange(false);
 
@@ -41,7 +43,7 @@ export class RecordingSharedComponent implements OnInit {
     this.api.GetShared(id).then(r => {
       if (r) {
         this.shareRecord = r;
-        console.log(r);
+        this.case = r.case;
         this.hasRecord = true;
       } else {
         this.showError = true;
