@@ -22,7 +22,7 @@ export class VideoPlayerComponent implements OnInit {
   public set setSources(value: any[]) {
     this.sources = value;
     this.sources.sort((x, y) => {
-      return (new Date(y.date).getTime()) - (new Date(x.date).getTime());
+      return (new Date(y.version).getTime()) - (new Date(x.version).getTime());
     });
     console.log(this.sources);
     if (value && value.length > 0) {
