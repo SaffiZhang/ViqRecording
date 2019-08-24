@@ -12,7 +12,7 @@
     <h3>Redaction History</h3>
   </div>
   <div class="ui-g-12" [hidden]="editingInterval">
-    <app-redaction-history [recording-id]="recordingId"
+    <app-redaction-history [recording-id]="originalRecordingId"
                            (show-intervals)="editInterval($event)"
                            (edit-redaction)="editRedaction($event)"></app-redaction-history>
   </div>

@@ -67,7 +67,7 @@ export class RedactionHistoryComponent implements OnInit, OnDestroy {
   public deleteItem(item) {
     if (item) {
       this.confirmationService.confirm({
-        message: 'Are you sure that you want to delete selected pendig redaction?',
+        message: 'Are you sure that you want to delete selected pending redaction?',
         key: 'remove-redaction',
         accept: () => {
           setTimeout(() => {

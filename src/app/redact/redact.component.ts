@@ -17,6 +17,7 @@ import {RedactionEventBus} from './redaction-event-bus';
 })
 export class RedactComponent implements OnInit, OnDestroy {
 
+  public originalRecordingId: string;
   public recordingId: string;
   public caseId: string;
   public sources: any[];
@@ -70,6 +71,7 @@ export class RedactComponent implements OnInit, OnDestroy {
     }
     console.log(this.data);
     this.recordingId = this.data.recordingId;
+    this.originalRecordingId = this.data.originalId;
     this.caseId = this.data.caseId;
     this.sources = [this.data.source];
     this.refresh();
@@ -145,8 +147,8 @@ export class RedactComponent implements OnInit, OnDestroy {
     };
 
     this.api.ListRedactions(filter).then(redactions => {
-    debugger;
-      const items = redactions.items.filter(x =>  x.status === RedactionStatus.Submitted);
+      debugger;
+      const items = redactions.items.filter(x => x.status === RedactionStatus.Submitted);
       // this.allowAddNew = redactions.items.length === 0;
       this.allowAddNew = items.length === 0;
     });
@@ -195,7 +197,7 @@ export class RedactComponent implements OnInit, OnDestroy {
   private editInterval(item) {
     this.currentRedactionItem = item;
     this.editingInterval = true;
-    this.readonly = 
+    this.readonly =
       item.status === RedactionStatus.Completed ||
       item.status === RedactionStatus.Submitted;
     this.refreshIntervalList();

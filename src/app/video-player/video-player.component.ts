@@ -87,11 +87,14 @@ export class VideoPlayerComponent implements OnInit {
 
   public redact($event) {
     $event.preventDefault();
+    const len = this.sources.length;
+    const rec = this.sources[len - 1];
     this.router.navigate(['/redact'], {
       state: {
         caseId: this.recordingId,
         recordingId: this.selectedSource.id,
-        source: this.selectedSource
+        source: this.selectedSource,
+        originalRecordingId: rec.id,
       }
     });
     return false;
