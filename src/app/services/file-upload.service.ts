@@ -22,9 +22,11 @@ export class FileUploadService {
         region: this.s3Params.region
       }
     );
+    const parts = file.name.split('.');
+    const ext = parts[parts.length - 1];
     const params = {
       Bucket: this.s3Params.bucket,
-      Key: folder + file.name,
+      Key: folder + '.' + ext, //file.name,
       Body: file,
       ACL: 'public-read',
       ContentType: contentType

@@ -102,13 +102,24 @@ export class CreateCaseUploadMediaComponent implements OnInit, OnDestroy {
     }
     this.isRunning = true;
     this.fileUploadComponent.files.forEach((f, index) => {
-      this.fileUploadService.uploadFile(f, this.model.path ? this.model.path : '', (data) => {
+      this.fileUploadService.uploadFile(f, this.getFilePath(), (data) => {
         this.createRecord(data, index);
       }, (err) => {
         console.log(err);
         this.isRunning = false;
       });
     });
+  }
+
+  private getFileName() {
+    const dt = (new Date()).getTime().toString();
+    return this.caseId + '-' + dt.substring(dt.length - 6);
+  }
+
+  private getFilePath() {
+    const dt = new Date();
+    const fn = this.getFileName();
+    return `import/${this.currentUser.username}/${dt.getFullYear()}/${dt.getMonth() + 1}/${dt.getDate()}/${fn}`;
   }
 
   private createRecord(data, index) {
