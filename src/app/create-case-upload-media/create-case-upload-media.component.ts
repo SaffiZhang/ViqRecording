@@ -119,7 +119,11 @@ export class CreateCaseUploadMediaComponent implements OnInit, OnDestroy {
   private getFilePath() {
     const dt = new Date();
     const fn = this.getFileName();
-    return `import/${this.currentUser.username}/${dt.getFullYear()}/${dt.getMonth() + 1}/${dt.getDate()}/${fn}`;
+    let mth = '00' + (dt.getMonth() + 1).toString();
+    mth = mth.substring(mth.length - 2);
+    let dy = '00' + dt.getDate().toString();
+    dy = dy.substring(dy.length - 2);
+    return `import/${this.currentUser.username}/${dt.getFullYear()}/${mth}/${dy}/${fn}`;
   }
 
   private createRecord(data, index) {
