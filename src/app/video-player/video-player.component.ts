@@ -29,7 +29,7 @@ export class VideoPlayerComponent implements OnInit {
       this.selectedSource = value[0];
     }
     this.sources.forEach(x => {
-      x.displayLabel = `Ver. (${x.version})  ${x.date}`;
+      x.displayLabel = `Ver. (${x.version})`;
     });
   }
 
