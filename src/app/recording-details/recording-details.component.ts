@@ -8,12 +8,14 @@ import {AttachmentListComponent} from '../attachment-list/attachment-list.compon
 import {MessageService} from 'primeng/api';
 import {Subscription} from 'rxjs';
 import {EventBusService} from '../services/event-bus-service';
+import {AddPipe} from 'ngx-moment';
 
 @Component({
   selector: 'app-recording-details',
   templateUrl: './recording-details.component.html',
-  styleUrls: ['./recording-details.component.scss']
+  styleUrls: ['./recording-details.component.scss'],
 })
+
 export class RecordingDetailsComponent implements OnInit, OnDestroy {
   private recording: GetCaseQuery;
 
@@ -87,7 +89,8 @@ export class RecordingDetailsComponent implements OnInit, OnDestroy {
             id: r.id,
             description: r.description,
             camera: r.camera,
-            version: this.dateTimeHelper.format(new Date(r.version))
+            version: this.dateTimeHelper.format(new Date(r.version)),
+            startTime: this.recording.interviewStart
           }
         );
       });

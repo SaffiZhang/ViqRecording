@@ -26,6 +26,7 @@
     "aws-amplify-angular": "^3.0.4",
     "chart.js": "^2.8.0",
     "moment": "^2.24.0",
+    "ngx-extended-pdf-viewer": "^1.0.2",
     "ngx-moment": "^3.4.0",
     "primeicons": "^1.0.0",
     "primeng": "^8.0.1",

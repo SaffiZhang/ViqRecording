@@ -55,7 +55,8 @@ export class AddAttachmentComponent implements OnInit, OnDestroy {
       return;
     }
     const file = this.selectedFiles.item(0);
-    this.fileUploadService.uploadFile(file, this.targetFolder, (data) => this.createRecord(data, file.name));
+    const parts = file.name.split('.');
+    this.fileUploadService.uploadFile(file, this.targetFolder + parts[0], (data) => this.createRecord(data, file.name));
 
   }
 

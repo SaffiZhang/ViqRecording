@@ -49,7 +49,8 @@ import {RedactionEditingComponent} from './redact/redaction-editing/redaction-ed
 import {MomentModule} from 'ngx-moment';
 import { CaseInfoComponent } from './case-info/case-info.component';
 
-
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { CaseRelatedInfoComponent } from './case-related-info/case-related-info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,8 @@ import { CaseInfoComponent } from './case-info/case-info.component';
     CreateCaseUploadMediaComponent,
     RedactionHistoryComponent,
     RedactionEditingComponent,
-    CaseInfoComponent
+    CaseInfoComponent,
+    CaseRelatedInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -106,7 +108,8 @@ import { CaseInfoComponent } from './case-info/case-info.component';
     ConfirmDialogModule,
     DialogModule,
     CheckboxModule,
-    MomentModule
+    MomentModule,
+    NgxExtendedPdfViewerModule
 
   ],
   providers: [

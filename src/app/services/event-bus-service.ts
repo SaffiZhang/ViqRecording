@@ -1,4 +1,4 @@
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {Injectable} from '@angular/core';
 
 @Injectable({
@@ -8,6 +8,8 @@ export class EventBusService {
   private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   private showMenuSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+
+  private addBookmarkSubject: Subject<any> = new Subject<any>();
 
   public get currentUser(): Observable<any> {
     return this.currentUserSubject.asObservable();
@@ -23,5 +25,13 @@ export class EventBusService {
 
   public notifyShowMenuChange(isShown: boolean) {
     this.showMenuSubject.next(isShown);
+  }
+
+  public get addBookmarkRequest(): Observable<any> {
+    return this.addBookmarkSubject.asObservable();
+  }
+
+  public notifyAddbookmark(payload) {
+    this.addBookmarkSubject.next(payload);
   }
 }

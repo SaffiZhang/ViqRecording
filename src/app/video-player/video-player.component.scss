@@ -3,7 +3,20 @@
     float: right;
     display: inline-block;
   }
-  .max-100{
+
+  .max-100 {
     max-width: 100%;
+  }
+
+  .bookmark-btn {
+    float: right;
+  }
+
+  .ui-button-secondary {
+    background-color: #c8c8c8 !important;
+
+    span.ui-button-text {
+      color: black !important;
+    }
   }
 }

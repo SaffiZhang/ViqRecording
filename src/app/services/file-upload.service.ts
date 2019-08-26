@@ -24,9 +24,10 @@ export class FileUploadService {
     );
     const parts = file.name.split('.');
     const ext = parts[parts.length - 1];
+    const fn = folder + '.' + ext;
     const params = {
       Bucket: this.s3Params.bucket,
-      Key: folder + '.' + ext, //file.name,
+      Key: fn.toLowerCase(), //file.name,
       Body: file,
       ACL: 'public-read',
       ContentType: contentType

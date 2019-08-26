@@ -1,0 +1,32 @@
+<p-tabView>
+  <p-tabPanel header="Transcription">
+
+    <ng-container *ngIf="hasTranscriptFile">
+      <ngx-extended-pdf-viewer [src]="transcriptFile" useBrowserLocale="true" height="80vh"></ngx-extended-pdf-viewer>
+    </ng-container>
+    <ng-container *ngIf="!hasTranscriptFile">
+      <div class="" style="height:500px;">No transcript file uploaded</div>
+    </ng-container>
+  </p-tabPanel>
+  <p-tabPanel header="Bookmark">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <p-table [value]="bookmarks">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Time</th>
+              <th>Description</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-row>
+            <tr>
+              <td>{{row.dateTime | amDateFormat:'HH:mm:ss'}}</td>
+              <td>{{row.content}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </p-tabPanel>
+</p-tabView>
+
