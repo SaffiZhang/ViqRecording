@@ -9,6 +9,7 @@ import {MessageService} from 'primeng/api';
 import {Subscription} from 'rxjs';
 import {EventBusService} from '../services/event-bus-service';
 import {AddPipe} from 'ngx-moment';
+import {LogListComponent} from '../log-list/log-list.component';
 
 @Component({
   selector: 'app-recording-details',
@@ -40,6 +41,8 @@ export class RecordingDetailsComponent implements OnInit, OnDestroy {
   @ViewChild('attachmentList', {static: false})
   public attachmentList: AttachmentListComponent;
 
+  @ViewChild('loglist', {static: false})
+  public logList: LogListComponent;
 
   public urls: any[];
 
@@ -210,5 +213,12 @@ export class RecordingDetailsComponent implements OnInit, OnDestroy {
   public addBookmark() {
     this.pause();
     this.player1.showBookmarkDialog();
+  }
+
+  public tabViewChanged($event) {
+    console.log($event.index);
+    if ($event.index === 2) {
+      this.logList.refresh();
+    }
   }
 }

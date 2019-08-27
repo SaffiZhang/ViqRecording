@@ -17,6 +17,8 @@ export class CaseRelatedInfoComponent implements OnInit, OnDestroy {
     this.refreshBookmark();
   }
 
+  public isBookmarkDialogVisible = false;
+  public editingItem;
   private caseId: string;
   public hasTranscriptFile = false;
 
@@ -89,11 +91,55 @@ export class CaseRelatedInfoComponent implements OnInit, OnDestroy {
       updatedBy: this.currentUser.username,
       bookmarkCaseId: payload.caseId,
     };
-    console.log(input)
     this.api.CreateBookmark(input).then(r => {
       this.refreshBookmark();
     }).catch(err => {
-      debugger;
+      console.log(err);
     });
+  }
+
+
+  private savedOriginalItem: any;
+
+  public editBookmark(item) {
+    this.editingItem = JSON.parse(JSON.stringify(item));
+    this.savedOriginalItem = JSON.parse(JSON.stringify(item));
+    delete this.savedOriginalItem['case'];
+    this.isBookmarkDialogVisible = true;
+  }
+
+  public save() {
+    const input = {
+      id: this.editingItem.id,
+      order: this.editingItem.order,
+      dateTime: this.editingItem.time,
+      speaker: 'unknown',
+      content: this.editingItem.content,
+      updatedDateTime: (new Date()).toISOString(),
+      updatedBy: this.currentUser.username,
+      bookmarkCaseId: this.editingItem.caseId,
+    };
+    this.api.UpdateBookmark(input).then(r => {
+      this.isBookmarkDialogVisible = false;
+      this.refreshBookmark();
+      const dt = (new Date()).toISOString();
+      this.api.CreateLog({
+        id: '',
+        dateTime: dt,
+        description: 'Bookmark changed to:' + JSON.stringify(input) + ', from: ' + JSON.stringify(this.savedOriginalItem),
+        userName: this.currentUser ? this.currentUser.username : 'unknown',
+        recordId: 'unknown',
+        tableName: 'bookmark',
+        logCaseId: this.caseId,
+      });
+    }).catch(err => {
+      this.isBookmarkDialogVisible = false;
+      console.log(err);
+    });
+  }
+
+  public cancel() {
+    this.isBookmarkDialogVisible = false;
+    this.editingItem = null;
   }
 }

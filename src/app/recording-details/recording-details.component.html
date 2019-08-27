@@ -1,6 +1,6 @@
 <div class="ui-g">
   <div class="ui-g-12">
-    <p-tabView>
+    <p-tabView (onChange)="tabViewChanged($event)">
       <p-tabPanel header="Interview Record">
         <div class="ui-g" *ngIf="sources">
           <div class="ui-g-8">
@@ -51,7 +51,7 @@
       <p-tabPanel header="Logging">
         <div class="ui-g" *ngIf="logs">
           <div class="ui-g-12">
-            <app-log-list [logs]="logs" [recording-id]="recording.id"></app-log-list>
+            <app-log-list #loglist [logs]="logs" [recording-id]="recording.id"></app-log-list>
           </div>
         </div>
       </p-tabPanel>

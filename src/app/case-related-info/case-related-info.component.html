@@ -22,7 +22,7 @@
           <ng-template pTemplate="body" let-row>
             <tr>
               <td>{{row.dateTime | amDateFormat:'HH:mm:ss'}}</td>
-              <td>{{row.content}}</td>
+              <td (click)="editBookmark(row)" style="cursor:pointer;">{{row.content}}</td>
               <td>{{row.updatedBy}}</td>
             </tr>
           </ng-template>
@@ -32,3 +32,25 @@
   </p-tabPanel>
 </p-tabView>
 
+<p-dialog [(visible)]="isBookmarkDialogVisible" header="Bookmark" modal="true">
+  <div class="ui-g ui-fluid" *ngIf="editingItem">
+    <div class="ui-g-6">
+      Bookmark time:
+    </div>
+    <div class="ui-g-6">
+      {{editingItem.dateTime| amDateFormat:'YYYY-MM-DD HH:mm:ss'}}
+    </div>
+    <div class="ui-g-12">
+      Description:
+    </div>
+    <div class="ui-g-12">
+      <textarea pInputTextarea [(ngModel)]="editingItem.content" rows="5"></textarea>
+    </div>
+  </div>
+  <p-footer>
+
+    <p-button label="Save" (onClick)="save()" *ngIf="editingItem" [disabled]="!editingItem.content"></p-button>&nbsp;&nbsp;
+    <p-button styleClass="ui-button-secondary" label="Cancel" (onClick)="cancel()"></p-button>
+
+  </p-footer>
+</p-dialog>

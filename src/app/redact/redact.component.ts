@@ -71,7 +71,7 @@ export class RedactComponent implements OnInit, OnDestroy {
     }
     console.log(this.data);
     this.recordingId = this.data.recordingId;
-    this.originalRecordingId = this.data.originalId;
+    this.originalRecordingId = this.data.originalRecordingId;
     this.caseId = this.data.caseId;
     this.sources = [this.data.source];
     this.refresh();
@@ -137,7 +137,7 @@ export class RedactComponent implements OnInit, OnDestroy {
 
   private refresh() {
     const filter = {
-      redactionRecordingId: {eq: this.recordingId},
+      redactionRecordingId: {eq: this.originalRecordingId},
       // and: [{
       //   status: {eq: RedactionStatus.InProgress},
       //   or: [{
@@ -147,10 +147,12 @@ export class RedactComponent implements OnInit, OnDestroy {
     };
 
     this.api.ListRedactions(filter).then(redactions => {
-      debugger;
+
       const items = redactions.items.filter(x => x.status === RedactionStatus.Submitted);
       // this.allowAddNew = redactions.items.length === 0;
       this.allowAddNew = items.length === 0;
+    }).catch(err => {
+
     });
   }
 

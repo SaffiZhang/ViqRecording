@@ -19,7 +19,7 @@
   <div class="ui-g-12" [hidden]="editingInterval">
     <p-button label="Add New Redaction" (onClick)="addNewRedaction()" [disabled]="!allowAddNew"></p-button>
     <p class="no-new-redaction-message" *ngIf="!allowAddNew">A redaction is in progress. Please wit until it completed. </p>
-    <app-redaction-editing #redactionEditor [recording-id]="recordingId"
+    <app-redaction-editing #redactionEditor [recording-id]="originalRecordingId"
                            [show-interval-button]="showGotoIntervalButton"></app-redaction-editing>
 
     <p-button label="Back to Recording" (onClick)="back()" style="float:right"></p-button>
