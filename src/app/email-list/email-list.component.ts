@@ -138,12 +138,12 @@ export class EmailListComponent implements OnInit {
           videoSource.push(this.player4.selectedSource);
         }
       }
-      if (videoCheked !== 1) {
+      if (videoCheked === 0) {
         isValid = false;
         this.messageService.add({
           severity: 'error',
           summary: 'Recording Selection',
-          detail: 'Please select one recording.',
+          detail: 'Please select at least one recording.',
           key: 'emailValidation'
         });
       }
@@ -169,7 +169,10 @@ export class EmailListComponent implements OnInit {
       status: 'pending',
       sharedCaseId: this.recordingId
     };
-    input.urls.push(videoSource[0].src);
+    videoSource.forEach(x => {
+      input.urls.push(x.src);
+    });
+
     this.apiService.CreateShared(input).then(r => {
       this.apiService.CreateLog({
         id: '',

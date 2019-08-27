@@ -206,4 +206,9 @@ export class RecordingDetailsComponent implements OnInit, OnDestroy {
   public back() {
     this.router.navigate(['recording-list']);
   }
+
+  public addBookmark() {
+    this.pause();
+    this.player1.showBookmarkDialog();
+  }
 }

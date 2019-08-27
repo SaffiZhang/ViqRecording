@@ -41,7 +41,7 @@ export class CaseRelatedInfoComponent implements OnInit, OnDestroy {
     }));
     this.subs.push(this.eventBus.currentUser.subscribe(r => {
       this.currentUser = r;
-    }))
+    }));
   }
 
   ngOnDestroy(): void {
@@ -55,8 +55,11 @@ export class CaseRelatedInfoComponent implements OnInit, OnDestroy {
     this.api.ListTranscriptions(input).then(r => {
       console.log('case transcription:', r);
       if (r.items.length > 0) {
-        this.transcriptFile = r.items[0].transcriptionFileUrl;
-        this.hasTranscriptFile = true;
+        const items = r.items.filter(x => !!x.transcriptionFileUrl);
+        if (items && items.length > 0) {
+          this.transcriptFile = items[0].transcriptionFileUrl;
+          this.hasTranscriptFile = true;
+        }
       }
     });
 

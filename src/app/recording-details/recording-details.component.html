@@ -7,18 +7,19 @@
             <div class="ui-g">
               <div class="ui-g-6" *ngIf="sources && sources.length>0">
                 <app-video-player #player1 id="playerOne" [sources]="sources[0]"
-                                  [show-bookmark]="true"
+                                  [show-bookmark]="false"
                                   [recording-id]="recording.id"></app-video-player>
               </div>
               <div class="ui-g-6" *ngIf="sources && sources.length>1">
                 <app-video-player #player2 id="playerTwo" [sources]="sources[1]"
-                                  [show-bookmark]="true"
+                                  [show-bookmark]="false"
                                   [recording-id]="recording.id"></app-video-player>
               </div>
 
               <div class="ui-g-12">
                 <p-button label="Play All" (onClick)="play()"></p-button> &nbsp;&nbsp;
                 <p-button label="Pause All" (onClick)="pause()"></p-button> &nbsp;&nbsp;
+                <p-button label="Add Bookmark" (onClick)="addBookmark()"></p-button> &nbsp;&nbsp;
                 <p-button label="Submit Transcription" (onClick)="submit()"></p-button>
               </div>
               <div class="ui-g-12">
