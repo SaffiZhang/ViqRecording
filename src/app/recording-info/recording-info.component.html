@@ -10,25 +10,25 @@
           Interview Stop : {{recording.interviewFinish}}
         </div>
         <div class="ui-g-12">
-          Officer :
+          Officer<span class="required-field" *ngIf="isEditing"> *</span> :
           <ng-container *ngIf="!isEditing">
             {{recording.officerCollarNumber}}
           </ng-container>
           <ng-container *ngIf="isEditing">
-            <input type="text" pInputText [(ngModel)]="recording.officerCollarNumber"/>
+            <input type="text" pInputText [(ngModel)]="editingRecording.officer"/>
           </ng-container>
         </div>
         <div class="ui-g-12">
-          Interviewee :
+          Interviewee<span class="required-field" *ngIf="isEditing"> *</span> :
           <ng-container *ngIf="!isEditing">
             {{recording.interviewee}}
           </ng-container>
           <ng-container *ngIf="isEditing">
-            <input type="text" pInputText [(ngModel)]="recording.interviewee"/>
+            <input type="text" pInputText [(ngModel)]="editingRecording.interviewee"/>
           </ng-container>
         </div>
         <div class="ui-g-12">
-          DOB of Interviewee :
+          DOB of Interviewee<span class="required-field" *ngIf="isEditing"> *</span> :
           <ng-container *ngIf="!isEditing">
             {{recording.birthdayOfInterviewee}}
           </ng-container>
@@ -58,6 +58,10 @@
             <p-button label="Cancel" (onClick)="cancel()"></p-button>
           </ng-container>
 
+        </div>
+        <div class="ui-g-12 validation-error-message" *ngIf="showError || dobFormatError">
+          <p>Please fill all mandatory fields.</p>
+          <p *ngIf="dobFormatError">Please correct DOB of interviewee field.</p>
         </div>
       </div>
     </p-card>
