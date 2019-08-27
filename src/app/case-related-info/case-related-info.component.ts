@@ -54,7 +54,7 @@ export class CaseRelatedInfoComponent implements OnInit, OnDestroy {
     const input = {
       transcriptionCaseId: {eq: this.caseId}
     };
-    this.api.ListTranscriptions(input).then(r => {
+    this.api.ListTranscriptions(input, 1000).then(r => {
       console.log('case transcription:', r);
       if (r.items.length > 0) {
         const items = r.items.filter(x => !!x.transcriptionFileUrl);
@@ -71,7 +71,7 @@ export class CaseRelatedInfoComponent implements OnInit, OnDestroy {
     const input = {
       bookmarkCaseId: {eq: this.caseId}
     };
-    this.api.ListBookmarks(input).then(r => {
+    this.api.ListBookmarks(input, 1000).then(r => {
       this.bookmarks = r.items;
       if (this.bookmarks.length > 0) {
         this.bookmarks.sort((x, y) => x.order - y.order);

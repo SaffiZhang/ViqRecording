@@ -11,7 +11,7 @@
   <p-tabPanel header="Bookmark">
     <div class="ui-g">
       <div class="ui-g-12">
-        <p-table [value]="bookmarks">
+        <p-table [value]="bookmarks" [paginator]="true" rows="10">
           <ng-template pTemplate="header">
             <tr>
               <th>Time</th>
