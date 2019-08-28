@@ -14,8 +14,9 @@ import {VgOverlayPlayModule} from 'videogular2/compiled/src/overlay-play/overlay
 import {VgBufferingModule} from 'videogular2/compiled/src/buffering/buffering';
 import {ButtonModule} from 'primeng/button';
 import {
-  CardModule,
-  DropdownModule,
+  BlockUIModule, CalendarModule,
+  CardModule, CheckboxModule, ConfirmationService, ConfirmDialogModule, DialogModule,
+  DropdownModule, FileUploadModule,
   InputMaskModule,
   InputTextareaModule,
   InputTextModule, MessageModule, MessageService, MessagesModule,
@@ -38,8 +39,18 @@ import {AppTopMenubarComponent} from './app-top-menubar/app-top-menubar.componen
 import {RedactComponent} from './redact/redact.component';
 import {RouterModule} from '@angular/router';
 import {ToastModule} from 'primeng/toast';
+import {EmailListComponent} from './email-list/email-list.component';
+import {RecordingSharedComponent} from './recording-shared/recording-shared.component';
+import {CreateCaseComponent} from './create-case/create-case.component';
+import {HttpClientModule} from '@angular/common/http';
+import {CreateCaseUploadMediaComponent} from './create-case-upload-media/create-case-upload-media.component';
+import {RedactionHistoryComponent} from './redact/redaction-history/redaction-history.component';
+import {RedactionEditingComponent} from './redact/redaction-editing/redaction-editing.component';
+import {MomentModule} from 'ngx-moment';
+import { CaseInfoComponent } from './case-info/case-info.component';
 
-
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { CaseRelatedInfoComponent } from './case-related-info/case-related-info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,13 +66,22 @@ import {ToastModule} from 'primeng/toast';
     RecordingDetailsComponent,
     LogListComponent,
     AppTopMenubarComponent,
-    RedactComponent
+    RedactComponent,
+    EmailListComponent,
+    RecordingSharedComponent,
+    CreateCaseComponent,
+    CreateCaseUploadMediaComponent,
+    RedactionHistoryComponent,
+    RedactionEditingComponent,
+    CaseInfoComponent,
+    CaseRelatedInfoComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AmplifyAngularModule,
+    HttpClientModule,
 
     RouterModule,
     VgCoreModule,
@@ -81,7 +101,15 @@ import {ToastModule} from 'primeng/toast';
     InputMaskModule,
     ToastModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    FileUploadModule,
+    BlockUIModule,
+    CalendarModule,
+    ConfirmDialogModule,
+    DialogModule,
+    CheckboxModule,
+    MomentModule,
+    NgxExtendedPdfViewerModule
 
   ],
   providers: [
@@ -93,6 +121,9 @@ import {ToastModule} from 'primeng/toast';
     {
       provide: MessageService,
       useClass: MessageService
+    }, {
+      provide: ConfirmationService,
+      useClass: ConfirmationService
     }
   ],
   bootstrap: [AppComponent]

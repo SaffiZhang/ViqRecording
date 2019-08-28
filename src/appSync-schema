@@ -1,0 +1,740 @@
+type Attachment {
+	id: ID!
+	description: String!
+	url: String!
+	updatedDateTime: String!
+	updatedBy: String!
+	case: Case
+}
+
+type Bookmark {
+	id: ID!
+	order: Int!
+	dateTime: String!
+	speaker: String
+	content: String!
+	updatedDateTime: String
+	updatedBy: String
+	case: Case
+}
+
+type Case {
+	id: String!
+	interviewee: String!
+	interviewFinish: String!
+	interviewStart: String!
+	officerCollarNumber: String!
+	location: String!
+	unitId: String!
+	path: String!
+	note: String
+	birthdayOfInterviewee: String
+	interviewType: String
+	interviewAccess: String
+	theOtherPersonsPresent: String
+	attachments(
+		filter: ModelAttachmentFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelAttachmentConnection
+	recordings(
+		filter: ModelRecordingFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelRecordingConnection
+	logs(
+		filter: ModelLogFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelLogConnection
+	transcriptions(
+		filter: ModelTranscriptionFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelTranscriptionConnection
+	bookmarks(
+		filter: ModelBookmarkFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelBookmarkConnection
+	shareds(
+		filter: ModelSharedFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelSharedConnection
+}
+
+input CreateAttachmentInput {
+	id: ID
+	description: String!
+	url: String!
+	updatedDateTime: String!
+	updatedBy: String!
+	attachmentCaseId: ID
+}
+
+input CreateBookmarkInput {
+	id: ID
+	order: Int!
+	dateTime: String!
+	speaker: String
+	content: String!
+	updatedDateTime: String
+	updatedBy: String
+	bookmarkCaseId: ID
+}
+
+input CreateCaseInput {
+	id: ID
+	interviewee: String!
+	interviewFinish: String!
+	interviewStart: String!
+	officerCollarNumber: String!
+	location: String!
+	unitId: String!
+	path: String!
+	note: String
+	birthdayOfInterviewee: String
+	interviewType: String
+	interviewAccess: String
+	theOtherPersonsPresent: String
+}
+
+input CreateLogInput {
+	id: ID
+	dateTime: String!
+	description: String!
+	userName: String!
+	recordId: String!
+	tableName: String!
+	logCaseId: ID
+}
+
+input CreateRecordingInput {
+	id: ID
+	url: String!
+	bucket: String!
+	key: String!
+	description: String!
+	camera: String!
+	version: String!
+	recordingCaseId: ID
+}
+
+input CreateRedactionInput {
+	id: ID
+	redactionVersion: String!
+	description: String!
+	updatedDateTime: String
+	updatedBy: String
+	status: String!
+	redactionRecordingId: ID
+}
+
+input CreateRedactionIntervalInput {
+	id: ID
+	redactionVersion: String!
+	startSecond: Int!
+	endSecond: Int!
+	type: String!
+	redactionIntervalRedactionId: ID
+}
+
+input CreateSharedInput {
+	id: ID
+	createdDateTime: String!
+	createdBy: String!
+	receiver: String!
+	receiver_email: String!
+	receiver_type: String!
+	expiry_date: String!
+	token: String!
+	urls: [String]!
+	status: String!
+	description: String!
+	sharedCaseId: ID
+}
+
+input CreateTranscriptionInput {
+	id: ID
+	submitTime: String!
+	transcriptionFileUrl: String
+	status: String!
+	transcriptionCaseId: ID
+}
+
+input DeleteAttachmentInput {
+	id: ID
+}
+
+input DeleteBookmarkInput {
+	id: ID
+}
+
+input DeleteCaseInput {
+	id: ID
+}
+
+input DeleteLogInput {
+	id: ID
+}
+
+input DeleteRecordingInput {
+	id: ID
+}
+
+input DeleteRedactionInput {
+	id: ID
+}
+
+input DeleteRedactionIntervalInput {
+	id: ID
+}
+
+input DeleteSharedInput {
+	id: ID
+}
+
+input DeleteTranscriptionInput {
+	id: ID
+}
+
+type Log {
+	id: ID!
+	dateTime: String!
+	description: String!
+	userName: String!
+	recordId: String!
+	tableName: String!
+	case: Case
+}
+
+type ModelAttachmentConnection {
+	items: [Attachment]
+	nextToken: String
+}
+
+input ModelAttachmentFilterInput {
+	id: ModelIDFilterInput
+	description: ModelStringFilterInput
+	url: ModelStringFilterInput
+	attachmentCaseId: ModelStringFilterInput
+	updatedDateTime: ModelStringFilterInput
+	updatedBy: ModelStringFilterInput
+	and: [ModelAttachmentFilterInput]
+	or: [ModelAttachmentFilterInput]
+	not: ModelAttachmentFilterInput
+}
+
+type ModelBookmarkConnection {
+	items: [Bookmark]
+	nextToken: String
+}
+
+input ModelBookmarkFilterInput {
+	id: ModelIDFilterInput
+	order: ModelIntFilterInput
+	dateTime: ModelStringFilterInput
+	speaker: ModelStringFilterInput
+	content: ModelStringFilterInput
+	bookmarkCaseId: ModelStringFilterInput
+	updatedDateTime: ModelStringFilterInput
+	updatedBy: ModelStringFilterInput
+	and: [ModelBookmarkFilterInput]
+	or: [ModelBookmarkFilterInput]
+	not: ModelBookmarkFilterInput
+}
+
+input ModelBooleanFilterInput {
+	ne: Boolean
+	eq: Boolean
+}
+
+type ModelCaseConnection {
+	items: [Case]
+	nextToken: String
+}
+
+input ModelCaseFilterInput {
+	id: ModelStringFilterInput
+	interviewee: ModelStringFilterInput
+	interviewFinish: ModelStringFilterInput
+	interviewStart: ModelStringFilterInput
+	officerCollarNumber: ModelStringFilterInput
+	location: ModelStringFilterInput
+	unitId: ModelStringFilterInput
+	path: ModelStringFilterInput
+	note: ModelStringFilterInput
+	birthdayOfInterviewee: ModelStringFilterInput
+	interviewType: ModelStringFilterInput
+	interviewAccess: ModelStringFilterInput
+	theOtherPersonsPresent: ModelStringFilterInput
+	and: [ModelCaseFilterInput]
+	or: [ModelCaseFilterInput]
+	not: ModelCaseFilterInput
+}
+
+enum ModelCaseSortDirection {
+	interviewee_ASC
+	interviewee_DESC
+	officerCollarNumber_ASC
+	officerCollarNumber_DESC
+	location_ASC
+	location_DESC
+	interviewStart_ASC
+	interviewStart_DESC
+	interviewFinish_ASC
+	interviewFinish_DESC
+}
+
+input ModelFloatFilterInput {
+	ne: Float
+	eq: Float
+	le: Float
+	lt: Float
+	ge: Float
+	gt: Float
+	contains: Float
+	notContains: Float
+	between: [Float]
+}
+
+input ModelIDFilterInput {
+	ne: ID
+	eq: ID
+	le: ID
+	lt: ID
+	ge: ID
+	gt: ID
+	contains: ID
+	notContains: ID
+	between: [ID]
+	beginsWith: ID
+}
+
+input ModelIntFilterInput {
+	ne: Int
+	eq: Int
+	le: Int
+	lt: Int
+	ge: Int
+	gt: Int
+	contains: Int
+	notContains: Int
+	between: [Int]
+}
+
+type ModelLogConnection {
+	items: [Log]
+	nextToken: String
+}
+
+input ModelLogFilterInput {
+	id: ModelIDFilterInput
+	dateTime: ModelStringFilterInput
+	description: ModelStringFilterInput
+	userName: ModelStringFilterInput
+	recordId: ModelStringFilterInput
+	tableName: ModelStringFilterInput
+	logCaseId: ModelStringFilterInput
+	and: [ModelLogFilterInput]
+	or: [ModelLogFilterInput]
+	not: ModelLogFilterInput
+}
+
+type ModelRecordingConnection {
+	items: [Recording]
+	nextToken: String
+}
+
+input ModelRecordingFilterInput {
+	id: ModelIDFilterInput
+	url: ModelStringFilterInput
+	bucket: ModelStringFilterInput
+	key: ModelStringFilterInput
+	lastmodified: ModelStringFilterInput
+	description: ModelStringFilterInput
+	recordingCaseId: ModelStringFilterInput
+	camera: ModelStringFilterInput
+	version: ModelStringFilterInput
+	and: [ModelRecordingFilterInput]
+	or: [ModelRecordingFilterInput]
+	not: ModelRecordingFilterInput
+}
+
+type ModelRedactionConnection {
+	items: [Redaction]
+	nextToken: String
+}
+
+input ModelRedactionFilterInput {
+	id: ModelIDFilterInput
+	redactionVersion: ModelStringFilterInput
+	description: ModelStringFilterInput
+	redactionRecordingId: ModelStringFilterInput
+	updatedDateTime: ModelStringFilterInput
+	updatedBy: ModelStringFilterInput
+	status: ModelStringFilterInput
+	and: [ModelRedactionFilterInput]
+	or: [ModelRedactionFilterInput]
+	not: ModelRedactionFilterInput
+}
+
+type ModelRedactionIntervalConnection {
+	items: [RedactionInterval]
+	nextToken: String
+}
+
+input ModelRedactionIntervalFilterInput {
+	id: ModelIDFilterInput
+	redactionVersion: ModelStringFilterInput
+	startSecond: ModelIntFilterInput
+	endSecond: ModelIntFilterInput
+	type: ModelStringFilterInput
+	redactionIntervalRedactionId: ModelStringFilterInput
+	and: [ModelRedactionIntervalFilterInput]
+	or: [ModelRedactionIntervalFilterInput]
+	not: ModelRedactionIntervalFilterInput
+}
+
+type ModelSharedConnection {
+	items: [Shared]
+	nextToken: String
+}
+
+input ModelSharedFilterInput {
+	id: ModelIDFilterInput
+	createdDateTime: ModelStringFilterInput
+	createdBy: ModelStringFilterInput
+	receiver: ModelStringFilterInput
+	receiver_email: ModelStringFilterInput
+	receiver_type: ModelStringFilterInput
+	expiry_date: ModelStringFilterInput
+	token: ModelStringFilterInput
+	sharedCaseId: ModelStringFilterInput
+	urls: ModelStringFilterInput
+	status: ModelStringFilterInput
+	description: ModelStringFilterInput
+	and: [ModelSharedFilterInput]
+	or: [ModelSharedFilterInput]
+	not: ModelSharedFilterInput
+}
+
+enum ModelSortDirection {
+	ASC
+	DESC
+}
+
+input ModelStringFilterInput {
+	ne: String
+	eq: String
+	le: String
+	lt: String
+	ge: String
+	gt: String
+	contains: String
+	notContains: String
+	between: [String]
+	beginsWith: String
+}
+
+type ModelTranscriptionConnection {
+	items: [Transcription]
+	nextToken: String
+}
+
+input ModelTranscriptionFilterInput {
+	id: ModelIDFilterInput
+	submitTime: ModelStringFilterInput
+	transcriptionFileUrl: ModelStringFilterInput
+	status: ModelStringFilterInput
+	transcriptionCaseId: ModelStringFilterInput
+	and: [ModelTranscriptionFilterInput]
+	or: [ModelTranscriptionFilterInput]
+	not: ModelTranscriptionFilterInput
+}
+
+type Mutation {
+	createCase(input: CreateCaseInput!): Case
+	updateCase(input: UpdateCaseInput!): Case
+	deleteCase(input: DeleteCaseInput!): Case
+	createRecording(input: CreateRecordingInput!): Recording
+	updateRecording(input: UpdateRecordingInput!): Recording
+	deleteRecording(input: DeleteRecordingInput!): Recording
+	createAttachment(input: CreateAttachmentInput!): Attachment
+	updateAttachment(input: UpdateAttachmentInput!): Attachment
+	deleteAttachment(input: DeleteAttachmentInput!): Attachment
+	createBookmark(input: CreateBookmarkInput!): Bookmark
+	updateBookmark(input: UpdateBookmarkInput!): Bookmark
+	deleteBookmark(input: DeleteBookmarkInput!): Bookmark
+	createRedaction(input: CreateRedactionInput!): Redaction
+	updateRedaction(input: UpdateRedactionInput!): Redaction
+	deleteRedaction(input: DeleteRedactionInput!): Redaction
+	createRedactionInterval(input: CreateRedactionIntervalInput!): RedactionInterval
+	updateRedactionInterval(input: UpdateRedactionIntervalInput!): RedactionInterval
+	deleteRedactionInterval(input: DeleteRedactionIntervalInput!): RedactionInterval
+	createShared(input: CreateSharedInput!): Shared
+	updateShared(input: UpdateSharedInput!): Shared
+	deleteShared(input: DeleteSharedInput!): Shared
+	createTranscription(input: CreateTranscriptionInput!): Transcription
+	updateTranscription(input: UpdateTranscriptionInput!): Transcription
+	deleteTranscription(input: DeleteTranscriptionInput!): Transcription
+	createLog(input: CreateLogInput!): Log
+	updateLog(input: UpdateLogInput!): Log
+	deleteLog(input: DeleteLogInput!): Log
+}
+
+type Query {
+	getCase(id: ID!): Case
+	listCases(
+		filter: ModelCaseFilterInput,
+		limit: Int,
+		nextToken: String,
+		orderBy: ModelCaseSortDirection
+	): ModelCaseConnection
+	getRecording(id: ID!): Recording
+	listRecordings(filter: ModelRecordingFilterInput, limit: Int, nextToken: String): ModelRecordingConnection
+	getAttachment(id: ID!): Attachment
+	listAttachments(filter: ModelAttachmentFilterInput, limit: Int, nextToken: String): ModelAttachmentConnection
+	getBookmark(id: ID!): Bookmark
+	listBookmarks(filter: ModelBookmarkFilterInput, limit: Int, nextToken: String): ModelBookmarkConnection
+	getRedaction(id: ID!): Redaction
+	listRedactions(filter: ModelRedactionFilterInput, limit: Int, nextToken: String): ModelRedactionConnection
+	getRedactionInterval(id: ID!): RedactionInterval
+	listRedactionIntervals(filter: ModelRedactionIntervalFilterInput, limit: Int, nextToken: String): ModelRedactionIntervalConnection
+	getShared(id: ID!): Shared
+	listShareds(filter: ModelSharedFilterInput, limit: Int, nextToken: String): ModelSharedConnection
+	getTranscription(id: ID!): Transcription
+	listTranscriptions(filter: ModelTranscriptionFilterInput, limit: Int, nextToken: String): ModelTranscriptionConnection
+	getLog(id: ID!): Log
+	listLogs(filter: ModelLogFilterInput, limit: Int, nextToken: String): ModelLogConnection
+}
+
+type Recording {
+	id: ID!
+	url: String!
+	bucket: String!
+	key: String!
+	lastmodified: String!
+	description: String!
+	camera: String!
+	version: String!
+	redactions(
+		filter: ModelRedactionFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelRedactionConnection
+	case: Case
+}
+
+type Redaction {
+	id: ID!
+	redactionVersion: String!
+	description: String!
+	updatedDateTime: String
+	updatedBy: String
+	status: String!
+	recording: Recording
+	redactionIntervals(
+		filter: ModelRedactionIntervalFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelRedactionIntervalConnection
+}
+
+type RedactionInterval {
+	id: ID!
+	redactionVersion: String!
+	startSecond: Int!
+	endSecond: Int!
+	type: String!
+	redaction: Redaction
+}
+
+type Shared {
+	id: ID!
+	createdDateTime: String!
+	createdBy: String!
+	receiver: String!
+	receiver_email: String!
+	receiver_type: String!
+	expiry_date: String!
+	token: String!
+	urls: [String]!
+	status: String!
+	description: String!
+	case: Case
+}
+
+type Subscription {
+	onCreateCase: Case
+		@aws_subscribe(mutations: ["createCase"])
+	onUpdateCase: Case
+		@aws_subscribe(mutations: ["updateCase"])
+	onDeleteCase: Case
+		@aws_subscribe(mutations: ["deleteCase"])
+	onCreateRecording: Recording
+		@aws_subscribe(mutations: ["createRecording"])
+	onUpdateRecording: Recording
+		@aws_subscribe(mutations: ["updateRecording"])
+	onDeleteRecording: Recording
+		@aws_subscribe(mutations: ["deleteRecording"])
+	onCreateAttachment: Attachment
+		@aws_subscribe(mutations: ["createAttachment"])
+	onUpdateAttachment: Attachment
+		@aws_subscribe(mutations: ["updateAttachment"])
+	onDeleteAttachment: Attachment
+		@aws_subscribe(mutations: ["deleteAttachment"])
+	onCreateBookmark: Bookmark
+		@aws_subscribe(mutations: ["createBookmark"])
+	onUpdateBookmark: Bookmark
+		@aws_subscribe(mutations: ["updateBookmark"])
+	onDeleteBookmark: Bookmark
+		@aws_subscribe(mutations: ["deleteBookmark"])
+	onCreateRedaction: Redaction
+		@aws_subscribe(mutations: ["createRedaction"])
+	onUpdateRedaction: Redaction
+		@aws_subscribe(mutations: ["updateRedaction"])
+	onDeleteRedaction: Redaction
+		@aws_subscribe(mutations: ["deleteRedaction"])
+	onCreateRedactionInterval: RedactionInterval
+		@aws_subscribe(mutations: ["createRedactionInterval"])
+	onUpdateRedactionInterval: RedactionInterval
+		@aws_subscribe(mutations: ["updateRedactionInterval"])
+	onDeleteRedactionInterval: RedactionInterval
+		@aws_subscribe(mutations: ["deleteRedactionInterval"])
+	onCreateShared: Shared
+		@aws_subscribe(mutations: ["createShared"])
+	onUpdateShared: Shared
+		@aws_subscribe(mutations: ["updateShared"])
+	onDeleteShared: Shared
+		@aws_subscribe(mutations: ["deleteShared"])
+	onCreateTranscription: Transcription
+		@aws_subscribe(mutations: ["createTranscription"])
+	onUpdateTranscription: Transcription
+		@aws_subscribe(mutations: ["updateTranscription"])
+	onDeleteTranscription: Transcription
+		@aws_subscribe(mutations: ["deleteTranscription"])
+	onCreateLog: Log
+		@aws_subscribe(mutations: ["createLog"])
+	onUpdateLog: Log
+		@aws_subscribe(mutations: ["updateLog"])
+	onDeleteLog: Log
+		@aws_subscribe(mutations: ["deleteLog"])
+}
+
+type Transcription {
+	id: ID!
+	submitTime: String!
+	transcriptionFileUrl: String
+	status: String!
+	case: Case
+}
+
+input UpdateAttachmentInput {
+	id: ID!
+	description: String
+	url: String
+	updatedDateTime: String
+	updatedBy: String
+	attachmentCaseId: ID
+}
+
+input UpdateBookmarkInput {
+	id: ID!
+	order: Int
+	dateTime: String
+	speaker: String
+	content: String
+	updatedDateTime: String
+	updatedBy: String
+	bookmarkCaseId: ID
+}
+
+input UpdateCaseInput {
+	id: String!
+	interviewee: String
+	interviewFinish: String
+	interviewStart: String
+	officerCollarNumber: String
+	location: String
+	unitId: String
+	path: String
+	note: String
+	birthdayOfInterviewee: String
+	interviewType: String
+	interviewAccess: String
+	theOtherPersonsPresent: String
+}
+
+input UpdateLogInput {
+	id: ID!
+	dateTime: String
+	description: String
+	userName: String
+	recordId: String
+	tableName: String
+	logCaseId: ID
+}
+
+input UpdateRecordingInput {
+	id: ID!
+	url: String
+	bucket: String
+	key: String
+	lastmodified: String
+	description: String
+	camera: String
+	version: String
+	recordingCaseId: ID
+}
+
+input UpdateRedactionInput {
+	id: ID!
+	redactionVersion: String
+	description: String
+	updatedDateTime: String
+	updatedBy: String
+	status: String
+	redactionRecordingId: ID
+}
+
+input UpdateRedactionIntervalInput {
+	id: ID!
+	redactionVersion: String
+	startSecond: Int
+	endSecond: Int
+	type: String
+	redactionIntervalRedactionId: ID
+}
+
+input UpdateSharedInput {
+	id: ID!
+	createdDateTime: String
+	createdBy: String
+	receiver: String
+	receiver_email: String
+	receiver_type: String
+	expiry_date: String
+	token: String
+	urls: [String]
+	status: String
+	description: String
+	sharedCaseId: ID
+}
+
+input UpdateTranscriptionInput {
+	id: ID!
+	submitTime: String
+	transcriptionFileUrl: String
+	status: String
+	transcriptionCaseId: ID
+}

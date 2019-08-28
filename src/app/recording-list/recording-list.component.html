@@ -1,26 +1,46 @@
 <div class="ui-g">
   <div class="ui-g-12">
-    <p-table #dt [columns]="columns" [value]="recordingList">
+    Rows per page:
+    <p-dropdown [options]="rowsOptions" [(ngModel)]="rows"></p-dropdown>
+  </div>
+  <div class="ui-g-12">
+    <p-table #dt [columns]="columns" [value]="recordingList" [paginator]="true" [rows]="rows">
       <ng-template pTemplate="header" let-columns>
         <tr>
-          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-            {{col.header}}
-            <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          <ng-container *ngFor="let col of columns">
+            <th [pSortableColumn]="col.field" *ngIf="col.field!=='id'">
+              {{col.header}}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                          ariaLabelDesc="Activate to sort in descending order"
+                          ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
 
-          </th>
+            </th>
+            <th *ngIf="col.field==='id'">
+
+            </th>
+          </ng-container>
+
         </tr>
         <tr>
-          <th *ngFor="let col of columns">
-            <input pInputText type="text"
-                   (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <th *ngFor="let col of columns" nowrap>
+            <ng-container *ngIf="col.field==='id'">
+              <i class="pi pi-search search-btn" (click)="doSearch(col.field)"></i>&nbsp;
+            </ng-container>
+            <ng-container *ngIf="col.field!=='id'">
+              <input pInputText type="text" [(ngModel)]="searchModel[col.field]">&nbsp;
+
+              <i class="pi pi-refresh search-btn" (click)="undoSearch(col.field)"></i>
+            </ng-container>
+
           </th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-columns="columns" let-rowData>
         <tr>
-          <td *ngFor="let col of columns">
+          <td *ngFor="let col of columns" [ngClass]="{'icon-col':col.field==='id'}">
             <ng-container *ngIf="col.field==='id'">
-              <a [routerLink]="['/recording-details',rowData[col.field]]" >{{rowData[col.field]}}</a>
+              <a [routerLink]="['/recording-details',rowData[col.field]]"><i style="font-size:2em;"
+                                                                             class="pi pi-image"></i></a>
             </ng-container>
             <ng-container *ngIf="col.field!=='id'">
               {{rowData[col.field]}}

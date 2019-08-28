@@ -1,0 +1,31 @@
+<div class="ui-g">
+  <div class="ui-g-12">
+    <p-card>
+      <div class="ui-g ui-fluid" *ngIf="case">
+        <div class="ui-g-12">
+          Interview Start : {{case.interviewStart}}
+        </div>
+        <div class="ui-g-12">
+          Interview Stop : {{case.interviewFinish}}
+        </div>
+        <div class="ui-g-12">
+          Officer : {{case.officerCollarNumber}}
+        </div>
+        <div class="ui-g-12">
+          Interviewee : {{case.interviewee}}
+        </div>
+        <div class="ui-g-12">
+          DOB of Interviewee : {{case.dob}}
+        </div>
+        <div class="ui-g-12">
+          Note :{{case.note}}
+        </div>
+        <div class="ui-g-12">
+          Police Station :
+          {{case.location}}
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>
+

@@ -1,22 +1,20 @@
 <div id="layout-topbar">
-
-  <a class="logo" [routerLink]="['/']">
+  <a class="logo"  *ngIf="!showMenu">
+    <img src="assets/image/logo.png">
+  </a>
+  <a class="logo" [routerLink]="['/']" *ngIf="showMenu">
     <img src="assets/image/logo.png">
   </a>
 
-  <ul class="topbar-menu">
+  <ul class="topbar-menu" *ngIf="isAuthenticated && showMenu">
     <li>
-      <a [routerLink]="['/setup']">GET STARTED</a>
+      <a [routerLink]="['/create-case']">Import case</a>
     </li>
     <li class="topbar-menu-themes">
-      <a href="#">Hello, Zhang</a>
-      <ul>
-        <li><a [routerLink]="'/profile'" >Profile</a></li>
-        <li><a [routerLink]="'/privacy'" >Privacy</a></li>
-      </ul>
+      <a href="#">Hello, {{user.username}}</a>
     </li>
     <li>
-      <a [routerLink]="['/support']">Logout</a>
+      <a href="" (click)="signOut($event)">Logout</a>
     </li>
 
   </ul>

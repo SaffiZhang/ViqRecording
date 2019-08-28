@@ -1,0 +1,58 @@
+<div class="ui-g" *ngIf="sources">
+  <div class="ui-g-6" *ngIf="sources && sources.length>0">
+    <app-video-player #player1 id="playerOne" [sources]="sources[0]"
+                      [show-redaction]="false" [show-version]="false" [show-info]="false"
+    ></app-video-player>
+  </div>
+  <div class="ui-g-6" *ngIf="sources && sources.length>1">
+    <app-video-player #player2 id="playerTwo" [sources]="sources[1]"
+                      [show-redaction]="false" [show-version]="false" [show-info]="false"
+    ></app-video-player>
+  </div>
+  <div class="ui-g-12">
+
+  </div>
+  <div class="ui-g-6">
+    <app-case-info [case]="case"></app-case-info>
+  </div>
+</div>
+<div class="ui-g" *ngIf="showError">
+  <div class="ui-g-12 error-message">
+    Sorry, we cannot find the resource which you are requesting.
+  </div>
+</div>
+<div class="ui-g verify-container ui-fluid" *ngIf="hasRecord && !pinVerified">
+  <div class="ui-g-4">
+
+  </div>
+  <div class="ui-g-4">
+    Verify your access by your pin code
+  </div>
+  <div class="ui-g-4">
+
+  </div>
+  <div class="ui-g-4">
+
+  </div>
+  <div class="ui-g-4">
+    <input pInputText [(ngModel)]="pin" placeholder="Pin Code">
+  </div>
+  <div class="ui-g-4">
+
+  </div>
+  <div class="ui-g-4">
+
+  </div>
+  <div class="ui-g-4">
+    <p-button class="verify-button" label="Verify" (onClick)="verifyPin()" [disabled]="pinVerifyCount>2"></p-button>
+  </div>
+  <div class="ui-g-4">
+
+  </div>
+</div>
+
+<div class="ui-g" *ngIf="!hasRecord && !showError">
+  <div class="ui-g-12 loading-message">
+    Loading ...
+  </div>
+</div>

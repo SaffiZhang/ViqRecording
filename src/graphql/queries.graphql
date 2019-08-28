@@ -1,6 +1,6 @@
 # this is an auto generated file. This will be overwritten
-query GetViqRecording($id: ID!) {
-  getViqRecording(id: $id) {
+query GetCase($id: ID!) {
+  getCase(id: $id) {
     id
     interviewee
     interviewFinish
@@ -9,19 +9,27 @@ query GetViqRecording($id: ID!) {
     location
     unitId
     path
+    note
+    birthdayOfInterviewee
+    interviewType
+    interviewAccess
+    theOtherPersonsPresent
     attachments {
       items {
         id
         description
         url
+        updatedDateTime
+        updatedBy
       }
       nextToken
     }
-    recordingUrls {
+    recordings {
       items {
         id
         url
-        lastmodified
+        bucket
+        key
         description
         camera
         version
@@ -34,6 +42,8 @@ query GetViqRecording($id: ID!) {
         dateTime
         description
         userName
+        recordId
+        tableName
       }
       nextToken
     }
@@ -41,17 +51,47 @@ query GetViqRecording($id: ID!) {
       items {
         id
         submitTime
+        transcriptionFileUrl
+        status
+      }
+      nextToken
+    }
+    bookmarks {
+      items {
+        id
+        order
+        dateTime
+        speaker
+        content
+        updatedDateTime
+        updatedBy
+      }
+      nextToken
+    }
+    shareds {
+      items {
+        id
+        createdDateTime
+        createdBy
+        receiver
+        receiver_email
+        receiver_type
+        expiry_date
+        token
+        urls
+        status
+        description
       }
       nextToken
     }
   }
 }
-query ListViqRecordings(
-  $filter: ModelViqRecordingFilterInput
+query ListCases(
+  $filter: ModelCaseFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listViqRecordings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listCases(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       interviewee
@@ -61,28 +101,54 @@ query ListViqRecordings(
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
-      recordingUrls {
+      recordings {
         nextToken
       }
       logs {
         nextToken
       }
       transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
         nextToken
       }
     }
     nextToken
   }
 }
-query GetViqRecordingAttachment($id: ID!) {
-  getViqRecordingAttachment(id: $id) {
+query GetRecording($id: ID!) {
+  getRecording(id: $id) {
     id
-    description
     url
-    viqRecording {
+    bucket
+    key
+    description
+    camera
+    version
+    redactions {
+      items {
+        id
+        redactionVersion
+        description
+        updatedDateTime
+        updatedBy
+        status
+      }
+      nextToken
+    }
+    case {
       id
       interviewee
       interviewFinish
@@ -91,10 +157,15 @@ query GetViqRecordingAttachment($id: ID!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
-      recordingUrls {
+      recordings {
         nextToken
       }
       logs {
@@ -103,24 +174,33 @@ query GetViqRecordingAttachment($id: ID!) {
       transcriptions {
         nextToken
       }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
     }
   }
 }
-query ListViqRecordingAttachments(
-  $filter: ModelViqRecordingAttachmentFilterInput
+query ListRecordings(
+  $filter: ModelRecordingFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listViqRecordingAttachments(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
+  listRecordings(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      description
       url
-      viqRecording {
+      bucket
+      key
+      description
+      camera
+      version
+      redactions {
+        nextToken
+      }
+      case {
         id
         interviewee
         interviewFinish
@@ -129,20 +209,202 @@ query ListViqRecordingAttachments(
         location
         unitId
         path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
       }
     }
     nextToken
   }
 }
-query GetViqRecordingUrl($id: ID!) {
-  getViqRecordingUrl(id: $id) {
+query GetAttachment($id: ID!) {
+  getAttachment(id: $id) {
     id
-    url
-    lastmodified
     description
-    camera
-    version
-    redactions {
+    url
+    updatedDateTime
+    updatedBy
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+query ListAttachments(
+  $filter: ModelAttachmentFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAttachments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      description
+      url
+      updatedDateTime
+      updatedBy
+      case {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+        path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
+      }
+    }
+    nextToken
+  }
+}
+query GetBookmark($id: ID!) {
+  getBookmark(id: $id) {
+    id
+    order
+    dateTime
+    speaker
+    content
+    updatedDateTime
+    updatedBy
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+query ListBookmarks(
+  $filter: ModelBookmarkFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listBookmarks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      order
+      dateTime
+      speaker
+      content
+      updatedDateTime
+      updatedBy
+      case {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+        path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
+      }
+    }
+    nextToken
+  }
+}
+query GetRedaction($id: ID!) {
+  getRedaction(id: $id) {
+    id
+    redactionVersion
+    description
+    updatedDateTime
+    updatedBy
+    status
+    recording {
+      id
+      url
+      bucket
+      key
+      description
+      camera
+      version
+      redactions {
+        nextToken
+      }
+      case {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+        path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
+      }
+    }
+    redactionIntervals {
       items {
         id
         redactionVersion
@@ -152,151 +414,72 @@ query GetViqRecordingUrl($id: ID!) {
       }
       nextToken
     }
-    viqRecording {
-      id
-      interviewee
-      interviewFinish
-      interviewStart
-      officerCollarNumber
-      location
-      unitId
-      path
-      attachments {
-        nextToken
-      }
-      recordingUrls {
-        nextToken
-      }
-      logs {
-        nextToken
-      }
-      transcriptions {
-        nextToken
-      }
-    }
   }
 }
-query ListViqRecordingUrls(
-  $filter: ModelViqRecordingUrlFilterInput
+query ListRedactions(
+  $filter: ModelRedactionFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listViqRecordingUrls(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listRedactions(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      url
-      lastmodified
+      redactionVersion
       description
-      camera
-      version
-      redactions {
-        nextToken
-      }
-      viqRecording {
+      updatedDateTime
+      updatedBy
+      status
+      recording {
         id
-        interviewee
-        interviewFinish
-        interviewStart
-        officerCollarNumber
-        location
-        unitId
-        path
+        url
+        bucket
+        key
+        description
+        camera
+        version
+      }
+      redactionIntervals {
+        nextToken
       }
     }
     nextToken
   }
 }
-query GetViqRecordingLog($id: ID!) {
-  getViqRecordingLog(id: $id) {
-    id
-    dateTime
-    description
-    userName
-    viqRecording {
-      id
-      interviewee
-      interviewFinish
-      interviewStart
-      officerCollarNumber
-      location
-      unitId
-      path
-      attachments {
-        nextToken
-      }
-      recordingUrls {
-        nextToken
-      }
-      logs {
-        nextToken
-      }
-      transcriptions {
-        nextToken
-      }
-    }
-  }
-}
-query ListViqRecordingLogs(
-  $filter: ModelViqRecordingLogFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listViqRecordingLogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      dateTime
-      description
-      userName
-      viqRecording {
-        id
-        interviewee
-        interviewFinish
-        interviewStart
-        officerCollarNumber
-        location
-        unitId
-        path
-      }
-    }
-    nextToken
-  }
-}
-query GetViqRecordingRedaction($id: ID!) {
-  getViqRecordingRedaction(id: $id) {
+query GetRedactionInterval($id: ID!) {
+  getRedactionInterval(id: $id) {
     id
     redactionVersion
     startSecond
     endSecond
     type
-    viqRecordingUrl {
+    redaction {
       id
-      url
-      lastmodified
+      redactionVersion
       description
-      camera
-      version
-      redactions {
-        nextToken
-      }
-      viqRecording {
+      updatedDateTime
+      updatedBy
+      status
+      recording {
         id
-        interviewee
-        interviewFinish
-        interviewStart
-        officerCollarNumber
-        location
-        unitId
-        path
+        url
+        bucket
+        key
+        description
+        camera
+        version
+      }
+      redactionIntervals {
+        nextToken
       }
     }
   }
 }
-query ListViqRecordingRedactions(
-  $filter: ModelViqRecordingRedactionFilterInput
+query ListRedactionIntervals(
+  $filter: ModelRedactionIntervalFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listViqRecordingRedactions(
+  listRedactionIntervals(
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -307,84 +490,32 @@ query ListViqRecordingRedactions(
       startSecond
       endSecond
       type
-      viqRecordingUrl {
+      redaction {
         id
-        url
-        lastmodified
+        redactionVersion
         description
-        camera
-        version
+        updatedDateTime
+        updatedBy
+        status
       }
     }
     nextToken
   }
 }
-query GetViqRecordingTranscription($id: ID!) {
-  getViqRecordingTranscription(id: $id) {
+query GetShared($id: ID!) {
+  getShared(id: $id) {
     id
-    submitTime
-    viqRecording {
-      id
-      interviewee
-      interviewFinish
-      interviewStart
-      officerCollarNumber
-      location
-      unitId
-      path
-      attachments {
-        nextToken
-      }
-      recordingUrls {
-        nextToken
-      }
-      logs {
-        nextToken
-      }
-      transcriptions {
-        nextToken
-      }
-    }
-  }
-}
-query ListViqRecordingTranscriptions(
-  $filter: ModelViqRecordingTranscriptionFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listViqRecordingTranscriptions(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
-    items {
-      id
-      submitTime
-      viqRecording {
-        id
-        interviewee
-        interviewFinish
-        interviewStart
-        officerCollarNumber
-        location
-        unitId
-        path
-      }
-    }
-    nextToken
-  }
-}
-query GetViqRecordingShared($id: ID!) {
-  getViqRecordingShared(id: $id) {
-    id
-    dateTime
+    createdDateTime
+    createdBy
     receiver
     receiver_email
     receiver_type
+    expiry_date
     token
     urls
-    userName
-    viqRecording {
+    status
+    description
+    case {
       id
       interviewee
       interviewFinish
@@ -393,10 +524,15 @@ query GetViqRecordingShared($id: ID!) {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
-      recordingUrls {
+      recordings {
         nextToken
       }
       logs {
@@ -405,29 +541,34 @@ query GetViqRecordingShared($id: ID!) {
       transcriptions {
         nextToken
       }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
     }
   }
 }
-query ListViqRecordingShareds(
-  $filter: ModelViqRecordingSharedFilterInput
+query ListShareds(
+  $filter: ModelSharedFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listViqRecordingShareds(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
+  listShareds(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      dateTime
+      createdDateTime
+      createdBy
       receiver
       receiver_email
       receiver_type
+      expiry_date
       token
       urls
-      userName
-      viqRecording {
+      status
+      description
+      case {
         id
         interviewee
         interviewFinish
@@ -436,6 +577,153 @@ query ListViqRecordingShareds(
         location
         unitId
         path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
+      }
+    }
+    nextToken
+  }
+}
+query GetTranscription($id: ID!) {
+  getTranscription(id: $id) {
+    id
+    submitTime
+    transcriptionFileUrl
+    status
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+query ListTranscriptions(
+  $filter: ModelTranscriptionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTranscriptions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      submitTime
+      transcriptionFileUrl
+      status
+      case {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+        path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
+      }
+    }
+    nextToken
+  }
+}
+query GetLog($id: ID!) {
+  getLog(id: $id) {
+    id
+    dateTime
+    description
+    userName
+    recordId
+    tableName
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+query ListLogs($filter: ModelLogFilterInput, $limit: Int, $nextToken: String) {
+  listLogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      dateTime
+      description
+      userName
+      recordId
+      tableName
+      case {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+        path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
       }
     }
     nextToken

@@ -5,8 +5,14 @@
 			"providerPlugin": "awscloudformation"
 		}
 	},
+	"hosting": {
+		"S3AndCloudFront": {
+			"service": "S3AndCloudFront",
+			"providerPlugin": "awscloudformation"
+		}
+	},
 	"api": {
-		"viqrecordingportalnew": {
+		"viqrecording": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {

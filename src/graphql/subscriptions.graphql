@@ -1,6 +1,6 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateViqRecording {
-  onCreateViqRecording {
+subscription OnCreateCase {
+  onCreateCase {
     id
     interviewee
     interviewFinish
@@ -9,19 +9,27 @@ subscription OnCreateViqRecording {
     location
     unitId
     path
+    note
+    birthdayOfInterviewee
+    interviewType
+    interviewAccess
+    theOtherPersonsPresent
     attachments {
       items {
         id
         description
         url
+        updatedDateTime
+        updatedBy
       }
       nextToken
     }
-    recordingUrls {
+    recordings {
       items {
         id
         url
-        lastmodified
+        bucket
+        key
         description
         camera
         version
@@ -34,6 +42,8 @@ subscription OnCreateViqRecording {
         dateTime
         description
         userName
+        recordId
+        tableName
       }
       nextToken
     }
@@ -41,13 +51,43 @@ subscription OnCreateViqRecording {
       items {
         id
         submitTime
+        transcriptionFileUrl
+        status
+      }
+      nextToken
+    }
+    bookmarks {
+      items {
+        id
+        order
+        dateTime
+        speaker
+        content
+        updatedDateTime
+        updatedBy
+      }
+      nextToken
+    }
+    shareds {
+      items {
+        id
+        createdDateTime
+        createdBy
+        receiver
+        receiver_email
+        receiver_type
+        expiry_date
+        token
+        urls
+        status
+        description
       }
       nextToken
     }
   }
 }
-subscription OnUpdateViqRecording {
-  onUpdateViqRecording {
+subscription OnUpdateCase {
+  onUpdateCase {
     id
     interviewee
     interviewFinish
@@ -56,19 +96,27 @@ subscription OnUpdateViqRecording {
     location
     unitId
     path
+    note
+    birthdayOfInterviewee
+    interviewType
+    interviewAccess
+    theOtherPersonsPresent
     attachments {
       items {
         id
         description
         url
+        updatedDateTime
+        updatedBy
       }
       nextToken
     }
-    recordingUrls {
+    recordings {
       items {
         id
         url
-        lastmodified
+        bucket
+        key
         description
         camera
         version
@@ -81,6 +129,8 @@ subscription OnUpdateViqRecording {
         dateTime
         description
         userName
+        recordId
+        tableName
       }
       nextToken
     }
@@ -88,13 +138,43 @@ subscription OnUpdateViqRecording {
       items {
         id
         submitTime
+        transcriptionFileUrl
+        status
+      }
+      nextToken
+    }
+    bookmarks {
+      items {
+        id
+        order
+        dateTime
+        speaker
+        content
+        updatedDateTime
+        updatedBy
+      }
+      nextToken
+    }
+    shareds {
+      items {
+        id
+        createdDateTime
+        createdBy
+        receiver
+        receiver_email
+        receiver_type
+        expiry_date
+        token
+        urls
+        status
+        description
       }
       nextToken
     }
   }
 }
-subscription OnDeleteViqRecording {
-  onDeleteViqRecording {
+subscription OnDeleteCase {
+  onDeleteCase {
     id
     interviewee
     interviewFinish
@@ -103,19 +183,27 @@ subscription OnDeleteViqRecording {
     location
     unitId
     path
+    note
+    birthdayOfInterviewee
+    interviewType
+    interviewAccess
+    theOtherPersonsPresent
     attachments {
       items {
         id
         description
         url
+        updatedDateTime
+        updatedBy
       }
       nextToken
     }
-    recordingUrls {
+    recordings {
       items {
         id
         url
-        lastmodified
+        bucket
+        key
         description
         camera
         version
@@ -128,6 +216,8 @@ subscription OnDeleteViqRecording {
         dateTime
         description
         userName
+        recordId
+        tableName
       }
       nextToken
     }
@@ -135,107 +225,500 @@ subscription OnDeleteViqRecording {
       items {
         id
         submitTime
+        transcriptionFileUrl
+        status
+      }
+      nextToken
+    }
+    bookmarks {
+      items {
+        id
+        order
+        dateTime
+        speaker
+        content
+        updatedDateTime
+        updatedBy
+      }
+      nextToken
+    }
+    shareds {
+      items {
+        id
+        createdDateTime
+        createdBy
+        receiver
+        receiver_email
+        receiver_type
+        expiry_date
+        token
+        urls
+        status
+        description
       }
       nextToken
     }
   }
 }
-subscription OnCreateViqRecordingAttachment {
-  onCreateViqRecordingAttachment {
-    id
-    description
-    url
-    viqRecording {
-      id
-      interviewee
-      interviewFinish
-      interviewStart
-      officerCollarNumber
-      location
-      unitId
-      path
-      attachments {
-        nextToken
-      }
-      recordingUrls {
-        nextToken
-      }
-      logs {
-        nextToken
-      }
-      transcriptions {
-        nextToken
-      }
-    }
-  }
-}
-subscription OnUpdateViqRecordingAttachment {
-  onUpdateViqRecordingAttachment {
-    id
-    description
-    url
-    viqRecording {
-      id
-      interviewee
-      interviewFinish
-      interviewStart
-      officerCollarNumber
-      location
-      unitId
-      path
-      attachments {
-        nextToken
-      }
-      recordingUrls {
-        nextToken
-      }
-      logs {
-        nextToken
-      }
-      transcriptions {
-        nextToken
-      }
-    }
-  }
-}
-subscription OnDeleteViqRecordingAttachment {
-  onDeleteViqRecordingAttachment {
-    id
-    description
-    url
-    viqRecording {
-      id
-      interviewee
-      interviewFinish
-      interviewStart
-      officerCollarNumber
-      location
-      unitId
-      path
-      attachments {
-        nextToken
-      }
-      recordingUrls {
-        nextToken
-      }
-      logs {
-        nextToken
-      }
-      transcriptions {
-        nextToken
-      }
-    }
-  }
-}
-subscription OnCreateViqRecordingUrl {
-  onCreateViqRecordingUrl {
+subscription OnCreateRecording {
+  onCreateRecording {
     id
     url
-    lastmodified
+    bucket
+    key
     description
     camera
     version
     redactions {
+      items {
+        id
+        redactionVersion
+        description
+        updatedDateTime
+        updatedBy
+        status
+      }
+      nextToken
+    }
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnUpdateRecording {
+  onUpdateRecording {
+    id
+    url
+    bucket
+    key
+    description
+    camera
+    version
+    redactions {
+      items {
+        id
+        redactionVersion
+        description
+        updatedDateTime
+        updatedBy
+        status
+      }
+      nextToken
+    }
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteRecording {
+  onDeleteRecording {
+    id
+    url
+    bucket
+    key
+    description
+    camera
+    version
+    redactions {
+      items {
+        id
+        redactionVersion
+        description
+        updatedDateTime
+        updatedBy
+        status
+      }
+      nextToken
+    }
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnCreateAttachment {
+  onCreateAttachment {
+    id
+    description
+    url
+    updatedDateTime
+    updatedBy
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnUpdateAttachment {
+  onUpdateAttachment {
+    id
+    description
+    url
+    updatedDateTime
+    updatedBy
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteAttachment {
+  onDeleteAttachment {
+    id
+    description
+    url
+    updatedDateTime
+    updatedBy
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnCreateBookmark {
+  onCreateBookmark {
+    id
+    order
+    dateTime
+    speaker
+    content
+    updatedDateTime
+    updatedBy
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnUpdateBookmark {
+  onUpdateBookmark {
+    id
+    order
+    dateTime
+    speaker
+    content
+    updatedDateTime
+    updatedBy
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteBookmark {
+  onDeleteBookmark {
+    id
+    order
+    dateTime
+    speaker
+    content
+    updatedDateTime
+    updatedBy
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnCreateRedaction {
+  onCreateRedaction {
+    id
+    redactionVersion
+    description
+    updatedDateTime
+    updatedBy
+    status
+    recording {
+      id
+      url
+      bucket
+      key
+      description
+      camera
+      version
+      redactions {
+        nextToken
+      }
+      case {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+        path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
+      }
+    }
+    redactionIntervals {
       items {
         id
         redactionVersion
@@ -245,39 +728,44 @@ subscription OnCreateViqRecordingUrl {
       }
       nextToken
     }
-    viqRecording {
-      id
-      interviewee
-      interviewFinish
-      interviewStart
-      officerCollarNumber
-      location
-      unitId
-      path
-      attachments {
-        nextToken
-      }
-      recordingUrls {
-        nextToken
-      }
-      logs {
-        nextToken
-      }
-      transcriptions {
-        nextToken
-      }
-    }
   }
 }
-subscription OnUpdateViqRecordingUrl {
-  onUpdateViqRecordingUrl {
+subscription OnUpdateRedaction {
+  onUpdateRedaction {
     id
-    url
-    lastmodified
+    redactionVersion
     description
-    camera
-    version
-    redactions {
+    updatedDateTime
+    updatedBy
+    status
+    recording {
+      id
+      url
+      bucket
+      key
+      description
+      camera
+      version
+      redactions {
+        nextToken
+      }
+      case {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+        path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
+      }
+    }
+    redactionIntervals {
       items {
         id
         redactionVersion
@@ -287,39 +775,44 @@ subscription OnUpdateViqRecordingUrl {
       }
       nextToken
     }
-    viqRecording {
-      id
-      interviewee
-      interviewFinish
-      interviewStart
-      officerCollarNumber
-      location
-      unitId
-      path
-      attachments {
-        nextToken
-      }
-      recordingUrls {
-        nextToken
-      }
-      logs {
-        nextToken
-      }
-      transcriptions {
-        nextToken
-      }
-    }
   }
 }
-subscription OnDeleteViqRecordingUrl {
-  onDeleteViqRecordingUrl {
+subscription OnDeleteRedaction {
+  onDeleteRedaction {
     id
-    url
-    lastmodified
+    redactionVersion
     description
-    camera
-    version
-    redactions {
+    updatedDateTime
+    updatedBy
+    status
+    recording {
+      id
+      url
+      bucket
+      key
+      description
+      camera
+      version
+      redactions {
+        nextToken
+      }
+      case {
+        id
+        interviewee
+        interviewFinish
+        interviewStart
+        officerCollarNumber
+        location
+        unitId
+        path
+        note
+        birthdayOfInterviewee
+        interviewType
+        interviewAccess
+        theOtherPersonsPresent
+      }
+    }
+    redactionIntervals {
       items {
         id
         redactionVersion
@@ -329,305 +822,109 @@ subscription OnDeleteViqRecordingUrl {
       }
       nextToken
     }
-    viqRecording {
-      id
-      interviewee
-      interviewFinish
-      interviewStart
-      officerCollarNumber
-      location
-      unitId
-      path
-      attachments {
-        nextToken
-      }
-      recordingUrls {
-        nextToken
-      }
-      logs {
-        nextToken
-      }
-      transcriptions {
-        nextToken
-      }
-    }
   }
 }
-subscription OnCreateViqRecordingLog {
-  onCreateViqRecordingLog {
-    id
-    dateTime
-    description
-    userName
-    viqRecording {
-      id
-      interviewee
-      interviewFinish
-      interviewStart
-      officerCollarNumber
-      location
-      unitId
-      path
-      attachments {
-        nextToken
-      }
-      recordingUrls {
-        nextToken
-      }
-      logs {
-        nextToken
-      }
-      transcriptions {
-        nextToken
-      }
-    }
-  }
-}
-subscription OnUpdateViqRecordingLog {
-  onUpdateViqRecordingLog {
-    id
-    dateTime
-    description
-    userName
-    viqRecording {
-      id
-      interviewee
-      interviewFinish
-      interviewStart
-      officerCollarNumber
-      location
-      unitId
-      path
-      attachments {
-        nextToken
-      }
-      recordingUrls {
-        nextToken
-      }
-      logs {
-        nextToken
-      }
-      transcriptions {
-        nextToken
-      }
-    }
-  }
-}
-subscription OnDeleteViqRecordingLog {
-  onDeleteViqRecordingLog {
-    id
-    dateTime
-    description
-    userName
-    viqRecording {
-      id
-      interviewee
-      interviewFinish
-      interviewStart
-      officerCollarNumber
-      location
-      unitId
-      path
-      attachments {
-        nextToken
-      }
-      recordingUrls {
-        nextToken
-      }
-      logs {
-        nextToken
-      }
-      transcriptions {
-        nextToken
-      }
-    }
-  }
-}
-subscription OnCreateViqRecordingRedaction {
-  onCreateViqRecordingRedaction {
+subscription OnCreateRedactionInterval {
+  onCreateRedactionInterval {
     id
     redactionVersion
     startSecond
     endSecond
     type
-    viqRecordingUrl {
+    redaction {
       id
-      url
-      lastmodified
+      redactionVersion
       description
-      camera
-      version
-      redactions {
-        nextToken
-      }
-      viqRecording {
+      updatedDateTime
+      updatedBy
+      status
+      recording {
         id
-        interviewee
-        interviewFinish
-        interviewStart
-        officerCollarNumber
-        location
-        unitId
-        path
+        url
+        bucket
+        key
+        description
+        camera
+        version
+      }
+      redactionIntervals {
+        nextToken
       }
     }
   }
 }
-subscription OnUpdateViqRecordingRedaction {
-  onUpdateViqRecordingRedaction {
+subscription OnUpdateRedactionInterval {
+  onUpdateRedactionInterval {
     id
     redactionVersion
     startSecond
     endSecond
     type
-    viqRecordingUrl {
+    redaction {
       id
-      url
-      lastmodified
+      redactionVersion
       description
-      camera
-      version
-      redactions {
-        nextToken
-      }
-      viqRecording {
+      updatedDateTime
+      updatedBy
+      status
+      recording {
         id
-        interviewee
-        interviewFinish
-        interviewStart
-        officerCollarNumber
-        location
-        unitId
-        path
+        url
+        bucket
+        key
+        description
+        camera
+        version
+      }
+      redactionIntervals {
+        nextToken
       }
     }
   }
 }
-subscription OnDeleteViqRecordingRedaction {
-  onDeleteViqRecordingRedaction {
+subscription OnDeleteRedactionInterval {
+  onDeleteRedactionInterval {
     id
     redactionVersion
     startSecond
     endSecond
     type
-    viqRecordingUrl {
+    redaction {
       id
-      url
-      lastmodified
+      redactionVersion
       description
-      camera
-      version
-      redactions {
-        nextToken
-      }
-      viqRecording {
+      updatedDateTime
+      updatedBy
+      status
+      recording {
         id
-        interviewee
-        interviewFinish
-        interviewStart
-        officerCollarNumber
-        location
-        unitId
-        path
+        url
+        bucket
+        key
+        description
+        camera
+        version
       }
-    }
-  }
-}
-subscription OnCreateViqRecordingTranscription {
-  onCreateViqRecordingTranscription {
-    id
-    submitTime
-    viqRecording {
-      id
-      interviewee
-      interviewFinish
-      interviewStart
-      officerCollarNumber
-      location
-      unitId
-      path
-      attachments {
-        nextToken
-      }
-      recordingUrls {
-        nextToken
-      }
-      logs {
-        nextToken
-      }
-      transcriptions {
+      redactionIntervals {
         nextToken
       }
     }
   }
 }
-subscription OnUpdateViqRecordingTranscription {
-  onUpdateViqRecordingTranscription {
+subscription OnCreateShared {
+  onCreateShared {
     id
-    submitTime
-    viqRecording {
-      id
-      interviewee
-      interviewFinish
-      interviewStart
-      officerCollarNumber
-      location
-      unitId
-      path
-      attachments {
-        nextToken
-      }
-      recordingUrls {
-        nextToken
-      }
-      logs {
-        nextToken
-      }
-      transcriptions {
-        nextToken
-      }
-    }
-  }
-}
-subscription OnDeleteViqRecordingTranscription {
-  onDeleteViqRecordingTranscription {
-    id
-    submitTime
-    viqRecording {
-      id
-      interviewee
-      interviewFinish
-      interviewStart
-      officerCollarNumber
-      location
-      unitId
-      path
-      attachments {
-        nextToken
-      }
-      recordingUrls {
-        nextToken
-      }
-      logs {
-        nextToken
-      }
-      transcriptions {
-        nextToken
-      }
-    }
-  }
-}
-subscription OnCreateViqRecordingShared {
-  onCreateViqRecordingShared {
-    id
-    dateTime
+    createdDateTime
+    createdBy
     receiver
     receiver_email
     receiver_type
+    expiry_date
     token
     urls
-    userName
-    viqRecording {
+    status
+    description
+    case {
       id
       interviewee
       interviewFinish
@@ -636,32 +933,46 @@ subscription OnCreateViqRecordingShared {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
-      recordingUrls {
+      recordings {
         nextToken
       }
       logs {
         nextToken
       }
       transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
         nextToken
       }
     }
   }
 }
-subscription OnUpdateViqRecordingShared {
-  onUpdateViqRecordingShared {
+subscription OnUpdateShared {
+  onUpdateShared {
     id
-    dateTime
+    createdDateTime
+    createdBy
     receiver
     receiver_email
     receiver_type
+    expiry_date
     token
     urls
-    userName
-    viqRecording {
+    status
+    description
+    case {
       id
       interviewee
       interviewFinish
@@ -670,32 +981,46 @@ subscription OnUpdateViqRecordingShared {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
-      recordingUrls {
+      recordings {
         nextToken
       }
       logs {
         nextToken
       }
       transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
         nextToken
       }
     }
   }
 }
-subscription OnDeleteViqRecordingShared {
-  onDeleteViqRecordingShared {
+subscription OnDeleteShared {
+  onDeleteShared {
     id
-    dateTime
+    createdDateTime
+    createdBy
     receiver
     receiver_email
     receiver_type
+    expiry_date
     token
     urls
-    userName
-    viqRecording {
+    status
+    description
+    case {
       id
       interviewee
       interviewFinish
@@ -704,16 +1029,279 @@ subscription OnDeleteViqRecordingShared {
       location
       unitId
       path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
       attachments {
         nextToken
       }
-      recordingUrls {
+      recordings {
         nextToken
       }
       logs {
         nextToken
       }
       transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnCreateTranscription {
+  onCreateTranscription {
+    id
+    submitTime
+    transcriptionFileUrl
+    status
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnUpdateTranscription {
+  onUpdateTranscription {
+    id
+    submitTime
+    transcriptionFileUrl
+    status
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteTranscription {
+  onDeleteTranscription {
+    id
+    submitTime
+    transcriptionFileUrl
+    status
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnCreateLog {
+  onCreateLog {
+    id
+    dateTime
+    description
+    userName
+    recordId
+    tableName
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnUpdateLog {
+  onUpdateLog {
+    id
+    dateTime
+    description
+    userName
+    recordId
+    tableName
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteLog {
+  onDeleteLog {
+    id
+    dateTime
+    description
+    userName
+    recordId
+    tableName
+    case {
+      id
+      interviewee
+      interviewFinish
+      interviewStart
+      officerCollarNumber
+      location
+      unitId
+      path
+      note
+      birthdayOfInterviewee
+      interviewType
+      interviewAccess
+      theOtherPersonsPresent
+      attachments {
+        nextToken
+      }
+      recordings {
+        nextToken
+      }
+      logs {
+        nextToken
+      }
+      transcriptions {
+        nextToken
+      }
+      bookmarks {
+        nextToken
+      }
+      shareds {
         nextToken
       }
     }

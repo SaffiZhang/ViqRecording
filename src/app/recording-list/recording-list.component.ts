@@ -22,17 +22,53 @@ export class RecordingListComponent implements OnInit {
     field: 'interviewee', header: 'Interviewee', filterMatchMode: 'startsWith'
   }];
 
+  public searchModel = {};
+
+  public rows = 10;
+  public rowsOptions = [{
+    label: '5',
+    value: 5
+  }, {
+    label: '10',
+    value: 10
+  }, {
+    label: '15',
+    value: 15
+  }, {
+    label: '20',
+    value: 20
+  }, {
+    label: '25',
+    value: 25
+  }, {
+    label: '50',
+    value: 50
+  }];
+
   constructor(private api: APIService) {
   }
 
-  async ngOnInit() {
-    await this.listRecording();
+  ngOnInit() {
+    this.doSearch('');
   }
 
-  async listRecording() {
-    const result = await this.api.ListViqRecordings();
-    this.recordingList = result.items;
+  public doSearch(field) {
+    const f = {};
+    let hasFilter = false;
 
+    Object.keys(this.searchModel).forEach(k => {
+      if (this.searchModel[k]) {
+        f[k] = {contains: this.searchModel[k]};
+        hasFilter = true;
+      }
+    });
+    this.api.ListCases(hasFilter ? f : null, 1000).then(r => {
+      this.recordingList = r.items;
+    });
   }
 
+  public undoSearch(field) {
+    this.searchModel[field] = '';
+    this.doSearch(field);
+  }
 }

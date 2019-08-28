@@ -1,14 +1,31 @@
 {
     "dev": {
         "awscloudformation": {
-            "AuthRoleName": "viqrecording-dev-20190726151244-authRole",
-            "UnauthRoleArn": "arn:aws:iam::050185192269:role/viqrecording-dev-20190726151244-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::050185192269:role/viqrecording-dev-20190726151244-authRole",
+            "AuthRoleName": "viqrecording-dev-20190726173245-authRole",
+            "UnauthRoleArn": "arn:aws:iam::050185192269:role/viqrecording-dev-20190726173245-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::050185192269:role/viqrecording-dev-20190726173245-authRole",
             "Region": "us-east-1",
-            "DeploymentBucketName": "viqrecording-dev-20190726151244-deployment",
-            "UnauthRoleName": "viqrecording-dev-20190726151244-unauthRole",
-            "StackName": "viqrecording-dev-20190726151244",
-            "StackId": "arn:aws:cloudformation:us-east-1:050185192269:stack/viqrecording-dev-20190726151244/5b757860-afd9-11e9-8e24-1202dd259b0c"
+            "DeploymentBucketName": "viqrecording-dev-20190726173245-deployment",
+            "UnauthRoleName": "viqrecording-dev-20190726173245-unauthRole",
+            "StackName": "viqrecording-dev-20190726173245",
+            "StackId": "arn:aws:cloudformation:us-east-1:050185192269:stack/viqrecording-dev-20190726173245/eb58f890-afec-11e9-8da7-126c5203d2c8"
+        },
+        "categories": {
+            "auth": {
+                "viqrecording82e35764": {}
+            }
+        }
+    },
+    "testnew": {
+        "awscloudformation": {
+            "AuthRoleName": "viqrecording-testnew-20190819130600-authRole",
+            "UnauthRoleArn": "arn:aws:iam::050185192269:role/viqrecording-testnew-20190819130600-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::050185192269:role/viqrecording-testnew-20190819130600-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "viqrecording-testnew-20190819130600-deployment",
+            "UnauthRoleName": "viqrecording-testnew-20190819130600-unauthRole",
+            "StackName": "viqrecording-testnew-20190819130600",
+            "StackId": "arn:aws:cloudformation:us-east-1:050185192269:stack/viqrecording-testnew-20190819130600/bb4ca150-c2a3-11e9-8a9b-120371d9064c"
         },
         "categories": {
             "auth": {

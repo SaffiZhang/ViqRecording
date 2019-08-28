@@ -1,28 +1,42 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {VideoPlayerComponent} from '../video-player/video-player.component';
-import {APIService, ModelViqRecordingRedactionFilterInput} from '../API.service';
+import {APIService, ModelRedactionFilterInput} from '../API.service';
 import {DatetimeHelperService} from '../services/datetime-helper.service';
+import {EventBusService} from '../services/event-bus-service';
+import {Subscription} from 'rxjs';
+import {RedactionStatus} from './redaction-status.enum';
+import {RedactionEditingComponent} from './redaction-editing/redaction-editing.component';
+import {ConfirmationService} from 'primeng/api';
+import {RedactionEventBus} from './redaction-event-bus';
 
 @Component({
   selector: 'app-redact',
   templateUrl: './redact.component.html',
   styleUrls: ['./redact.component.scss']
 })
-export class RedactComponent implements OnInit {
+export class RedactComponent implements OnInit, OnDestroy {
 
+  public originalRecordingId: string;
   public recordingId: string;
+  public caseId: string;
   public sources: any[];
 
   public redactions: any[];
   public data: any;
 
+  public allowAddNew = false;
 
   public startTime: any;
   public endTime: any;
 
+  public description;
+
   @ViewChild('player', {static: false})
   public player: VideoPlayerComponent;
+
+  @ViewChild('redactionEditor', {static: false})
+  public editor: RedactionEditingComponent;
 
   public redactTypeOptions = [{
     label: 'Video',
@@ -33,9 +47,17 @@ export class RedactComponent implements OnInit {
   }];
 
   public redactType = 'video';
+  private currentUser: any;
+
+  public showGotoIntervalButton = true;
+
+  private subs: Subscription[] = [];
 
   constructor(private router: Router,
               private dateHelper: DatetimeHelperService,
+              private eventBus: EventBusService,
+              private historyEventBus: RedactionEventBus,
+              private confirmationService: ConfirmationService,
               private api: APIService) {
     this.data = this.router.getCurrentNavigation().extras.state;
     console.log('data', this.data);
@@ -45,13 +67,25 @@ export class RedactComponent implements OnInit {
 
     if (!this.data) {
       this.router.navigate(['recording-list']);
+      return;
     }
     console.log(this.data);
     this.recordingId = this.data.recordingId;
+    this.originalRecordingId = this.data.originalRecordingId;
+    this.caseId = this.data.caseId;
     this.sources = [this.data.source];
     this.refresh();
+
+    this.subs.push(this.eventBus.currentUser.subscribe(u => {
+      this.currentUser = u;
+    }));
   }
 
+  ngOnDestroy(): void {
+    this.subs.forEach(x => {
+      x.unsubscribe();
+    });
+  }
 
   public getStartTime() {
     const time = this.player.getTime();
@@ -74,34 +108,54 @@ export class RedactComponent implements OnInit {
   public addNew() {
     const input = {
       id: '',
-      redactionVersion: (new Date()).getTime().toString(),
+      redactionVersion: new Date(this.currentRedactionItem.redactionVersion).toISOString(),
       startSecond: this.startTime,
       endSecond: this.endTime,
       type: this.redactType,
-      viqRecordingRedactionViqRecordingUrlId: this.data.source.id
+      redactionIntervalRedactionId: this.currentRedactionItem.id,
     };
+
     const self = this;
-    this.api.CreateViqRecordingRedaction(input).then(result => {
-      this.refresh();
+    this.api.CreateRedactionInterval(input).then(result => {
+      this.refreshIntervalList();
+      this.startTime = undefined;
+      this.endTime = undefined;
+      this.redactType = 'video';
 
       const dt = this.dateHelper.format(new Date());
-      this.api.CreateViqRecordingLog({
-        id: '',
-        dateTime: dt,
-        description: 'Redaction added:' + JSON.stringify(input),
-        viqRecordingLogViqRecordingId: this.recordingId
-      });
+      // this.api.CreateLog({
+      //   id: '',
+      //   dateTime: dt,
+      //   description: 'Redaction added:' + JSON.stringify(input),
+      //   userName: '',
+      //   recordId: '',
+      //   tableName: '',
+      //   logCaseId: this.recordingId
+      // });
     });
   }
 
   private refresh() {
-    const urlId = this.data.source.id;
-    const filter3: ModelViqRecordingRedactionFilterInput = {viqRecordingRedactionViqRecordingUrlId: {eq: urlId}};
-    this.api.ListViqRecordingRedactions(filter3).then(redactions => {
-      this.redactions = redactions.items;
-      console.log('redactions', this.redactions);
+    const filter = {
+      redactionRecordingId: {eq: this.originalRecordingId},
+      // and: [{
+      //   status: {eq: RedactionStatus.InProgress},
+      //   or: [{
+      //     status: {eq: RedactionStatus.Submitted}
+      //   }]
+      // }]
+    };
+
+    this.api.ListRedactions(filter).then(redactions => {
+
+      const items = redactions.items.filter(x => x.status === RedactionStatus.Submitted);
+      // this.allowAddNew = redactions.items.length === 0;
+      this.allowAddNew = items.length === 0;
+    }).catch(err => {
+
     });
   }
+
 
   public getVersion(d) {
     return this.dateHelper.format(new Date(+d));
@@ -109,20 +163,77 @@ export class RedactComponent implements OnInit {
 
   public finish() {
     const input = {
-      id: '',
-      redactionVersion: (new Date()).getTime().toString(),
-      startSecond: 0,
-      endSecond: 0,
-      type: 'End',
-      viqRecordingRedactionViqRecordingUrlId: this.data.source.id
+      id: this.currentRedactionItem.id,
+      status: RedactionStatus.Submitted,
+      updatedDateTime: (new Date()).toISOString(),
+      updatedBy: this.currentUser.username,
     };
-    this.api.CreateViqRecordingRedaction(input).then(r => {
-      this.refresh();
+    this.api.UpdateRedaction(input).then(r => {
+      this.historyEventBus.notifyHistoryChanged();
+      this.backToHistory();
     });
-    this.back();
   }
 
   public back() {
-    this.router.navigate(['/recording-details', this.recordingId]);
+    this.router.navigate(['/recording-details', this.caseId]);
+  }
+
+  public addNewRedaction() {
+    this.showGotoIntervalButton = true;
+    this.editor.edit(null, (item) => {
+      this.editInterval(item);
+    });
+  }
+
+  public editRedaction(item) {
+    this.showGotoIntervalButton = false;
+    this.editor.edit(item, null);
+  }
+
+  public editingInterval = false;
+  public currentRedactionItem: any;
+  public intervals: any[];
+
+  public readonly = false;
+
+  private editInterval(item) {
+    this.currentRedactionItem = item;
+    this.editingInterval = true;
+    this.readonly =
+      item.status === RedactionStatus.Completed ||
+      item.status === RedactionStatus.Submitted;
+    this.refreshIntervalList();
+  }
+
+  private refreshIntervalList() {
+    const filter = {
+      redactionIntervalRedactionId: {eq: this.currentRedactionItem.id}
+    };
+    this.api.ListRedactionIntervals(filter).then(i => {
+      this.intervals = i.items;
+    });
+  }
+
+  public backToHistory() {
+    this.editingInterval = false;
+  }
+
+  public deleteInterval(item) {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to remove this interval?',
+      key: 'delete-interval',
+      accept: () => {
+        this.deleteIntervalIpl(item);
+      }
+    });
+  }
+
+  private deleteIntervalIpl(item) {
+    const input = {
+      id: item.id
+    };
+    this.api.DeleteRedactionInterval(input).then(r => {
+      this.refreshIntervalList();
+    });
   }
 }
