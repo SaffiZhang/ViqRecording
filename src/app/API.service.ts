@@ -57,6 +57,7 @@ export type UpdateRecordingInput = {
   url?: string | null;
   bucket?: string | null;
   key?: string | null;
+  lastmodified?: string | null;
   description?: string | null;
   camera?: string | null;
   version?: string | null;
@@ -198,7 +199,7 @@ export type DeleteSharedInput = {
 export type CreateTranscriptionInput = {
   id?: string | null;
   submitTime: string;
-  transcriptionFileUrl?: string;
+  transcriptionFileUrl?: string | null;
   status: string;
   transcriptionCaseId?: string | null;
 };
@@ -276,10 +277,11 @@ export type ModelRecordingFilterInput = {
   url?: ModelStringFilterInput | null;
   bucket?: ModelStringFilterInput | null;
   key?: ModelStringFilterInput | null;
+  lastmodified?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
+  recordingCaseId?: ModelStringFilterInput | null;
   camera?: ModelStringFilterInput | null;
   version?: ModelStringFilterInput | null;
-  recordingCaseId?: ModelStringFilterInput | null;
   and?: Array<ModelRecordingFilterInput | null> | null;
   or?: Array<ModelRecordingFilterInput | null> | null;
   not?: ModelRecordingFilterInput | null;
@@ -302,9 +304,9 @@ export type ModelAttachmentFilterInput = {
   id?: ModelIDFilterInput | null;
   description?: ModelStringFilterInput | null;
   url?: ModelStringFilterInput | null;
+  attachmentCaseId?: ModelStringFilterInput | null;
   updatedDateTime?: ModelStringFilterInput | null;
   updatedBy?: ModelStringFilterInput | null;
-  attachmentCaseId?: ModelStringFilterInput | null;
   and?: Array<ModelAttachmentFilterInput | null> | null;
   or?: Array<ModelAttachmentFilterInput | null> | null;
   not?: ModelAttachmentFilterInput | null;
@@ -316,9 +318,9 @@ export type ModelBookmarkFilterInput = {
   dateTime?: ModelStringFilterInput | null;
   speaker?: ModelStringFilterInput | null;
   content?: ModelStringFilterInput | null;
+  bookmarkCaseId?: ModelStringFilterInput | null;
   updatedDateTime?: ModelStringFilterInput | null;
   updatedBy?: ModelStringFilterInput | null;
-  bookmarkCaseId?: ModelStringFilterInput | null;
   and?: Array<ModelBookmarkFilterInput | null> | null;
   or?: Array<ModelBookmarkFilterInput | null> | null;
   not?: ModelBookmarkFilterInput | null;
@@ -340,10 +342,10 @@ export type ModelRedactionFilterInput = {
   id?: ModelIDFilterInput | null;
   redactionVersion?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
+  redactionRecordingId?: ModelStringFilterInput | null;
   updatedDateTime?: ModelStringFilterInput | null;
   updatedBy?: ModelStringFilterInput | null;
   status?: ModelStringFilterInput | null;
-  redactionRecordingId?: ModelStringFilterInput | null;
   and?: Array<ModelRedactionFilterInput | null> | null;
   or?: Array<ModelRedactionFilterInput | null> | null;
   not?: ModelRedactionFilterInput | null;
@@ -370,10 +372,10 @@ export type ModelSharedFilterInput = {
   receiver_type?: ModelStringFilterInput | null;
   expiry_date?: ModelStringFilterInput | null;
   token?: ModelStringFilterInput | null;
+  sharedCaseId?: ModelStringFilterInput | null;
   urls?: ModelStringFilterInput | null;
   status?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
-  sharedCaseId?: ModelStringFilterInput | null;
   and?: Array<ModelSharedFilterInput | null> | null;
   or?: Array<ModelSharedFilterInput | null> | null;
   not?: ModelSharedFilterInput | null;
@@ -463,7 +465,7 @@ export type CreateCaseMutation = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -562,7 +564,7 @@ export type UpdateCaseMutation = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -661,7 +663,7 @@ export type DeleteCaseMutation = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -1613,7 +1615,7 @@ export type CreateTranscriptionMutation = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -1661,7 +1663,7 @@ export type UpdateTranscriptionMutation = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -1709,7 +1711,7 @@ export type DeleteTranscriptionMutation = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -1963,7 +1965,7 @@ export type GetCaseQuery = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -2534,7 +2536,7 @@ export type GetTranscriptionQuery = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -2584,7 +2586,7 @@ export type ListTranscriptionsQuery = {
     __typename: "Transcription";
     id: string;
     submitTime: string;
-    transcriptionFileUrl: string;
+    transcriptionFileUrl: string | null;
     status: string;
     case: {
       __typename: "Case";
@@ -2746,7 +2748,7 @@ export type OnCreateCaseSubscription = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -2845,7 +2847,7 @@ export type OnUpdateCaseSubscription = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -2944,7 +2946,7 @@ export type OnDeleteCaseSubscription = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -3896,7 +3898,7 @@ export type OnCreateTranscriptionSubscription = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -3944,7 +3946,7 @@ export type OnUpdateTranscriptionSubscription = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -3992,7 +3994,7 @@ export type OnDeleteTranscriptionSubscription = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
