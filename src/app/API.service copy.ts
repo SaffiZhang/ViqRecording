@@ -1,4 +1,3 @@
-/* tslint:disable */
 //  This file was automatically generated and should not be edited.
 import { Injectable } from "@angular/core";
 import API, { graphqlOperation } from "@aws-amplify/api";
@@ -57,6 +56,7 @@ export type UpdateRecordingInput = {
   url?: string | null;
   bucket?: string | null;
   key?: string | null;
+  lastmodified?: string | null;
   description?: string | null;
   camera?: string | null;
   version?: string | null;
@@ -198,7 +198,7 @@ export type DeleteSharedInput = {
 export type CreateTranscriptionInput = {
   id?: string | null;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl?: string | null;
   status: string;
   transcriptionCaseId?: string | null;
 };
@@ -276,10 +276,11 @@ export type ModelRecordingFilterInput = {
   url?: ModelStringFilterInput | null;
   bucket?: ModelStringFilterInput | null;
   key?: ModelStringFilterInput | null;
+  lastmodified?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
+  recordingCaseId?: ModelStringFilterInput | null;
   camera?: ModelStringFilterInput | null;
   version?: ModelStringFilterInput | null;
-  recordingCaseId?:ModelStringFilterInput | null;
   and?: Array<ModelRecordingFilterInput | null> | null;
   or?: Array<ModelRecordingFilterInput | null> | null;
   not?: ModelRecordingFilterInput | null;
@@ -302,9 +303,9 @@ export type ModelAttachmentFilterInput = {
   id?: ModelIDFilterInput | null;
   description?: ModelStringFilterInput | null;
   url?: ModelStringFilterInput | null;
+  attachmentCaseId?: ModelStringFilterInput | null;
   updatedDateTime?: ModelStringFilterInput | null;
   updatedBy?: ModelStringFilterInput | null;
-  attachmentCaseId?:ModelStringFilterInput | null;
   and?: Array<ModelAttachmentFilterInput | null> | null;
   or?: Array<ModelAttachmentFilterInput | null> | null;
   not?: ModelAttachmentFilterInput | null;
@@ -316,9 +317,9 @@ export type ModelBookmarkFilterInput = {
   dateTime?: ModelStringFilterInput | null;
   speaker?: ModelStringFilterInput | null;
   content?: ModelStringFilterInput | null;
+  bookmarkCaseId?: ModelStringFilterInput | null;
   updatedDateTime?: ModelStringFilterInput | null;
   updatedBy?: ModelStringFilterInput | null;
-  bookmarkCaseId?:ModelStringFilterInput | null;
   and?: Array<ModelBookmarkFilterInput | null> | null;
   or?: Array<ModelBookmarkFilterInput | null> | null;
   not?: ModelBookmarkFilterInput | null;
@@ -340,10 +341,10 @@ export type ModelRedactionFilterInput = {
   id?: ModelIDFilterInput | null;
   redactionVersion?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
+  redactionRecordingId?: ModelStringFilterInput | null;
   updatedDateTime?: ModelStringFilterInput | null;
   updatedBy?: ModelStringFilterInput | null;
   status?: ModelStringFilterInput | null;
-  redactionRecordingId?:ModelStringFilterInput | null;
   and?: Array<ModelRedactionFilterInput | null> | null;
   or?: Array<ModelRedactionFilterInput | null> | null;
   not?: ModelRedactionFilterInput | null;
@@ -355,7 +356,7 @@ export type ModelRedactionIntervalFilterInput = {
   startSecond?: ModelIntFilterInput | null;
   endSecond?: ModelIntFilterInput | null;
   type?: ModelStringFilterInput | null;
-  redactionIntervalRedactionId?:ModelStringFilterInput | null;
+  redactionIntervalRedactionId?: ModelStringFilterInput | null;
   and?: Array<ModelRedactionIntervalFilterInput | null> | null;
   or?: Array<ModelRedactionIntervalFilterInput | null> | null;
   not?: ModelRedactionIntervalFilterInput | null;
@@ -370,10 +371,10 @@ export type ModelSharedFilterInput = {
   receiver_type?: ModelStringFilterInput | null;
   expiry_date?: ModelStringFilterInput | null;
   token?: ModelStringFilterInput | null;
+  sharedCaseId?: ModelStringFilterInput | null;
   urls?: ModelStringFilterInput | null;
   status?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
-  sharedCaseId?:ModelStringFilterInput | null;
   and?: Array<ModelSharedFilterInput | null> | null;
   or?: Array<ModelSharedFilterInput | null> | null;
   not?: ModelSharedFilterInput | null;
@@ -384,7 +385,7 @@ export type ModelTranscriptionFilterInput = {
   submitTime?: ModelStringFilterInput | null;
   transcriptionFileUrl?: ModelStringFilterInput | null;
   status?: ModelStringFilterInput | null;
-  transcriptionCaseId?:ModelStringFilterInput | null;
+  transcriptionCaseId?: ModelStringFilterInput | null;
   and?: Array<ModelTranscriptionFilterInput | null> | null;
   or?: Array<ModelTranscriptionFilterInput | null> | null;
   not?: ModelTranscriptionFilterInput | null;
@@ -397,7 +398,7 @@ export type ModelLogFilterInput = {
   userName?: ModelStringFilterInput | null;
   recordId?: ModelStringFilterInput | null;
   tableName?: ModelStringFilterInput | null;
-  logCaseId?:ModelStringFilterInput | null;
+  logCaseId?: ModelStringFilterInput | null;
   and?: Array<ModelLogFilterInput | null> | null;
   or?: Array<ModelLogFilterInput | null> | null;
   not?: ModelLogFilterInput | null;
@@ -463,7 +464,7 @@ export type CreateCaseMutation = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -562,7 +563,7 @@ export type UpdateCaseMutation = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -661,7 +662,7 @@ export type DeleteCaseMutation = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -1230,7 +1231,7 @@ export type CreateRedactionMutation = {
       theOtherPersonsPresent: string | null;
     } | null;
   } | null;
-  RedactionIntervals: {
+  redactionIntervals: {
     __typename: "ModelRedactionIntervalConnection";
     items: Array<{
       __typename: "RedactionInterval";
@@ -1282,7 +1283,7 @@ export type UpdateRedactionMutation = {
       theOtherPersonsPresent: string | null;
     } | null;
   } | null;
-  RedactionIntervals: {
+  redactionIntervals: {
     __typename: "ModelRedactionIntervalConnection";
     items: Array<{
       __typename: "RedactionInterval";
@@ -1334,7 +1335,7 @@ export type DeleteRedactionMutation = {
       theOtherPersonsPresent: string | null;
     } | null;
   } | null;
-  RedactionIntervals: {
+  redactionIntervals: {
     __typename: "ModelRedactionIntervalConnection";
     items: Array<{
       __typename: "RedactionInterval";
@@ -1373,7 +1374,7 @@ export type CreateRedactionIntervalMutation = {
       camera: string;
       version: string;
     } | null;
-    RedactionIntervals: {
+    redactionIntervals: {
       __typename: "ModelRedactionIntervalConnection";
       nextToken: string | null;
     } | null;
@@ -1405,7 +1406,7 @@ export type UpdateRedactionIntervalMutation = {
       camera: string;
       version: string;
     } | null;
-    RedactionIntervals: {
+    redactionIntervals: {
       __typename: "ModelRedactionIntervalConnection";
       nextToken: string | null;
     } | null;
@@ -1437,7 +1438,7 @@ export type DeleteRedactionIntervalMutation = {
       camera: string;
       version: string;
     } | null;
-    RedactionIntervals: {
+    redactionIntervals: {
       __typename: "ModelRedactionIntervalConnection";
       nextToken: string | null;
     } | null;
@@ -1613,7 +1614,7 @@ export type CreateTranscriptionMutation = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -1661,7 +1662,7 @@ export type UpdateTranscriptionMutation = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -1709,7 +1710,7 @@ export type DeleteTranscriptionMutation = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -1963,7 +1964,7 @@ export type GetCaseQuery = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -2344,7 +2345,7 @@ export type GetRedactionQuery = {
       theOtherPersonsPresent: string | null;
     } | null;
   } | null;
-  RedactionIntervals: {
+  redactionIntervals: {
     __typename: "ModelRedactionIntervalConnection";
     items: Array<{
       __typename: "RedactionInterval";
@@ -2378,7 +2379,7 @@ export type ListRedactionsQuery = {
       camera: string;
       version: string;
     } | null;
-    RedactionIntervals: {
+    redactionIntervals: {
       __typename: "ModelRedactionIntervalConnection";
       nextToken: string | null;
     } | null;
@@ -2411,7 +2412,7 @@ export type GetRedactionIntervalQuery = {
       camera: string;
       version: string;
     } | null;
-    RedactionIntervals: {
+    redactionIntervals: {
       __typename: "ModelRedactionIntervalConnection";
       nextToken: string | null;
     } | null;
@@ -2534,7 +2535,7 @@ export type GetTranscriptionQuery = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -2584,7 +2585,7 @@ export type ListTranscriptionsQuery = {
     __typename: "Transcription";
     id: string;
     submitTime: string;
-    transcriptionFileUrl: string;
+    transcriptionFileUrl: string | null;
     status: string;
     case: {
       __typename: "Case";
@@ -2746,7 +2747,7 @@ export type OnCreateCaseSubscription = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -2845,7 +2846,7 @@ export type OnUpdateCaseSubscription = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -2944,7 +2945,7 @@ export type OnDeleteCaseSubscription = {
       __typename: "Transcription";
       id: string;
       submitTime: string;
-      transcriptionFileUrl: string;
+      transcriptionFileUrl: string | null;
       status: string;
     } | null> | null;
     nextToken: string | null;
@@ -3513,7 +3514,7 @@ export type OnCreateRedactionSubscription = {
       theOtherPersonsPresent: string | null;
     } | null;
   } | null;
-  RedactionIntervals: {
+  redactionIntervals: {
     __typename: "ModelRedactionIntervalConnection";
     items: Array<{
       __typename: "RedactionInterval";
@@ -3565,7 +3566,7 @@ export type OnUpdateRedactionSubscription = {
       theOtherPersonsPresent: string | null;
     } | null;
   } | null;
-  RedactionIntervals: {
+  redactionIntervals: {
     __typename: "ModelRedactionIntervalConnection";
     items: Array<{
       __typename: "RedactionInterval";
@@ -3617,7 +3618,7 @@ export type OnDeleteRedactionSubscription = {
       theOtherPersonsPresent: string | null;
     } | null;
   } | null;
-  RedactionIntervals: {
+  redactionIntervals: {
     __typename: "ModelRedactionIntervalConnection";
     items: Array<{
       __typename: "RedactionInterval";
@@ -3656,7 +3657,7 @@ export type OnCreateRedactionIntervalSubscription = {
       camera: string;
       version: string;
     } | null;
-    RedactionIntervals: {
+    redactionIntervals: {
       __typename: "ModelRedactionIntervalConnection";
       nextToken: string | null;
     } | null;
@@ -3688,7 +3689,7 @@ export type OnUpdateRedactionIntervalSubscription = {
       camera: string;
       version: string;
     } | null;
-    RedactionIntervals: {
+    redactionIntervals: {
       __typename: "ModelRedactionIntervalConnection";
       nextToken: string | null;
     } | null;
@@ -3720,7 +3721,7 @@ export type OnDeleteRedactionIntervalSubscription = {
       camera: string;
       version: string;
     } | null;
-    RedactionIntervals: {
+    redactionIntervals: {
       __typename: "ModelRedactionIntervalConnection";
       nextToken: string | null;
     } | null;
@@ -3896,7 +3897,7 @@ export type OnCreateTranscriptionSubscription = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -3944,7 +3945,7 @@ export type OnUpdateTranscriptionSubscription = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -3992,7 +3993,7 @@ export type OnDeleteTranscriptionSubscription = {
   __typename: "Transcription";
   id: string;
   submitTime: string;
-  transcriptionFileUrl: string;
+  transcriptionFileUrl: string | null;
   status: string;
   case: {
     __typename: "Case";
@@ -4336,7 +4337,6 @@ export class APIService {
               url
               bucket
               key
-              
               description
               camera
               version
@@ -4446,7 +4446,6 @@ export class APIService {
               url
               bucket
               key
-             
               description
               camera
               version
@@ -4529,7 +4528,6 @@ export class APIService {
           url
           bucket
           key
-         
           description
           camera
           version
@@ -4606,7 +4604,6 @@ export class APIService {
           url
           bucket
           key
-         
           description
           camera
           version
@@ -4683,7 +4680,6 @@ export class APIService {
           url
           bucket
           key
-         
           description
           camera
           version
@@ -5140,7 +5136,6 @@ export class APIService {
             url
             bucket
             key
-           
             description
             camera
             version
@@ -5165,7 +5160,7 @@ export class APIService {
               theOtherPersonsPresent
             }
           }
-          RedactionIntervals {
+          redactionIntervals {
             __typename
             items {
               __typename
@@ -5205,7 +5200,6 @@ export class APIService {
             url
             bucket
             key
-           
             description
             camera
             version
@@ -5230,7 +5224,7 @@ export class APIService {
               theOtherPersonsPresent
             }
           }
-          RedactionIntervals {
+          redactionIntervals {
             __typename
             items {
               __typename
@@ -5270,7 +5264,6 @@ export class APIService {
             url
             bucket
             key
-           
             description
             camera
             version
@@ -5295,7 +5288,7 @@ export class APIService {
               theOtherPersonsPresent
             }
           }
-          RedactionIntervals {
+          redactionIntervals {
             __typename
             items {
               __typename
@@ -5342,12 +5335,11 @@ export class APIService {
               url
               bucket
               key
-             
               description
               camera
               version
             }
-            RedactionIntervals {
+            redactionIntervals {
               __typename
               nextToken
             }
@@ -5389,12 +5381,11 @@ export class APIService {
               url
               bucket
               key
-             
               description
               camera
               version
             }
-            RedactionIntervals {
+            redactionIntervals {
               __typename
               nextToken
             }
@@ -5436,12 +5427,11 @@ export class APIService {
               url
               bucket
               key
-             
               description
               camera
               version
             }
-            RedactionIntervals {
+            redactionIntervals {
               __typename
               nextToken
             }
@@ -6050,7 +6040,6 @@ export class APIService {
               url
               bucket
               key
-             
               description
               camera
               version
@@ -6197,7 +6186,6 @@ export class APIService {
           url
           bucket
           key
-         
           description
           camera
           version
@@ -6278,7 +6266,6 @@ export class APIService {
             url
             bucket
             key
-           
             description
             camera
             version
@@ -6559,7 +6546,6 @@ export class APIService {
             url
             bucket
             key
-           
             description
             camera
             version
@@ -6584,7 +6570,7 @@ export class APIService {
               theOtherPersonsPresent
             }
           }
-          RedactionIntervals {
+          redactionIntervals {
             __typename
             items {
               __typename
@@ -6628,12 +6614,11 @@ export class APIService {
               url
               bucket
               key
-             
               description
               camera
               version
             }
-            RedactionIntervals {
+            redactionIntervals {
               __typename
               nextToken
             }
@@ -6679,12 +6664,11 @@ export class APIService {
               url
               bucket
               key
-             
               description
               camera
               version
             }
-            RedactionIntervals {
+            redactionIntervals {
               __typename
               nextToken
             }
@@ -7119,7 +7103,6 @@ export class APIService {
               url
               bucket
               key
-             
               description
               camera
               version
@@ -7225,7 +7208,6 @@ export class APIService {
               url
               bucket
               key
-             
               description
               camera
               version
@@ -7331,7 +7313,6 @@ export class APIService {
               url
               bucket
               key
-             
               description
               camera
               version
@@ -7410,7 +7391,6 @@ export class APIService {
           url
           bucket
           key
-         
           description
           camera
           version
@@ -7483,7 +7463,6 @@ export class APIService {
           url
           bucket
           key
-         
           description
           camera
           version
@@ -7556,7 +7535,6 @@ export class APIService {
           url
           bucket
           key
-         
           description
           camera
           version
@@ -7985,7 +7963,6 @@ export class APIService {
             url
             bucket
             key
-           
             description
             camera
             version
@@ -8010,7 +7987,7 @@ export class APIService {
               theOtherPersonsPresent
             }
           }
-          RedactionIntervals {
+          redactionIntervals {
             __typename
             items {
               __typename
@@ -8046,7 +8023,6 @@ export class APIService {
             url
             bucket
             key
-           
             description
             camera
             version
@@ -8071,7 +8047,7 @@ export class APIService {
               theOtherPersonsPresent
             }
           }
-          RedactionIntervals {
+          redactionIntervals {
             __typename
             items {
               __typename
@@ -8107,7 +8083,6 @@ export class APIService {
             url
             bucket
             key
-           
             description
             camera
             version
@@ -8132,7 +8107,7 @@ export class APIService {
               theOtherPersonsPresent
             }
           }
-          RedactionIntervals {
+          redactionIntervals {
             __typename
             items {
               __typename
@@ -8175,12 +8150,11 @@ export class APIService {
               url
               bucket
               key
-             
               description
               camera
               version
             }
-            RedactionIntervals {
+            redactionIntervals {
               __typename
               nextToken
             }
@@ -8216,12 +8190,11 @@ export class APIService {
               url
               bucket
               key
-             
               description
               camera
               version
             }
-            RedactionIntervals {
+            redactionIntervals {
               __typename
               nextToken
             }
@@ -8257,12 +8230,11 @@ export class APIService {
               url
               bucket
               key
-             
               description
               camera
               version
             }
-            RedactionIntervals {
+            redactionIntervals {
               __typename
               nextToken
             }

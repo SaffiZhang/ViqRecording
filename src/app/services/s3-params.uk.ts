@@ -9,7 +9,7 @@ export class S3Params {
   export const s3Params = {
     bucket: 'david-horn-uk',
     region: 'eu-west-2',
-    accessKeyId: 'AKIAQXL2FINGVDNL7GBG',
-    secreatAccessKey: 'Zo1BWdz91ZznwBAXEdPGhZJIKdhx2ggvYdPMr6wF'
+    accessKeyId: 'AKIAQXL2FINGSZTWKP2Q',
+    secreatAccessKey: '/XoqM3+WrLccVfYRTjffNZ3jl+Pz0s9nM+SIqscr'
   };
   
