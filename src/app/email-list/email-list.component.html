@@ -1,0 +1,79 @@
+
+<div class="ui-g ui-fluid">
+  <div class="ui-g-6" *ngIf="sources && sources.length>0">
+    <app-video-player #player3 id="playerThree" [sources]="sources[0]"
+                      [show-redaction]="false" [show-checkbox]="true"
+                      [recording-id]="recordingId"></app-video-player>
+  </div>
+  <div class="ui-g-6" *ngIf="sources && sources.length>1">
+    <app-video-player #player4 id="playerFour" [sources]="sources[1]"
+                      [show-redaction]="false" [show-checkbox]="true"
+                      [recording-id]="recordingId"></app-video-player>
+  </div>
+  <div class="ui-g-12">
+    <p-table [value]="recordingShares">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Created Date</th>
+          <th>Receiver</th>
+          <th>Receiver Role</th>
+          <th>Expired On</th>
+          <th>Access Token</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-row>
+        <tr>
+          <td>{{row.createdDateTime|amDateFormat:'YYYY-MM-DD hh:mm:ss'}}</td>
+          <td>{{row.receiver}}</td>
+          <td>{{row.receiver_type}}</td>
+          <td>{{row.expiry_date|amDateFormat:'YYYY-MM-DD hh:mm:ss'}}</td>
+          <td>{{row.token}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div class="ui-g-3">
+    Receiver Full Name
+  </div>
+  <div class="ui-g-3">
+    <input #receiverNameCtrl="ngModel" pInputText name="receiverName" [(ngModel)]="receiverName" required>
+  </div>
+  <div class="ui-g-6">
+    &nbsp;
+  </div>
+  <div class="ui-g-3">
+    Receiver is
+  </div>
+  <div class="ui-g-3">
+    <p-dropdown #receiverTypeCtrl="ngModel" name="receiverType" [options]="receiverRoleOptions" [(ngModel)]="receiverType"></p-dropdown>
+  </div>
+  <div class="ui-g-6">
+    &nbsp;
+  </div>
+  <div class="ui-g-3">
+    Email Address
+  </div>
+  <div class="ui-g-3">
+    <input #emailCtrl="ngModel" type="email" name="receiverEmail" pInputText [(ngModel)]="receiverEmail" required>
+  </div>
+  <div class="ui-g-6">
+    &nbsp;
+  </div>
+  <div class="ui-g-3">
+    Expired In
+  </div>
+  <div class="ui-g-3">
+    <p-dropdown [options]="expiryOption" [(ngModel)]="expiryInDays"></p-dropdown>
+  </div>
+  <div class="ui-g-6">
+    &nbsp;
+  </div>
+  <div class="ui-g-12">
+    <p-button label="Share" (onClick)="share()"></p-button>
+  </div>
+  <p-toast position="center" key="emailValidation" [style]="{marginTop:'80px'}" life="5000" sticky="true" closable="true"></p-toast>
+
+  <p-toast  position="center" key="message" [style]="{marginTop:'80px'}" life="5000" sticky="true" closable="true"></p-toast>
+</div>
+

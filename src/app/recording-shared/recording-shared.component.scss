@@ -1,0 +1,20 @@
+::ng-deep {
+  .loading-message {
+    text-align: center;
+    padding-top: 100px;
+  }
+
+  .error-message {
+    text-align: center;
+    padding-top: 100px;
+    color: red;
+  }
+
+  .verify-container {
+    margin-top: 100px;
+
+    .verify-button {
+      float: right
+    }
+  }
+}

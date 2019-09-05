@@ -1,0 +1,24 @@
+<p-dialog appendTo="body" [(visible)]="showModal" modal="true">
+  <p-header>
+    {{isNew ? 'Add New Redaction' : 'Editing Redaction'}}
+  </p-header>
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+      Description :
+    </div>
+    <div class="ui-g-12">
+      <textarea pInputText rows="5" [(ngModel)]="model.description"></textarea>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-g">
+      <div class="ui-g-12">
+<!--        <p-button label="Save" (onClick)="save(false)" [disabled]="isValid"></p-button>&nbsp;-->
+        <ng-container *ngIf="showIntervalButton">
+          <p-button label="Save>Intervals" (onClick)="save(true)" [disabled]="isValid"></p-button>&nbsp;
+        </ng-container>
+        <p-button label="Cancel" (onClick)="cancel()"></p-button>
+      </div>
+    </div>
+  </p-footer>
+</p-dialog>

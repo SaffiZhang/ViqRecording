@@ -36,26 +36,55 @@
 <div class="ui-g" *ngIf="selectedSource && showInfo">
   <div class="ui-g-12">
     Camera: {{selectedSource.camera}}
-    <div class="redation-link"><a href="#" (click)="redact($event);">Redaction</a></div>
-  </div>
-  <div class="ui-g-12">
-    <div class="ui-g">
-      <div class="ui-g-6">
-        Version: {{selectedSource.version}}
-      </div>
-      <div class="ui-g-6">
-        <ng-container *ngIf="sources.length>1">
-
-          <p-dropdown [options]="sources" [(ngModel)]="selectedSource" optionLabel="displayLabel"></p-dropdown>
-
-        </ng-container>
-      </div>
+    <div class="redation-link" *ngIf="!!showRedaction"><a href="#" (click)="redact($event);">Redaction</a></div>
+    <div class="redation-link" *ngIf="!!showCheckbox">
+      <p-checkbox binary="true" [(ngModel)]="isChecked"></p-checkbox>
     </div>
   </div>
+
+  <ng-container *ngIf="!!showVersion">
+    <div class="ui-g-6">
+      Version: {{selectedSource.version}}
+    </div>
+    <div class="ui-g-6">
+      <ng-container *ngIf="sources.length>1">
+
+        <p-dropdown styleClass="max-100" [options]="sources" [(ngModel)]="selectedSource"
+                    optionLabel="displayLabel"></p-dropdown>
+
+      </ng-container>
+    </div>
+  </ng-container>
+
   <div class="ui-g-12">
     Description: {{selectedSource.description}}
   </div>
-  <div class="ui-g-12">
-    <a href="{{selectedSource.src}}" download="abc" target="_blank">{{selectedSource.src}}</a>
+  <div class="ui-g-12" *ngIf="!!showBookmark">
+    <p-button class="bookmark-btn" label="Bookmark" (onClick)="showBookmarkDialog()"></p-button>
   </div>
+  <!--  <div class="ui-g-12">-->
+  <!--    <a href="{{selectedSource.src}}" download="abc" target="_blank">{{selectedSource.src}}</a>-->
+  <!--  </div>-->
 </div>
+<p-dialog [(visible)]="isBookmarkDialogVisible" header="Bookmark" modal="true">
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-6">
+      Bookmark time:
+    </div>
+    <div class="ui-g-6">
+      {{bookmarkStarttime| amDateFormat:'YYYY-MM-DD HH:mm:ss'}}
+    </div>
+    <div class="ui-g-12">
+      Description:
+    </div>
+    <div class="ui-g-12">
+      <textarea pInputTextarea [(ngModel)]="bookmarkDescription" rows="5"></textarea>
+    </div>
+  </div>
+  <p-footer>
+
+    <p-button label="Save" (onClick)="save()" [disabled]="!bookmarkDescription"></p-button>&nbsp;&nbsp;
+    <p-button styleClass="ui-button-secondary" label="Cancel" (onClick)="cancel()"></p-button>
+
+  </p-footer>
+</p-dialog>

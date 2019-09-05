@@ -1,0 +1,106 @@
+type Case @model {
+	id: String!
+	interviewee: String!
+	interviewFinish: String!
+	interviewStart: String!
+	officerCollarNumber: String!
+	location: String!
+	unitId: String!
+	path: String!
+	attachments: [Attachment] @connection(name: "CaseAttachments")
+    recordings: [Recording] @connection(name: "CaseRecordings")
+    logs: [Log] @connection(name: "CaseLogs")
+	transcriptions: [Transcription] @connection(name: "CaseTranscriptions")
+	bookmarks: [Bookmark] @connection(name: "CaseBookmarks")
+	shareds:[Shared] @connection(name: "CaseShareds")
+}
+
+
+type Recording @model {
+	id: ID!
+	url: String!
+	bucket:String!
+	key:String!
+	lastmodified: String!
+	description: String!
+	camera: String!
+	version: String!
+	redactions: [Redaction] @connection(name: "RecordingRedactions")
+	case: Case @connection(name: "CaseRecordings")
+}
+
+type Attachment @model {
+	id: ID!
+	description: String!
+	url: String!
+	updatedDateTime: String!
+	updatedBy: String!
+	case: Case @connection(name: "CaseAttachments")
+}
+
+type Bookmark @model {
+	id: ID!
+	order: Int!
+	dateTime: String!
+	speaker: String
+	content: String!
+	updatedDateTime: String
+	updatedBy: String
+	case: Case @connection(name: "CaseBookmarks")
+}
+
+
+
+type Redaction @model{
+	id: ID!
+	redactionVersion: String!
+	description: String!
+	updatedDateTime: String
+	updatedBy: String
+	status: String!
+	recording: Recording @connection(name: "RecordingRedactions")
+	RedactionIntervals: [RedactionInterval] @connection(name: "RedactionRedactionIntervals")
+}
+
+type RedactionInterval @model {
+	id: ID!
+	redactionVersion: String!
+	startSecond: Int!
+	endSecond: Int!
+	type: String!
+	redacton: Redaction @connection(name: "RedactionRedactionIntervals")
+}
+
+type Shared @model{
+	id: ID!
+	createdDateTime: String!
+	createdBy: String!
+	receiver: String!
+	receiver_email: String!
+	receiver_type: String!
+	expiry_date: String!
+	token: String!
+	urls: [String]!
+	status: String!
+	description: String!
+	case: Case @connection(name: "CaseShareds")
+}
+
+type Transcription @model{
+	id: ID!
+	submitTime: String!
+	transcriptionFileUrl: String
+	status: String!
+	case: Case @connection(name: "CaseTranscriptions")
+}
+
+
+type Log @model {
+	id: ID!
+	dateTime: String!
+	description: String!
+	userName: String!
+	recordId: String!
+	tableName: String!
+	case: Case @connection(name: "CaseLogs")
+}

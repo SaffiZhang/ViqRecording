@@ -1,0 +1,83 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <h3>Create a Case</h3>
+  </div>
+  <div class="ui-g-6" #inputWrapper>
+
+    <div class="ui-g">
+      <div class="ui-g-4">
+        Interview Start <span class="required-field">*</span>
+      </div>
+      <div class="ui-g-8">
+        <p-calendar [(ngModel)]="model.interviewStart" [showTime]="true" dataType="string"
+                    dateFormat="yy-mm-dd" hourFormat="24" [readonlyInput]="true" showSeconds="true"></p-calendar>
+      </div>
+      <div class="ui-g-4">
+        Interview Finish <span class="required-field">*</span>
+      </div>
+      <div class="ui-g-8">
+        <p-calendar [(ngModel)]="model.interviewFinish" [showTime]="true" dataType="string"
+                    dateFormat="yy-mm-dd" hourFormat="24" [readonlyInput]="true" showSeconds="true"></p-calendar>
+      </div>
+      <div class="ui-g-4">
+        Interviewee <span class="required-field">*</span>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText required [(ngModel)]="model.interviewee">
+      </div>
+      <div class="ui-g-4">
+        Officer Collar Number <span class="required-field">*</span>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText required [(ngModel)]="model.officerCollarNumber">
+      </div>
+      <div class="ui-g-4">
+        Police Station <span class="required-field">*</span>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText required [(ngModel)]="model.location">
+      </div>
+      <div class="ui-g-4">
+        Other Persons Present
+      </div>
+      <div class="ui-g-8">
+        <input pInputText [(ngModel)]="model.theOtherPersonsPresent">
+      </div>
+      <div class="ui-g-4">
+        Interviewee DOB
+      </div>
+      <div class="ui-g-8">
+        <p-inputMask [(ngModel)]="model.birthdayOfInterviewee" mask="9999-99-99"></p-inputMask>
+      </div>
+      <div class="ui-g-4">
+        Interview Type
+      </div>
+      <div class="ui-g-8">
+        <p-dropdown [options]="interviewTypeOptions" [(ngModel)]="model.interviewType"></p-dropdown>
+      </div>
+      <div class="ui-g-4">
+        Interview Access
+      </div>
+      <div class="ui-g-8">
+        <p-dropdown [options]="interviewAccessOptions" [(ngModel)]="model.interviewAccess"></p-dropdown>
+      </div>
+      <div class="ui-g-12">
+        Additional Note
+      </div>
+      <div class="ui-g-12">
+        <textarea pInputTextarea rows="5" [(ngModel)]="model.note"></textarea>
+      </div>
+      <div class="ui-g-12 required-field" *ngIf="mandatoryFieldError">
+        Please fill all mandatory fields.
+      </div>
+      <div class="ui-g-12">
+        <p-button label="Next : Upload Media Files" (onClick)="create()"></p-button>
+      </div>
+    </div>
+
+  </div>
+  <p-blockUI [blocked]="isRunning" baseZIndex="10000">
+    <i class="pi pi-spin pi-spinner" style="position:absolute;top:45%;left:50%;color:white;font-size:5em;"></i>
+  </p-blockUI>
+</div>
+<p-toast key="import-case" position="center"></p-toast>

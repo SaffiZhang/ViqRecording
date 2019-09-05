@@ -1,11 +1,13 @@
-//@import '~aws-amplify-angular/theme.css';
+@import '~aws-amplify-angular/theme.css';
 /* You can add global styles to this file, and also import other style files */
 
 //override ~aws-amplify-angular/theme.css setting
 //span {
 //  color: #ffffff;
 //}
-
+//span{
+//  color:white ;
+//}
 
 @charset "UTF-8";
 html {
@@ -67,7 +69,7 @@ body {
 
 #layout-topbar .logo {
   margin-left: 45px;
-  margin-top: 8px;
+  margin-top: 15px;
   display: inline-block;
 }
 
@@ -1232,4 +1234,45 @@ a {
   .notification-topbar .notification-topbar-image-mobile {
     display: block;
   }
+}
+
+li{
+  &.ui-tabview-selected{
+    span.ui-tabview-title{
+      color:white !important;
+    }
+  }
+  span.ui-tabview-title{
+    color:black
+  }
+}
+.ui-button{
+  span.ui-button-text{
+    color:white;
+  }
+  &.ui-state-disabled{
+    span.ui-button-text{
+      color:#333333;
+    }
+  }
+  background-color: #09c5d9;
+  border:1px solid #09c5d9;
+}
+
+p-dropdown{
+  li.ui-state-highlight{
+    span{
+      color:white;
+    }
+  }
+  li{
+    span{
+      color:#333333;
+    }
+  }
+}
+
+
+.required-field {
+  color: red;
 }
